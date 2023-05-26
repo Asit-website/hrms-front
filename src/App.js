@@ -11,6 +11,8 @@ import EmployeeDash from "./Components/Employee/Dashboard/EmployeeDash";
 import HrDashboard from "./Components/Hr/Dashboard/HrDashboard";
 import AdminDash from "./Components/admin/Dashboard/AdminDash";
 import ForgetPassword2 from "./Components/auth/ForgetPassword2";
+import Home from "./Components/Home";
+import EmployeeManage from "./Components/admin/EmployeeManage/EmployeeManage";
 var tc;
 const ROLES = {
   EMPLOYEE: "EMPLOYEE",
@@ -23,6 +25,8 @@ function App() {
     color: "",
     message: "",
   });
+
+  const [pop,setPop] = useState(false);
 
   const setAlert = (color, message) => {
     // console.log(color, message);
@@ -62,6 +66,7 @@ function App() {
             />
           ) : null}
           <Routes>
+            <Route path="/" element={<Home setAlert={setAlert}/>}/>
             <Route path="/login" element={<Auth setAlert={setAlert} />} />
             <Route path="/forget" element={<ForgetPassword />} />
             <Route path="/forget1" element={<ForgetPassword1/>}/>
@@ -94,8 +99,9 @@ function App() {
             <Route element={<PrivateRoute role={[ROLES.ADMIN]} />}>
               <Route
                 path="/adminDash"
-                element={<AdminDash setAlert={setAlert} />}
+                element={<AdminDash pop={pop} setPop={setPop} setAlert={setAlert} />}
               />
+              <Route path="/adminDash/EmployeeMan" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />}/>
             </Route>
           </Routes>
         </BrowserRouter>

@@ -5,16 +5,16 @@ import lok from '../../images/lok.png';
 import bottom from '../../images/bottom.png';
 import bell from '../../images/bell.png';
 import OutsideClickHandler from "react-outside-click-handler";
-const EmployeeNavbar = ({user,setAlert}) => {
+const AdminNavbar = ({setAlert,user}) => {
     const updateUser = () =>{
-       document.getElementById("ty").classList.toggle("tys");
-    }
-    const handleLogout = () =>{
-        localStorage.removeItem('hrms_token');
-        localStorage.removeItem('hrms_user');
-        window.location.href = "/login";
-        setAlert("success", "logout successfully");
-    }
+        document.getElementById("ty").classList.toggle("tys");
+     }
+     const handleLogout = () =>{
+         localStorage.removeItem('hrms_token');
+         localStorage.removeItem('hrms_user');
+         window.location.href = "/login";
+         setAlert("success", "logout successfully");
+     }
   return (
     <>
         <div className="Employee-nav w-full">
@@ -52,10 +52,9 @@ const EmployeeNavbar = ({user,setAlert}) => {
                </div>
             </div>
             </OutsideClickHandler>
-        </div>
-     
+        </div> 
     </>
   )
 }
 
-export default EmployeeNavbar
+export default AdminNavbar

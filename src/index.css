@@ -65,7 +65,7 @@ body {
   top: 22px;
   line-height: 100%;
   transform: translateY(-50%);
-  color: #aaa;
+  /* color: #aaa; */
   transition: top 0.3s ease, color 0.3s ease, font-size 0.3s ease;
 }
 
@@ -170,7 +170,7 @@ body {
 }
 .indexest{
   position: relative;
-  z-index: 100;
+  z-index: 100000000;
 }
 .otp-verify{
   width: 100%;
@@ -206,8 +206,14 @@ body {
   padding: 15px 45px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   position: relative;
-  z-index: 100000;
+  z-index: 200;
   background-color: #ffffff;
+}
+.checkta{
+  margin-left: 7px !important;
+  height: 15px !important;
+  margin-top: 12px !important;
+  border: 1px solid #0B60FF !important;
 }
 .logo img{
   max-width: 160px;
@@ -280,7 +286,7 @@ body {
   opacity: 70% !important;
 }
 .red-box{
-  position: relative;
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -288,7 +294,7 @@ body {
 }
 .white-box{
   position: absolute;
-  top: 170px;
+  bottom: 20px;
   background-color: #203a44;
   max-width: 180px;
   border-radius: 5px;
@@ -619,3 +625,391 @@ body {
    opacity: 20%;
    margin-top: 10px;
 }
+.calend{
+  background-color: #ffffff;
+  margin-top: 35px;
+  border-radius: 10px;
+  padding: 25px 0px;
+}
+.calend-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 30px;
+}
+.calend-head h2{
+  color: #000000; 
+  font-family: "Bold" !important;
+  font-size: 18px;
+  letter-spacing: .5px;
+}
+.calend-head p{
+  color: #0B60FF !important;
+  font-family: "Semi Bold" !important;
+  font-size: 14.5px;
+}
+.react-calendar{
+  width: 100% !important;
+  max-width: 100% !important;
+  border: none !important;
+}
+.react-calendar__navigation__next2-button{
+  display: none !important;
+}
+.react-calendar__navigation__prev2-button{
+  display: none !important;
+}
+.react-calendar__tile{
+  padding: 24px 0px !important;
+}
+.react-calendar__month-view__weekdays__weekday{
+  text-decoration: none !important;
+}
+abbr:where([title]){
+  text-decoration: none !important;
+}
+.user-profile{
+  position: absolute;
+  top: 56px;
+  padding:10px 20px;
+  border-radius: 5px;
+}
+.user-profile p{
+  margin: 10px 0px;
+}
+.tys{
+  display: block;
+}
+.kys{
+  display: none;
+}
+.admin-main{
+  height: 80vh;
+  background-color: #FFFFFF;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+  margin: 0px 10px;
+  position: relative;
+}
+.admin-main .plus1{
+ width: 180px;
+ max-width: 100%;
+ position: absolute;
+ bottom: -5px;
+ left: 85%;
+}
+.loj{
+  position: relative;
+  z-index: 2;
+  height: 55px;
+  width: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.main-card{
+  /* margin-top:40px ; */
+}
+.loj::before{
+  content: "";
+  background-color: #0B60FF;
+  opacity: 15%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+.loj img{
+  display: block;
+  margin: auto;
+  width: 28px;
+}
+.main-box{
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  padding: 10px 15px;
+  margin: 0px 25px;
+  margin-top: 30px;
+  max-width: 400px;
+  width: 100%;
+}
+.main-box::before{
+  content: "";
+  background-color: #0B60FF;
+  opacity: 10%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+.main-box2{
+ margin-left: 30px;
+}
+.main-box2 h3{
+  color: #000F2B;
+  opacity: 80%;
+  font-size: 18.5px;
+  font-family: "Bold" !important;
+}
+.home-pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #0008;
+  z-index: 1000;
+  overflow: auto;
+}
+.popup-container {
+  max-width: 650px;
+  width: 100%;
+  /* height: 100%; */
+  background: white;
+  padding: 70px 0px;
+  border-radius: 10px;
+  margin: 20px auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+/* .home-pop .cut{
+  width: 100px;
+} */
+.home-pop .cut{
+  width: 23px;
+  /* height: 22px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 1rem;
+  z-index: 90;
+  right: 1rem;
+  cursor: pointer;
+}
+.pops-man h3{
+  color: #000F2B;
+  text-align: center;
+  font-size: 21px;
+  font-family: "Semi Bold" !important;
+  letter-spacing: .5px;
+}
+.select-typ1{
+  margin-top: 30px;
+}
+.select-typ1 img{
+  max-width: 90px;
+  width: 100%;
+  margin: 0px 35px;
+}
+.arrow-btn button{
+  background-color: #0B60FF;
+  width: 160px;
+  height: 38px;
+  display: block;
+  margin: auto;
+  margin-top: 60px;
+  border-radius: 10px;
+}
+.arrow-btn img{
+  display: block;
+  margin: auto;
+  width: 18px;
+}
+.sel-type p{
+   margin-top: 15px;
+   font-size: 14px;
+   font-family: "Medium" !important;
+   opacity: 50%;
+   color: #000000;
+}
+.admin-form1{
+  background-color: #F1F6FF;
+  max-width: 340px;
+  width: 100%;
+ padding: 20px 20px;
+ border-radius: 10px;
+ margin-top: 30px;
+ margin-right: 12px;
+  /* height: 400px; */
+}
+.admin-form{
+  display: flex;
+  align-items:flex-start ;
+  margin: 0 25px;
+}
+.form-section form{
+  width: 100%;
+}
+.form-section form input[type="email"]{
+  color: #000000 !important;
+}
+.admin-form1 .ladki{
+  width: 75px;
+  display: block;
+  margin: auto;
+}
+.admin-form1 .kds{
+  text-align: center;
+  font-size: 17.5px;
+  font-family: "Medium" !important;
+  color: #0A2E57;
+}
+.form-section form input, .form-section form select, .form-section form textarea{
+  background-color: #E8ECF5;
+  border: none;
+  margin: 7px 0px;
+  height: 42px;
+  border-radius: 5px;
+  padding: 0px 15px;
+  outline: none;
+  font-size: 13px;
+  position: relative;
+  z-index: 2;
+  color: #000000 !important;
+}
+.form-section input placeholder{
+  color: red;
+}
+
+.inputs-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.inputs-buttons .edit{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 30px;
+  border: 2px solid #0B60FF;
+  color: #0B60FF;
+  font-size: 14px;
+  font-family: "Semi Bold" !important; 
+  margin: 0 10px;
+  border-radius: 5px;
+}
+.inputs-buttons span{
+  font-size: 14px;
+  font-family: "Semi Bold" !important; 
+  margin: 0 4px;
+}
+.inputs-buttons  img{
+  width: 14px;
+  margin: 0 4px;
+}
+.inputs-buttons .save{
+  background-color: #0B60FF !important;
+  width: 110px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: "Semi Bold" !important; 
+  height: 30px;
+  border-radius: 5px;
+  margin: 0px 10px;
+}
+.admin-main1{
+  height: auto;
+  padding-bottom: 30px;
+}
+.admin-form2{
+  margin-top: 30px;
+  width: 100%;
+  margin-left: 12px;
+}
+.basic-information{
+  background-color: #F1F6FF;
+  padding: 20px 0px;
+  border-radius: 10 px;
+}
+.basics{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+.basics h3{
+  color: #0A2E57;
+  font-family: "Semi Bold" !important;
+  font-size: 16px;
+  letter-spacing: .5px;
+}
+.basics img{
+  width: 12px;
+}
+.upper{
+  margin-top: 20px;
+  opacity: 80%;
+}
+.form2-class form input, .form2-class select , .form2-class textarea{
+  background-color: #E8ECF5;
+  border: none;
+  margin: 7px 0px;
+  height: 42px;
+  border-radius: 5px;
+  padding: 0px 15px;
+  outline: none;
+  font-size: 13px;
+  position: relative;
+  z-index: 2;
+  color: rgb(133, 132, 132);
+  /* opacity: 60%; */
+}
+.form2-class form input::before{
+  /* background-color: #ffffff; */
+  color: #000000 !important;
+  opacity: 60%;
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+.try{
+  margin: 0px 13px;
+}
+.form2-class form label{
+  color: #000000;
+  opacity: 60%;
+  font-size: 12px;
+ position: relative;
+ top: 4px;
+  font-family: "Medium" !important;
+}
+.inputs-button1{
+  margin-top: 30px;
+  /* justify-content: space-between; */
+}
+.inputs-button1 .edit{
+  margin: 0px 0px;
+  margin-right: 10px;
+  width: 100% !important;
+  max-width: 80px;
+}
+.inputs-button1 .save{
+  margin: 0px 0px;
+  margin-left: 10px;
+  /* max-width: 110px; */
+  width: 100% !important;
+}
+

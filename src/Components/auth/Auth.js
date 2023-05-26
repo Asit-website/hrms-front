@@ -11,6 +11,7 @@ const Auth = (props) => {
     email: "",
     password: "",
   });
+ 
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
