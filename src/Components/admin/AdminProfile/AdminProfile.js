@@ -1,0 +1,140 @@
+import React,{useState,useEffect} from 'react'
+import AdminSidebar from '../Sidebar/AdminSidebar';
+import AdminNavbar from '../Navbar/AdminNavbar';
+import { useMain } from '../../../hooks/useMain'
+import UpdateProfile from '../../Employee/Profile/UpdateProfile';
+const AdminProfile = ({pop,setPop,setAlert}) => {
+    const { user,updateAdminProfile,UpdateProfile } = useMain();
+    const [value, setValue] = useState(user);
+
+  useEffect(() => {
+    setValue(user);
+  }, []);
+  // console.log(user.password);
+  const handleChange = (e) => {
+    if (e.target.name === "image") {
+      setValue({ ...value, [e.target.name]: e.target.files[0] });
+    } else {
+      setValue({ ...value, [e.target.name]: e.target.value });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(value);
+    const ans = await updateAdminProfile(value);
+    console.log(ans);
+    if (ans.success) {
+      setAlert("success", ans.message);
+      setValue(ans.data);
+    } else {
+      setAlert("error", ans.message);
+    }
+  };
+  return (
+   <>
+       <div className="employee-dash h-full">
+        <AdminSidebar pop={pop} setPop={setPop} />
+        <div className="tm">
+          <AdminNavbar user={user} setAlert={setAlert} />
+          <div className="em">
+            <div className="flex-col">
+            <form className="updateUser" onSubmit={handleSubmit}>
+                <div className="mb-6">
+                  <label htmlFor="fullName" className="block mb-1 ">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    onChange={handleChange}
+                    value={value?.fullName}
+                    id="fullName"
+                    className=" block w-full"
+                    required
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="email" className="block mb-1 ">
+                    Company Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    value={value?.email}
+                    id="email"
+                    className=" block w-full"
+                    required
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="mobile" className="block mb-1">
+                    Mobile Number
+                  </label>
+                  <input
+                    type="text"
+                    name="mobile"
+                    onChange={handleChange}
+                    value={value?.mobile}
+                    id="mobile"
+                    className=" block w-full"
+                    required
+                  />
+                </div>
+                {/* <div className="mb-6">
+                  <label htmlFor="image" className="block mb-1">
+                    Image
+                  </label>
+                  <input
+                    className="block w-full"
+                    name="image"
+                    onChange={handleChange}
+                    id="file_input"
+                    type="file"
+                  />
+                </div> */}
+                {/* <div className="mb-6">
+                  <label htmlFor="password" className="block mb-1">
+                    Password
+                  </label>
+                  <input
+                    className="block w-full"
+                    name="password"
+                    value={value?.password}
+                    onChange={handleChange}
+                    id="password"
+                    type="text"
+                    required
+                  />
+                </div> */}
+                <div className="mb-6">
+                  <label htmlFor="employeeCode" className="block mb-1">
+                    AdminCode
+                  </label>
+                  <input
+                    className="block w-full"
+                    name="employeeCode"
+                    value={value?.employeeCode}
+                    onChange={handleChange}
+                    id="employeeCode"
+                    type="text"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+   </>
+  )
+}
+
+export default AdminProfile

@@ -33,6 +33,11 @@
   src: local("Glory-Bold"),
     url("./font/static/Glory-Bold.ttf") format("truetype");
 }
+@font-face {
+  font-family: "ExtraBold"; /*Can be any text*/
+  src: local("Glory-ExtraBold"),
+    url("./font/static/Glory-ExtraBold.ttf") format("truetype");
+}
 
 @font-face {
   font-family: "Medium"; /*Can be any text*/

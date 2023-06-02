@@ -31,8 +31,100 @@ const MainState = (props) => {
        return data;
     };
  
-    const createHr = async ({ fullName, dob, mobile, email, password }) => {
-       const data = post(`${baseUrl}/hr/signin`, { fullName, dob, mobile, email, password }, true);
+    const createHr = async ({ fullName,
+      password,
+      department,
+      gmail,
+      reportingManager,
+      designation,
+      joiningDate,
+      email,
+      email1,
+      mobile,
+      gender,
+      dob,
+      pan,
+      adhar,
+      father,
+      currentAddress,
+      currentState,
+      currentCity,
+      currentPin,
+      residence,
+      perState,
+      perCity,
+      perPin,
+      Martial,
+      nationality,
+      Mother,
+       employeeCode,
+       qualification,
+       specialization,
+      qualificationType,
+      yearPass,
+    university,
+    college,
+    percentage,
+    previousCompany,
+    previousDesignation,
+    toDate,
+    fromDate,
+    numberOfMonth,
+    Jobdescription,
+    SalaryPay,
+    SalaryBankName,
+    BeneficiaryName,
+    BankIfsc,
+    AccountNumber,
+    confirmAccount,
+    Branch }) => {
+       const data = post(`${baseUrl}/admin/createHr`,{ fullName,
+         password,
+         department,
+         gmail,
+         reportingManager,
+         designation,
+         joiningDate,
+         email,
+         email1,
+         mobile,
+         gender,
+         dob,
+         pan,
+         adhar,
+         father,
+         currentAddress,
+         currentState,
+         currentCity,
+         currentPin,
+         residence,
+         perState,
+         perCity,
+         perPin,
+         Martial,
+         nationality,
+         Mother,
+          employeeCode,
+          qualification,
+          specialization,
+         qualificationType,
+         yearPass,
+       university,
+       college,
+       percentage,
+       previousCompany,
+       previousDesignation,
+       toDate,
+       fromDate,
+       numberOfMonth,
+       Jobdescription,
+       SalaryPay,
+       SalaryBankName,
+       BeneficiaryName,
+       BankIfsc,
+       AccountNumber,
+       confirmAccount,
+       Branch }, true);
        return data;
     };
  
@@ -50,6 +142,105 @@ const MainState = (props) => {
        const data = post(`${baseUrl}/hr/createUser`, { fullName, dob, mobile, email, lastOrganization, joiningDate, salary, bankDetails, address, loginMail, password, employeeId, designation }, true);
        return data;
     };
+
+    const createEmployee1 = async ({ fullName,
+      password,
+      department,
+      employeeId,
+      gmail,
+      reportingManager,
+      designation,
+      joiningDate,
+      email,
+      email1,
+      mobile,
+      gender,
+      dob,
+      pan,
+      adhar,
+      father,
+      currentAddress,
+      currentState,
+      currentCity,
+      currentPin,
+      residence,
+      perState,
+      perCity,
+      perPin,
+      Martial,
+      nationality,
+      Mother,
+       employeeCode,
+       qualification,
+       specialization,
+      qualificationType,
+      yearPass,
+    university,
+    college,
+    percentage,
+    previousCompany,
+    previousDesignation,
+    toDate,
+    fromDate,
+    numberOfMonth,
+    Jobdescription,
+    SalaryPay,
+    SalaryBankName,
+    BeneficiaryName,
+    BankIfsc,
+    AccountNumber,
+    confirmAccount,
+    Branch }) => {
+      const data = post(`${baseUrl}/admin/createUser1`, { fullName,
+         password,
+         department,
+         employeeId,
+         gmail,
+         reportingManager,
+         designation,
+         joiningDate,
+         email,
+         email1,
+         mobile,
+         gender,
+         dob,
+         pan,
+         adhar,
+         father,
+         currentAddress,
+         currentState,
+         currentCity,
+         currentPin,
+         residence,
+         perState,
+         perCity,
+         perPin,
+         Martial,
+         nationality,
+         Mother,
+          employeeCode,
+          qualification,
+          specialization,
+         qualificationType,
+         yearPass,
+       university,
+       college,
+       percentage,
+       previousCompany,
+       previousDesignation,
+       toDate,
+       fromDate,
+       numberOfMonth,
+       Jobdescription,
+       SalaryPay,
+       SalaryBankName,
+       BeneficiaryName,
+       BankIfsc,
+       AccountNumber,
+       confirmAccount,
+       Branch }, true);
+      return data;
+   };
  
     const getEmployees = async (userId) => {
        const data = get(`${baseUrl}/hr/getUsers?userId=${userId}`, true);
@@ -211,16 +402,25 @@ const MainState = (props) => {
        return data;
     };
  
-    const changePassword = async ({ oldPassword, currentPassword }) => {
+    const changePassword = async ({oldPassword, currentPassword }) => {
        const data = post(`${baseUrl}/user/changePassword`, { oldPassword, currentPassword }, true);
        return data;
     };
+
+    const changePassword1 = async ({oldPassword, currentPassword }) => {
+      const data = post(`${baseUrl}/auth/changePassword`, { oldPassword, currentPassword }, true);
+      return data;
+   };
  
-    const updateProfile = async ({ fullName, mobile, email, image }) => {
-       const data = put(`${baseUrl}/user/updateProfile`, { fullName, mobile, email, image }, true);
+    const updateProfile = async ({fullName, mobile, email, image,email1,password,gmail,department,designation,pan,adhar, father,currentAddress,currentState,currentPin,residence,perState, perCity,perPin,Martial,nationality,Mother,}) => {
+       const data = put(`${baseUrl}/user/updateProfile`, { fullName, mobile, email, image,email1,password,gmail,department,designation,pan,adhar, father,currentAddress,currentState,currentPin,residence,perState, perCity,perPin,Martial,nationality,Mother}, true);
        return data;
     };
- 
+
+    const updateAdminProfile = async ({fullName, dob, mobile, email, password,employeeCode}) => {
+      const data = put(`${baseUrl}/admin/updateAdmin`, { fullName, dob, mobile, email, password,employeeCode}, true);
+      return data;
+   };
     const getChats = async () => {
        const data = get(`${baseUrl}/chat/getChats`, true);
        return data;
@@ -296,8 +496,10 @@ const MainState = (props) => {
        return data;
     };
 
+    
+
   return (
-    <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, getEmployee }}>
+    <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, getEmployee,createEmployee1,updateAdminProfile,changePassword1 }}>
     {props.children}
  </MainContext.Provider>
   )

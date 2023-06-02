@@ -30,11 +30,6 @@ const AdminDash = ({setAlert,pop,setPop}) => {
   return (
     <>
          <div className="employee-dash h-full">
-      {/* {
-        data.map(val=>{
-          return <h2 key={val._id}>{val.email}</h2>
-        })
-      } */}
         <AdminSidebar pop={pop} setPop={setPop} />
         <div className="tm">
           <AdminNavbar  user={user} setAlert={setAlert} />
@@ -42,7 +37,7 @@ const AdminDash = ({setAlert,pop,setPop}) => {
             <div className="flex-col">
                 <div className="admin-main">
                    <div className='admin1'>
-                    <img className='plus1' src={plus1} alt="plus1" />
+                    <img onClick={()=> setPop(true)} className='plus1' src={plus1} alt="plus1" />
                     </div>
                     <div className='main-card flex items-center  justify-between'>
                         <div className="main-box">
@@ -62,7 +57,7 @@ const AdminDash = ({setAlert,pop,setPop}) => {
                                  </div>
                             </div>
                             <div className="main-box2">
-                               <h3>Employee Registration</h3>
+                               <h3>Profile Management</h3>
                             </div>
                         </div>
                         <div className="main-box">
@@ -72,7 +67,7 @@ const AdminDash = ({setAlert,pop,setPop}) => {
                                  </div>
                             </div>
                             <div className="main-box2">
-                               <h3>Employee Registration</h3>
+                               <h3>Roles Management</h3>
                             </div>
                         </div>
                     </div>

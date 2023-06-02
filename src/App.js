@@ -13,6 +13,10 @@ import AdminDash from "./Components/admin/Dashboard/AdminDash";
 import ForgetPassword2 from "./Components/auth/ForgetPassword2";
 import Home from "./Components/Home";
 import EmployeeManage from "./Components/admin/EmployeeManage/EmployeeManage";
+import Request from "./Components/Employee/Request/Request";
+import UpdateProfile from "./Components/Employee/Profile/UpdateProfile";
+import AdminProfile from "./Components/admin/AdminProfile/AdminProfile";
+import HrManage from "./Components/admin/HrManage/HrManage";
 var tc;
 const ROLES = {
   EMPLOYEE: "EMPLOYEE",
@@ -68,9 +72,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home setAlert={setAlert}/>}/>
             <Route path="/login" element={<Auth setAlert={setAlert} />} />
-            <Route path="/forget" element={<ForgetPassword />} />
-            <Route path="/forget1" element={<ForgetPassword1/>}/>
-            <Route path="/forget2" element={<ForgetPassword2/>}/>
+            <Route path="/forget" element={<ForgetPassword   setAlert={setAlert} />} />
+            <Route path="/forget1" element={<ForgetPassword1 setAlert={setAlert}/>}/>
+            <Route path="/forget2" element={<ForgetPassword2 setAlert={setAlert}/>}/>
             {/* =================Employee routing=========== */}
             <Route
               element={<PrivateRoute role={[ROLES.EMPLOYEE, ROLES.ADMIN]} />}
@@ -80,11 +84,12 @@ function App() {
                 element={
                   <EmployeeDash
                     setAlert={setAlert}
-                    // task={task}
-                    // setTask={setTask}
                   />
                 }
               />
+
+              <Route path="/employeeDash/request" element={<Request setAlert={setAlert}/>} />
+              <Route path="/employeeDash/update" element={<UpdateProfile setAlert={setAlert}/>}/>
             </Route>
 
             {/* ====================hr routing============== */}
@@ -102,6 +107,8 @@ function App() {
                 element={<AdminDash pop={pop} setPop={setPop} setAlert={setAlert} />}
               />
               <Route path="/adminDash/EmployeeMan" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />}/>
+              <Route path="/adminDash/HrManage" element={<HrManage pop={pop} setAlert={setAlert} setPop={setPop}/>}/>
+              <Route path="/adminDash/profile" element={<AdminProfile pop={pop} setPop={setPop} setAlert={setAlert}/>}/>
             </Route>
           </Routes>
         </BrowserRouter>

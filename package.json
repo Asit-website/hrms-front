@@ -15,6 +15,7 @@
     "react-calendar": "^4.2.1",
     "react-chartjs-2": "^5.2.0",
     "react-circular-progressbar": "^2.1.0",
+    "react-countdown": "^2.3.5",
     "react-dom": "^18.2.0",
     "react-google-charts": "^4.0.0",
     "react-loader-spinner": "^5.3.4",
@@ -22,6 +23,7 @@
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.3",
+    "react-timer-hook": "^3.0.6",
     "recharts": "^2.6.2",
     "web-vitals": "^2.1.4"
   },

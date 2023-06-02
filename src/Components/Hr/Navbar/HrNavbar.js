@@ -5,23 +5,22 @@ import lok from '../../images/lok.png';
 import bottom from '../../images/bottom.png';
 import bell from '../../images/bell.png';
 import OutsideClickHandler from "react-outside-click-handler";
+import { useMain } from '../../../hooks/useMain';
 import { NavLink } from 'react-router-dom';
-const AdminNavbar = ({setAlert,user}) => {
+const HrNavbar = ({setAlert}) => {
+    const {user} = useMain();
     const updateUser = () =>{
         document.getElementById("ty").classList.toggle("tys");
      }
-     const handleLogout = () =>{
-         localStorage.removeItem('hrms_token');
-         localStorage.removeItem('hrms_user');
-         window.location.href = "/login";
-         setAlert("success", "logout successfully");
-     }
+    const handleLogout = () =>{
+        localStorage.removeItem('hrms_token');
+        localStorage.removeItem('hrms_user');
+        window.location.href = "/login";
+        setAlert("success", "logout successfully");
+    }
   return (
     <>
         <div className="Employee-nav w-full">
-            {/* <div className="logo ">
-                <img src={kushel1} alt="" />
-            </div> */}
             <div className="second-logo flex items-center">
                  <img src={thir} alt="" />
                  <p className='ml-2'>Good Morning {user?.fullName}</p>
@@ -53,9 +52,9 @@ const AdminNavbar = ({setAlert,user}) => {
                </div>
             </div>
             </OutsideClickHandler>
-        </div> 
+        </div>  
     </>
   )
 }
 
-export default AdminNavbar
+export default HrNavbar
