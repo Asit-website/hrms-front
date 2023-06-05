@@ -18,6 +18,7 @@ import UpdateProfile from "./Components/Employee/Profile/UpdateProfile";
 import AdminProfile from "./Components/admin/AdminProfile/AdminProfile";
 import HrManage from "./Components/admin/HrManage/HrManage";
 import EmployeeManageByHr from "./Components/Hr/EmployeeManageHr/EmployeeManageByHr";
+
 var tc;
 const ROLES = {
   EMPLOYEE: "EMPLOYEE",
@@ -103,7 +104,7 @@ function App() {
             </Route>
 
             {/* ================admin routing===================== */}
-            <Route element={<PrivateRoute role={[ROLES.ADMIN]} />}>
+            {/* <Route element={<PrivateRoute role={[ROLES.ADMIN]} />}> */}
               <Route
                 path="/adminDash"
                 element={<AdminDash pop={pop} setPop={setPop} setAlert={setAlert} />}
@@ -111,7 +112,7 @@ function App() {
               <Route path="/adminDash/EmployeeMan" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />}/>
               <Route path="/adminDash/HrManage" element={<HrManage pop={pop} setAlert={setAlert} setPop={setPop}/>}/>
               <Route path="/adminDash/profile" element={<AdminProfile pop={pop} setPop={setPop} setAlert={setAlert}/>}/>
-            </Route>
+            {/* </Route> */}
           </Routes>
         </BrowserRouter>
       </MainState>
