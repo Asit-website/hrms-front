@@ -55,7 +55,7 @@ const HrSidebar = () => {
                 </a>
               </li>
             </NavLink>
-            <li className="most">
+          <NavLink to="/hrDash/EmployeeMan"><li className="most">
               <button
                 type="button"
                 className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -109,7 +109,7 @@ const HrSidebar = () => {
                   </a>
                 </li>
               </ul>
-            </li>
+            </li></NavLink>
             <NavLink to="#!">
               {" "}
               <li className="most">

@@ -213,7 +213,7 @@ const EmployeeDash = ({ setAlert }) => {
                     </div>
                   </div>
                   {gen.length > 0
-                    ? gen.map((e, index) => {
+                    ? gen.slice(0,5).map((e, index) => {
                         return (
                           <React.Fragment key={index}>
                             <div className="new-joiner">

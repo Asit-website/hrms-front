@@ -17,6 +17,7 @@ import Request from "./Components/Employee/Request/Request";
 import UpdateProfile from "./Components/Employee/Profile/UpdateProfile";
 import AdminProfile from "./Components/admin/AdminProfile/AdminProfile";
 import HrManage from "./Components/admin/HrManage/HrManage";
+import EmployeeManageByHr from "./Components/Hr/EmployeeManageHr/EmployeeManageByHr";
 var tc;
 const ROLES = {
   EMPLOYEE: "EMPLOYEE",
@@ -98,6 +99,7 @@ function App() {
                 path="/hrDash"
                 element={<HrDashboard setAlert={setAlert} />}
               />
+              <Route path="/hrDash/EmployeeMan" element={<EmployeeManageByHr setAlert={setAlert}/>}/>
             </Route>
 
             {/* ================admin routing===================== */}

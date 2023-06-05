@@ -1343,8 +1343,11 @@ abbr:where([title]) {
 }
 .status-box{
   background-color: #FFFFFF;
-  max-width: 290px;
+  /* max-width: 290px; */
   width: 100%;
+  padding: 12px 0px;
+  border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .status-sox{
   padding: 0px 15px;
@@ -1354,7 +1357,7 @@ abbr:where([title]) {
 }
 .status-sox h3{
   color: #000000;
-  font-size: 17.5px;
+  font-size: 18px;
   font-family: "Bold" !important;
 }
 .status-sox img{
@@ -1374,6 +1377,7 @@ abbr:where([title]) {
   color: #000000;
   font-family: "Semi Bold" !important;
   font-size: 33px;
+  line-height: 40px;
 }
 .status-months2 select{
   position: relative;
@@ -1384,6 +1388,231 @@ abbr:where([title]) {
   opacity: 90%;
   font-size: 13px;
   color: #000000 !important;
+  opacity: 60%;
 }
-
+.hr-months{
+  border: 1px solid #000000;
+  opacity: 10%;
+}
+.onboarding{
+  background-color: #FFFFFF;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  /* max-width: 290px; */
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 12px;
+  padding: 12px 0px;
+}
+.first-on{
+  display: flex;
+  align-items: center;
+}
+.gonBoarding{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
+}
+.first-o img{
+  width: 27px;
+}
+.second-o p{
+  color: #000000;
+  font-size: 13px;
+  font-family: "Semi Bold" !important;
+  margin-left: 10px;
+}
+.second-on h4{
+  color: #000000;
+  font-size: 13px;
+  font-family: "Semi Bold" !important;
+}
+.onboard-hr{
+  border: 1px solid #000000;
+  border-style: dotted;
+  color: #000000;
+  opacity: 15%;
+  margin-top: 12px;
+}
+.gon{
+  margin-top: 12px;
+}
+.request-card{
+  /* width: 600px; */
+  max-width: 100%;
+  width: 600px;
+}
+.hrStatus2{
+ width: 665px;
+ max-width: 100%;
+}
+.request-card{
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 12px 0px;
+}
+.see-req{
+  padding: 0px 15px;
+}
+.see-req h2{
+  color: #000000;
+  font-size: 18px;
+  font-family: "Bold" !important;
+}
+.see-req p{
+  color: #0B60FF;
+  font-size: 13px;
+  font-family: "Semi Bold" !important;
+}
+.hrDash-status2{
+  max-width: 370px;
+  width: 100%;
+}
+.shubham-cards1 .goal{
+  width: 13px;
+  height: 13px;
+}
+.shubham-cards1 .shubham{
+  width: 36px;
+  height: 36px;
+  margin-left: 10px;
+}
+.mr{
+  margin-left: 8px;
+}
+.mr h4{
+  color: #0A2E57;
+  font-size: 12px;
+  font-family: "Semi Bold" !important;
+  letter-spacing: .5px;
+}
+.mr p{
+  color: #0A2E57;
+  font-size: 10px;
+  font-family: gilroy !important;
+}
+.shubham-cards4{
+  background-color: #F1F6FF;
+  margin: 0px 15px;
+  padding:15px 12px;
+  margin-top: 10px;
+}
+.shubham-cards{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 100%; */
+}
+.see-hr{
+  border: 1px solid #000000;
+  opacity: 10%;
+  margin-top: 10px;
+}
+.tistar p{
+  font-size: 11px;
+  color: #0A2E57;
+  font-family: "Semi Bold" !important;
+}
+.date1 h4{
+   color: #0A2E57;
+   font-size: 11px;
+   font-family: "Semi Bold" !important;
+}
+.date1{
+  margin-left: 8px;
+}
+.date1 p{
+  color: #0A2E57;
+  font-size: 10px;
+  font-family: gilroy !important;
+}
+.interview{
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  padding: 12px 0px;
+}
+.interview-img{
+  padding: 0px 15px;
+}
+.interview-img img{
+  width: 18px;
+  height: 18px;
+}
+.test{
+  border: 1px solid #000000;
+  opacity: 10%;
+  margin-top: 13px;
+}
+.calendar{
+  margin: 0px 15px;
+  margin-top: 10px;
+}
+.calendar .react-calendar{
+  background-color: #F1F6FF;
+  position: relative;
+}
+.calendar .react-calendar button{
+  font-size: 11px;
+  font-family: "Semi Bold" !important;
+  color: #000000 !important;
+}
+.calendar .react-calendar button abbr{
+  font-size: 11px;
+  font-family: "Semi Bold" !important;
+  color: #000000 !important;
+}
+.calendar .react-calendar__navigation__label__labelText{
+  font-size: 13px !important;
+  font-family: "Bold" !important; 
+  color: #000000 !important;
+}
+/* class=" react-calendar__navigation__next-button" */
+.calendar .react-calendar__navigation__arrow{
+  font-size: 25px !important;
+  color: #F1F6FF !important;
+}
+.calendar .react-calendar__navigation{
+  width: 46% !important;
+  max-width: 100%;
+}
+.calendar .react-calendar__tile{
+  line-height: 0px !important;
+}
+.interview-img h3{
+  color: #000000 !important;
+  font-size: 18px !important;
+  font-family: "Bold" !important;
+  letter-spacing: .5px;
+}
+.col-akash{
+  position: relative;
+  background-color: #F1F6FF;
+  padding: 10px;
+  margin: 0px 15px;
+  margin-top: 16px;
+  border-radius: 5px;
+}
+.col-img img{
+  width: 58px;
+  max-width: 100%;
+}
+.col-para{
+  margin-left: 16px;
+}
+.col-para h3{
+  color: #000000;
+  font-family: "Bold" !important;
+  font-size: 13.5px;
+}
+.col-para p{
+  color: #000000;
+  opacity: 70%;
+  font-size: 9px;
+  font-family: "Semi Bold" !important;
+}
+.col-para h5{
+  color: #000000;
+  font-size: 9px;
+  font-family: "Bold" !important;
+}
 /* =============request css end=================== */
