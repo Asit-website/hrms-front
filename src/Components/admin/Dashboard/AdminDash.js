@@ -18,9 +18,7 @@ const AdminDash = ({ setAlert, pop, setPop }) => {
   useEffect(() => {
     getData();
   }, []);
-
   // console.log(gen.concat().toString.caller.arguments());
-
   const getData = async () => {
     const data = await getEmployee();
     console.log(data);
