@@ -3,15 +3,19 @@ import EmployeeNavbar from "../Navbar/EmployeeNavbar";
 import EmployeeSidebar from "../Sidebar/EmployeeSidebar";
 import { useMain } from "../../../hooks/useMain";
 import { useNavigate } from "react-router-dom";
+
 const UpdateProfile = ({ setAlert }) => {
-  const { user, updateProfile,postActivity, getStatisticsByUser } = useMain();
+  const { user, updateProfile, postActivity, getStatisticsByUser } = useMain();
   const [value, setValue] = useState(user);
 
   const navigate = useNavigate();
+
   useEffect(() => {
-    setValue(user);
+    // setValue(user);
+    let user1=JSON.parse(localStorage.getItem('hrms_user'));
+    setValue(user1);
   }, []);
-  console.log("update Profile");
+
   const handleChange = (e) => {
     if (e.target.name === "image") {
       setValue({ ...value, [e.target.name]: e.target.files[0] });
@@ -56,11 +60,11 @@ const UpdateProfile = ({ setAlert }) => {
                   <input
                     type="text"
                     name="fullName"
-                    onChange={handleChange}
+                    onChange={()=>null}
                     value={value.fullName}
                     id="fullName"
                     className=" block w-full"
-                    // required
+                  // required
                   />
                 </div>
                 <div className="mb-6">
@@ -70,11 +74,11 @@ const UpdateProfile = ({ setAlert }) => {
                   <input
                     type="email"
                     name="email"
-                    onChange={handleChange}
+                    onChange={()=>null}
                     value={value.email}
                     id="email"
                     className=" block w-full"
-                    // required
+                  // required
                   />
                 </div>
                 <div className="mb-6">
@@ -88,7 +92,7 @@ const UpdateProfile = ({ setAlert }) => {
                     value={value.mobile}
                     id="mobile"
                     className=" block w-full"
-                    // required
+                  // required
                   />
                 </div>
                 <div className="mb-6">
@@ -115,7 +119,7 @@ const UpdateProfile = ({ setAlert }) => {
                     onChange={handleChange}
                     id="email1"
                     type="email"
-                    // required
+                  // required
                   />
                 </div>
                 {/* <div className="mb-6">
@@ -143,7 +147,7 @@ const UpdateProfile = ({ setAlert }) => {
                     onChange={handleChange}
                     id="gmail"
                     type="email"
-                    // required
+                  // required
                   />
                 </div>
                 <div className="mb-6">
@@ -152,7 +156,7 @@ const UpdateProfile = ({ setAlert }) => {
                   </label>
                   <select
                     className="block w-full"
-                    onChange={handleChange}
+                    onChange={()=>null}
                     name="department"
                     value={value.department}
                     id="department"
@@ -163,11 +167,11 @@ const UpdateProfile = ({ setAlert }) => {
                 </div>
                 <div className="mb-6">
                   <label htmlFor="designation" className="block mb-1">
-                    Department
+                    Designation
                   </label>
                   <select
                     className=" block w-full"
-                    onChange={handleChange}
+                    onChange={()=>null}
                     name="designation"
                     value={value.designation}
                     id="designation"
@@ -182,7 +186,7 @@ const UpdateProfile = ({ setAlert }) => {
                     JoiningDate
                   </label>
                   <input
-                    onChange={handleChange}
+                    onChange={()=>null}
                     type="date"
                     name="joiningDate"
                     value={value.joiningDate}

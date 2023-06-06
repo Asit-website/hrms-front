@@ -10,13 +10,17 @@ const Auth = (props) => {
   var [value, setValue] = useState({
     email: "",
     password: "",
+    employeeCode: ""
   });
+
   const handleChange = (e) => {
     setValue({...value, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let ans = await login(value);
+
     if (ans.success) {
       setUser(ans.user);
       localStorage.setItem("hrms_user", JSON.stringify(ans.user));
@@ -63,13 +67,13 @@ const Auth = (props) => {
                 <label class="custom-field one">
                   <input
                     required
-                    name="email"
+                    name="employeeCode"
                     onChange={handleChange}
-                    value={value.email}
-                    type="email"
+                    value={value.employeeCode}
+                    type="text"
                     placeholder=" "
                   />
-                  <span class="placeholder">Email</span>
+                  <span class="placeholder">Employee Code</span>
                 </label>
                 <label class="custom-field one">
                   <input
@@ -86,7 +90,9 @@ const Auth = (props) => {
                   <p className=" text-right  forget">Forgot password?</p>
                 </NavLink>
               </div>
+              
               <button>Sign In</button>
+
               <div className="sign-information">
                 <p>
                   Powered by{" "}
