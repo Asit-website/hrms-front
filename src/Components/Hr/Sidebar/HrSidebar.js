@@ -1,13 +1,16 @@
 import React from 'react';
 import dots from "../../images/dots.png";
 import lokia from "../../images/lokia.png";
-import calling from "../../images/calling.png";
-import earth from "../../images/earth.png";
-import pdf from "../../images/pdf.png";
 import chakka from "../../images/chakka.png";
 import kushel1 from "../../images/kushel1.png";
 // import Managment from "../Management/Managment";
 import { NavLink } from 'react-router-dom';
+import enevelope from '../../images/enevelop.png';
+import document from '../../images/document.png';
+import cal from '../../images/cal.png';
+import cal1 from '../../images/cal1.png';
+import cal2 from '../../images/cal2.png';
+import cal3 from '../../images/cal3.png';
 const HrSidebar = () => {
   return (
     <>
@@ -44,7 +47,7 @@ const HrSidebar = () => {
         </div>
         <div className="h-full px-3 py-4 overflow-y-auto  sidebars">
           <ul className="space-y-2 font-medium sight">
-            <NavLink to="#!">
+            <NavLink to="/hrDash">
               <li className="most">
                 <a
                   href="#"
@@ -55,33 +58,55 @@ const HrSidebar = () => {
                 </a>
               </li>
             </NavLink>
-          <NavLink to="/hrDash/EmployeeMan"><li className="most">
+            <NavLink to="/hrDash/EmployeeMan">
+              <li className="most">
+                <a
+                  href="#"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <img width={16} src={lokia} alt="dots" />
+                  <span className="ml-3">Employees</span>
+                </a>
+              </li>
+            </NavLink>
+            <NavLink to="#!">
+              <li className="most">
+                <a
+                  href="#"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <img width={16} src={enevelope} alt="dots" />
+                  <span className="ml-3">Requests</span>
+                </a>
+              </li>
+            </NavLink>
+            <NavLink to="#!">
+              <li className="most">
+                <a
+                  href="#"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <img width={16} src={document} alt="dots" />
+                  <span className="ml-3">Documents</span>
+                </a>
+              </li>
+            </NavLink>
+
+            <NavLink to="#!"><li className="most">
               <button
                 type="button"
                 className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
-                <img width={16} src={lokia} alt="lokia" />
+                <img width={16} src={cal1} alt="lokia" />
                 <span
                   className="flex-1 ml-2 text-left whitespace-nowrap"
                   sidebar-toggle-item
                 >
-                  Employee Information
+                  Calender
                 </span>
-                <svg
-                  sidebar-toggle-item
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
+                <img width={20} height={20} src={cal} alt="" />
               </button>
               <ul id="dropdown-example" className="hidden py-2 space-y-2">
                 <li>
@@ -110,48 +135,50 @@ const HrSidebar = () => {
                 </li>
               </ul>
             </li></NavLink>
-            <NavLink to="#!">
-              {" "}
-              <li className="most">
-                <button
-                  type="button"
-                  className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  aria-controls="dropdown-example"
-                  data-collapse-toggle="dropdown-example"
+
+            <NavLink to="#!"><li className="most">
+              <button
+                type="button"
+                className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                aria-controls="dropdown-example"
+                data-collapse-toggle="dropdown-example"
+              >
+                <img width={16} src={cal3} alt="lokia" />
+                <span
+                  className="flex-1 ml-2 text-left whitespace-nowrap"
+                  sidebar-toggle-item
                 >
-                  <img width={16} src={calling} alt="lokia" />
-                  <span
-                    className="flex-1 ml-3 text-left whitespace-nowrap"
-                    sidebar-toggle-item
+                  Messages
+                </span>
+                <img width={20} height={20} src={cal2} alt="sokia" />
+              </button>
+              <ul id="dropdown-example" className="hidden py-2 space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Inbox
-                  </span>
-                  <svg
-                    sidebar-toggle-item
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
+                    Products
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </button>
-                <ul id="dropdown-example" className="hidden py-2 space-y-2">
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                    >
-                      Products
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </NavLink>
+                    Billing
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                    Invoice
+                  </a>
+                </li>
+              </ul>
+            </li></NavLink>
 
             <div className="red-box">
               <div className="white-box">

@@ -276,8 +276,9 @@ body {
 .most span {
   font-size: 13px !important;
   font-family: "Semi Bold" !important;
-  opacity: 70% !important;
+  opacity: 80% !important;
   letter-spacing: 0.5px !important;
+  color: #ffffff;
 }
 .most svg {
   color: #ffffff;
@@ -750,10 +751,13 @@ abbr:where([title]) {
   z-index: 2;
   padding: 10px 15px;
   margin: 0px 25px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   max-width: 400px;
   width: 100%;
   cursor: pointer;
+}
+.main-boxes{
+  margin-top: 30px ;
 }
 .main-box::before {
   content: "";
@@ -1615,4 +1619,141 @@ abbr:where([title]) {
   font-size: 9px;
   font-family: "Bold" !important;
 }
+.hr-bash{
+  background-color: #FFFFFF;
+  /* height: 80vh; */
+  margin: 0px 5px;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+  padding: 35px 0px;
+  border-radius: 5px;
+}
+.hr-box1 img{
+  width: 52px;
+  height: 52px;
+}
+.hr-box2{
+  margin-left: 20px !important;
+}
+.overhidding{
+  margin: 0px 25px;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+.overhidding1{
+  margin-top: 0px !important;
+}
+.reg-date img{
+  width: 15px;
+}
+.status{
+  display: flex;
+  border: 1px solid #ececec;
+  justify-content: space-between;
+  max-width: 90px;
+  width: 100%;
+  border-radius: 3px;
+  padding: 4px 10px;
+}
+.theads{
+  position: relative;
+  z-index: 2;
+  height: 55px;
+}
+.theads::before{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-bottom: 1px solid #000000;
+  opacity: 10%;
+}
+.sitar{
+ position: relative;
+ z-index: 2;
+}
+.sitar::before{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-right: 1px solid #000000;
+  opacity: 10%;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+}
+.sitar h4{
+  color: #0A2E57;
+  font-size: 16.5px;
+  font-family: "Semi Bold" !important;
+  letter-spacing: .5px;
+}
+.sitar1 h4{
+  color: #0A2E57;
+  font-size: 16.5px;
+  font-family: "Semi Bold" !important;
+  letter-spacing: .5px;
+}
+.timer p{
+  font-size: 13px;
+  font-family: "Medium" !important;
+  color: #0A2E57;
+}
+.sno{
+  font-size: 13px;
+  font-family: "Medium" !important;
+  color: #0A2E57;
+}
+.reg-date h4{
+  font-size: 13px;
+  font-family: "Medium" !important;
+  color: #0A2E57;
+}
+.reg-date p{
+  color: #0A2E57;
+  font-size: 10px;
+  font-family: gilroy !important;
+  line-height: 15px;
+  opacity: .9;
+}
+.status p{
+  font-size: 13px;
+  font-family: "Medium" !important;
+  color: #0A2E57;
+}
+.tr-head{
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid #e3e1e1;
+}
+.action{
+  max-width: 90px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 10px 2px;
+  position: inherit;
+  /* position: fixed; */
+  /* position: absolute;
+  top: -19px; */
+  z-index: 1000;
+}
+.edit{
+  padding: 7px 0px;
+  border-bottom: 1px solid #D9E0E6;
+}
+.delete{
+  padding: 7px 0px;
+}
+/* .tr-head::before{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-bottom: 1px solid #000000;
+  opacity: 10%;
+} */
 /* =============request css end=================== */
