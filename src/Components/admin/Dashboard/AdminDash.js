@@ -14,6 +14,7 @@ const AdminDash = ({ setAlert, pop, setPop }) => {
   const [value, onChange] = useState(new Date());
   const [gen, setGen] = useState([]);
   const [flag, setFlag] = useState();
+
   useEffect(() => {
     getData();
   }, []);

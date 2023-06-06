@@ -18,14 +18,14 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
     fullName: "",
     password: "",
     department: "",
-    gmail: "",
+    email: "",
     reportingManager: "",
     designation: "",
     joiningDate: "",
   });
   const [value2, setValue2] = useState({
     status: false,
-    email: "",
+    gmail: "",
     email1: "",
     mobile: "",
     gender: "",
@@ -223,9 +223,12 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                                 handleChange(e, "form1");
                               }}
                               type="email"
-                              name="gmail"
-                              value={value1?.gmail}
-                              placeholder="Company Gmail"
+                              // name="gmail"
+                              name="email"
+                              // value={value1?.gmail}
+                              value={value1?.email}
+                              // placeholder="Company Gmail"
+                              placeholder="Company Email Address"
                               disabled={value1.status}
                             />
                             <select
@@ -298,18 +301,20 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                             <div className="flex w-full">
                               <div class="mb-6 w-full try">
                                 <label
-                                  for="email"
+                                  for="gmail"
                                   class="block mb-0  font-medium "
                                 >
-                                  Company Email Address*
+                                  Company Gmail
                                 </label>
                                 <input
                                   type="email"
-                                  id="email"
+                                  id="gmail"
                                   class=" w-full rounded-lg"
                                   // required
-                                  name="email"
-                                  value={value2?.email}
+                                  // name="email"
+                                  name="gmail"
+                                  // value={value2?.email}
+                                  value={value2?.gmail}
                                   onChange={(e) => {
                                     handleChange(e, "form2");
                                   }}
