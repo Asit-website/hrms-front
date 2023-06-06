@@ -10,8 +10,8 @@ const MainState = (props) => {
    const [flag, setFlag] = useState(false);
    const [chatUser, setChatUser] = useState({});
 
-   const login = async ({ email, password }) => {
-      const data = post(`${baseUrl}/auth/login`, { email, password }, false);
+   const login = async ({ email, employeeCode, password }) => {
+      const data = post(`${baseUrl}/auth/login`, { email, employeeCode, password }, false);
       return data;
    };
 

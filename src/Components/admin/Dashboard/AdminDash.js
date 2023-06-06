@@ -14,10 +14,13 @@ const AdminDash = ({ setAlert, pop, setPop }) => {
   const [value, onChange] = useState(new Date());
   const [gen, setGen] = useState([]);
   const [flag, setFlag] = useState();
+
   useEffect(() => {
     getData();
   }, []);
-  console.log(gen.concat().toString.caller.arguments());
+
+  // console.log(gen.concat().toString.caller.arguments());
+
   const getData = async () => {
     const data = await getEmployee();
     console.log(data);
