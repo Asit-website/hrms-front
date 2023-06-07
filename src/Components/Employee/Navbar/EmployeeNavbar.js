@@ -139,9 +139,7 @@ const EmployeeNavbar = ({
         tempActivity[new Date().getDate()].push(activity);
       }
       localStorage.setItem("tempActivity", JSON.stringify(tempActivity));
-
       setPunchFlag(!punchFlag);
-
       const ans = await postActivity({
         date,
         activity,

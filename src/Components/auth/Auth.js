@@ -5,13 +5,25 @@ import path from "../images/path.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useMain } from "../../hooks/useMain";
 const Auth = (props) => {
-  const { login, hrLogin, setUser, employeeLogin, adminLogin } = useMain();
+  const { login, setUser } = useMain();
   const navigate = useNavigate();
   var [value, setValue] = useState({
     email: "",
     password: "",
     employeeCode: ""
   });
+
+  const [tab,setTab] = useState(0);
+
+  const adminLogin = (e) =>{
+    e.preventDefault();
+    setTab(1);
+  }
+
+  const userLogin = (e) =>{
+    e.preventDefault();
+    setTab(2);
+  }
 
   const handleChange = (e) => {
     setValue({...value, [e.target.name]: e.target.value });
@@ -36,6 +48,7 @@ const Auth = (props) => {
       props.setAlert("success", ans.message);
 
       if (ans.user.role === "HR") {
+        console.log(ans.message)
         navigate("/hrDash");
       } else if (ans.user.role === "EMPLOYEE") {
         navigate("/employeeDash/update");
@@ -46,6 +59,8 @@ const Auth = (props) => {
       props.setAlert("error", ans.message);
     }
   };
+
+  
 
   return (
     <div className="auth">
@@ -61,19 +76,23 @@ const Auth = (props) => {
             This is a secure system and you will need to provide your login
             details to access the site.
           </p>
+          <div className="login-buttons flex items-center justify-center">
+             <button onClick={adminLogin}  className="mr-3">Admin Login</button>
+             <button onClick={userLogin} className="ml-3">User Login</button>
+          </div>
           <div className="login-form">
             <form onSubmit={handleSubmit}>
               <div className=" flex flex-col mt-4 ">
                 <label class="custom-field one">
                   <input
                     required
-                    name="employeeCode"
+                    name={tab === 1 ? "email" : "employeeCode"}
                     onChange={handleChange}
-                    value={value.employeeCode}
-                    type="text"
+                    value={ tab === 1 ? value.email : value.employeeCode }
+                    type={tab === 1 ? "email" : "text"}
                     placeholder=" "
                   />
-                  <span class="placeholder">Employee Code</span>
+                  <span class="placeholder">{tab ===1 ? "Email" : "Employee Code"}</span>
                 </label>
                 <label class="custom-field one">
                   <input
