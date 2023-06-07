@@ -17,14 +17,14 @@ const HrManage = ({ pop, setPop, setAlert }) => {
       fullName: "",
       password: "",
       department: "",
-      gmail: "",
+      email: "",
       reportingManager: "",
       designation: "",
       joiningDate: "",
     });
     const [value2, setValue2] = useState({
       status: false,
-      email: "",
+      gmail: "",
       email1: "",
       mobile: "",
       gender: "",
@@ -75,7 +75,33 @@ const HrManage = ({ pop, setPop, setAlert }) => {
       confirmAccount: "",
       Branch: "",
     });
-  
+    useEffect(() => {
+      let form1 = localStorage.getItem("form1");
+      if (form1) {
+        form1 = JSON.parse(form1);
+        setValue1(form1);
+      }
+      let form2 = localStorage.getItem("form2");
+      if (form2) {
+        form2 = JSON.parse(form2);
+        setValue2(form2);
+      }
+      let form3 = localStorage.getItem("form3");
+      if (form3) {
+        form3 = JSON.parse(form3);
+        setValue3(form3);
+      }
+      let form4 = localStorage.getItem("form4");
+      if (form4) {
+        form4 = JSON.parse(form4);
+        setValue4(form4);
+      }
+      let form5 = localStorage.getItem("form5");
+      if (form5) {
+        form5 = JSON.parse(form5);
+        setValue5(form5);
+      }
+    }, []);
     useEffect(() => {
       let form1 = localStorage.getItem("form1");
       if (form1) {
@@ -153,10 +179,11 @@ const HrManage = ({ pop, setPop, setAlert }) => {
         localStorage.setItem(type, JSON.stringify({ ...value5, status: true }));
       }
     };
+    
     const handleSubmit = async (e, type) => {
       e.preventDefault();
       alert("created");
-      const ans = await createHr({ ...value1, ...value2, ...value3, ...value4, ...value5});
+      const ans = await createHr({ ...value1, ...value2, ...value3, ...value4, ...value5 });
       console.log(ans.data);
       console.log({ ...value1, ...value2, ...value3, ...value4, ...value5 });
       localStorage.removeItem({ ...value1, status: false });
@@ -205,25 +232,28 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                             <select
                               onChange={(e) => {
                                 handleChange(e, "form1");
-                                navigate(e.target.value);
+                                navigate(e.target.value)
                               }}
                               name="department"
                               value={value1?.department}
                               disabled={value1.status}
                             >
-                              <option  value={`/adminDash/EmployeeMan`}>Department</option>
-                              <option  value={`/adminDash/EmployeeMan`}>UI/UX Designer</option>
-                              <option  value={`/adminDash/EmployeeMan`}>Developer</option>
-                              <option   value={`/adminDash/HrManage`}>Hr</option>
+                              <option value={`/adminDash/EmployeeMan`}>Department</option>
+                              <option value={`/adminDash/EmployeeMan`}>UI/UX Designer</option>
+                              <option value={`/adminDash/EmployeeMan`}>Developer</option>
+                              <option value={`/adminDash/HrManage`}>Hr</option>
                             </select>
                             <input
                               onChange={(e) => {
                                 handleChange(e, "form1");
                               }}
                               type="email"
-                              name="gmail"
-                              value={value1?.gmail}
-                              placeholder="Company Gmail"
+                              // name="gmail"
+                              name="email"
+                              // value={value1?.gmail}
+                              value={value1?.email}
+                              // placeholder="Company Gmail"
+                              placeholder="Company Email Address"
                               disabled={value1.status}
                             />
                             <select
@@ -296,18 +326,20 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                             <div className="flex w-full">
                               <div class="mb-6 w-full try">
                                 <label
-                                  for="email"
+                                  for="gmail"
                                   class="block mb-0  font-medium "
                                 >
-                                  Company Email Address*
+                                  Company Gmail
                                 </label>
                                 <input
                                   type="email"
-                                  id="email"
+                                  id="gmail"
                                   class=" w-full rounded-lg"
                                   // required
-                                  name="email"
-                                  value={value2?.email}
+                                  // name="email"
+                                  name="gmail"
+                                  // value={value2?.email}
+                                  value={value2?.gmail}
                                   onChange={(e) => {
                                     handleChange(e, "form2");
                                   }}
@@ -510,7 +542,7 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                                   type="text"
                                   id="currentAddress"
                                   class="rounded-lg  w-full"
-                                  // required
+                                  // required 
                                   name="currentAddress"
                                   value={value3?.currentAddress}
                                   onChange={(e) => {
@@ -1285,10 +1317,7 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input
-                                  className="filesjila w-full"
-                                  type="file"
-                                />
+                                <input className="filesjila w-full" type="file" />
                               </div>
                               <div class="drag-area try">
                                 <div class="icon">
@@ -1299,10 +1328,7 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input
-                                  className="filesjila w-full"
-                                  type="file"
-                                />
+                                <input className="filesjila w-full" type="file" />
                               </div>
                               <div class="drag-area try">
                                 <div class="icon">
@@ -1313,10 +1339,7 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input
-                                  className="filesjila w-full"
-                                  type="file"
-                                />
+                                <input className="filesjila w-full" type="file" />
                               </div>
                             </div>
                             <div className="flex w-full mt-6">
@@ -1329,10 +1352,7 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input
-                                  className="filesjila w-full"
-                                  type="file"
-                                />
+                                <input className="filesjila w-full" type="file" />
                               </div>
                               <div class="drag-area try">
                                 <div class="icon">
@@ -1343,10 +1363,7 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input
-                                  className="filesjila w-full"
-                                  type="file"
-                                />
+                                <input className="filesjila w-full" type="file" />
                               </div>
                               <div class="drag-area try">
                                 <div class="icon">
@@ -1357,10 +1374,7 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input
-                                  className="filesjila w-full"
-                                  type="file"
-                                />
+                                <input className="filesjila w-full" type="file" />
                               </div>
                             </div>
                             <div className="flex w-full mt-6">
@@ -1373,10 +1387,7 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input
-                                  className="filesjila w-full"
-                                  type="file"
-                                />
+                                <input className="filesjila w-full" type="file" />
                               </div>
 
                               <div className="inputs-buttons inputs-button2">
@@ -1399,6 +1410,7 @@ const HrManage = ({ pop, setPop, setAlert }) => {
                                   Save
                                 </button>
                               </div>
+
                             </div>
                           </div>
                         </div>
