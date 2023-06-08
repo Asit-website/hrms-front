@@ -23,6 +23,7 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
     designation: "",
     joiningDate: "",
   });
+
   const [value2, setValue2] = useState({
     status: false,
     gmail: "",
@@ -31,6 +32,7 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
     gender: "",
     dob: "",
   });
+
   const [value3, setValue3] = useState({
     status: false,
     pan: "",
@@ -118,6 +120,7 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
       setValue5({ ...value5, [e.target.name]: e.target.value });
     }
   };
+
   const handleEdit = (type) => {
     if (type === "form1") {
       setValue1({ ...value1, status: false });
@@ -136,6 +139,7 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
       localStorage.setItem(type, JSON.stringify({ ...value5, status: false }));
     }
   };
+
   const handleSave = (type) => {
     if (type === "form1") {
       setValue1({ ...value1, status: true });
@@ -157,7 +161,6 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
 
   const handleSubmit = async (e, type) => {
     e.preventDefault();
-    alert("created");
     const ans = await createEmployee1({
       ...value1,
       ...value2,
@@ -168,6 +171,7 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
     console.log(ans.data);
     console.log({ ...value1, ...value2, ...value3, ...value4, ...value5 });
     localStorage.removeItem({ ...value1, status: false });
+    alert("created");
   };
   return (
     <>
@@ -213,22 +217,21 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                             <select
                               onChange={(e) => {
                                 handleChange(e, "form1");
-                                navigate(e.target.value);
                               }}
                               name="department"
                               value={value1?.department}
                               disabled={value1.status}
                             >
-                              <option value={`/adminDash/EmployeeMan`}>
+                              <option>
                                 Department
                               </option>
-                              <option value={`/adminDash/EmployeeMan`}>
+                              <option value={`UI/UX Designer`}>
                                 UI/UX Designer
                               </option>
-                              <option value={`/adminDash/EmployeeMan`}>
+                              <option value={`Developer`}>
                                 Developer
                               </option>
-                              <option value={`/adminDash/HrManage`}>Hr</option>
+                              <option value={`Hr`}>Hr</option>
                             </select>
                             <input
                               onChange={(e) => {
@@ -252,7 +255,7 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                               disabled={value1.status}
                             >
                               <option>Reporting Manager</option>
-                              <option>Chirag</option>
+                              <option value="Chirag">Chirag</option>
                             </select>
                             <select
                               onChange={(e) => {
@@ -263,8 +266,9 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                               disabled={value1.status}
                             >
                               <option>Designation</option>
-                              <option>Developer</option>
-                              <option>Designer</option>
+                              <option value="Developer">Developer</option>
+                              <option value="Designer">Designer</option>
+                              <option value="Hr">Hr</option>
                             </select>
                             <input
                               onChange={(e) => {

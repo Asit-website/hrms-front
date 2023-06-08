@@ -2,8 +2,8 @@ import React from 'react'
 import MainContext from './MainContext';
 import { deleteReq, get, post, put } from '../Api/api'
 import { useState } from 'react';
-const baseUrl = "http://localhost:5000";
-// const baseUrl = "https://hrms-backend-q2ta.onrender.com";
+// const baseUrl = "http://localhost:5000";
+const baseUrl = "https://hrms-backend-q2ta.onrender.com";
 
 const MainState = (props) => {
    const [user, setUser] = useState({});
@@ -31,7 +31,7 @@ const MainState = (props) => {
       return data;
    };
 
-   const createHr = async ({ fullName, password, department,  gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch, employeeCode, }) => {
+   const createHr = async ({ fullName, password, department, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch, employeeCode, }) => {
       const data = post(`${baseUrl}/admin/createHr`, {
          fullName,
          password,
@@ -94,54 +94,7 @@ const MainState = (props) => {
       return data;
    };
 
-   const createEmployee = async ({ fullName,
-      password,
-      department,
-      employeeId,
-      gmail,
-      reportingManager,
-      designation,
-      joiningDate,
-      email,
-      email1,
-      mobile,
-      gender,
-      dob,
-      pan,
-      adhar,
-      father,
-      currentAddress,
-      currentState,
-      currentCity,
-      currentPin,
-      residence,
-      perState,
-      perCity,
-      perPin,
-      Martial,
-      nationality,
-      Mother,
-      employeeCode,
-      qualification,
-      specialization,
-      qualificationType,
-      yearPass,
-      university,
-      college,
-      percentage,
-      previousCompany,
-      previousDesignation,
-      toDate,
-      fromDate,
-      numberOfMonth,
-      Jobdescription,
-      SalaryPay,
-      SalaryBankName,
-      BeneficiaryName,
-      BankIfsc,
-      AccountNumber,
-      confirmAccount,
-      Branch }) => {
+   const createEmployee = async ({ fullName, password, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch }) => {
       const data = post(`${baseUrl}/hr/createUser`, {
          fullName,
          password,
@@ -195,104 +148,13 @@ const MainState = (props) => {
       return data;
    };
 
-   const createEmployee1 = async ({ fullName,
-      password,
-      department,
-      employeeId,
-      gmail,
-      reportingManager,
-      designation,
-      joiningDate,
-      email,
-      email1,
-      mobile,
-      gender,
-      dob,
-      pan,
-      adhar,
-      father,
-      currentAddress,
-      currentState,
-      currentCity,
-      currentPin,
-      residence,
-      perState,
-      perCity,
-      perPin,
-      Martial,
-      nationality,
-      Mother,
-      employeeCode,
-      qualification,
-      specialization,
-      qualificationType,
-      yearPass,
-      university,
-      college,
-      percentage,
-      previousCompany,
-      previousDesignation,
-      toDate,
-      fromDate,
-      numberOfMonth,
-      Jobdescription,
-      SalaryPay,
-      SalaryBankName,
-      BeneficiaryName,
-      BankIfsc,
-      AccountNumber,
-      confirmAccount,
-      Branch }) => {
-      const data = post(`${baseUrl}/admin/createUser1`, {
-         fullName,
-         password,
-         department,
-         employeeId,
-         gmail,
-         reportingManager,
-         designation,
-         joiningDate,
-         email,
-         email1,
-         mobile,
-         gender,
-         dob,
-         pan,
-         adhar,
-         father,
-         currentAddress,
-         currentState,
-         currentCity,
-         currentPin,
-         residence,
-         perState,
-         perCity,
-         perPin,
-         Martial,
-         nationality,
-         Mother,
-         employeeCode,
-         qualification,
-         specialization,
-         qualificationType,
-         yearPass,
-         university,
-         college,
-         percentage,
-         previousCompany,
-         previousDesignation,
-         toDate,
-         fromDate,
-         numberOfMonth,
-         Jobdescription,
-         SalaryPay,
-         SalaryBankName,
-         BeneficiaryName,
-         BankIfsc,
-         AccountNumber,
-         confirmAccount,
-         Branch
-      }, true);
+   const createEmployee1 = async ({ fullName, password, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch }) => {
+      const data = post(`${baseUrl}/admin/createUser1`, { fullName, password, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch }, true);
+      return data;
+   };
+
+   const getUsers = async () => {
+      const data = get(`${baseUrl}/user/getUsers`, true);
       return data;
    };
 
@@ -422,7 +284,7 @@ const MainState = (props) => {
    };
 
    const verify = async (role) => {
-      const data = post(`${baseUrl}/verify`, {role}, true);
+      const data = post(`${baseUrl}/verify`, { role }, true);
       return data;
    };
 
@@ -556,9 +418,13 @@ const MainState = (props) => {
    };
 
 
+   const updateUser = async ({ userId, fullName, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch }) => {
+      const data = put(`${baseUrl}/user/updateUser/${userId}`, { fullName, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch }, true);
+      return data;
+   };
 
    return (
-      <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, getEmployee, createEmployee1, updateAdminProfile, changePassword1, verify }}>
+      <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, getEmployee, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser }}>
          {props.children}
       </MainContext.Provider>
    )
