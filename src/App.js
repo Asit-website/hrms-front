@@ -102,7 +102,8 @@ function App() {
                 path="/hrDash"
                 element={<HrDashboard setAlert={setAlert} />}
               />
-              <Route path="/hrDash/EmployeeReg" element={<EmployeeManageByHr setAlert={setAlert}/>}/>
+              {/* <Route path="/hrDash/EmployeeReg" element={<EmployeeManageByHr setAlert={setAlert}/>}/> */}
+              <Route path="/hrDash/EmployeeReg" element={<EmployeeManage setAlert={setAlert} pop={pop} setPop={setPop}/>}/>
               <Route path="/hrDash/EmployeeMan" element={<ShowEmployee setAlert={setAlert}/>}/>
               <Route path="/hrDash/EmployeeMan1" element={<ShowEmployee1 setAlert={setAlert}/>}/>
             </Route>

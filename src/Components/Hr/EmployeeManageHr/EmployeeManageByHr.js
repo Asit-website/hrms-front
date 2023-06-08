@@ -9,6 +9,7 @@ import upper from "../../images/upper.png";
 import lower from "../../images/lower.png";
 import del from "../../images/delete.png";
 // import { useNavigate } from "react-router-dom";
+
 const EmployeeManageByHr = ({ setAlert }) => {
 //   const navigate = useNavigate();
   const { user, createEmployee } = useMain();

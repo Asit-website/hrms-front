@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HrSidebar from "../Sidebar/HrSidebar";
 import HrNavbar from "../Navbar/HrNavbar";
 import hrLok from "../../images/hrLok.png";
@@ -8,34 +8,51 @@ import celes from '../../images/celes.png';
 import green from '../../images/green.png';
 import bottomArrow from '../../images/bottomArrow.png';
 import { NavLink } from "react-router-dom";
+import { useMain } from "../../../hooks/useMain";
+
 const ShowEmployee = ({ setAlert }) => {
+  const { getUsers } = useMain();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const ans = await getUsers();
+    // console.log(ans);
+    setData(ans.data);
+  };
+
   return (
     <>
       <div className="employee-dash h-full">
         <HrSidebar setAlert={setAlert} />
+
         <div className="tm">
           <HrNavbar setAlert={setAlert} />
+
           <div className="em">
             <div className="flex-col">
               <div className="hr-bash">
                 <div className="main-card flex items-center  justify-between">
-                <div className="main-box">
-                   <NavLink to="/hrDash/EmployeeReg"> <div className="main-box1 hr-box1">
+                  <div className="main-box">
+                    <NavLink to="/hrDash/EmployeeReg"> <div className="main-box1 hr-box1">
                       <img src={hrLok} alt="loj" />
                     </div></NavLink>
-                   <NavLink to="/hrDash/EmployeeReg"><div className="main-box2 hr-box2">
+                    <NavLink to="/hrDash/EmployeeReg"><div className="main-box2 hr-box2">
                       <h3>Employee Registration</h3>
                     </div></NavLink>
                   </div>
                   <div className="main-box">
-                  <NavLink to="/hrDash/EmployeeMan1">
-                    <div className="main-box1 hr-box1">
-                      <img src={hrLok1} alt="loj" />
-                    </div></NavLink>
                     <NavLink to="/hrDash/EmployeeMan1">
-                    <div className="main-box2 hr-box2">
-                      <h3>Employees Management</h3>
-                    </div></NavLink>
+                      <div className="main-box1 hr-box1">
+                        <img src={hrLok1} alt="loj" />
+                      </div></NavLink>
+                    <NavLink to="/hrDash/EmployeeMan1">
+                      <div className="main-box2 hr-box2">
+                        <h3>Employees Management</h3>
+                      </div></NavLink>
                   </div>
                   <div className="main-box">
                     <div className="main-box1 hr-box1">
@@ -74,296 +91,50 @@ const ShowEmployee = ({ setAlert }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="bg-[#F1F6FF] tr-head ">
-                        <td
-                          scope="row"
-                          class="px-6 py-4"
-                        >
-                        <p className="sno">01</p>
-                        </td>
-                        <td class="px-6 py-4">
-                          <div className=" flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Chirag Negi</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 timer"><p>Project Manager</p></td>
-                        <td class="px-6 py-4">
-                        <div className="flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Shubham Gupta</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className="reg-date flex items-center">
+                      {data.map((e, index) => {
+                        return (
+                          <tr key={index} class="bg-[#F1F6FF] tr-head ">
+                            <td
+                              scope="row"
+                              class="px-6 py-4"
+                            >
+                              <p className="sno">{('0' + index + 1).slice(-2)}</p>
+                            </td>
+                            <td class="px-6 py-4">
+                              <div className=" flex items-center timer">
+                                <img width={28} height={28} src={cg} alt="cg" />
+                                <p className="ml-2">{e.fullName}</p>
+                              </div>
+                            </td>
+                            <td class="px-6 py-4 timer"><p>{e.designation}</p></td>
+                            <td class="px-6 py-4">
+                              <div className="flex items-center timer">
+                                <img width={28} height={28} src={cg} alt="cg" />
+                                <p className="ml-2">{e.reportingManager}</p>
+                              </div>
+                            </td>
+                            <td class="px-6 py-4">
+                              <div className="reg-date flex items-center">
                                 <img src={celes} alt="celes" />
                                 <div className="ml-2">
-                                    <h4>15 July 2021</h4>
-                                    <p>10 : 45 AM</p>
+                                  <h4>{e.joiningDate}</h4>
+                                  {/* <p>10 : 45 AM</p> */}
                                 </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 timer">
-                          <p>KDS06231</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className=" flex items-center status">
+                              </div>
+                            </td>
+                            <td class="px-6 py-4 timer">
+                              <p>{e?.employeeCode}</p>
+                            </td>
+                            <td class="px-6 py-4">
+                              <div className=" flex items-center status">
                                 <img src={green} alt="green" />
-                                <p>Active</p>
+                                <p>{e.status === "OFFLINE" ? "Inactive" : "Active"}</p>
                                 <img src={bottomArrow} alt="green" />
-                            </div>
-                        </td>
-                      </tr>
-                      <tr class="bg-[#F1F6FF] tr-head  ">
-                        <td
-                          scope="row"
-                          class="px-6 py-4"
-                        >
-                        <p className="sno">01</p>
-                        </td>
-                        <td class="px-6 py-4">
-                          <div className=" flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Chirag Negi</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 timer"><p>Project Manager</p></td>
-                        <td class="px-6 py-4">
-                        <div className="flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Shubham Gupta</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className="reg-date flex items-center">
-                                <img src={celes} alt="celes" />
-                                <div className="ml-2">
-                                    <h4>15 July 2021</h4>
-                                    <p>10 : 45 AM</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 timer">
-                          <p>KDS06231</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className=" flex items-center status">
-                                <img src={green} alt="green" />
-                                <p>Active</p>
-                                <img src={bottomArrow} alt="green" />
-                            </div>
-                        </td>
-                      </tr>
-                      <tr class="bg-[#F1F6FF] tr-head  ">
-                        <td
-                          scope="row"
-                          class="px-6 py-4"
-                        >
-                        <p className="sno">01</p>
-                        </td>
-                        <td class="px-6 py-4">
-                          <div className=" flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Chirag Negi</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 timer"><p>Project Manager</p></td>
-                        <td class="px-6 py-4">
-                        <div className="flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Shubham Gupta</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className="reg-date flex items-center">
-                                <img src={celes} alt="celes" />
-                                <div className="ml-2">
-                                    <h4>15 July 2021</h4>
-                                    <p>10 : 45 AM</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 timer">
-                          <p>KDS06231</p>
-                        </td>
-                        <td class="px-6 py-4 relative">
-                            <div className="flex items-center status relative">
-                                <img src={green} alt="green" />
-                                <p>Active</p>
-                                <img src={bottomArrow} alt="green" />
-                            </div>
-                            {/* <div className="action">
-                                <div className="edit flex items-center justify-center">
-                                  <img width={13} height={11} src={edit1} alt="" />
-                                   <p className="ml-2">Edit</p>
-                                </div>
-                                <div className="delete flex items-center justify-center">
-                                   <img width={11} height={11} src={delete1} alt="" />
-                                   <p className="ml-2">Delete</p>
-                                </div>
-                            </div> */}
-                        </td>
-                      </tr>
-                      <tr class="bg-[#F1F6FF] tr-head  ">
-                        <td
-                          scope="row"
-                          class="px-6 py-4"
-                        >
-                        <p className="sno">01</p>
-                        </td>
-                        <td class="px-6 py-4">
-                          <div className=" flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Chirag Negi</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 timer"><p>Project Manager</p></td>
-                        <td class="px-6 py-4">
-                        <div className="flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Shubham Gupta</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className="reg-date flex items-center">
-                                <img src={celes} alt="celes" />
-                                <div className="ml-2">
-                                    <h4>15 July 2021</h4>
-                                    <p>10 : 45 AM</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 timer">
-                          <p>KDS06231</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className=" flex items-center status">
-                                <img src={green} alt="green" />
-                                <p>Active</p>
-                                <img src={bottomArrow} alt="green" />
-                            </div>
-                        </td>
-                      </tr>
-                      <tr class="bg-[#F1F6FF] tr-head  ">
-                        <td
-                          scope="row"
-                          class="px-6 py-4"
-                        >
-                        <p className="sno">01</p>
-                        </td>
-                        <td class="px-6 py-4">
-                          <div className=" flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Chirag Negi</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 timer"><p>Project Manager</p></td>
-                        <td class="px-6 py-4">
-                        <div className="flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Shubham Gupta</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className="reg-date flex items-center">
-                                <img src={celes} alt="celes" />
-                                <div className="ml-2">
-                                    <h4>15 July 2021</h4>
-                                    <p>10 : 45 AM</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 timer">
-                          <p>KDS06231</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className=" flex items-center status">
-                                <img src={green} alt="green" />
-                                <p>Active</p>
-                                <img src={bottomArrow} alt="green" />
-                            </div>
-                        </td>
-                      </tr>
-                      <tr class="bg-[#F1F6FF] tr-head  ">
-                        <td
-                          scope="row"
-                          class="px-6 py-4"
-                        >
-                        <p className="sno">01</p>
-                        </td>
-                        <td class="px-6 py-4">
-                          <div className=" flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Chirag Negi</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 timer"><p>Project Manager</p></td>
-                        <td class="px-6 py-4">
-                        <div className="flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Shubham Gupta</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className="reg-date flex items-center">
-                                <img src={celes} alt="celes" />
-                                <div className="ml-2">
-                                    <h4>15 July 2021</h4>
-                                    <p>10 : 45 AM</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 timer">
-                          <p>KDS06231</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className=" flex items-center status">
-                                <img src={green} alt="green" />
-                                <p>Active</p>
-                                <img src={bottomArrow} alt="green" />
-                            </div>
-                        </td>
-                      </tr>
-                      <tr class="bg-[#F1F6FF] tr-head  ">
-                        <td
-                          scope="row"
-                          class="px-6 py-4"
-                        >
-                        <p className="sno">01</p>
-                        </td>
-                        <td class="px-6 py-4">
-                          <div className=" flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Chirag Negi</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 timer"><p>Project Manager</p></td>
-                        <td class="px-6 py-4">
-                        <div className="flex items-center timer">
-                              <img width={28} height={28} src={cg} alt="cg" />
-                              <p className="ml-2">Shubham Gupta</p>
-                          </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className="reg-date flex items-center">
-                                <img src={celes} alt="celes" />
-                                <div className="ml-2">
-                                    <h4>15 July 2021</h4>
-                                    <p>10 : 45 AM</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 timer">
-                          <p>KDS06231</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div className=" flex items-center status">
-                                <img src={green} alt="green" />
-                                <p>Active</p>
-                                <img src={bottomArrow} alt="green" />
-                            </div>
-                        </td>
-                      </tr>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
