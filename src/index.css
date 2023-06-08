@@ -1247,6 +1247,14 @@ abbr:where([title]) {
   width: 80%;
   display: block;
   margin: auto;
+  overflow-x: scroll;
+  height: 600px;
+}
+.updateUser::-webkit-scrollbar{
+  display: none !important;
+}
+.updateUser::-webkit-scrollbar-thumb{
+  display: none !important;
 }
 .updateUser input,
 .updateUser select {

@@ -7,7 +7,7 @@ import ladki from "../../images/ladki.png";
 import edit from "../../images/edit.png";
 import upper from "../../images/upper.png";
 import lower from "../../images/lower.png";
-import del from '../../images/delete.png';
+import del from "../../images/delete.png";
 import { useNavigate } from "react-router-dom";
 
 const EmployeeManage = ({ pop, setPop, setAlert }) => {
@@ -154,11 +154,17 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
       localStorage.setItem(type, JSON.stringify({ ...value5, status: true }));
     }
   };
-  
+
   const handleSubmit = async (e, type) => {
     e.preventDefault();
     alert("created");
-    const ans = await createEmployee1({ ...value1, ...value2, ...value3, ...value4, ...value5 });
+    const ans = await createEmployee1({
+      ...value1,
+      ...value2,
+      ...value3,
+      ...value4,
+      ...value5,
+    });
     console.log(ans.data);
     console.log({ ...value1, ...value2, ...value3, ...value4, ...value5 });
     localStorage.removeItem({ ...value1, status: false });
@@ -207,15 +213,21 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                             <select
                               onChange={(e) => {
                                 handleChange(e, "form1");
-                                navigate(e.target.value)
+                                navigate(e.target.value);
                               }}
                               name="department"
                               value={value1?.department}
                               disabled={value1.status}
                             >
-                              <option value={`/adminDash/EmployeeMan`}>Department</option>
-                              <option value={`/adminDash/EmployeeMan`}>UI/UX Designer</option>
-                              <option value={`/adminDash/EmployeeMan`}>Developer</option>
+                              <option value={`/adminDash/EmployeeMan`}>
+                                Department
+                              </option>
+                              <option value={`/adminDash/EmployeeMan`}>
+                                UI/UX Designer
+                              </option>
+                              <option value={`/adminDash/EmployeeMan`}>
+                                Developer
+                              </option>
                               <option value={`/adminDash/HrManage`}>Hr</option>
                             </select>
                             <input
@@ -517,7 +529,7 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                                   type="text"
                                   id="currentAddress"
                                   class="rounded-lg  w-full"
-                                  // required 
+                                  // required
                                   name="currentAddress"
                                   value={value3?.currentAddress}
                                   onChange={(e) => {
@@ -1291,8 +1303,10 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                                   <header>3 Month salary Slips</header>
                                   <span>Select or drop Your Files Here</span>
                                 </div>
-
-                                <input className="filesjila w-full" type="file" />
+                                <input
+                                  className="filesjila w-full"
+                                  type="file"
+                                />
                               </div>
                               <div class="drag-area try">
                                 <div class="icon">
@@ -1302,19 +1316,24 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                                   <header>Aadhar Card (Both Sides)</header>
                                   <span>Select or drop Your Files Here</span>
                                 </div>
-
-                                <input className="filesjila w-full" type="file" />
+                                <input
+                                  className="filesjila w-full"
+                                  type="file"
+                                />
                               </div>
                               <div class="drag-area try">
-                                <div class="icon">
-                                  <i class="fas fa-cloud-upload-alt"></i>
+                                <div className="icon">
+                                  <i className="fas fa-cloud-upload-alt"></i>
                                 </div>
                                 <div className="flex flex-col items-center justify-center">
                                   <header>Cancelled Cheque</header>
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input className="filesjila w-full" type="file" />
+                                <input
+                                  className="filesjila w-full"
+                                  type="file"
+                                />
                               </div>
                             </div>
                             <div className="flex w-full mt-6">
@@ -1327,7 +1346,10 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input className="filesjila w-full" type="file" />
+                                <input
+                                  className="filesjila w-full"
+                                  type="file"
+                                />
                               </div>
                               <div class="drag-area try">
                                 <div class="icon">
@@ -1338,7 +1360,10 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input className="filesjila w-full" type="file" />
+                                <input
+                                  className="filesjila w-full"
+                                  type="file"
+                                />
                               </div>
                               <div class="drag-area try">
                                 <div class="icon">
@@ -1349,7 +1374,10 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input className="filesjila w-full" type="file" />
+                                <input
+                                  className="filesjila w-full"
+                                  type="file"
+                                />
                               </div>
                             </div>
                             <div className="flex w-full mt-6">
@@ -1362,7 +1390,10 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                                   <span>Select or drop Your Files Here</span>
                                 </div>
 
-                                <input className="filesjila w-full" type="file" />
+                                <input
+                                  className="filesjila w-full"
+                                  type="file"
+                                />
                               </div>
 
                               <div className="inputs-buttons inputs-button2">
@@ -1385,7 +1416,6 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                                   Save
                                 </button>
                               </div>
-
                             </div>
                           </div>
                         </div>

@@ -12,7 +12,7 @@ const UpdateProfile = ({ setAlert }) => {
 
   useEffect(() => {
     // setValue(user);
-    let user1=JSON.parse(localStorage.getItem('hrms_user'));
+    let user1 = JSON.parse(localStorage.getItem("hrms_user"));
     setValue(user1);
   }, []);
 
@@ -33,7 +33,7 @@ const UpdateProfile = ({ setAlert }) => {
     if (ans.success) {
       setAlert("success", ans.message);
       setValue(ans.data);
-      navigate("/employeeDash")
+      navigate("/employeeDash");
     } else {
       setAlert("error", ans.message);
     }
@@ -49,7 +49,12 @@ const UpdateProfile = ({ setAlert }) => {
       } */}
         <EmployeeSidebar />
         <div className="tm">
-          <EmployeeNavbar user={user} setAlert={setAlert} postActivity={postActivity} getStatisticsByUser={getStatisticsByUser} />
+          <EmployeeNavbar
+            user={user}
+            setAlert={setAlert}
+            postActivity={postActivity}
+            getStatisticsByUser={getStatisticsByUser}
+          />
           <div className="em">
             <div className="flex-col">
               <form className="updateUser" onSubmit={handleSubmit}>
@@ -60,11 +65,11 @@ const UpdateProfile = ({ setAlert }) => {
                   <input
                     type="text"
                     name="fullName"
-                    onChange={()=>null}
+                    onChange={() => null}
                     value={value.fullName}
                     id="fullName"
                     className=" block w-full"
-                  // required
+                    // required
                   />
                 </div>
                 <div className="mb-6">
@@ -74,11 +79,11 @@ const UpdateProfile = ({ setAlert }) => {
                   <input
                     type="email"
                     name="email"
-                    onChange={()=>null}
+                    onChange={() => null}
                     value={value.email}
                     id="email"
                     className=" block w-full"
-                  // required
+                    // required
                   />
                 </div>
                 <div className="mb-6">
@@ -92,7 +97,7 @@ const UpdateProfile = ({ setAlert }) => {
                     value={value.mobile}
                     id="mobile"
                     className=" block w-full"
-                  // required
+                    // required
                   />
                 </div>
                 <div className="mb-6">
@@ -119,7 +124,7 @@ const UpdateProfile = ({ setAlert }) => {
                     onChange={handleChange}
                     id="email1"
                     type="email"
-                  // required
+                    // required
                   />
                 </div>
                 {/* <div className="mb-6">
@@ -147,7 +152,7 @@ const UpdateProfile = ({ setAlert }) => {
                     onChange={handleChange}
                     id="gmail"
                     type="email"
-                  // required
+                    // required
                   />
                 </div>
                 <div className="mb-6">
@@ -156,7 +161,7 @@ const UpdateProfile = ({ setAlert }) => {
                   </label>
                   <select
                     className="block w-full"
-                    onChange={()=>null}
+                    onChange={() => null}
                     name="department"
                     value={value.department}
                     id="department"
@@ -171,7 +176,7 @@ const UpdateProfile = ({ setAlert }) => {
                   </label>
                   <select
                     className=" block w-full"
-                    onChange={()=>null}
+                    onChange={() => null}
                     name="designation"
                     value={value.designation}
                     id="designation"
@@ -186,7 +191,7 @@ const UpdateProfile = ({ setAlert }) => {
                     JoiningDate
                   </label>
                   <input
-                    onChange={()=>null}
+                    onChange={() => null}
                     type="date"
                     name="joiningDate"
                     value={value.joiningDate}
@@ -380,6 +385,294 @@ const UpdateProfile = ({ setAlert }) => {
                     onChange={handleChange}
                   />
                 </div>
+                <div className="mb-6">
+                  <label htmlFor="qualification" className="block mb-1">
+                    Qualification
+                  </label>
+                  <input
+                    type="text"
+                    id="qualification"
+                    class=" block w-full"
+                    // required
+                    name="qualification"
+                    value={value.qualification}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="specialization" className="block mb-1">
+                    Specialization
+                  </label>
+                  <input
+                    type="text"
+                    id="qualification"
+                    class=" block w-full"
+                    // required
+                    name="specialization"
+                    value={value.specialization}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="qualificationType" className="block mb-1">
+                    Qualification Type
+                  </label>
+                  <select
+                    className="rounded-lg  w-full"
+                    name="qualificationType"
+                    id="qualificationType"
+                    value={value.qualificationType}
+                    onChange={handleChange}
+                  >
+                    <option>Qualification Type</option>
+                    <option>M.sc</option>
+                    <option>B.sc</option>
+                  </select>
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="yearPass" className="block mb-1">
+                    Year of passing •
+                  </label>
+                  <select
+                    className="rounded-lg  w-full"
+                    name="yearPass"
+                    id="yearPass"
+                    value={value.yearPass}
+                    onChange={handleChange}
+                  >
+                    <option>year of passing</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                  </select>
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="university" className="block mb-1">
+                    University/Board •
+                  </label>
+                  <input
+                    type="text"
+                    id="university"
+                    class=" block w-full"
+                    // required
+                    name="university"
+                    value={value.university}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="college" className="block mb-1">
+                    College/School •
+                  </label>
+                  <input
+                    type="text"
+                    id="college"
+                    class=" block w-full"
+                    // required
+                    name="college"
+                    value={value.college}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="percentage" className="block mb-1">
+                    Grade/CCPA/Percentage
+                  </label>
+                  <input
+                    type="text"
+                    id="percentage"
+                    class="block w-full"
+                    // required
+                    name="percentage"
+                    value={value.percentage}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="previousCompany" className="block mb-1">
+                    Previous Company •
+                  </label>
+                  <input
+                    type="text"
+                    id="previousCompany"
+                    class="block w-full"
+                    // required
+                    name="previousCompany"
+                    value={value.previousCompany}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="previousDesignation" className="block mb-1">
+                    Previous Designation •
+                  </label>
+                  <input
+                    type="text"
+                    id="previousDesignation"
+                    class="block w-full"
+                    // required
+                    name="previousDesignation"
+                    value={value.previousDesignation}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="toDate" className="block mb-1">
+                    To date •
+                  </label>
+                  <input
+                    type="date"
+                    id="toDate"
+                    class="block w-full"
+                    // required
+                    name="toDate"
+                    value={value.toDate}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="fromDate" className="block mb-1">
+                    From date*
+                  </label>
+                  <input
+                    type="date"
+                    id="fromDate"
+                    class="block w-full"
+                    // required
+                    name="fromDate"
+                    value={value.fromDate}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="numberOfMonth" className="block mb-1">
+                    Number of months *
+                  </label>
+                  <input
+                    type="text"
+                    id="numberOfMonth"
+                    class="block w-full"
+                    // required
+                    name="numberOfMonth"
+                    value={value.numberOfMonth}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="Jobdescription" className="block mb-1">
+                    Job description
+                  </label>
+                  <input
+                    type="text"
+                    id="Jobdescription"
+                    class="block w-full"
+                    // required
+                    name="Jobdescription"
+                    value={value.Jobdescription}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="SalaryPay" className="block mb-1">
+                    Salary Pay Mode
+                  </label>
+                  <input
+                    type="text"
+                    id="SalaryPay"
+                    class="block w-full"
+                    // required
+                    name="SalaryPay"
+                    value={value.SalaryPay}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="SalaryBankName" className="block mb-1">
+                    Salary Bank Name
+                  </label>
+                  <input
+                    type="text"
+                    id="SalaryBankName"
+                    class="block w-full"
+                    // required
+                    name="SalaryBankName"
+                    value={value.SalaryBankName}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="BeneficiaryName" className="block mb-1">
+                    Beneficiary Name
+                  </label>
+                  <input
+                    type="text"
+                    id="BeneficiaryName"
+                    class="block w-full"
+                    // required
+                    name="BeneficiaryName"
+                    value={value.BeneficiaryName}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="BankIfsc" className="block mb-1">
+                    Bank IFSC Code
+                  </label>
+                  <input
+                    type="text"
+                    id="BankIfsc"
+                    class="block w-full"
+                    // required
+                    name="BankIfsc"
+                    value={value.BankIfsc}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="mb-6">
+                  <label htmlFor="AccountNumber" className="block mb-1">
+                    Account Number
+                  </label>
+                  <input
+                    type="text"
+                    id="AccountNumber"
+                    class="block w-full"
+                    // required
+                    name="AccountNumber"
+                    value={value.AccountNumber}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="mb-6">
+                  <label htmlFor="confirmAccount" className="block mb-1">
+                    Confirm Account Number
+                  </label>
+                  <input
+                    type="text"
+                    id="confirmAccount"
+                    class="block w-full"
+                    // required
+                    name="confirmAccount"
+                    value={value.confirmAccount}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="mb-6">
+                  <label htmlFor="Branch" className="block mb-1">
+                    Bank Branch
+                  </label>
+                  <input
+                    type="text"
+                    id="Branch"
+                    class="block w-full"
+                    // required
+                    name="Branch"
+                    value={value.Branch}
+                    onChange={handleChange}
+                  />
+                </div>
+
                 <button
                   type="submit"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
