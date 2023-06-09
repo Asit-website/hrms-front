@@ -231,7 +231,10 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
                               <option value={`Developer`}>
                                 Developer
                               </option>
-                              <option value={`Hr`}>Hr</option>
+                              {
+                                user.role === "ADMIN" && <option value={`Hr`}>Hr</option>
+                              }
+                              
                             </select>
                             <input
                               onChange={(e) => {
