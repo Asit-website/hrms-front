@@ -12,7 +12,10 @@ import signin from "../../images/signin.png";
 import Calendar from "react-calendar";
 import akash from '../../images/akash.png';
 import rahul from '../../images/rahul.png';
+var tc;
+var tc2;
 const HrDashboard = ({ setAlert }) => {
+  
   const [value, onChange] = useState(new Date());
   return (
     <>

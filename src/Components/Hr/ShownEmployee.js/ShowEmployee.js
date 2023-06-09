@@ -123,7 +123,7 @@ const ShowEmployee = ({ setAlert }) => {
                               </div>
                             </td>
                             <td class="px-6 py-4 timer">
-                              <p>{e?.employeeCode}</p>
+                              <p>KDS{e?.employeeCode}</p>
                             </td>
                             <td class="px-6 py-4">
                               <div className=" flex items-center status">
