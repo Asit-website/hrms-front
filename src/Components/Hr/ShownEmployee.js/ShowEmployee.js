@@ -63,6 +63,7 @@ const ShowEmployee = ({ setAlert }) => {
                     </div>
                   </div>
                 </div>
+                
                 <div class="relative overflow-x-auto overhidding">
                   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="bg-[#F1F6FF] theads">
@@ -98,7 +99,7 @@ const ShowEmployee = ({ setAlert }) => {
                               scope="row"
                               class="px-6 py-4"
                             >
-                              <p className="sno">{('0' + index + 1).slice(-2)}</p>
+                              <p className="sno">{('0' + (index + 1)).slice(-2)}</p>
                             </td>
                             <td class="px-6 py-4">
                               <div className=" flex items-center timer">

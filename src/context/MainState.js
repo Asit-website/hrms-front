@@ -2,8 +2,8 @@ import React from 'react'
 import MainContext from './MainContext';
 import { deleteReq, get, post, put } from '../Api/api'
 import { useState } from 'react';
-// const baseUrl = "http://localhost:5000";
-const baseUrl = "https://hrms-backend-q2ta.onrender.com";
+const baseUrl = "http://localhost:5000";
+// const baseUrl = "https://hrms-backend-q2ta.onrender.com";
 
 const MainState = (props) => {
    const [user, setUser] = useState({});
@@ -153,8 +153,8 @@ const MainState = (props) => {
       return data;
    };
 
-   const getUsers = async () => {
-      const data = get(`${baseUrl}/user/getUsers`, true);
+   const getUsers = async (userId) => {
+      const data = get(`${baseUrl}/user/getUsers?userId=${userId}`, true);
       return data;
    };
 
@@ -165,11 +165,6 @@ const MainState = (props) => {
 
    const getAdminEmployees = async (userId) => {
       const data = get(`${baseUrl}/admin/getAdminEmployees?userId=${userId}`, true);
-      return data;
-   };
-
-   const getEmployee = async () => {
-      const data = get(`${baseUrl}/user/getEmployee`, true);
       return data;
    };
 
@@ -424,7 +419,7 @@ const MainState = (props) => {
    };
 
    return (
-      <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, getEmployee, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser }}>
+      <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser }}>
          {props.children}
       </MainContext.Provider>
    )

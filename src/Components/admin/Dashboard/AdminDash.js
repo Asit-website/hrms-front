@@ -10,21 +10,18 @@ import person1 from "../../images/person1.png";
 import person2 from "../../images/person2.png";
 import { NavLink } from "react-router-dom";
 const AdminDash = ({ setAlert, pop, setPop }) => {
-  const { user, getEmployee } = useMain();
+  const { user } = useMain();
   const [value, onChange] = useState(new Date());
   const [gen, setGen] = useState([]);
   const [flag, setFlag] = useState();
 
   useEffect(() => {
-    getData();
+    // getData();
   }, []);
   // console.log(gen.concat().toString.caller.arguments());
-  const getData = async () => {
-    const data = await getEmployee();
-    console.log(data);
-    setGen(data.data);
-    console.log(data.email);
-  };
+  // const getData = async () => {
+
+  // };
   
   return (
     <>
