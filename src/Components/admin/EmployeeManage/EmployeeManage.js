@@ -8,11 +8,12 @@ import edit from "../../images/edit.png";
 import upper from "../../images/upper.png";
 import lower from "../../images/lower.png";
 import del from "../../images/delete.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EmployeeManage = ({ pop, setPop, setAlert }) => {
+  const {id}=useParams();
   const navigate = useNavigate();
-  const { user, createEmployee1 } = useMain();
+  const { user, createEmployee1, getUsers, updateUser } = useMain();
   const [value1, setValue1] = useState({
     status: false,
     fullName: "",
@@ -78,6 +79,39 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
     confirmAccount: "",
     Branch: "",
   });
+
+  useEffect(()=>{
+    if(id)
+    {
+      getUser();
+    }
+  },[id]);
+
+  const getUser=async()=>{
+    const ans = await getUsers(id);
+    console.log(ans);
+    setValue1({
+      ...value1,
+      ...ans.data,
+      password: ''
+    });
+    setValue2({
+      ...value2,
+      ...ans.data
+    });
+    setValue3({
+      ...value3,
+      ...ans.data
+    });
+    setValue4({
+      ...value4,
+      ...ans.data
+    });
+    setValue5({
+      ...value5,
+      ...ans.data
+    });
+  };
 
   useEffect(() => {
     let form1 = localStorage.getItem("form1");
@@ -161,17 +195,97 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
 
   const handleSubmit = async (e, type) => {
     e.preventDefault();
-    const ans = await createEmployee1({
-      ...value1,
-      ...value2,
-      ...value3,
-      ...value4,
-      ...value5,
-    });
-    console.log(ans.data);
-    console.log({ ...value1, ...value2, ...value3, ...value4, ...value5 });
-    localStorage.removeItem({ ...value1, status: false });
-    alert("created");
+
+    if(!id)
+    {
+      const ans = await createEmployee1({
+        ...value1,
+        ...value2,
+        ...value3,
+        ...value4,
+        ...value5,
+      });
+      console.log(ans.data);
+      // console.log({ ...value1, ...value2, ...value3, ...value4, ...value5 });
+      localStorage.removeItem({ ...value1, status: false });
+      setValue1({
+        status: false,
+        fullName: "",
+        password: "",
+        department: "",
+        email: "",
+        reportingManager: "",
+        designation: "",
+        joiningDate: "",
+      });
+      setValue2({
+        status: false,
+        gmail: "",
+        email1: "",
+        mobile: "",
+        gender: "",
+        dob: "",
+      });
+      setValue3({
+        status: false,
+        pan: "",
+        adhar: "",
+        father: "",
+        currentAddress: "",
+        currentState: "",
+        currentCity: "",
+        currentPin: "",
+        residence: "",
+        perState: "",
+        perCity: "",
+        perPin: "",
+        Martial: "",
+        nationality: "",
+        Mother: "",
+      });
+      setValue4({
+        status: false,
+        qualification: "",
+        specialization: "",
+        qualificationType: "",
+        yearPass: "",
+        university: "",
+        college: "",
+        percentage: "",
+        previousCompany: "",
+        previousDesignation: "",
+        toDate: "",
+        fromDate: "",
+        numberOfMonth: "",
+        Jobdescription: "",
+      });
+      setValue5({
+        status: false,
+        SalaryPay: "",
+        SalaryBankName: "",
+        BeneficiaryName: "",
+        BankIfsc: "",
+        AccountNumber: "",
+        confirmAccount: "",
+        Branch: "",
+      });
+  
+      alert("created");
+    }
+    else
+    {
+      const ans = await updateUser({
+        userId: id,
+        ...value1,
+        ...value2,
+        ...value3,
+        ...value4,
+        ...value5,
+      });
+      console.log(ans.data);
+      alert('Updated');
+    }
+
   };
   return (
     <>

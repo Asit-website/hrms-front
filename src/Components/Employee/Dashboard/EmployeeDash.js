@@ -10,12 +10,12 @@ import nancy from "../../images/nancy.png";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useMain } from "../../../hooks/useMain";
-import { computeHeadingLevel } from "@testing-library/react";
 var tc;
 var tc2;
+
 const EmployeeDash = ({ setAlert }) => {
   // =================punch in punch out concept==========
-  const { user, getEmployee, postActivity, getStatisticsByUser } = useMain();
+  const { user, postActivity, getStatisticsByUser } = useMain();
   const [startTs, setStartTs] = useState("");
   var [percentageDone, setPercentageDone] = useState(0);
 
@@ -67,9 +67,8 @@ const EmployeeDash = ({ setAlert }) => {
       // }, 5 * 1000);
 
       let status = "ONLINE";
-      let date = `${new Date().getDate()}/${
-        new Date().getMonth() + 1
-      }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
+        }/${new Date().getFullYear()}`;
       // console.log(date);
       let activity = {
         type: "PUNCH_IN",
@@ -111,9 +110,8 @@ const EmployeeDash = ({ setAlert }) => {
       }, 60 * 1000);
 
       let status = "OFFLINE";
-      let date = `${new Date().getDate()}/${
-        new Date().getMonth() + 1
-      }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
+        }/${new Date().getFullYear()}`;
       let activity = {
         type: "PUNCH_OUT",
         ts: new Date().getTime(),
@@ -143,29 +141,24 @@ const EmployeeDash = ({ setAlert }) => {
 
   // ==========to get user data================
   useEffect(() => {
-    getData();
+    // getData();
   }, []);
 
   const getData = async () => {
-    const data = await getEmployee();
-    setGen(data.data);
+
   };
+
   return (
     <>
       <div className="employee-dash h-full">
-        {/* {
-        data.map(val=>{
-          return <h2 key={val._id}>{val.email}</h2>
-        })
-      } */}
         <EmployeeSidebar />
         <div className="tm">
-          <EmployeeNavbar 
-          user={user} 
-          setAlert={setAlert} 
-          postActivity={postActivity}
-          getStatisticsByUser={getStatisticsByUser}
-           />
+          <EmployeeNavbar
+            user={user}
+            setAlert={setAlert}
+            postActivity={postActivity}
+            getStatisticsByUser={getStatisticsByUser}
+          />
           <div className="em">
             <div className="flex-col">
               <div className="bedge">
@@ -212,44 +205,45 @@ const EmployeeDash = ({ setAlert }) => {
                       </div>
                     </div>
                   </div>
+                  
                   {gen.length > 0
-                    ? gen.slice(0,5).map((e, index) => {
-                        return (
-                          <React.Fragment key={index}>
-                            <div className="new-joiner">
-                              <h3>
-                                Welcome our new joiner{" "}
-                                <span>{e.joiningDate}</span>
-                              </h3>
-                              <div className="hr">
-                                <hr className="hr1" />
+                    ? gen.slice(0, 5).map((e, index) => {
+                      return (
+                        <React.Fragment key={index}>
+                          <div className="new-joiner">
+                            <h3>
+                              Welcome our new joiner{" "}
+                              <span>{e.joiningDate}</span>
+                            </h3>
+                            <div className="hr">
+                              <hr className="hr1" />
+                            </div>
+                            <div className="joiners flex items-center justify-between">
+                              <div className="joiners1">
+                                <img src={nancy} alt="" />
+                                <h2>{e.fullName}</h2>
+                                <p>{e.designation}</p>
                               </div>
-                              <div className="joiners flex items-center justify-between">
-                                <div className="joiners1">
-                                  <img src={nancy} alt="" />
-                                  <h2>{e.fullName}</h2>
-                                  <p>{e.designation}</p>
-                                </div>
-                                <div className="joiners2">
-                                  <p>
-                                    Lorem Ipsum is simply dummy text of the
-                                    printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy
-                                    text ever since the 1500s, when an unknown
-                                    printer took a galley of type and scrambled
-                                    it to make a type specimen book. It has
-                                    survived not only five centuries, but also
-                                    the leap into electronic typesetting,
-                                    remaining essentially unchanged. It was
-                                    popularised in the 1960s with the release of
-                                    Letraset sheets containing.
-                                  </p>
-                                </div>
+                              <div className="joiners2">
+                                <p>
+                                  Lorem Ipsum is simply dummy text of the
+                                  printing and typesetting industry. Lorem
+                                  Ipsum has been the industry's standard dummy
+                                  text ever since the 1500s, when an unknown
+                                  printer took a galley of type and scrambled
+                                  it to make a type specimen book. It has
+                                  survived not only five centuries, but also
+                                  the leap into electronic typesetting,
+                                  remaining essentially unchanged. It was
+                                  popularised in the 1960s with the release of
+                                  Letraset sheets containing.
+                                </p>
                               </div>
                             </div>
-                          </React.Fragment>
-                        );
-                      })
+                          </div>
+                        </React.Fragment>
+                      );
+                    })
                     : "no"}
                 </div>
                 <div className="second-bedge w-full ">
