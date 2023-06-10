@@ -20,6 +20,8 @@ import HrManage from "./Components/admin/HrManage/HrManage";
 import EmployeeManageByHr from "./Components/Hr/EmployeeManageHr/EmployeeManageByHr";
 import ShowEmployee from "./Components/Hr/ShownEmployee.js/ShowEmployee";
 import ShowEmployee1 from "./Components/Hr/ShownEmployee.js/ShowEmployee1";
+import UpdateProfileHr from "./Components/Hr/UpdateProfileHr/UpdateProfileHr";
+import AttendenceCalendar from "./Components/Employee/Request/AttendenceCalendar";
 
 var tc;
 const ROLES = {
@@ -94,6 +96,7 @@ function App() {
 
               <Route path="/employeeDash/request" element={<Request setAlert={setAlert}/>} />
               <Route path="/employeeDash/update" element={<UpdateProfile setAlert={setAlert}/>}/>
+              <Route path="/employeeDash/atten" element={<AttendenceCalendar setAlert={setAlert}/>}/>
             </Route>
 
             {/* ====================hr routing============== */}
@@ -107,6 +110,7 @@ function App() {
               <Route path="/hrDash/EmployeeReg/:id" element={<EmployeeManage setAlert={setAlert} pop={pop} setPop={setPop}/>}/>
               <Route path="/hrDash/EmployeeMan" element={<ShowEmployee setAlert={setAlert}/>}/>
               <Route path="/hrDash/EmployeeMan1" element={<ShowEmployee1 setAlert={setAlert}/>}/>
+              <Route path="/hrDash/profile" element={<UpdateProfileHr setAlert={setAlert}/>}/>
             </Route>
 
             {/* ================admin routing===================== */}
