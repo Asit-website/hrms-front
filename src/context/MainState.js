@@ -337,6 +337,7 @@ const MainState = (props) => {
       const data = put(`${baseUrl}/admin/updateAdmin`, { fullName, dob, mobile, email, password, employeeCode }, true);
       return data;
    };
+
    const getChats = async () => {
       const data = get(`${baseUrl}/chat/getChats`, true);
       return data;
@@ -413,8 +414,9 @@ const MainState = (props) => {
    };
 
 
-   const updateUser = async ({ userId, fullName, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch }) => {
-      const data = put(`${baseUrl}/user/updateUser/${userId}`, { fullName, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch }, true);
+   const updateUser = async (userId, value1, value2, value3, value4, value5) => {
+      console.log({ ...value2 });
+      const data = put(`${baseUrl}/user/updateUser/${userId}`, { ...value1, ...value2, ...value3, ...value4, ...value5 }, true);
       return data;
    };
 
