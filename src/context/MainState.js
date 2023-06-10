@@ -173,8 +173,8 @@ const MainState = (props) => {
       return data;
    };
 
-   const postActivity = async ({ date, activity, breaks, overtime, hours, status }) => {
-      const data = post(`${baseUrl}/activity/postActivity`, { date, activity, breaks, overtime, hours, status }, true);
+   const postActivity = async ({ date, activity, breaks, hours, status }) => {
+      const data = post(`${baseUrl}/activity/postActivity`, { date, activity, breaks, hours, status }, true);
       return data;
    };
 

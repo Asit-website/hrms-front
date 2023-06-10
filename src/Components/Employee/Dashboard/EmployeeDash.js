@@ -16,6 +16,7 @@ var tc2;
 const EmployeeDash = ({ setAlert }) => {
   // =================punch in punch out concept==========
   const { user, postActivity, getStatisticsByUser } = useMain();
+  
   const [startTs, setStartTs] = useState("");
   var [percentageDone, setPercentageDone] = useState(0);
 
