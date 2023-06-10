@@ -219,7 +219,7 @@ const HrDashboard = ({ setAlert }) => {
                       <img src={tanj} alt="tanj" />
                     </div>
                     <hr className="test"/>
-                    <div className="calendar">
+                    <div className="calendar calendar1">
                       <Calendar onChange={onChange} value={value} />
                     </div>
                      <div className="col-akash flex items-center ">

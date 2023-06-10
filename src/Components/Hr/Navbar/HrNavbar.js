@@ -9,6 +9,7 @@ import { useMain } from '../../../hooks/useMain';
 import { NavLink } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import hrBell from '../../images/hrBell.png';
 var tc;
 var tc2;
 const HrNavbar = ({setAlert}) => {
@@ -158,7 +159,7 @@ const HrNavbar = ({setAlert}) => {
             <div className="third-logo ">
                 <input type="search" placeholder='Search for actions, pages, requests, report* people...' />
             </div>
-            <div className="fourth-logo ">
+            <div className="fourth-logo fourth-logo1">
                 <button onClick={punchBtn}>Clock In</button>
             </div>
             <div style={stylePeer}>
@@ -182,7 +183,7 @@ const HrNavbar = ({setAlert}) => {
           </div> */}
         </div>
             <div className="fifth-logo ">
-                <img src={bell} alt="" />
+                <img src={hrBell} alt="hrBell" />
             </div>
 
             <OutsideClickHandler
@@ -198,7 +199,7 @@ const HrNavbar = ({setAlert}) => {
             </div>
                <div id='ty' className='bg-white w-40 absolute user-profile hidden'>
                     <p onClick={handleLogout} className=' text-center'>Logout</p>
-                   <NavLink to="/adminDash/profile"><p className=' text-center'>Edit Profile</p></NavLink>
+                   <NavLink to="/hrDash/profile"><p className=' text-center'>Edit Profile</p></NavLink>
                </div>
             </div>
             </OutsideClickHandler>
