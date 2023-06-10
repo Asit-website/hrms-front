@@ -80,39 +80,6 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
     Branch: "",
   });
 
-  useEffect(()=>{
-    if(id)
-    {
-      getUser();
-    }
-  },[id]);
-
-  const getUser=async()=>{
-    const ans = await getUsers(id);
-    console.log(ans);
-    setValue1({
-      ...value1,
-      ...ans.data,
-      password: ''
-    });
-    setValue2({
-      ...value2,
-      ...ans.data
-    });
-    setValue3({
-      ...value3,
-      ...ans.data
-    });
-    setValue4({
-      ...value4,
-      ...ans.data
-    });
-    setValue5({
-      ...value5,
-      ...ans.data
-    });
-  };
-
   useEffect(() => {
     let form1 = localStorage.getItem("form1");
     if (form1) {
@@ -140,6 +107,79 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
       setValue5(form5);
     }
   }, []);
+
+  useEffect(()=>{
+    if(id)
+    {
+      getUser();
+    }
+  },[id]);
+
+  const getUser=async()=>{
+    const ans = await getUsers(id);
+    console.log(ans);
+    setValue1({
+      status: false,
+      fullName: ans.data.fullName,
+      department: ans.data.department,
+      email: ans.data.email,
+      reportingManager: ans.data.reportingManager,
+      designation: ans.data.designation,
+      joiningDate: ans.data.joiningDate,
+      password: ''
+    });
+    setValue2({
+      status: false,
+      gmail: ans.data.gmail,
+      email1: ans.data.email1,
+      mobile: ans.data.mobile,
+      gender: ans.data.gender,
+      dob: ans.data.dob
+    });
+    setValue3({
+      status: false,
+      pan: ans.data.pan,
+      adhar: ans.data.adhar,
+      father: ans.data.father,
+      currentAddress: ans.data.currentAddress,
+      currentState: ans.data.currentState,
+      currentCity: ans.data.currentCity,
+      currentPin: ans.data.currentPin,
+      residence: ans.data.residence,
+      perState: ans.data.perState,
+      perCity: ans.data.perCity,
+      perPin: ans.data.perPin,
+      Martial: ans.data.Martial,
+      nationality: ans.data.nationality,
+      Mother: ans.data.Mother,
+    });
+    setValue4({
+      status: false,
+      qualification: ans.data.qualification,
+      specialization: ans.data.specialization,
+      qualificationType: ans.data.qualificationType,
+      yearPass: ans.data.yearPass,
+      university: ans.data.university,
+      college: ans.data.college,
+      percentage: ans.data.percentage,
+      previousCompany: ans.data.previousCompany,
+      previousDesignation: ans.data.previousDesignation,
+      toDate: ans.data.toDate,
+      fromDate: ans.data.fromDate,
+      numberOfMonth: ans.data.numberOfMonth,
+      Jobdescription: ans.data.Jobdescription
+    });
+    setValue5({
+      status: false,
+      SalaryPay: ans.data.SalaryPay,
+      SalaryBankName: ans.data.SalaryBankName,
+      BeneficiaryName: ans.data.BeneficiaryName,
+      BankIfsc: ans.data.BankIfsc,
+      AccountNumber: ans.data.AccountNumber,
+      confirmAccount: ans.data.confirmAccount,
+      Branch: ans.data.Branch
+    });
+  };
 
   const handleChange = (e, type) => {
     if (type === "form1") {
@@ -274,14 +314,7 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
     }
     else
     {
-      const ans = await updateUser({
-        userId: id,
-        ...value1,
-        ...value2,
-        ...value3,
-        ...value4,
-        ...value5,
-      });
+      const ans = await updateUser(id, value1, value2, value3, value4, value5);
       console.log(ans.data);
       alert('Updated');
     }
