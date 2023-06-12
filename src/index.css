@@ -477,6 +477,8 @@ body {
 
 .second-bedge {
   margin-left: 15px;
+  max-width: 450px;
+  width: 100%;
 }
 .line img {
   height: 55px;
@@ -534,7 +536,7 @@ body {
   border-radius: 10px;
   width: 100%;
   background-color: #ffffff;
-  padding: 22px;
+  padding: 12px 20px;
 }
 .cel-boxing {
   display: flex;
@@ -543,30 +545,30 @@ body {
 .cel-boxing1 img {
   width: 62px;
   max-width: 100%;
-  margin-top: -10px;
+  margin-top: 10px;
 }
 .cel-boxing2 h2 {
-  color: #0b60ff;
-  font-size: 18px;
+  color: #000000;
+  font-size: 15px;
   /* letter-spacing: .5px; */
   font-family: "Semi Bold" !important;
 }
 .cel-boxing2 p {
   color: #000000;
   opacity: 50%;
-  font-size: 14px;
+  font-size: 11px;
   font-family: "Medium" !important;
 }
 .cel-boxing2 button {
   width: 115px;
   max-width: 100%;
-  border: 1.5px solid gray;
+  border: 2px solid #0B60FF;
   font-size: 12px;
   height: 28px;
   font-family: "Semi Bold" !important;
-  color: #000f2b;
+  color: #0B60FF;
   border-radius: 5px;
-  opacity: 60%;
+  opacity: 50%;
   margin-top: 15px;
 }
 .new-joiner {
@@ -621,7 +623,7 @@ body {
 }
 .joiners2 P {
   max-width: 100%;
-  width: 24em;
+  /* width: 24em; */
   font-family: gilroy;
   font-size: 14.5px;
   color: #000000;
@@ -642,10 +644,12 @@ body {
   border-bottom: 2px solid #707070;
   opacity: 20%;
   margin-top: 10px;
+  margin-left: -25px;
+  margin-right: -25px;
 }
 .calend {
   background-color: #ffffff;
-  margin-top: 35px;
+  /* margin-top: 35px; */
   border-radius: 10px;
   padding: 25px 0px;
 }
@@ -2053,6 +2057,14 @@ abbr:where([title]) {
   right: 0px;
   padding: 20px;
 }
-/* .fat-pop1{
-  display: none !important;
-} */
+.cheers{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cheers1{
+  margin-right: 6px;
+}
+.cheer2{
+  margin-left: 6px;
+}

@@ -160,7 +160,8 @@ const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
             setAlert={setAlert}
             postActivity={postActivity}
             getStatisticsByUser={getStatisticsByUser}
-            pop1={pop1} setPop1={setPop1}
+            pop1={pop1}
+            setPop1={setPop1}
           />
           <div className="em">
             <div className="flex-col">
@@ -206,17 +207,26 @@ const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
                           </div>
                         </div>
                       </div>
+                      <div className="cel-box ml-5">
+                        <div className="cel-boxing">
+                          <div className="cel-boxing1">
+                            <img src={punjabi} alt="" />
+                          </div>
+                          <div className="cel-boxing2 ml-3">
+                            <h2>Steve wills</h2>
+                            <p>Assistant manager</p>
+                            <button>Wish Birthday</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
-                  {gen.length > 0
-                    ? gen.slice(0, 5).map((e, index) => {
-                      return (
-                        <React.Fragment key={index}>
+                
                           <div className="new-joiner">
                             <h3>
-                              Welcome our new joiner{" "}
-                              <span>{e.joiningDate}</span>
+                              Welcome Onboard
+                                 <span className="ml-2">(May 12, 2023)</span>
                             </h3>
                             <div className="hr">
                               <hr className="hr1" />
@@ -224,8 +234,18 @@ const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
                             <div className="joiners flex items-center justify-between">
                               <div className="joiners1">
                                 <img src={nancy} alt="" />
-                                <h2>{e.fullName}</h2>
-                                <p>{e.designation}</p>
+                                <h2>Nancy wills</h2>
+                                <p>Assistant manager</p>
+                                <div className="cheers mt-5">
+                                   <div className="cheers1 flex">
+                                   <i class="fa-solid fa-champagne-glasses"></i>
+                                   <p className="ml-1">Cheer22</p>
+                                   </div>
+                                   <div className="cheer2 flex">
+                                   <i class="fa-solid fa-comment"></i>
+                                   <p className="ml-1">Comment</p>
+                                   </div>
+                                </div>
                               </div>
                               <div className="joiners2">
                                 <p>
@@ -244,13 +264,10 @@ const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
                               </div>
                             </div>
                           </div>
-                        </React.Fragment>
-                      );
-                    })
-                    : "no"}
+                      
                 </div>
                 <div className="second-bedge w-full ">
-                  <div className="attendence-yes">
+                  {/* <div className="attendence-yes">
                     <h3>Yesterdays Attendances </h3>
                     <div className="atten-section">
                       <div className="day">
@@ -282,7 +299,7 @@ const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
                         <p>09 Hours</p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="calend">
                     <div className="calend-head">
                       <h2>Attendances Calendrer</h2>
@@ -292,21 +309,6 @@ const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
                   </div>
                 </div>
               </div>
-                
-                <div className="fat-pop">
-                   <div className="fat-container">
-                       <div className="flex items-center">
-                          <img src={back} alt="" />
-                          <p>Back</p>
-                       </div>
-                        <form className="form6" action="">
-                            <textarea name="" id="" cols="30" rows="10" placeholder="Describe your today's work here....">
-                               
-                            </textarea>
-                            <button className="block">Logout</button>
-                        </form>
-                   </div>
-                </div>
             </div>
           </div>
         </div>
