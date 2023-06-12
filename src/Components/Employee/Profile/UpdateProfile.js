@@ -49,6 +49,8 @@ const UpdateProfile = ({ setAlert,pop1,setPop1 }) => {
             setAlert={setAlert}
             postActivity={postActivity}
             getStatisticsByUser={getStatisticsByUser}
+            pop1={pop1}
+            setPop1={setPop1}
           />
           <div className="em">
             <div className="flex-col">
