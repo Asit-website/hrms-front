@@ -5,7 +5,7 @@ import { useMain } from '../../../hooks/useMain';
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import akash from '../../images/akasha.png'
-const AttendenceCalendar = ({setAlert}) => {
+const AttendenceCalendar = ({setAlert,pop1,setPop1}) => {
   const { user, postActivity, getStatisticsByUser } = useMain();
   const [value, onChange] = useState(new Date());
   return (
@@ -18,6 +18,7 @@ const AttendenceCalendar = ({setAlert}) => {
             setAlert={setAlert}
             postActivity={postActivity}
             getStatisticsByUser={getStatisticsByUser}
+            pop1={pop1} setPop1 = {setPop1}
           />
           <div className="em">
             <div className="flex-col">
@@ -25,8 +26,8 @@ const AttendenceCalendar = ({setAlert}) => {
                     <div className="distinguish1 w-full">
                     <div className="calend calend1">
                     <div className="calend-head">
-                      <h2>Attendances Calendrer</h2>
-                      <p>See all</p>
+                      {/* <h2>Attendances Calendrer</h2>
+                      <p>See all</p> */}
                     </div>
                     <Calendar onChange={onChange} value={value} />
                   </div>
@@ -59,6 +60,30 @@ const AttendenceCalendar = ({setAlert}) => {
                              <h3 className='sasks'>Tasks</h3>
                              <hr />
                              <div className="distinguish-fard">
+                                <div className="distinguish-box">
+                                    <img src={akash} alt="akash" />
+                                    <div className='akash'>
+                                       <h3>Interview with Akash Negi</h3>
+                                       <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                                       <h4>12:30  June 12,2022</h4>
+                                    </div>
+                                </div>
+                                <div className="distinguish-box">
+                                    <img src={akash} alt="akash" />
+                                    <div className='akash'>
+                                       <h3>Interview with Akash Negi</h3>
+                                       <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                                       <h4>12:30  June 12,2022</h4>
+                                    </div>
+                                </div>
+                                <div className="distinguish-box">
+                                    <img src={akash} alt="akash" />
+                                    <div className='akash'>
+                                       <h3>Interview with Akash Negi</h3>
+                                       <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                                       <h4>12:30  June 12,2022</h4>
+                                    </div>
+                                </div>
                                 <div className="distinguish-box">
                                     <img src={akash} alt="akash" />
                                     <div className='akash'>

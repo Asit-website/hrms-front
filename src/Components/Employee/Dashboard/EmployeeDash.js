@@ -10,10 +10,11 @@ import nancy from "../../images/nancy.png";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useMain } from "../../../hooks/useMain";
+import back from '../../images/back.png';
 var tc;
 var tc2;
 
-const EmployeeDash = ({ setAlert }) => {
+const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
   // =================punch in punch out concept==========
   const { user, postActivity, getStatisticsByUser } = useMain();
   
@@ -159,6 +160,7 @@ const EmployeeDash = ({ setAlert }) => {
             setAlert={setAlert}
             postActivity={postActivity}
             getStatisticsByUser={getStatisticsByUser}
+            pop1={pop1} setPop1={setPop1}
           />
           <div className="em">
             <div className="flex-col">
@@ -290,6 +292,21 @@ const EmployeeDash = ({ setAlert }) => {
                   </div>
                 </div>
               </div>
+                
+                <div className="fat-pop">
+                   <div className="fat-container">
+                       <div className="flex items-center">
+                          <img src={back} alt="" />
+                          <p>Back</p>
+                       </div>
+                        <form className="form6" action="">
+                            <textarea name="" id="" cols="30" rows="10" placeholder="Describe your today's work here....">
+                               
+                            </textarea>
+                            <button className="block">Logout</button>
+                        </form>
+                   </div>
+                </div>
             </div>
           </div>
         </div>

@@ -37,6 +37,7 @@ function App() {
   });
 
   const [pop,setPop] = useState(false);
+  const [pop1,setPop1] = useState(false);
 
   const setAlert = (color, message) => {
     // console.log(color, message);
@@ -90,13 +91,18 @@ function App() {
                 element={
                   <EmployeeDash
                     setAlert={setAlert}
+                    pop1={pop1}
+                    setPop1 = {setPop1}
                   />
                 }
               />
 
-              <Route path="/employeeDash/request" element={<Request setAlert={setAlert}/>} />
-              <Route path="/employeeDash/update" element={<UpdateProfile setAlert={setAlert}/>}/>
-              <Route path="/employeeDash/atten" element={<AttendenceCalendar setAlert={setAlert}/>}/>
+              <Route path="/employeeDash/request" element={<Request  pop1={pop1}
+                    setPop1 = {setPop1} setAlert={setAlert}/>} />
+              <Route path="/employeeDash/update" element={<UpdateProfile  pop1={pop1}
+                    setPop1 = {setPop1} setAlert={setAlert}/>}/>
+              <Route path="/employeeDash/atten" element={<AttendenceCalendar  pop1={pop1}
+                    setPop1 = {setPop1} setAlert={setAlert}/>}/>
             </Route>
 
             {/* ====================hr routing============== */}

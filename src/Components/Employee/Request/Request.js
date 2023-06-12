@@ -6,7 +6,7 @@ import search from "../../images/search.png";
 import dist from "../../images/dist.png";
 import asit from "../../images/asit.png";
 import chirag from "../../images/chirag.png";
-const Request = ({ setAlert }) => {
+const Request = ({ setAlert,pop1,setPop1 }) => {
   const { user, postActivity, getStatisticsByUser } = useMain();
   return (
     <>
@@ -18,6 +18,7 @@ const Request = ({ setAlert }) => {
             setAlert={setAlert}
             postActivity={postActivity}
             getStatisticsByUser={getStatisticsByUser}
+            pop1={pop1} setPop1={setPop1}
           />
           <div className="em em1">
             <div className="flex-col">
