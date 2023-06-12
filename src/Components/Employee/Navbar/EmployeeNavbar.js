@@ -12,39 +12,31 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import LogoutPop from "../Popup/LogoutPop";
 
-
 var tc;
 var tc2;
 
-const EmployeeNavbar = ({
-  user,
-  setAlert,
-  postActivity,
-  getStatisticsByUser,
-  pop1,
-  setPop1
-}) => {
+const EmployeeNavbar = ({ user, setAlert, postActivity, getStatisticsByUser, pop1, setPop1 }) => {
   const [pass, setPass] = useState(false);
-  const [pass1,setPass1] = useState(false);
+  const [pass1, setPass1] = useState(false);
   const stylePeer = {
     display: pass ? "block" : "none",
   };
 
   const stylePeer1 = {
     display: pass1 ? "block" : "none",
-  }
+  };
 
-  const bottomta = () =>{
+  const bottomta = () => {
     setPass1(true);
-    document.getElementById("fg").style.display="none";
-    document.getElementById("sg").style.display="block";
-  }
+    document.getElementById("fg").style.display = "none";
+    document.getElementById("sg").style.display = "block";
+  };
 
-  const bottomta1 = () =>{
+  const bottomta1 = () => {
     setPass1(false);
-    document.getElementById("fg").style.display="block";
-    document.getElementById("sg").style.display="none";
-  }
+    document.getElementById("fg").style.display = "block";
+    document.getElementById("sg").style.display = "none";
+  };
 
   const updateUser = () => {
     document.getElementById("ty").classList.toggle("tys");
@@ -75,6 +67,7 @@ const EmployeeNavbar = ({
   const [punchLog, setPunchLog] = useState({});
   const [punchFlag, setPunchFlag] = useState(false);
   const [statistics, setStatistics] = useState([]);
+  const [message, setMessage] = useState('');
 
   const getStatistics = async () => {
     const ans = await getStatisticsByUser();
@@ -86,11 +79,11 @@ const EmployeeNavbar = ({
     return new Date(year, month, 0).getDate();
   };
 
-  const punchBtn = async (e) => {
+  const punchBtn = async (type) => {
     setPass(!pass);
 
-    if (e.target.innerText === "Clock In") {
-      e.target.innerText = "Clock Out";
+    if (type === "Clock In") {
+      // e.target.innerText = "Clock Out";
       clearInterval(tc2);
 
       if (startTs === "") {
@@ -113,6 +106,7 @@ const EmployeeNavbar = ({
       let activity = {
         type: "PUNCH_IN",
         ts: new Date().getTime(),
+        message
       };
 
       let tempActivity = localStorage.getItem("tempActivity");
@@ -141,7 +135,7 @@ const EmployeeNavbar = ({
       });
       console.log(ans);
     } else {
-      e.target.innerText = "Clock In";
+      // e.target.innerText = "Clock In";
       clearInterval(tc);
 
       tc2 = setInterval(() => {
@@ -155,6 +149,7 @@ const EmployeeNavbar = ({
       let activity = {
         type: "PUNCH_OUT",
         ts: new Date().getTime(),
+        message
       };
 
       let tempActivity = JSON.parse(localStorage.getItem("tempActivity"));
@@ -193,7 +188,10 @@ const EmployeeNavbar = ({
         </div>
 
         <div className="fourth-logo ">
-          {/* <button onClick={punchBtn}>Clock In</button> */}
+          {/* <button onClick={() => {
+            punchBtn('Clock In');
+          }}>Clock In</button> */}
+          
           <div className="clock-nav flex">
             <div className="sat">
               <h3>Sa</h3>
@@ -210,32 +208,36 @@ const EmployeeNavbar = ({
             </div>
             <h3 className="puts">:</h3>
             <div className="sec">
-                <h3>09</h3>
-                <p>SEC</p>
+              <h3>09</h3>
+              <p>SEC</p>
             </div>
 
             <div className="bottomji">
-            <i id="fg" onClick={bottomta} className="fa-solid fa-chevron-down char cursor-pointer"></i>
-            <i id="sg" onClick={bottomta1} className="fa-solid fa-chevron-up char char1 cursor-pointer"></i>
+              <i id="fg" onClick={bottomta} className="fa-solid fa-chevron-down char cursor-pointer"></i>
+              <i id="sg" onClick={bottomta1} className="fa-solid fa-chevron-up char char1 cursor-pointer"></i>
               <OutsideClickHandler
                 onOutsideClick={() => {
-                setPass1(false);
-                document.getElementById("sg").style.display="none";
-                document.getElementById("fg").style.display="block";
-          }}
+                  setPass1(false);
+                  document.getElementById("sg").style.display = "none";
+                  document.getElementById("fg").style.display = "block";
+                }}
               >
-               <div style={stylePeer1}  className="brake">
-                  <div className="flex items-center bt">
-                     <img className="brakes" src={brake} alt="" />
-                     <p className="bring">Brake</p>
+                <div style={stylePeer1} className="brake">
+                  <div onClick={() => {
+                    punchBtn('Clock Out');
+                  }} className="flex items-center bt cursor-pointer">
+                    <img className="brakes" src={brake} alt="" />
+                    <p className="bring">Brake</p>
                   </div>
                   <hr />
-                  <div onClick={()=> setPop1(true)} className="logout flex items-center cursor-pointer">
-                      <img className="logouts" src={logout} alt="logout" />
-                      <p  className="out">Clock Out</p>
+                  <div onClick={() => {
+                    setPop1(true);
+                  }} className="logout flex items-center cursor-pointer">
+                    <img className="logouts" src={logout} alt="logout" />
+                    <p className="out">Clock Out</p>
                   </div>
-               </div>
-               </OutsideClickHandler>
+                </div>
+              </OutsideClickHandler>
             </div>
 
           </div>
@@ -289,7 +291,7 @@ const EmployeeNavbar = ({
         </OutsideClickHandler>
       </div>
       {
-        pop1 && <LogoutPop setPop1={setPop1}/>
+        pop1 && <LogoutPop setPop1={setPop1} setMessage={setMessage} punchBtn={punchBtn} />
       }
     </>
   );

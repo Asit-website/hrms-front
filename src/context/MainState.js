@@ -184,7 +184,7 @@ const MainState = (props) => {
    };
 
    const getActivitiesByUser = async (date, month, year, page, perPage, userId) => {
-      if (date.includes('undefined')) {
+      if (date && date.includes('undefined')) {
          date = '';
       }
 
