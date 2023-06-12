@@ -7,21 +7,20 @@ import OutsideClickHandler from "react-outside-click-handler";
 import { NavLink } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+
 var tc;
 var tc2;
-const EmployeeNavbar = ({
-  user,
-  setAlert,
-  postActivity,
-  getStatisticsByUser,
-}) => {
+
+const EmployeeNavbar = ({user, setAlert, postActivity, getStatisticsByUser}) => {
   const [pass, setPass] = useState(false);
   const stylePeer = {
     display: pass ? "block" : "none",
   };
+
   const updateUser = () => {
     document.getElementById("ty").classList.toggle("tys");
   };
+
   const handleLogout = () => {
    if(timer!=0){
       alert("you cant logout")
@@ -43,7 +42,7 @@ const EmployeeNavbar = ({
 
   var [breakTimer, setBreakTimer] = useState(0);
 
-  var [overTimeTimer, setOverTimeTimer] = useState(0);
+  // var [overTimeTimer, setOverTimeTimer] = useState(0);
 
   const [punchLog, setPunchLog] = useState({});
   const [punchFlag, setPunchFlag] = useState(false);
@@ -61,6 +60,7 @@ const EmployeeNavbar = ({
 
   const punchBtn = async (e) => {
     setPass(!pass);
+
     if (e.target.innerText === "Clock In") {
       e.target.innerText = "Clock Out";
       clearInterval(tc2);
@@ -70,19 +70,17 @@ const EmployeeNavbar = ({
       }
 
       tc = setInterval(() => {
-        if (progressTimer === 480) {
-          setOverTimeTimer(++overTimeTimer);
-        } else {
+        // if (progressTimer === 480) {
+        //   setOverTimeTimer(++overTimeTimer);
+        // } else {
           setTimer(++timer);
           setProgressTimer(++progressTimer);
-          setPercentageDone((progressTimer / 480) * 100);
-        }
+          // setPercentageDone((progressTimer / 480) * 100);
+        // }
       }, 60 * 1000);
 
       let status = "ONLINE";
-      let date = `${new Date().getDate()}/${
-        new Date().getMonth() + 1
-      }/${new Date().getFullYear()}`;
+      let date = new Date().toLocaleDateString();
      
       let activity = {
         type: "PUNCH_IN",
@@ -93,7 +91,6 @@ const EmployeeNavbar = ({
       if (tempActivity) {
         tempActivity = JSON.parse(tempActivity);
         if (!tempActivity[new Date().getDate()]) {
-         
           localStorage.removeItem("tempActivity");
           tempActivity = { [new Date().getDate()]: [] };
         }
@@ -110,7 +107,7 @@ const EmployeeNavbar = ({
         date,
         activity,
         breaks: breakTimer,
-        overtime: overTimeTimer,
+        // overtime: overTimeTimer,
         hours: timer,
         status,
       });
@@ -124,9 +121,9 @@ const EmployeeNavbar = ({
       }, 60 * 1000);
 
       let status = "OFFLINE";
-      let date = `${new Date().getDate()}/${
-        new Date().getMonth() + 1
-      }/${new Date().getFullYear()}`;
+
+      let date = new Date().toLocaleDateString();
+
       let activity = {
         type: "PUNCH_OUT",
         ts: new Date().getTime(),
@@ -140,18 +137,18 @@ const EmployeeNavbar = ({
       }
       localStorage.setItem("tempActivity", JSON.stringify(tempActivity));
       setPunchFlag(!punchFlag);
+
       const ans = await postActivity({
         date,
         activity,
         breaks: breakTimer,
-        overtime: overTimeTimer,
+        // overtime: overTimeTimer,
         hours: timer,
         status,
       });
       console.log(ans);
     }
   };
-
   
   return (
     <>
@@ -166,9 +163,11 @@ const EmployeeNavbar = ({
             placeholder="Search for actions, pages, requests, report* people..."
           />
         </div>
+
         <div className="fourth-logo ">
           <button onClick={punchBtn}>Clock In</button>
         </div>
+
         <div style={stylePeer}>
           <CircularProgressbar
             value={percentageDone}
