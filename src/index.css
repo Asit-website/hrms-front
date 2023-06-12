@@ -1789,20 +1789,270 @@ abbr:where([title]) {
   border: 2px solid #0B60FF !important;
 }
 .distinguish2{
-  width: 60%;
+  width: 34%;
   max-width: 100%;
+  margin: 0 20px;
 }
 .total-timeCal{
   background-color: #ffffff;
   border-radius: 10px;
+  padding: 20px 0px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .total-timeCal .total{
   color: #000000;
-  font-size: 23px;
+  font-size: 19px;
   font-family: "Bold" !important;
   padding: 0px 20px;
 }
-.clock-system{
+.total-timeCal hr{
+  border-bottom: 1.5px solid #000000;
+  opacity: 10%;
+  margin-top: 15px;
+}
+.clock{
   padding: 0px 20px;
 }
+.clock h3{
+  color: #707070 !important;
+  font-family: "Medium" !important;
+  font-size: 15px;
+}
+.clock1 h2{
+  color: #000000;
+  font-family: "Semi Bold" !important;
+  font-size: 22px;
+}
+.clock-system{
+  margin-top: 20px;
+}
+.clock2{
+  margin-top: 20px;
+}
+.distinguish-varding{
+  background-color: #ffffff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 20px 0px;
+}
+.distinguish-box{
+  display: flex;
+  background-color: #F1F6FF;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 15px 0px;
+}
+.distinguish-box img{
+  width: 78px;
+}
+.akash{
+  margin-left: 30px;
+}
+.akash h3{
+  color: #000000;
+  font-size: 16px;
+  font-family: "Bold" !important;
+}
+.akash p{
+  color: #000000;
+  font-size: 11px;
+  opacity: 50%;
+  font-family: "Semi Bold" !important;
+  margin-top: 2px;
+}
+.akash h4{
+  font-size: 13px;
+  font-family: "Bold" !important;
+  margin-top: 3px;
+}
+/* .distinguish-varding */
+.distinguish-varding .sasks{
+  padding: 0px 20px;
+  font-size: 18px;
+  font-family: "Bold" !important;
+}
+.distinguish-varding hr{
+  border-bottom: 1.5px solid #000000 !important;
+  /* overflow: hidden; */
+  opacity: 10%;
+  margin-top: 10px;
+}
+.distinguish-fard{
+  padding: 0px 20px;
+  margin-top: 20px;
+}
+.distinguish1 .react-calendar__navigation__label__labelText{
+  font-size: 18px !important;
+  font-family: "Bold" !important;
+}
+.distinguish1 .react-calendar__navigation button{
+  font-size: 30px;
+}
+.distinguish1 .react-calendar__month-view__weekdays__weekday abbr{
+  color: #000000;
+  opacity: 30%;
+  font-family: "Semi Bold" !important;
+  font-size: 14.5px;
+}
+.distinguish1 .react-calendar__tile{
+  line-height: 12px;
+}
+.distinguish1 .react-calendar__tile abbr{
+  color: #000000;
+  font-size: 14.5px;
+  font-family: "Semi Bold" !important;
+}
+.distinguish1 .calend1{
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.clock-nav .sat{
+  margin: 0 7px;
+}
+.clock-nav .hrs{
+  margin: 0 7px;
+}
+.clock-nav .puts{
+  margin: 0px 7px;
+}
+.clock-nav .min{
+  margin: 0px 7px;
+}
+.clock-nav .sec{
+  margin: 0px 7px;
+}
+.clock-nav h3{
+  color: #000F2B;
+  font-size: 22px;
+  font-family: "Bold" !important;
+}
+.clock-nav p{
+  font-size: 11px;
+  font-family: "Semi Bold" !important;
+  color: #000F2B;
+  opacity: 50%;
+  text-align: left;
+}
+.bottomji{
+  margin: 0px 7px;
+  margin-top: 2px;
+  position: relative;
+}
+/* .sas{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #0008;
+  z-index: 1000;
+  overflow: auto;
+} */
+.brake{
+  position: absolute;
+  background-color: #FFFFFF;
+  width: 130px;
+  top: 30px;
+  right: -5px;
+  border-radius: 10px;
+  padding:15px 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
  
+}
+.bottomji .char{
+  color: #000F2B;
+  font-size: 12px;
+  margin-top: 6px;
+}
+.brakes{
+  width: 20px;
+}
+.logouts{
+  width: 25px;
+}
+.brake p{
+  /* margin-right: 10px; */
+  white-space: nowrap;
+  margin: 0 5px;
+  font-size: 15px;
+  font-family: "Medium" !important;
+}
+.bring{
+  color: #D9AE00 !important;
+  opacity: 100% !important;
+}
+.out{
+  color: #FF5449 !important;
+  opacity: 100% !important;
+}
+.bt{
+  padding: 10px 0px;
+}
+.logout{
+  padding: 8px 0px;
+}
+.brake{
+  display: none;
+}
+.char1{
+  display: none;
+  margin-top: 6px;
+}
+.fat-container img{
+   width: 18px;
+}
+.fat-container p{
+  margin-left: 10px;
+}
+.fat-container textarea{
+  height: 500px;
+  max-height: 100%;
+  position: relative;
+  resize: none;
+  z-index: 2;
+  background-color: #e6e3e3;
+  outline: none;
+  padding: 20px;
+  color: #707070;
+  font-family: "Medium" !important;
+  font-size: 14px;
+  opacity: 70%;
+}
+.form6{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.form6 button{
+  background-color: #DF3333;
+  font-family: "Semi Bold" !important;
+  color: #FFFFFF;
+  border-radius: 5px;
+  max-width: 150px;
+  width: 100%;
+  display: block;
+  margin: auto;
+ height: 40px;
+ margin-top: 40px;
+}
+.fat-pop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #0008;
+  z-index: 1000;
+  overflow: auto;
+}
+.fat-container{
+  background-color: #FFFFFF !important;
+  max-width: 450px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0px;
+  padding: 20px;
+}
+/* .fat-pop1{
+  display: none !important;
+} */

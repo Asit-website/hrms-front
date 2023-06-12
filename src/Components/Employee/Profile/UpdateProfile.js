@@ -4,7 +4,7 @@ import EmployeeSidebar from "../Sidebar/EmployeeSidebar";
 import { useMain } from "../../../hooks/useMain";
 import { useNavigate } from "react-router-dom";
 
-const UpdateProfile = ({ setAlert }) => {
+const UpdateProfile = ({ setAlert,pop1,setPop1 }) => {
   const { user, updateProfile, postActivity, getStatisticsByUser } = useMain();
   const [value, setValue] = useState(user);
 
@@ -42,11 +42,6 @@ const UpdateProfile = ({ setAlert }) => {
   return (
     <>
       <div className="employee-dash h-full">
-        {/* {
-        data.map(val=>{
-          return <h2 key={val._id}>{val.email}</h2>
-        })
-      } */}
         <EmployeeSidebar />
         <div className="tm">
           <EmployeeNavbar
