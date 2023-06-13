@@ -1,6 +1,6 @@
 import React from "react";
 import back from '../../images/back.png';
-const LogoutPop = ({ setPop1, setMessage, punchBtn }) => {
+const LogoutPop = ({ setPop1, setMessage, punchBtn, setIsLoggedOut }) => {
   return (
     <>
       <div className="fat-pop fat-pop1 ">
@@ -24,6 +24,7 @@ const LogoutPop = ({ setPop1, setMessage, punchBtn }) => {
             ></textarea>
             <button onClick={()=>{
               punchBtn('Clock Out');
+              setIsLoggedOut(true);
             }} className="block">Logout</button>
           </form>
         </div>
