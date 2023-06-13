@@ -273,7 +273,7 @@ const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
                     <hr />
                     <div className="cals-dent relative">
                        <NavLink to="/employeeDash/atten"><img width={12} src={arrow} alt="arrow" /></NavLink>
-                      <Calendar onChange={onChange} value={value} />
+                       <Calendar onChange={onChange} value={value} />
                     </div>
                   </div>
                 </div>
