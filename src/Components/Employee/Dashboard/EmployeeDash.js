@@ -3,14 +3,14 @@ import EmployeeNavbar from "../Navbar/EmployeeNavbar";
 import EmployeeSidebar from "../Sidebar/EmployeeSidebar";
 import bret from "../../images/bret.png";
 import plus from "../../images/plus.png";
-import double from "../../images/double.png";
-import line from "../../images/line.png";
 import punjabi from "../../images/punjabi.png";
 import nancy from "../../images/nancy.png";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useMain } from "../../../hooks/useMain";
-import back from '../../images/back.png';
+import goals from '../../images/goals.png';
+import arrow from '../../images/arrow.png';
+import { NavLink } from "react-router-dom";
 var tc;
 var tc2;
 
@@ -221,8 +221,6 @@ const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
                       </div>
                     </div>
                   </div>
-                  
-                
                           <div className="new-joiner">
                             <h3>
                               Welcome Onboard
@@ -267,45 +265,16 @@ const EmployeeDash = ({ setAlert,pop1,setPop1 }) => {
                       
                 </div>
                 <div className="second-bedge w-full ">
-                  {/* <div className="attendence-yes">
-                    <h3>Yesterdays Attendances </h3>
-                    <div className="atten-section">
-                      <div className="day">
-                        <p>Sa</p>
-                        <h5>DAY</h5>
-                      </div>
-                      <div className="hours">
-                        <p>12</p>
-                        <h5>HOURS</h5>
-                      </div>
-                      <div className="put">
-                        <img src={double} alt="double" />
-                      </div>
-                      <div className="min">
-                        <p>59</p>
-                        <h5>MIN</h5>
-                      </div>
-                      <div className="put">
-                        <img src={double} alt="double" />
-                      </div>
-                      <div className="sec">
-                        <p>09</p>
-                        <h5>SEC</h5>
-                      </div>
-                      <div className="line">
-                        <img src={line} alt="line" />
-                      </div>
-                      <div className="total-hrs">
-                        <p>09 Hours</p>
-                      </div>
-                    </div>
-                  </div> */}
-                  <div className="calend">
+                  <div className="calend falend">
                     <div className="calend-head">
-                      <h2>Attendances Calendrer</h2>
-                      <p>See all</p>
+                      <h2>Meetings & more</h2>
+                      <img src={goals} alt="goals" />
                     </div>
-                    <Calendar onChange={onChange} value={value} />
+                    <hr />
+                    <div className="cals-dent relative">
+                       <NavLink to="/employeeDash/atten"><img width={12} src={arrow} alt="arrow" /></NavLink>
+                      <Calendar onChange={onChange} value={value} />
+                    </div>
                   </div>
                 </div>
               </div>
