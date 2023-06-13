@@ -11,11 +11,14 @@ import { NavLink } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import LogoutPop from "../Popup/LogoutPop";
+import { useEffect } from "react";
+import { useMain } from "../../../hooks/useMain";
 
 var tc;
 var tc2;
 
-const EmployeeNavbar = ({ user, setAlert, postActivity, getStatisticsByUser, pop1, setPop1 }) => {
+const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
+  let todayDate = new Date().toLocaleDateString();
   const [pass, setPass] = useState(false);
   const [pass1, setPass1] = useState(false);
   const stylePeer = {
@@ -54,13 +57,12 @@ const EmployeeNavbar = ({ user, setAlert, postActivity, getStatisticsByUser, pop
   };
 
   const [startTs, setStartTs] = useState("");
-  var [percentageDone, setPercentageDone] = useState(0);
-
+  // var [percentageDone, setPercentageDone] = useState(0);
+  // var [progressTimer, setProgressTimer] = useState(0);
   var [timer, setTimer] = useState(0);
-
-  var [progressTimer, setProgressTimer] = useState(0);
-
   var [breakTimer, setBreakTimer] = useState(0);
+  const [isPunched, setIsPunched] = useState(false);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
 
   // var [overTimeTimer, setOverTimeTimer] = useState(0);
 
@@ -68,6 +70,55 @@ const EmployeeNavbar = ({ user, setAlert, postActivity, getStatisticsByUser, pop
   const [punchFlag, setPunchFlag] = useState(false);
   const [statistics, setStatistics] = useState([]);
   const [message, setMessage] = useState('');
+
+  const { postActivity, getStatisticsByUser, getActivitiesByUser } = useMain();
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    let data = await getActivitiesByUser(todayDate, '', '', 0, 10, '');
+    console.log(data);
+    if (data.data.length > 0) {
+      let isLoggedOut = data.data[0].activity[data.data[0].activity.length - 1].message !== "";
+      if (!isLoggedOut) {
+        setIsLoggedOut(false);
+        let timerFlag = -1;
+        let breakFlag = -1;
+        let bt = JSON.parse(localStorage.getItem('kds_jf832hif839'));
+        if (bt) {
+          if (bt.date === todayDate) {
+            console.log(bt.time);
+            timerFlag = bt.time;
+            setTimer(Number(bt.time));
+          }
+        }
+        let bt1 = JSON.parse(localStorage.getItem('kds_jf832hif838'));
+        if (bt1) {
+          if (bt1.date === todayDate) {
+            breakFlag = bt1.time;
+            setBreakTimer(Number(bt1.time));
+          }
+        }
+
+        let lastActivity = data.data[0].activity[data.data[0].activity.length - 1];
+        // console.log(lastActivity);
+        if (lastActivity.type === 'PUNCH_IN') {
+          setIsPunched(true);
+          punchBtn("Clock In", timerFlag);
+        }
+        else if (lastActivity.type === 'PUNCH_OUT') {
+          setIsPunched(false);
+          punchBtn("Clock Out", breakFlag);
+        }
+      }
+      else
+      {
+        setIsLoggedOut(true);
+      }
+    }
+  };
 
   const getStatistics = async () => {
     const ans = await getStatisticsByUser();
@@ -79,97 +130,121 @@ const EmployeeNavbar = ({ user, setAlert, postActivity, getStatisticsByUser, pop
     return new Date(year, month, 0).getDate();
   };
 
-  const punchBtn = async (type) => {
-    setPass(!pass);
+  const punchBtn = async (type, flag = -1) => {
+    if(!isLoggedOut)
+    {
+      setPass(!pass);
 
-    if (type === "Clock In") {
-      // e.target.innerText = "Clock Out";
-      clearInterval(tc2);
-
-      if (startTs === "") {
-        setStartTs(new Date().getTime());
-      }
-
-      tc = setInterval(() => {
-        // if (progressTimer === 480) {
-        //   setOverTimeTimer(++overTimeTimer);
-        // } else {
-        setTimer(++timer);
-        setProgressTimer(++progressTimer);
-        // setPercentageDone((progressTimer / 480) * 100);
-        // }
-      }, 60 * 1000);
-
-      let status = "ONLINE";
-      let date = new Date().toLocaleDateString();
-
-      let activity = {
-        type: "PUNCH_IN",
-        ts: new Date().getTime(),
-        message
-      };
-
-      let tempActivity = localStorage.getItem("tempActivity");
-      if (tempActivity) {
-        tempActivity = JSON.parse(tempActivity);
-        if (!tempActivity[new Date().getDate()]) {
-          localStorage.removeItem("tempActivity");
+      if (type === "Clock In") {
+        setIsPunched(true);
+        clearInterval(tc2);
+  
+        if (startTs === "") {
+          setStartTs(new Date().getTime());
+        }
+  
+        tc = setInterval(() => {
+          if (flag && flag !== -1) {
+            setTimer(++flag);
+            localStorage.setItem('kds_jf832hif839', JSON.stringify({
+              date: todayDate,
+              time: flag
+            }));
+          }
+          else {
+            setTimer(++timer);
+            localStorage.setItem('kds_jf832hif839', JSON.stringify({
+              date: todayDate,
+              time: timer
+            }));
+          }
+        }, 1000);
+  
+        let status = "ONLINE";
+        let activity = {
+          type: "PUNCH_IN",
+          ts: new Date().getTime(),
+          message
+        };
+  
+        let tempActivity = localStorage.getItem("tempActivity");
+        if (tempActivity) {
+          tempActivity = JSON.parse(tempActivity);
+          if (!tempActivity[new Date().getDate()]) {
+            localStorage.removeItem("tempActivity");
+            tempActivity = { [new Date().getDate()]: [] };
+          }
+        } else {
           tempActivity = { [new Date().getDate()]: [] };
         }
-      } else {
-        tempActivity = { [new Date().getDate()]: [] };
-      }
-
-      tempActivity[new Date().getDate()].push(activity);
-      localStorage.setItem("tempActivity", JSON.stringify(tempActivity));
-
-      setPunchFlag(!punchFlag);
-
-      const ans = await postActivity({
-        date,
-        activity,
-        breaks: breakTimer,
-        // overtime: overTimeTimer,
-        hours: timer,
-        status,
-      });
-      console.log(ans);
-    } else {
-      // e.target.innerText = "Clock In";
-      clearInterval(tc);
-
-      tc2 = setInterval(() => {
-        setBreakTimer(++breakTimer);
-      }, 60 * 1000);
-
-      let status = "OFFLINE";
-
-      let date = new Date().toLocaleDateString();
-
-      let activity = {
-        type: "PUNCH_OUT",
-        ts: new Date().getTime(),
-        message
-      };
-
-      let tempActivity = JSON.parse(localStorage.getItem("tempActivity"));
-      if (!tempActivity[new Date().getDate()]) {
-        localStorage.removeItem("tempActivity");
-      } else {
+  
         tempActivity[new Date().getDate()].push(activity);
+        localStorage.setItem("tempActivity", JSON.stringify(tempActivity));
+  
+        setPunchFlag(!punchFlag);
+  
+        const ans = await postActivity({
+          date: todayDate,
+          activity,
+          breaks: breakTimer,
+          // overtime: overTimeTimer,
+          hours: timer,
+          status,
+        });
+        console.log(ans);
+      } else {
+        setIsPunched(false);
+        clearInterval(tc);
+  
+        tc2 = setInterval(() => {
+          if(flag && flag!==-1)
+          {
+            setBreakTimer(++flag);
+            localStorage.setItem('kds_jf832hif838', JSON.stringify({
+              date: todayDate,
+              time: flag
+            }));
+          }
+          else
+          {
+            setBreakTimer(++breakTimer);
+            localStorage.setItem('kds_jf832hif838', JSON.stringify({
+              date: todayDate,
+              time: breakTimer
+            }));
+          }
+        }, 1000);
+  
+        let status = "OFFLINE";
+        let activity = {
+          type: "PUNCH_OUT",
+          ts: new Date().getTime(),
+          message
+        };
+  
+        let tempActivity = JSON.parse(localStorage.getItem("tempActivity"));
+        if (!tempActivity[new Date().getDate()]) {
+          localStorage.removeItem("tempActivity");
+        } else {
+          tempActivity[new Date().getDate()].push(activity);
+        }
+        localStorage.setItem("tempActivity", JSON.stringify(tempActivity));
+        setPunchFlag(!punchFlag);
+  
+        const ans = await postActivity({
+          date: todayDate,
+          activity,
+          breaks: breakTimer,
+          // overtime: overTimeTimer,
+          hours: timer,
+          status,
+        });
+        console.log(ans);
       }
-      localStorage.setItem("tempActivity", JSON.stringify(tempActivity));
-      setPunchFlag(!punchFlag);
-
-      const ans = await postActivity({
-        date,
-        activity,
-        breaks: breakTimer,
-        // overtime: overTimeTimer,
-        hours: timer,
-        status,
-      });
-      console.log(ans);
+    }
+    else
+    {
+      alert('you have been logged out. Please login next working day!');
     }
   };
 
@@ -188,27 +263,25 @@ const EmployeeNavbar = ({ user, setAlert, postActivity, getStatisticsByUser, pop
         </div>
 
         <div className="fourth-logo ">
-          {/* <button onClick={() => {
+          {!isPunched ? <button onClick={() => {
             punchBtn('Clock In');
-          }}>Clock In</button> */}
-          
-          <div className="clock-nav flex">
+          }}>Clock In</button> : <div className="clock-nav flex">
             <div className="sat">
-              <h3>Sa</h3>
+              <h3>{new Date().toLocaleDateString('en-US', { weekday: 'short' }).slice(0, 2)}</h3>
               <p>DAY</p>
             </div>
             <div className="hrs">
-              <h3>12</h3>
+              <h3>{('0' + Math.floor(timer / 60 / 60)).slice(-2)}</h3>
               <p>HOURS</p>
             </div>
             <h3 className="puts">:</h3>
             <div className="min">
-              <h3>59</h3>
+              <h3>{('0' + Math.floor(timer / 60)).slice(-2)}</h3>
               <p>MIN</p>
             </div>
             <h3 className="puts">:</h3>
             <div className="sec">
-              <h3>09</h3>
+              <h3>{('0' + timer % 60).slice(-2)}</h3>
               <p>SEC</p>
             </div>
 
@@ -239,11 +312,10 @@ const EmployeeNavbar = ({ user, setAlert, postActivity, getStatisticsByUser, pop
                 </div>
               </OutsideClickHandler>
             </div>
-
-          </div>
+          </div>}
         </div>
 
-        <div style={stylePeer}>
+        {/* <div style={stylePeer}>
           <CircularProgressbar
             value={percentageDone}
             text={`${("0" + Math.floor(timer / 60)).slice(-2)}:${(
@@ -258,11 +330,12 @@ const EmployeeNavbar = ({ user, setAlert, postActivity, getStatisticsByUser, pop
               backgroundColor: "#3e98c7",
             })}
           />
-          {/* <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center ">
             <p className="mr-1">HOURS</p>
             <p className="ml-1">MIN</p>
-          </div> */}
-        </div>
+          </div>
+        </div> */}
+
         <div className="fifth-logo ">
           <img src={bell} alt="" />
         </div>
@@ -291,7 +364,7 @@ const EmployeeNavbar = ({ user, setAlert, postActivity, getStatisticsByUser, pop
         </OutsideClickHandler>
       </div>
       {
-        pop1 && <LogoutPop setPop1={setPop1} setMessage={setMessage} punchBtn={punchBtn} />
+        pop1 && <LogoutPop setPop1={setPop1} setMessage={setMessage} punchBtn={punchBtn} setIsLoggedOut={setIsLoggedOut} />
       }
     </>
   );
