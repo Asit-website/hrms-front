@@ -64,7 +64,7 @@ const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
                       </div>
                       <hr />
                       <div className="clock clock2">
-                        <h3>Clock In</h3>
+                        <h3>Clock Out</h3>
                         <div className=" clock1 flex items-center">
                           <h2>07 : 35</h2>
                           <p>Pm</p>

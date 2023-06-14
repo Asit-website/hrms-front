@@ -46,14 +46,10 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
   };
 
   const handleLogout = () => {
-    if (timer != 0) {
-      alert("you cant logout");
-    } else {
       localStorage.removeItem("hrms_token");
       localStorage.removeItem("hrms_user");
       window.location.href = "/login";
       setAlert("success", "logout successfully");
-    }
   };
 
   const [startTs, setStartTs] = useState("");

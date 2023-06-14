@@ -14,7 +14,7 @@ import akash from '../../images/akash.png';
 import rahul from '../../images/rahul.png';
 var tc;
 var tc2;
-const HrDashboard = ({ setAlert }) => {
+const HrDashboard = ({ setAlert,pop1,setPop1 }) => {
   
   const [value, onChange] = useState(new Date());
   return (
@@ -22,7 +22,7 @@ const HrDashboard = ({ setAlert }) => {
       <div className="employee-dash h-full">
         <HrSidebar setAlert={setAlert} />
         <div className="tm">
-          <HrNavbar setAlert={setAlert} />
+          <HrNavbar setAlert={setAlert} pop1={pop1} setPop1={setPop1} />
           <div className="em">
             <div className="flex-col">
               <div className="hrDash-status flex">
