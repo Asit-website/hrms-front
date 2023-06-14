@@ -3,7 +3,7 @@ import { useMain } from "../../../hooks/useMain";
 import { useNavigate } from "react-router-dom";
 import HrSidebar from "../Sidebar/HrSidebar";
 import HrNavbar from "../Navbar/HrNavbar";
-const UpdateProfileHr = ({setAlert}) => {
+const UpdateProfileHr = ({setAlert,pop1,setPop1}) => {
   const { user, updateProfile, postActivity, getStatisticsByUser } = useMain();
   const [value, setValue] = useState(user);
 
@@ -48,6 +48,8 @@ const UpdateProfileHr = ({setAlert}) => {
             setAlert={setAlert}
             postActivity={postActivity}
             getStatisticsByUser={getStatisticsByUser}
+            pop1={pop1}
+            setPop1={setPop1}
           />
           <div className="em">
             <div className="flex-col">

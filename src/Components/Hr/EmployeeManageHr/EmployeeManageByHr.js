@@ -10,7 +10,7 @@ import lower from "../../images/lower.png";
 import del from "../../images/delete.png";
 // import { useNavigate } from "react-router-dom";
 
-const EmployeeManageByHr = ({ setAlert }) => {
+const EmployeeManageByHr = ({ setAlert,pop1,setPop1 }) => {
 //   const navigate = useNavigate();
   const { user, createEmployee } = useMain();
   const [value1, setValue1] = useState({
@@ -173,7 +173,7 @@ const EmployeeManageByHr = ({ setAlert }) => {
       <div className="employee-dash h-full">
         <HrSidebar />
         <div className="tm">
-          <HrNavbar user={user} setAlert={setAlert} />
+          <HrNavbar user={user} setAlert={setAlert} pop1={pop1} setPop1={setPop1} />
           <div className="em">
             <div className="flex-col">
               <form

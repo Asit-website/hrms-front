@@ -10,7 +10,7 @@ import delete1 from "../../images/delete1.png";
 import { useMain } from "../../../hooks/useMain";
 import { useNavigate } from "react-router-dom";
 
-const ShowEmployee1 = ({ setAlert }) => {
+const ShowEmployee1 = ({ setAlert,pop1,setPop1 }) => {
   const navigate=useNavigate();
   const { getUsers } = useMain();
   const [data, setData] = useState([]);
@@ -34,7 +34,7 @@ const ShowEmployee1 = ({ setAlert }) => {
       <div className="employee-dash h-full">
         <HrSidebar setAlert={setAlert} />
         <div className="tm">
-          <HrNavbar setAlert={setAlert} />
+          <HrNavbar setAlert={setAlert} pop1={pop1} setPop1={setPop1} />
           <div className="em">
             <div className="flex-col">
               <div className="hr-bash">

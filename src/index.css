@@ -278,7 +278,7 @@ body {
   font-family: "Semi Bold" !important;
   opacity: 80% !important;
   letter-spacing: 0.5px !important;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .most svg {
   color: #ffffff;
@@ -589,6 +589,7 @@ body {
   display: block;
   margin: auto;
   width: 46px;
+  margin-top: 20px;
 }
 .joiners1 h2 {
   text-align: center;
@@ -1744,6 +1745,9 @@ abbr:where([title]) {
   z-index: 2;
   border-bottom: 1px solid #e3e1e1;
 }
+.theads1{
+  border-top: 1px solid #e3e1e1 !important;
+}
 .action{
   max-width: 90px;
   width: 100%;
@@ -1793,7 +1797,7 @@ abbr:where([title]) {
   border: 2px solid #0B60FF !important;
 }
 .distinguish2{
-  width: 34%;
+  width: 36%;
   max-width: 100%;
   margin: 0 20px;
 }
@@ -1816,11 +1820,15 @@ abbr:where([title]) {
 }
 .clock{
   padding: 0px 20px;
+  /* margin-top: 20px; */
 }
 .clock h3{
   color: #707070 !important;
   font-family: "Medium" !important;
   font-size: 15px;
+}
+.clock1{
+  margin-top: 10px;
 }
 .clock1 h2{
   color: #000000;
@@ -1837,6 +1845,7 @@ abbr:where([title]) {
   background-color: #ffffff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 20px 0px;
+  border-radius: 10px;
 }
 .distinguish-box{
   display: flex;
@@ -2116,6 +2125,7 @@ abbr:where([title]) {
 .falend .react-calendar__tile{
   line-height: 8px !important;
   font-size: 11px;
+  border-radius: 50% !important;
 }
 .falend .react-calendar__tile abbr{
   color: #000000 !important;
@@ -2125,4 +2135,54 @@ abbr:where([title]) {
   position: absolute;
   right: 30px;
   top: 20px;
+}
+.clock1 p{
+  color: #707070;
+  font-family: "Medium" !important; 
+  font-size: 15px;
+  margin-left: 10px;
+}
+.show-all p{
+  text-align: center;
+  opacity: 50% !important;
+  font-size: 14px;
+  font-family: "Semi Bold" !important;
+}
+.santu{
+  background-color: #1A6AFF !important;
+  width: 32px;
+  padding: 5px;
+  border-radius: 6px;
+  margin-left: 20px;
+}
+.santu img{
+  width: 20px;
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}
+.theads1 h4{
+  color: #0A2E57 !important;
+  font-size: 16px !important;
+  letter-spacing: .5px;
+  font-family: "Semi Bold" !important;
+}
+.tr-head1 p{
+  color: #0A2E57 !important;
+  font-size: 14px !important;
+  font-family: "Medium"!important; 
+}
+.dates-pick p{
+  font-size: 10px !important;
+  font-family: gilroy !important;
+  font-weight: 400 !important;
+  opacity: 80% !important;
+}
+.dates-pick h3{
+  color: #0A2E57 !important;
+  font-size: 14px !important;
+  font-family: "Medium"!important; 
+}
+.tr-head1 .inr{
+  color: #32CA91 !important;
 }

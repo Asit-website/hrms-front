@@ -11,6 +11,7 @@ import cal from '../../images/cal.png';
 import cal1 from '../../images/cal1.png';
 import cal2 from '../../images/cal2.png';
 import cal3 from '../../images/cal3.png';
+import gharta from '../../images/gharta.png';
 const HrSidebar = () => {
   return (
     <>
@@ -66,6 +67,17 @@ const HrSidebar = () => {
                 >
                   <img width={16} src={lokia} alt="dots" />
                   <span className="ml-3">Employees</span>
+                </a>
+              </li>
+            </NavLink>
+            <NavLink to="/hrDash/payroll">
+              <li className="most">
+                <a
+                  href="#"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <img width={16} src={gharta} alt="gharta" />
+                  <span className="ml-3">Payroll</span>
                 </a>
               </li>
             </NavLink>

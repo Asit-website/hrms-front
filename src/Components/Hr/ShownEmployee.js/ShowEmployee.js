@@ -10,7 +10,7 @@ import bottomArrow from '../../images/bottomArrow.png';
 import { NavLink } from "react-router-dom";
 import { useMain } from "../../../hooks/useMain";
 
-const ShowEmployee = ({ setAlert }) => {
+const ShowEmployee = ({ setAlert,pop1,setPop1 }) => {
   const { getUsers } = useMain();
   const [data, setData] = useState([]);
 
@@ -30,7 +30,10 @@ const ShowEmployee = ({ setAlert }) => {
         <HrSidebar setAlert={setAlert} />
 
         <div className="tm">
-          <HrNavbar setAlert={setAlert} />
+          <HrNavbar setAlert={setAlert}
+          pop1={pop1}
+          setPop1={setPop1}
+           />
 
           <div className="em">
             <div className="flex-col">
