@@ -9,8 +9,10 @@ import upper from "../../images/upper.png";
 import lower from "../../images/lower.png";
 import del from "../../images/delete.png";
 import { useNavigate, useParams } from "react-router-dom";
+import HrSidebar from "../../Hr/Sidebar/HrSidebar";
+import HrNavbar from "../../Hr/Navbar/HrNavbar";
 
-const EmployeeManage = ({ pop, setPop, setAlert }) => {
+const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr=false }) => {
   const {id}=useParams();
   const navigate = useNavigate();
   const { user, createEmployee1, getUsers, updateUser } = useMain();
@@ -323,9 +325,9 @@ const EmployeeManage = ({ pop, setPop, setAlert }) => {
   return (
     <>
       <div className="employee-dash h-full">
-        <AdminSidebar pop={pop} setPop={setPop} />
+        {isHr ? <HrSidebar /> : <AdminSidebar pop={pop} setPop={setPop} />}
         <div className="tm">
-          <AdminNavbar user={user} setAlert={setAlert} />
+          {isHr ? <HrNavbar user={user} setAlert={setAlert} pop1={pop1} setPop1={setPop1} /> : <AdminNavbar user={user} setAlert={setAlert} />}
           <div className="em">
             <div className="flex-col">
               <form

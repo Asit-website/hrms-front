@@ -119,6 +119,7 @@ function App() {
               setPop={setPop}
               pop1={pop1}
               setPop1={setPop1}
+              isHr={true}
               />}/>
               <Route path="/hrDash/EmployeeReg/:id" element={<EmployeeManage 
               setAlert={setAlert} 
@@ -126,6 +127,7 @@ function App() {
               setPop={setPop}
               pop1={pop1}
               setPop1={setPop1}
+              isHr={true}
               />}/>
               <Route path="/hrDash/EmployeeMan" element={<ShowEmployee setAlert={setAlert}  pop1={pop1}
               setPop1={setPop1}/>}/>

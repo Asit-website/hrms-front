@@ -8,16 +8,28 @@ import akash from '../../images/akasha.png';
 import { useEffect } from 'react';
 
 const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
+  let todayDate=new Date().toLocaleDateString();
   const { user, postActivity, getStatisticsByUser, getActivitiesByUser } = useMain();
   const [value, onChange] = useState(new Date());
+  const [loadFlag, setLoadFlag] = useState(false);
+  const [mainData, setMainData] = useState({});
 
   useEffect(() => {
-    getData();
+    getData(todayDate);
   }, []);
 
-  const getData = async () => {
-    const data = await getActivitiesByUser('', '', '', 0, 10, '');
-    console.log(data);
+  const getData = async (date) => {
+    setLoadFlag(true);
+    const data = await getActivitiesByUser(date, '', '', 0, 10, '');
+    console.log(data.data[0]);
+    setMainData(data.data[0]);
+    setLoadFlag(false);
+  };
+
+  const handleCalendar=(e)=>{
+    let date=new Date(e).toLocaleDateString();
+    // console.log(date);
+    getData(date);
   };
 
   return (
@@ -43,34 +55,34 @@ const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
                       <p>See all</p> */}
                     </div>
 
-                    <Calendar onChange={(e) => {
-                      console.log(e);
-
-                    }} value={value} />
+                    <Calendar onChange={handleCalendar} value={value} />
 
                   </div>
                 </div>
+                
                 <div className="distinguish2 w-full">
                   <div className="total-timeCal">
                     <h2 className='total'>Total Time</h2>
                     <hr />
-                    <div className='clock-system'>
+                    {!loadFlag ? <div className='clock-system'>
                       <div className="clock">
                         <h3>Clock In</h3>
                         <div className="clock1 flex items-center">
-                          <h2>07 : 35</h2>
-                          <p>Pm</p>
+                          {/* <h2>07 : 35</h2> */}
+                          <h2>{mainData && Object.keys(mainData).length>0 ? new Date(mainData.activity[0].ts).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true}) : " - : - "}</h2>
+                          {/* <p>Pm</p> */}
                         </div>
                       </div>
                       <hr />
                       <div className="clock clock2">
                         <h3>Clock Out</h3>
                         <div className=" clock1 flex items-center">
-                          <h2>07 : 35</h2>
-                          <p>Pm</p>
+                          <h2>{mainData && Object.keys(mainData).length>0 && mainData.activity[mainData.activity.length-1].message!=="" ? new Date(mainData.activity[mainData.activity.length-1].ts).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true}) : " - : -" }</h2>
+                          {/* <h2>07 : 35</h2>
+                          <p>Pm</p> */}
                         </div>
                       </div>
-                    </div>
+                    </div> : null}
                   </div>
                 </div>
                 <div className="distinguish3 w-full">

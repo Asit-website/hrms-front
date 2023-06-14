@@ -5,8 +5,10 @@ import orange from '../../images/orange.png';
 import download from '../../images/download.png';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
 const Payroll = ({setAlert,pop1,setPop1}) => {
   const [startDate, setStartDate] = useState(new Date());
+
   return (
    <>
        <div className="employee-dash h-full">
