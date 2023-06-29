@@ -25,11 +25,13 @@ import AttendenceCalendar from "./Components/Employee/Request/AttendenceCalendar
 import Payroll from "./Components/Hr/Payroll/Payroll";
 
 var tc;
+
 const ROLES = {
   EMPLOYEE: "EMPLOYEE",
   HR: "HR",
   ADMIN: "ADMIN",
 };
+
 function App() {
   const [alertValue, setAlertValue] = useState({
     show: false,
@@ -66,6 +68,7 @@ function App() {
       show: false,
     });
   };
+  
   return (
     <>
       <MainState>
@@ -155,6 +158,6 @@ function App() {
       {/* <Auth/> */}
     </>
   );
-}
+};
 
 export default App;
