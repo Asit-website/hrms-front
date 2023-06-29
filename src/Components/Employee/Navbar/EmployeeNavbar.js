@@ -3,17 +3,15 @@ import thir from "../../images/thir.png";
 import lok from "../../images/lok.png";
 import bottom from "../../images/bottom.png";
 import bell from "../../images/bell.png";
-import bottomji from '../../images/bottomji.png';
 import OutsideClickHandler from "react-outside-click-handler";
-import brake from '../../images/break.png';
-import logout from '../../images/logout.png';
+import brake from "../../images/break.png";
+import logout from "../../images/logout.png";
 import { NavLink } from "react-router-dom";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import LogoutPop from "../Popup/LogoutPop";
 import { useEffect } from "react";
 import { useMain } from "../../../hooks/useMain";
-
+import kushel1 from '../../images/kushel1.png';
 var tc;
 var tc2;
 
@@ -46,10 +44,10 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
   };
 
   const handleLogout = () => {
-      localStorage.removeItem("hrms_token");
-      localStorage.removeItem("hrms_user");
-      window.location.href = "/login";
-      setAlert("success", "logout successfully");
+    localStorage.removeItem("hrms_token");
+    localStorage.removeItem("hrms_user");
+    window.location.href = "/login";
+    setAlert("success", "logout successfully");
   };
 
   const [startTs, setStartTs] = useState("");
@@ -65,7 +63,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
   const [punchLog, setPunchLog] = useState({});
   const [punchFlag, setPunchFlag] = useState(false);
   const [statistics, setStatistics] = useState([]);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const { postActivity, getStatisticsByUser, getActivitiesByUser } = useMain();
 
@@ -74,15 +72,16 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
   }, []);
 
   const getData = async () => {
-    let data = await getActivitiesByUser(todayDate, '', '', 0, 10, '');
+    let data = await getActivitiesByUser(todayDate, "", "", 0, 10, "");
     console.log(data);
     if (data.data.length > 0) {
-      let isLoggedOut = data.data[0].activity[data.data[0].activity.length - 1].message !== "";
+      let isLoggedOut =
+        data.data[0].activity[data.data[0].activity.length - 1].message !== "";
       if (!isLoggedOut) {
         setIsLoggedOut(false);
         let timerFlag = -1;
         let breakFlag = -1;
-        let bt = JSON.parse(localStorage.getItem('kds_jf832hif839'));
+        let bt = JSON.parse(localStorage.getItem("kds_jf832hif839"));
         if (bt) {
           if (bt.date === todayDate) {
             console.log(bt.time);
@@ -90,7 +89,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
             setTimer(Number(bt.time));
           }
         }
-        let bt1 = JSON.parse(localStorage.getItem('kds_jf832hif838'));
+        let bt1 = JSON.parse(localStorage.getItem("kds_jf832hif838"));
         if (bt1) {
           if (bt1.date === todayDate) {
             breakFlag = bt1.time;
@@ -98,19 +97,17 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
           }
         }
 
-        let lastActivity = data.data[0].activity[data.data[0].activity.length - 1];
+        let lastActivity =
+          data.data[0].activity[data.data[0].activity.length - 1];
         // console.log(lastActivity);
-        if (lastActivity.type === 'PUNCH_IN') {
+        if (lastActivity.type === "PUNCH_IN") {
           setIsPunched(true);
           punchBtn("Clock In", timerFlag);
-        }
-        else if (lastActivity.type === 'PUNCH_OUT') {
+        } else if (lastActivity.type === "PUNCH_OUT") {
           setIsPunched(false);
           punchBtn("Clock Out", breakFlag);
         }
-      }
-      else
-      {
+      } else {
         setIsLoggedOut(true);
       }
     }
@@ -127,42 +124,46 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
   };
 
   const punchBtn = async (type, flag = -1) => {
-    if(!isLoggedOut)
-    {
+    if (!isLoggedOut) {
       setPass(!pass);
 
       if (type === "Clock In") {
         setIsPunched(true);
         clearInterval(tc2);
-  
+
         if (startTs === "") {
           setStartTs(new Date().getTime());
         }
-  
+
         tc = setInterval(() => {
           if (flag && flag !== -1) {
             setTimer(++flag);
-            localStorage.setItem('kds_jf832hif839', JSON.stringify({
-              date: todayDate,
-              time: flag
-            }));
-          }
-          else {
+            localStorage.setItem(
+              "kds_jf832hif839",
+              JSON.stringify({
+                date: todayDate,
+                time: flag,
+              })
+            );
+          } else {
             setTimer(++timer);
-            localStorage.setItem('kds_jf832hif839', JSON.stringify({
-              date: todayDate,
-              time: timer
-            }));
+            localStorage.setItem(
+              "kds_jf832hif839",
+              JSON.stringify({
+                date: todayDate,
+                time: timer,
+              })
+            );
           }
         }, 1000);
-  
+
         let status = "ONLINE";
         let activity = {
           type: "PUNCH_IN",
           ts: new Date().getTime(),
-          message
+          message,
         };
-  
+
         let tempActivity = localStorage.getItem("tempActivity");
         if (tempActivity) {
           tempActivity = JSON.parse(tempActivity);
@@ -173,12 +174,12 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
         } else {
           tempActivity = { [new Date().getDate()]: [] };
         }
-  
+
         tempActivity[new Date().getDate()].push(activity);
         localStorage.setItem("tempActivity", JSON.stringify(tempActivity));
-  
+
         setPunchFlag(!punchFlag);
-  
+
         const ans = await postActivity({
           date: todayDate,
           activity,
@@ -191,33 +192,36 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
       } else {
         setIsPunched(false);
         clearInterval(tc);
-  
+
         tc2 = setInterval(() => {
-          if(flag && flag!==-1)
-          {
+          if (flag && flag !== -1) {
             setBreakTimer(++flag);
-            localStorage.setItem('kds_jf832hif838', JSON.stringify({
-              date: todayDate,
-              time: flag
-            }));
-          }
-          else
-          {
+            localStorage.setItem(
+              "kds_jf832hif838",
+              JSON.stringify({
+                date: todayDate,
+                time: flag,
+              })
+            );
+          } else {
             setBreakTimer(++breakTimer);
-            localStorage.setItem('kds_jf832hif838', JSON.stringify({
-              date: todayDate,
-              time: breakTimer
-            }));
+            localStorage.setItem(
+              "kds_jf832hif838",
+              JSON.stringify({
+                date: todayDate,
+                time: breakTimer,
+              })
+            );
           }
         }, 1000);
-  
+
         let status = "OFFLINE";
         let activity = {
           type: "PUNCH_OUT",
           ts: new Date().getTime(),
-          message
+          message,
         };
-  
+
         let tempActivity = JSON.parse(localStorage.getItem("tempActivity"));
         if (!tempActivity[new Date().getDate()]) {
           localStorage.removeItem("tempActivity");
@@ -226,7 +230,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
         }
         localStorage.setItem("tempActivity", JSON.stringify(tempActivity));
         setPunchFlag(!punchFlag);
-  
+
         const ans = await postActivity({
           date: todayDate,
           activity,
@@ -237,16 +241,17 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
         });
         console.log(ans);
       }
-    }
-    else
-    {
-      alert('you have been logged out. Please login next working day!');
+    } else {
+      alert("you have been logged out. Please login next working day!");
     }
   };
 
   return (
     <>
       <div className="Employee-nav w-full">
+        <div className="logo ">
+          <img src={kushel1} alt="" />
+        </div>
         <div className="second-logo flex items-center">
           <img src={thir} alt="" />
           <p className="ml-2">Good Morning {user?.fullName}</p>
@@ -254,61 +259,87 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
         <div className="third-logo ">
           <input
             type="search"
-            placeholder="Search for actions, pages, requests, report* people..."
+            placeholder="Search"
           />
         </div>
 
         <div className="fourth-logo ">
-          {!isPunched ? <button onClick={() => {
-            punchBtn('Clock In');
-          }}>Clock In</button> : <div className="clock-nav flex">
-            <div className="sat">
-              <h3>{new Date().toLocaleDateString('en-US', { weekday: 'short' }).slice(0, 2)}</h3>
-              <p>DAY</p>
-            </div>
-            <div className="hrs">
-              <h3>{('0' + Math.floor(timer / 60 / 60)).slice(-2)}</h3>
-              <p>HOURS</p>
-            </div>
-            <h3 className="puts">:</h3>
-            <div className="min">
-              <h3>{('0' + Math.floor(timer / 60)).slice(-2)}</h3>
-              <p>MIN</p>
-            </div>
-            <h3 className="puts">:</h3>
-            <div className="sec">
-              <h3>{('0' + timer % 60).slice(-2)}</h3>
-              <p>SEC</p>
-            </div>
+          {!isPunched ? (
+            <button
+              onClick={() => {
+                punchBtn("Clock In");
+              }}
+            >
+              Clock In
+            </button>
+          ) : (
+            <div className="clock-nav flex">
+              <div className="sat">
+                <h3>
+                  {new Date()
+                    .toLocaleDateString("en-US", { weekday: "short" })
+                    .slice(0, 2)}
+                </h3>
+                <p>DAY</p>
+              </div>
+              <div className="hrs">
+                <h3>{("0" + Math.floor(timer / 60 / 60)).slice(-2)}</h3>
+                <p>HOURS</p>
+              </div>
+              <h3 className="puts">:</h3>
+              <div className="min">
+                <h3>{("0" + Math.floor(timer / 60)).slice(-2)}</h3>
+                <p>MIN</p>
+              </div>
+              <h3 className="puts">:</h3>
+              <div className="sec">
+                <h3>{("0" + (timer % 60)).slice(-2)}</h3>
+                <p>SEC</p>
+              </div>
 
-            <div className="bottomji">
-              <i id="fg" onClick={bottomta} className="fa-solid fa-chevron-down char cursor-pointer"></i>
-              <i id="sg" onClick={bottomta1} className="fa-solid fa-chevron-up char char1 cursor-pointer"></i>
-              <OutsideClickHandler
-                onOutsideClick={() => {
-                  setPass1(false);
-                  document.getElementById("sg").style.display = "none";
-                  document.getElementById("fg").style.display = "block";
-                }}
-              >
-                <div style={stylePeer1} className="brake">
-                  <div onClick={() => {
-                    punchBtn('Clock Out');
-                  }} className="flex items-center bt cursor-pointer">
-                    <img className="brakes" src={brake} alt="" />
-                    <p className="bring">Brake</p>
+              <div className="bottomji">
+                <i
+                  id="fg"
+                  onClick={bottomta}
+                  className="fa-solid fa-chevron-down char cursor-pointer"
+                ></i>
+                <i
+                  id="sg"
+                  onClick={bottomta1}
+                  className="fa-solid fa-chevron-up char char1 cursor-pointer"
+                ></i>
+                <OutsideClickHandler
+                  onOutsideClick={() => {
+                    setPass1(false);
+                    document.getElementById("sg").style.display = "none";
+                    document.getElementById("fg").style.display = "block";
+                  }}
+                >
+                  <div style={stylePeer1} className="brake">
+                    <div
+                      onClick={() => {
+                        punchBtn("Clock Out");
+                      }}
+                      className="flex items-center bt cursor-pointer"
+                    >
+                      <img className="brakes" src={brake} alt="" />
+                      <p className="bring">Brake</p>
+                    </div>
+                    <hr />
+                    <div
+                      onClick={() => {
+                        setPop1(true);
+                      }}
+                      className="logout flex items-center cursor-pointer"
+                    >
+                      <img className="logouts" src={logout} alt="logout" />
+                      <p className="out">Clock Out</p>
+                    </div>
                   </div>
-                  <hr />
-                  <div onClick={() => {
-                    setPop1(true);
-                  }} className="logout flex items-center cursor-pointer">
-                    <img className="logouts" src={logout} alt="logout" />
-                    <p className="out">Clock Out</p>
-                  </div>
-                </div>
-              </OutsideClickHandler>
+                </OutsideClickHandler>
+              </div>
             </div>
-          </div>}
+          )}
         </div>
 
         {/* <div style={stylePeer}>
@@ -359,9 +390,14 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
           </div>
         </OutsideClickHandler>
       </div>
-      {
-        pop1 && <LogoutPop setPop1={setPop1} setMessage={setMessage} punchBtn={punchBtn} setIsLoggedOut={setIsLoggedOut} />
-      }
+      {pop1 && (
+        <LogoutPop
+          setPop1={setPop1}
+          setMessage={setMessage}
+          punchBtn={punchBtn}
+          setIsLoggedOut={setIsLoggedOut}
+        />
+      )}
     </>
   );
 };
