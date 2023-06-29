@@ -25,7 +25,7 @@ const LogoutPop = ({ setPop1, setMessage, punchBtn, setIsLoggedOut }) => {
             <button onClick={()=>{
               punchBtn('Clock Out');
               setIsLoggedOut(true);
-            }} className="block">Logout</button>
+            }} className="block">Logout</button> 
           </form>
         </div>
       </div>
