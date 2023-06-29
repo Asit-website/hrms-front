@@ -38,10 +38,10 @@ const EmployeeSidebar = () => {
         className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 sidebars"
         aria-label="Sidebar"
       >
-      <div className="logobar">
+      {/* <div className="logobar">
       <img src={kushel1} alt="" />
-      </div>
-        <div className="h-full px-3 py-4 overflow-y-auto  sidebars">
+      </div> */}
+        <div className="h-full px-3 py-4 overflow-y-auto  sidebars sidebars1">
           
           <ul className="space-y-2 font-medium sight">
            <NavLink to="/employeeDash"><li className="most">

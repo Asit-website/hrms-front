@@ -3,16 +3,15 @@ import kushel1 from '../../images/kushel1.png';
 import thir from '../../images/thir.png';
 import lok from '../../images/lok.png';
 import bottom from '../../images/bottom.png';
-import bell from '../../images/bell.png';
 import OutsideClickHandler from "react-outside-click-handler";
 import { useMain } from '../../../hooks/useMain';
 import { NavLink } from 'react-router-dom';
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import hrBell from '../../images/hrBell.png';
 import HrLogoutPop from '../HrPop/HrLogoutPop';
 import brake from '../../images/break.png';
 import logout from '../../images/logout.png';
+// import kushel1 from '../../images/kushel1.png';
 var tc;
 var tc2;
 const HrNavbar = ({setAlert,pop1,setPop1}) => {
@@ -251,12 +250,15 @@ const HrNavbar = ({setAlert,pop1,setPop1}) => {
   return (
     <>
         <div className="Employee-nav w-full">
+        <div className="logo ">
+                <img src={kushel1} alt="" />
+            </div>
             <div className="second-logo flex items-center">
                  <img src={thir} alt="" />
                  <p className='ml-2'>Good Morning {user?.fullName}</p>
             </div>
             <div className="third-logo ">
-                <input type="search" placeholder='Search for actions, pages, requests, report* people...' />
+                <input type="search" placeholder='Search' />
             </div>
             <div className="fourth-logo fourth-logo1 ">
           {!isPunched ? <button onClick={() => {

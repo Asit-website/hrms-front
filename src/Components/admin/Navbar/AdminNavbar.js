@@ -19,19 +19,19 @@ const AdminNavbar = ({setAlert,user}) => {
   return (
     <>
         <div className="Employee-nav w-full">
-            {/* <div className="logo ">
+            <div className="logo ">
                 <img src={kushel1} alt="" />
-            </div> */}
+            </div>
             <div className="second-logo flex items-center">
                  <img src={thir} alt="" />
                  <p className='ml-2'>Good Morning {user?.fullName}</p>
             </div>
             <div className="third-logo ">
-                <input type="search" placeholder='Search for actions, pages, requests, report* people...' />
+                <input type="search" placeholder='Search' />
             </div>
-            <div className="fourth-logo ">
+            {/* <div className="fourth-logo ">
                 <button>Clock In</button>
-            </div>
+            </div> */}
             <div className="fifth-logo ">
                 <img src={bell} alt="" />
             </div>
