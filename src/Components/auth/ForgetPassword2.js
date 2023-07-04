@@ -95,7 +95,7 @@ const ForgetPassword2 = ({ setAlert }) => {
               </div>
               <button type='submit'>Sign In</button>
               <div className="sign-information">
-                <p>Powered by <span>KusheldigiSolutions</span></p>
+                <p>Powered by <a target='_blank' href="https://www.kusheldigi.com/"> <span>KusheldigiSolutions</span></a> </p>
               </div>
             </form>
           </div>
