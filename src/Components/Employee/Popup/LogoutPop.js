@@ -1,31 +1,37 @@
 import React from "react";
-import back from '../../images/back.png';
+import back from "../../images/back.png";
 const LogoutPop = ({ setPop1, setMessage, punchBtn, setIsLoggedOut }) => {
   return (
     <>
       <div className="fat-pop fat-pop1 ">
         <div className="fat-container">
-          <div onClick={() => setPop1(false)} className="flex items-center cursor-pointer">
+          <div
+            onClick={() => setPop1(false)}
+            className="flex items-center cursor-pointer"
+          >
             <img src={back} alt="" />
             <p>Back</p>
           </div>
-          <form onSubmit={(e) => {
-            e.preventDefault();
-          }} className="form6" action="">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              punchBtn("Clock Out");
+              setIsLoggedOut(true);
+            }}
+            className="form6"
+          >
             <textarea
               name=""
               id=""
               cols="30"
               rows="10"
               placeholder="Describe your today's work here...."
-              onChange={(e)=>{
+              onChange={(e) => {
                 setMessage(e.target.value);
               }}
+              required
             ></textarea>
-            <button onClick={()=>{
-              punchBtn('Clock Out');
-              setIsLoggedOut(true);
-            }} className="block">Logout</button> 
+            <button type="submit" className="block">Logout</button>
           </form>
         </div>
       </div>
