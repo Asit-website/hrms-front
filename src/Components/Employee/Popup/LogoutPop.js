@@ -1,6 +1,6 @@
 import React from "react";
 import back from "../../images/back.png";
-const LogoutPop = ({ setPop1, setMessage, punchBtn, setIsLoggedOut }) => {
+const LogoutPop = ({ setPop1, setMessage, punchBtn, setIsLoggedOut,setAlert }) => {
   return (
     <>
       <div className="fat-pop fat-pop1 ">
@@ -17,6 +17,7 @@ const LogoutPop = ({ setPop1, setMessage, punchBtn, setIsLoggedOut }) => {
               e.preventDefault();
               punchBtn("Clock Out");
               setIsLoggedOut(true);
+              setAlert("success","you have been LoggedOut successfully!")
             }}
             className="form6"
           >

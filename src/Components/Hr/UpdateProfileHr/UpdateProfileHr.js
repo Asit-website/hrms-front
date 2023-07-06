@@ -32,7 +32,7 @@ const UpdateProfileHr = ({setAlert,pop1,setPop1}) => {
     if (ans.success) {
       setAlert("success", ans.message);
       setValue(ans.data);
-      navigate("/employeeDash");
+      navigate("/hrDash");
     } else {
       setAlert("error", ans.message);
     }

@@ -11,7 +11,7 @@ import "react-circular-progressbar/dist/styles.css";
 import LogoutPop from "../Popup/LogoutPop";
 import { useEffect } from "react";
 import { useMain } from "../../../hooks/useMain";
-import kushel1 from '../../images/kushel1.png';
+import kushel1 from "../../images/kushel1.png";
 var tc;
 var tc2;
 
@@ -129,6 +129,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
 
       if (type === "Clock In") {
         setIsPunched(true);
+        setAlert("success", "You have been loggedIn successfully!");
         clearInterval(tc2);
 
         if (startTs === "") {
@@ -242,9 +243,22 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
         console.log(ans);
       }
     } else {
-      alert("you have been logged out. Please login next working day!");
+      // alert("you have been logged out. Please login next working day!");
+      setAlert(
+        "success",
+        "you have been logged out. Please login next working day!"
+      );
     }
   };
+
+  // ===============logic for good morning, good afternoon and evening accorroding to time====
+  let myDate = new Date();
+  let hours = myDate.getHours();
+  let greet;
+
+  if (hours < 12) greet = "Morning";
+  else if (hours >= 12 && hours <= 17) greet = "Afternoon";
+  else if (hours >= 17 && hours <= 24) greet = "Evening";
 
   return (
     <>
@@ -254,13 +268,12 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
         </div>
         <div className="second-logo flex items-center">
           <img src={thir} alt="" />
-          <p className="ml-2">Good Morning {user?.fullName}</p>
+          <p className="ml-2">
+            Good {greet} {user?.fullName}
+          </p>
         </div>
         <div className="third-logo ">
-          <input
-            type="search"
-            placeholder="Search"
-          />
+          <input type="search" placeholder="Search" />
         </div>
 
         <div className="fourth-logo ">
@@ -396,6 +409,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
           setMessage={setMessage}
           punchBtn={punchBtn}
           setIsLoggedOut={setIsLoggedOut}
+          setAlert={setAlert}
         />
       )}
     </>
