@@ -2,9 +2,9 @@ import React,{useState,useEffect} from 'react'
 import AdminSidebar from '../Sidebar/AdminSidebar';
 import AdminNavbar from '../Navbar/AdminNavbar';
 import { useMain } from '../../../hooks/useMain'
-import UpdateProfile from '../../Employee/Profile/UpdateProfile';
+// import UpdateProfile from '../../Employee/Profile/UpdateProfile';
 const AdminProfile = ({pop,setPop,setAlert}) => {
-    const { user,updateAdminProfile,UpdateProfile } = useMain();
+    const { user,updateAdminProfile,updateProfile } = useMain();
     const [value, setValue] = useState(user);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const AdminProfile = ({pop,setPop,setAlert}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(value);
-    const ans = await updateAdminProfile(value);
+    const ans = await updateProfile(value);
     console.log(ans);
     if (ans.success) {
       setAlert("success", ans.message);
@@ -82,49 +82,9 @@ const AdminProfile = ({pop,setPop,setAlert}) => {
                     required
                   />
                 </div>
-                {/* <div className="mb-6">
-                  <label htmlFor="image" className="block mb-1">
-                    Image
-                  </label>
-                  <input
-                    className="block w-full"
-                    name="image"
-                    onChange={handleChange}
-                    id="file_input"
-                    type="file"
-                  />
-                </div> */}
-                {/* <div className="mb-6">
-                  <label htmlFor="password" className="block mb-1">
-                    Password
-                  </label>
-                  <input
-                    className="block w-full"
-                    name="password"
-                    value={value?.password}
-                    onChange={handleChange}
-                    id="password"
-                    type="text"
-                    required
-                  />
-                </div> */}
-                <div className="mb-6">
-                  <label htmlFor="employeeCode" className="block mb-1">
-                    AdminCode
-                  </label>
-                  <input
-                    className="block w-full"
-                    name="employeeCode"
-                    value={value?.employeeCode}
-                    onChange={handleChange}
-                    id="employeeCode"
-                    type="text"
-                    required
-                  />
-                </div>
                 <button
                   type="submit"
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 block m-auto"
                 >
                   Submit
                 </button>

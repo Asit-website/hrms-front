@@ -2196,3 +2196,7 @@ abbr:where([title]) {
 .tr-head1 .inr{
   color: #32CA91 !important;
 }
+.alert-min{
+  margin-top: 80px !important;
+  z-index: 200000;
+}
