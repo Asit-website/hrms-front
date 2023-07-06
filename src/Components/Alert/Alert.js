@@ -20,7 +20,7 @@ const Alert = (props) => {
               clipRule="evenodd"
             ></path>
           </svg>
-          <div className="ml-3 text-sm font-medium">{props.message}</div>
+          <div className="ml-3 text-sm font-medium main_message">{props.message}</div>
           <button
             type="button"
             onClick={props.closeAlert}
@@ -62,7 +62,7 @@ const Alert = (props) => {
               clipRule="evenodd"
             ></path>
           </svg>
-          <div className="ml-3 text-sm font-medium">{props.message}</div>
+          <div className="ml-3 text-sm font-medium main_message">{props.message}</div>
           <button
             type="button"
             className="ml-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-green-300 dark:hover:bg-gray-700"

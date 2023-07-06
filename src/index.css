@@ -2200,3 +2200,6 @@ abbr:where([title]) {
   margin-top: 80px !important;
   z-index: 200000;
 }
+.main_message{
+  font-size: 16px !important;
+}
