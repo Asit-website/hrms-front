@@ -3,8 +3,9 @@ import MainContext from './MainContext';
 import { deleteReq, get, post, put } from '../Api/api'
 import { useState } from 'react';
 
-const baseUrl = "http://localhost:5000";
+// const baseUrl = "http://localhost:5000";
 // const baseUrl = "https://hrms-backend-q2ta.onrender.com";
+const baseUrl = "https://hrms-backend-blond.vercel.app";
 
 const MainState = (props) => {
    const [user, setUser] = useState({});
