@@ -2,15 +2,19 @@ import React,{useState,useEffect} from 'react'
 import AdminSidebar from '../Sidebar/AdminSidebar';
 import AdminNavbar from '../Navbar/AdminNavbar';
 import { useMain } from '../../../hooks/useMain'
+import { useNavigate } from 'react-router-dom';
 // import UpdateProfile from '../../Employee/Profile/UpdateProfile';
 const AdminProfile = ({pop,setPop,setAlert}) => {
-    const { user,updateAdminProfile,updateProfile } = useMain();
+    const { user,updateProfile } = useMain();
     const [value, setValue] = useState(user);
+
+    const navigate = useNavigate();
 
   useEffect(() => {
     setValue(user);
   }, []);
-  // console.log(user.password);
+
+  
   const handleChange = (e) => {
     if (e.target.name === "image") {
       setValue({ ...value, [e.target.name]: e.target.files[0] });
@@ -27,6 +31,8 @@ const AdminProfile = ({pop,setPop,setAlert}) => {
     if (ans.success) {
       setAlert("success", ans.message);
       setValue(ans.data);
+      navigate("/adminDash");
+      
     } else {
       setAlert("error", ans.message);
     }

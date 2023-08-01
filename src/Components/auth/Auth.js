@@ -72,7 +72,7 @@ const Auth = (props) => {
           <img src={photo} alt="photo" />
         </div>
         <div className="login-page2">
-          <h2>Login Accout</h2>
+          <h2>Login Account</h2>
           <p className="mt-4">
             This is a secure system and you will need to provide your login
             details to access the site.
