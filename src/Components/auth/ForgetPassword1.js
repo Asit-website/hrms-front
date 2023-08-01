@@ -39,7 +39,7 @@ const ForgetPassword1 = () => {
           <img src={photo} alt="photo" />
         </div>
         <div className="login-page2">
-          <h2>Forget Password</h2>
+          <h2>Forgot Password</h2>
           <p className="mt-4">
             This is a secure system and you will need to provide your login
             details to access the site.
