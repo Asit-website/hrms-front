@@ -14,20 +14,20 @@ const Auth = (props) => {
     employeeCode: ""
   });
 
-  const [tab,setTab] = useState(0);
+  const [tab, setTab] = useState(0);
 
-  const adminLogin = (e) =>{
+  const adminLogin = (e) => {
     e.preventDefault();
     setTab(1);
   }
 
-  const userLogin = (e) =>{
+  const userLogin = (e) => {
     e.preventDefault();
     setTab(2);
   }
 
   const handleChange = (e) => {
-    setValue({...value, [e.target.name]: e.target.value });
+    setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -61,7 +61,7 @@ const Auth = (props) => {
     }
   };
 
-  
+
 
   return (
     <div className="auth">
@@ -78,8 +78,8 @@ const Auth = (props) => {
             details to access the site.
           </p>
           <div className="login-buttons flex items-center justify-center">
-             <button onClick={adminLogin}  className="mr-3">Admin Login</button>
-             <button onClick={userLogin} className="ml-3">User Login</button>
+            <button onClick={adminLogin} className="mr-3">Admin Login</button>
+            <button onClick={userLogin} className="ml-3">User Login</button>
           </div>
           <div className="login-form">
             <form onSubmit={handleSubmit}>
@@ -89,11 +89,11 @@ const Auth = (props) => {
                     required
                     name={tab === 1 ? "email" : "employeeCode"}
                     onChange={handleChange}
-                    value={ tab === 1 ? value.email : value.employeeCode }
+                    value={tab === 1 ? value.email : value.employeeCode}
                     type={tab === 1 ? "email" : "text"}
                     placeholder=" "
                   />
-                  <span class="placeholder">{tab ===1 ? "Email" : "Employee Code"}</span>
+                  <span class="placeholder">{tab === 1 ? "Email" : "Employee Code"}</span>
                 </label>
                 <label class="custom-field one">
                   <input
@@ -110,7 +110,7 @@ const Auth = (props) => {
                   <p className=" text-right  forget">Forgot password?</p>
                 </NavLink>
               </div>
-              
+
               <button>Sign In</button>
 
               <div className="sign-information">

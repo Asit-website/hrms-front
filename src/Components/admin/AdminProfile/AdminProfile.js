@@ -1,20 +1,20 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import AdminSidebar from '../Sidebar/AdminSidebar';
 import AdminNavbar from '../Navbar/AdminNavbar';
 import { useMain } from '../../../hooks/useMain'
 import { useNavigate } from 'react-router-dom';
 // import UpdateProfile from '../../Employee/Profile/UpdateProfile';
-const AdminProfile = ({pop,setPop,setAlert}) => {
-    const { user,updateProfile } = useMain();
-    const [value, setValue] = useState(user);
+const AdminProfile = ({ pop, setPop, setAlert }) => {
+  const { user, updateProfile } = useMain();
+  const [value, setValue] = useState(user);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setValue(user);
   }, []);
 
-  
+
   const handleChange = (e) => {
     if (e.target.name === "image") {
       setValue({ ...value, [e.target.name]: e.target.files[0] });
@@ -32,20 +32,20 @@ const AdminProfile = ({pop,setPop,setAlert}) => {
       setAlert("success", ans.message);
       setValue(ans.data);
       navigate("/adminDash");
-      
+
     } else {
       setAlert("error", ans.message);
     }
   };
   return (
-   <>
-       <div className="employee-dash h-full">
+    <>
+      <div className="employee-dash h-full">
         <AdminSidebar pop={pop} setPop={setPop} />
         <div className="tm">
           <AdminNavbar user={user} setAlert={setAlert} />
           <div className="em">
             <div className="flex-col">
-            <form className="updateUser" onSubmit={handleSubmit}>
+              <form className="updateUser" onSubmit={handleSubmit}>
                 <div className="mb-6">
                   <label htmlFor="fullName" className="block mb-1 ">
                     Full Name
@@ -99,7 +99,7 @@ const AdminProfile = ({pop,setPop,setAlert}) => {
           </div>
         </div>
       </div>
-   </>
+    </>
   )
 }
 

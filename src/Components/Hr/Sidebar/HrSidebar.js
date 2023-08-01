@@ -15,7 +15,7 @@ import gharta from '../../images/gharta.png';
 const HrSidebar = () => {
   return (
     <>
-        <button
+      <button
         data-drawer-target="sidebar-multi-level-sidebar"
         data-drawer-toggle="sidebar-multi-level-sidebar"
         aria-controls="sidebar-multi-level-sidebar"

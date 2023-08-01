@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import HrSidebar from "../Sidebar/HrSidebar";
 import HrNavbar from "../Navbar/HrNavbar";
 import tanj from "../../images/tanj.png";
@@ -14,8 +14,8 @@ import akash from '../../images/akash.png';
 import rahul from '../../images/rahul.png';
 var tc;
 var tc2;
-const HrDashboard = ({ setAlert,pop1,setPop1 }) => {
-  
+const HrDashboard = ({ setAlert, pop1, setPop1 }) => {
+
   const [value, onChange] = useState(new Date());
   return (
     <>
@@ -218,40 +218,40 @@ const HrDashboard = ({ setAlert,pop1,setPop1 }) => {
                       <h3>Interviews and Meetings</h3>
                       <img src={tanj} alt="tanj" />
                     </div>
-                    <hr className="test"/>
+                    <hr className="test" />
                     <div className="calendar calendar1">
                       <Calendar onChange={onChange} value={value} />
                     </div>
-                     <div className="col-akash flex items-center ">
-                       <div className="col-img">
-                          <img src={akash} alt="akash" />
-                       </div>
-                       <div className="col-para">
-                          <h3>Interview with Akash Negi</h3>
-                          <p>Discussion on major changes on CRM software</p>
-                          <h5>12:30  June 12,2022</h5>
-                       </div>
-                     </div>
-                     <div className="col-akash flex items-center ">
-                       <div className="col-img">
-                          <img src={rahul} alt="akash" />
-                       </div>
-                       <div className="col-para">
-                          <h3>Interview with Akash Negi</h3>
-                          <p>Discussion on major changes on CRM software</p>
-                          <h5>12:30  June 12,2022</h5>
-                       </div>
-                     </div>
-                     <div className="col-akash flex items-center ">
-                       <div className="col-img">
-                          <img src={akash} alt="akash" />
-                       </div>
-                       <div className="col-para">
-                          <h3>Interview with Akash Negi</h3>
-                          <p>Discussion on major changes on CRM software</p>
-                          <h5>12:30  June 12,2022</h5>
-                       </div>
-                     </div>
+                    <div className="col-akash flex items-center ">
+                      <div className="col-img">
+                        <img src={akash} alt="akash" />
+                      </div>
+                      <div className="col-para">
+                        <h3>Interview with Akash Negi</h3>
+                        <p>Discussion on major changes on CRM software</p>
+                        <h5>12:30  June 12,2022</h5>
+                      </div>
+                    </div>
+                    <div className="col-akash flex items-center ">
+                      <div className="col-img">
+                        <img src={rahul} alt="akash" />
+                      </div>
+                      <div className="col-para">
+                        <h3>Interview with Akash Negi</h3>
+                        <p>Discussion on major changes on CRM software</p>
+                        <h5>12:30  June 12,2022</h5>
+                      </div>
+                    </div>
+                    <div className="col-akash flex items-center ">
+                      <div className="col-img">
+                        <img src={akash} alt="akash" />
+                      </div>
+                      <div className="col-para">
+                        <h3>Interview with Akash Negi</h3>
+                        <p>Discussion on major changes on CRM software</p>
+                        <h5>12:30  June 12,2022</h5>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

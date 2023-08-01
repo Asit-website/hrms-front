@@ -22,7 +22,7 @@ const AdminDash = ({ setAlert, pop, setPop }) => {
   // const getData = async () => {
 
   // };
-  
+
   return (
     <>
       <div className="employee-dash h-full">
@@ -55,7 +55,8 @@ const AdminDash = ({ setAlert, pop, setPop }) => {
                       </div>
                     </NavLink>
                   </div>
-                  <div className="main-box main-boxes">
+                  
+                  <NavLink to="/adminDash/profile-management" className="main-box main-boxes">
                     <div className="main-box1">
                       <div className="loj">
                         <img src={person} alt="loj" />
@@ -64,7 +65,8 @@ const AdminDash = ({ setAlert, pop, setPop }) => {
                     <div className="main-box2">
                       <h3>Profile Management</h3>
                     </div>
-                  </div>
+                  </NavLink>
+
                   <div className="main-box main-boxes">
                     <div className="main-box1">
                       <div className="loj">

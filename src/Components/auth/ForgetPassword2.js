@@ -24,10 +24,9 @@ const ForgetPassword2 = ({ setAlert }) => {
     console.log(value);
 
     if (value.password === value.password1) {
-      const ans = await forgetPassword2({email: localStorage.getItem('kds-reset-email'), password: value.password });
+      const ans = await forgetPassword2({ email: localStorage.getItem('kds-reset-email'), password: value.password });
 
-      if(ans.success)
-      {
+      if (ans.success) {
         localStorage.removeItem('hrms_token');
         localStorage.removeItem('hrms_user');
         localStorage.removeItem('kds-reset-email');

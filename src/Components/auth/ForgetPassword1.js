@@ -15,17 +15,16 @@ const ForgetPassword1 = () => {
     n4: '',
   });
 
-  const handleChange=(e)=>{
-    setValue({...value, [e.target.name]: e.target.value});
+  const handleChange = (e) => {
+    setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(value.n1+value.n2+value.n3+value.n4);
-    let ans = await forgetPassword1({email: localStorage.getItem('kds-reset-email'), otp: value.n1+value.n2+value.n3+value.n4})
+    console.log(value.n1 + value.n2 + value.n3 + value.n4);
+    let ans = await forgetPassword1({ email: localStorage.getItem('kds-reset-email'), otp: value.n1 + value.n2 + value.n3 + value.n4 })
     // console.log(ans);
-    if(ans.success)
-    {
+    if (ans.success) {
       navigate("/forget2");
     }
   };
