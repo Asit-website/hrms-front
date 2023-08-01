@@ -4,7 +4,7 @@ import EmployeeSidebar from "../Sidebar/EmployeeSidebar";
 import { useMain } from "../../../hooks/useMain";
 import { useNavigate } from "react-router-dom";
 
-const UpdateProfile = ({ setAlert,pop1,setPop1 }) => {
+const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
   const { user, updateProfile, postActivity, getStatisticsByUser } = useMain();
   const [value, setValue] = useState(user);
 
@@ -66,7 +66,7 @@ const UpdateProfile = ({ setAlert,pop1,setPop1 }) => {
                     value={value.fullName}
                     id="fullName"
                     className=" block w-full"
-                    // required
+                  // required
                   />
                 </div>
                 <div className="mb-6">
@@ -80,7 +80,7 @@ const UpdateProfile = ({ setAlert,pop1,setPop1 }) => {
                     value={value.email}
                     id="email"
                     className=" block w-full"
-                    // required
+                  // required
                   />
                 </div>
                 <div className="mb-6">
@@ -94,7 +94,7 @@ const UpdateProfile = ({ setAlert,pop1,setPop1 }) => {
                     value={value.mobile}
                     id="mobile"
                     className=" block w-full"
-                    // required
+                  // required
                   />
                 </div>
                 <div className="mb-6">
@@ -121,7 +121,7 @@ const UpdateProfile = ({ setAlert,pop1,setPop1 }) => {
                     onChange={handleChange}
                     id="email1"
                     type="email"
-                    // required
+                  // required
                   />
                 </div>
                 {/* <div className="mb-6">
@@ -149,7 +149,7 @@ const UpdateProfile = ({ setAlert,pop1,setPop1 }) => {
                     onChange={handleChange}
                     id="gmail"
                     type="email"
-                    // required
+                  // required
                   />
                 </div>
                 <div className="mb-6">

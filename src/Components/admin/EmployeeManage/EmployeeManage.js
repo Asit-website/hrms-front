@@ -12,8 +12,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import HrSidebar from "../../Hr/Sidebar/HrSidebar";
 import HrNavbar from "../../Hr/Navbar/HrNavbar";
 
-const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr=false }) => {
-  const {id}=useParams();
+const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const { user, createEmployee1, getUsers, updateUser } = useMain();
   const [value1, setValue1] = useState({
@@ -110,14 +110,13 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr=false }) =>
     }
   }, []);
 
-  useEffect(()=>{
-    if(id)
-    {
+  useEffect(() => {
+    if (id) {
       getUser();
     }
-  },[id]);
+  }, [id]);
 
-  const getUser=async()=>{
+  const getUser = async () => {
     const ans = await getUsers(id);
     console.log(ans);
     setValue1({
@@ -238,8 +237,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr=false }) =>
   const handleSubmit = async (e, type) => {
     e.preventDefault();
 
-    if(!id)
-    {
+    if (!id) {
       const ans = await createEmployee1({
         ...value1,
         ...value2,
@@ -311,11 +309,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr=false }) =>
         confirmAccount: "",
         Branch: "",
       });
-  
+
       alert("created");
     }
-    else
-    {
+    else {
       const ans = await updateUser(id, value1, value2, value3, value4, value5);
       console.log(ans.data);
       alert('Updated');
@@ -386,7 +383,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr=false }) =>
                               {
                                 user.role === "ADMIN" && <option value={`Hr`}>Hr</option>
                               }
-                              
+
                             </select>
                             <input
                               onChange={(e) => {

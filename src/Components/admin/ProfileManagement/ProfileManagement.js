@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import HrSidebar from "../Sidebar/HrSidebar";
-import HrNavbar from "../Navbar/HrNavbar";
 import hrLok from "../../images/hrLok.png";
 import hrLok1 from "../../images/hrLok1.png";
 import cg from '../../images/cg.png';
@@ -11,10 +9,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import edit1 from "../../images/edit1.png";
 import delete1 from "../../images/delete1.png";
 import { useMain } from "../../../hooks/useMain";
+import AdminNavbar from "../Navbar/AdminNavbar";
+import AdminSidebar from "../Sidebar/AdminSidebar";
+import person from "../../images/person.png";
+import person2 from "../../images/person2.png";
 
-const ShowEmployee = ({ setAlert, pop1, setPop1 }) => {
+const ProfileManagement = ({ setAlert, pop, setPop }) => {
   const navigate = useNavigate();
-  const { getUsers } = useMain();
+  const { getUsers, user } = useMain();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -34,42 +36,50 @@ const ShowEmployee = ({ setAlert, pop1, setPop1 }) => {
   return (
     <>
       <div className="employee-dash h-full">
-        <HrSidebar setAlert={setAlert} />
+        <AdminSidebar pop={pop} setPop={setPop} />
 
         <div className="tm">
-          <HrNavbar setAlert={setAlert}
-            pop1={pop1}
-            setPop1={setPop1}
-          />
+          <AdminNavbar user={user} setAlert={setAlert} />
 
           <div className="em">
             <div className="flex-col">
               <div className="hr-bash">
+
                 <div className="main-card flex items-center  justify-between">
-                  <div className="main-box">
-                    <NavLink to="/hrDash/EmployeeReg"> <div className="main-box1 hr-box1">
-                      <img src={hrLok} alt="loj" />
-                    </div></NavLink>
-                    <NavLink to="/hrDash/EmployeeReg"><div className="main-box2 hr-box2">
-                      <h3>Employee Registration</h3>
-                    </div></NavLink>
+                  <div className="main-box main-boxes">
+                    <NavLink to="/adminDash/EmployeeMan">
+                      <div className="main-box1">
+                        <div className="loj">
+                          <img src={person} alt="loj" />
+                        </div>
+                      </div>
+                    </NavLink>
+                    <NavLink to="/adminDash/EmployeeMan">
+                      <div className="main-box2">
+                        <h3>Employee Registration</h3>
+                      </div>
+                    </NavLink>
                   </div>
-                  <div className="main-box">
-                    <NavLink to="/hrDash/EmployeeMan1">
-                      <div className="main-box1 hr-box1">
-                        <img src={hrLok1} alt="loj" />
-                      </div></NavLink>
-                    <NavLink to="/hrDash/EmployeeMan1">
-                      <div className="main-box2 hr-box2">
-                        <h3>Employees Management</h3>
-                      </div></NavLink>
-                  </div>
-                  <div className="main-box">
-                    <div className="main-box1 hr-box1">
-                      <img src={hrLok1} alt="loj" />
+
+                  <NavLink to="/adminDash/profile-management" className="main-box main-boxes">
+                    <div className="main-box1">
+                      <div className="loj">
+                        <img src={person} alt="loj" />
+                      </div>
                     </div>
-                    <div className="main-box2 hr-box2">
-                      <h3>Recruitments</h3>
+                    <div className="main-box2">
+                      <h3>Profile Management</h3>
+                    </div>
+                  </NavLink>
+
+                  <div className="main-box main-boxes">
+                    <div className="main-box1">
+                      <div className="loj">
+                        <img src={person2} alt="loj" />
+                      </div>
+                    </div>
+                    <div className="main-box2">
+                      <h3>Roles Management</h3>
                     </div>
                   </div>
                 </div>
@@ -102,7 +112,7 @@ const ShowEmployee = ({ setAlert, pop1, setPop1 }) => {
                       </tr>
                     </thead>
                     <tbody>
-                    {data.map((e, index) => {
+                      {data.map((e, index) => {
                         return (
                           <tr key={index} class="bg-[#F1F6FF] tr-head  ">
                             <td scope="row" class="px-6 py-4">
@@ -176,4 +186,4 @@ const ShowEmployee = ({ setAlert, pop1, setPop1 }) => {
   );
 };
 
-export default ShowEmployee;
+export default ProfileManagement;

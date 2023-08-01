@@ -10,8 +10,8 @@ import lower from "../../images/lower.png";
 import del from "../../images/delete.png";
 // import { useNavigate } from "react-router-dom";
 
-const EmployeeManageByHr = ({ setAlert,pop1,setPop1 }) => {
-//   const navigate = useNavigate();
+const EmployeeManageByHr = ({ setAlert, pop1, setPop1 }) => {
+  //   const navigate = useNavigate();
   const { user, createEmployee } = useMain();
   const [value1, setValue1] = useState({
     status: false,

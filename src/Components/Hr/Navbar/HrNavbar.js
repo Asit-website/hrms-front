@@ -253,8 +253,8 @@ const HrNavbar = ({ setAlert, pop1, setPop1 }) => {
     }
   };
 
-  
-// ===============logic for good morning, good afternoon and evening accorroding to time====
+
+  // ===============logic for good morning, good afternoon and evening accorroding to time====
   let myDate = new Date();
   let hours = myDate.getHours();
   let greet;

@@ -1,8 +1,8 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useMain } from '../hooks/useMain';
 
-const PrivateRoute = ({role}) => {
+const PrivateRoute = ({ role }) => {
     const location = useLocation();
     const context = useMain();
     let authFlag = true;
@@ -60,9 +60,9 @@ const PrivateRoute = ({role}) => {
         // }
     };
 
-  return (
-     <Outlet/>
-  )
+    return (
+        <Outlet />
+    )
 }
 
 export default PrivateRoute

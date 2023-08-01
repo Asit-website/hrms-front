@@ -3,11 +3,11 @@ import MainContext from './MainContext';
 import { deleteReq, get, post, put } from '../Api/api'
 import { useState } from 'react';
 
-// const baseUrl = "http://localhost:5000";
+const baseUrl = "http://localhost:5000";
 
 // const baseUrl = "https://172.105.48.246:5000";
 
-const baseUrl = "https://hrms-backend-q2ta.onrender.com";
+// const baseUrl = "https://hrms-backend-q2ta.onrender.com";
 
 
 const MainState = (props) => {

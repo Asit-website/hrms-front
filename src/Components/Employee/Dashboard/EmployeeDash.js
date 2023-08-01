@@ -70,9 +70,8 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
       // }, 5 * 1000);
 
       let status = "ONLINE";
-      let date = `${new Date().getDate()}/${
-        new Date().getMonth() + 1
-      }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
+        }/${new Date().getFullYear()}`;
       // console.log(date);
       let activity = {
         type: "PUNCH_IN",
@@ -114,9 +113,8 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
       }, 60 * 1000);
 
       let status = "OFFLINE";
-      let date = `${new Date().getDate()}/${
-        new Date().getMonth() + 1
-      }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
+        }/${new Date().getFullYear()}`;
       let activity = {
         type: "PUNCH_OUT",
         ts: new Date().getTime(),
@@ -149,7 +147,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
     // getData();
   }, []);
 
-  const getData = async () => {};
+  const getData = async () => { };
 
   return (
     <>
@@ -292,11 +290,11 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                           <h4>12:30  June 12,2022</h4>
                         </div>
                       </div>
-                     
+
                     </div>
 
                     <div className="show-all">
-                       <p className="text-center">Show all meetings and Interviews</p>
+                      <p className="text-center">Show all meetings and Interviews</p>
                     </div>
                   </div>
                 </div>

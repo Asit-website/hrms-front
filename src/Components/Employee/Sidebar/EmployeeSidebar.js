@@ -38,13 +38,13 @@ const EmployeeSidebar = () => {
         className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 sidebars"
         aria-label="Sidebar"
       >
-      {/* <div className="logobar">
+        {/* <div className="logobar">
       <img src={kushel1} alt="" />
       </div> */}
         <div className="h-full px-3 py-4 overflow-y-auto  sidebars sidebars1">
-          
+
           <ul className="space-y-2 font-medium sight">
-           <NavLink to="/employeeDash"><li className="most">
+            <NavLink to="/employeeDash"><li className="most">
               <a
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -53,7 +53,7 @@ const EmployeeSidebar = () => {
                 <span className="ml-3">Dashboard</span>
               </a>
             </li></NavLink>
-          <NavLink to="/employeeDash/request"><li className="most">
+            <NavLink to="/employeeDash/request"><li className="most">
               <button
                 type="button"
                 className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -164,14 +164,14 @@ const EmployeeSidebar = () => {
               </ul>
             </li>
             <div className="red-box">
-            <div className="white-box">
-              <img src={chakka} alt="chakka" />
-              <div className="black-box">
-                <h3>Need Help?</h3>
-                <p>Our support team is ready for you</p>
-                <button>Get Help</button>
+              <div className="white-box">
+                <img src={chakka} alt="chakka" />
+                <div className="black-box">
+                  <h3>Need Help?</h3>
+                  <p>Our support team is ready for you</p>
+                  <button>Get Help</button>
+                </div>
               </div>
-            </div>
             </div>
           </ul>
         </div>

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import AdminNavbar from "../../admin/Navbar/AdminNavbar";
 import AdminSidebar from "../../admin/Sidebar/AdminSidebar";
 import "react-calendar/dist/Calendar.css";
@@ -10,184 +10,184 @@ import lower from "../../images/lower.png";
 import del from '../../images/delete.png';
 import { useNavigate } from "react-router-dom";
 const HrManage = ({ pop, setPop, setAlert }) => {
-    const navigate = useNavigate();
-    const { user, createHr } = useMain();
-    const [value1, setValue1] = useState({
-      status: false,
-      fullName: "",
-      password: "",
-      department: "",
-      email: "",
-      reportingManager: "",
-      designation: "",
-      joiningDate: "",
-    });
-    const [value2, setValue2] = useState({
-      status: false,
-      gmail: "",
-      email1: "",
-      mobile: "",
-      gender: "",
-      dob: "",
-    });
-    const [value3, setValue3] = useState({
-      status: false,
-      pan: "",
-      adhar: "",
-      father: "",
-      currentAddress: "",
-      currentState: "",
-      currentCity: "",
-      currentPin: "",
-      residence: "",
-      perState: "",
-      perCity: "",
-      perPin: "",
-      Martial: "",
-      nationality: "",
-      Mother: "",
-    });
-  
-    const [value4, setValue4] = useState({
-      status: false,
-      qualification: "",
-      specialization: "",
-      qualificationType: "",
-      yearPass: "",
-      university: "",
-      college: "",
-      percentage: "",
-      previousCompany: "",
-      previousDesignation: "",
-      toDate: "",
-      fromDate: "",
-      numberOfMonth: "",
-      Jobdescription: "",
-    });
-  
-    const [value5, setValue5] = useState({
-      status: false,
-      SalaryPay: "",
-      SalaryBankName: "",
-      BeneficiaryName: "",
-      BankIfsc: "",
-      AccountNumber: "",
-      confirmAccount: "",
-      Branch: "",
-    });
-    useEffect(() => {
-      let form1 = localStorage.getItem("form1");
-      if (form1) {
-        form1 = JSON.parse(form1);
-        setValue1(form1);
-      }
-      let form2 = localStorage.getItem("form2");
-      if (form2) {
-        form2 = JSON.parse(form2);
-        setValue2(form2);
-      }
-      let form3 = localStorage.getItem("form3");
-      if (form3) {
-        form3 = JSON.parse(form3);
-        setValue3(form3);
-      }
-      let form4 = localStorage.getItem("form4");
-      if (form4) {
-        form4 = JSON.parse(form4);
-        setValue4(form4);
-      }
-      let form5 = localStorage.getItem("form5");
-      if (form5) {
-        form5 = JSON.parse(form5);
-        setValue5(form5);
-      }
-    }, []);
-    useEffect(() => {
-      let form1 = localStorage.getItem("form1");
-      if (form1) {
-        form1 = JSON.parse(form1);
-        setValue1(form1);
-      }
-      let form2 = localStorage.getItem("form2");
-      if (form2) {
-        form2 = JSON.parse(form2);
-        setValue2(form2);
-      }
-      let form3 = localStorage.getItem("form3");
-      if (form3) {
-        form3 = JSON.parse(form3);
-        setValue3(form3);
-      }
-      let form4 = localStorage.getItem("form4");
-      if (form4) {
-        form4 = JSON.parse(form4);
-        setValue4(form4);
-      }
-      let form5 = localStorage.getItem("form5");
-      if (form5) {
-        form5 = JSON.parse(form5);
-        setValue5(form5);
-      }
-    }, []);
-  
-    const handleChange = (e, type) => {
-      if (type === "form1") {
-        setValue1({ ...value1, [e.target.name]: e.target.value });
-      } else if (type === "form2") {
-        setValue2({ ...value2, [e.target.name]: e.target.value });
-      } else if (type === "form3") {
-        setValue3({ ...value3, [e.target.name]: e.target.value });
-      } else if (type === "form4") {
-        setValue4({ ...value4, [e.target.name]: e.target.value });
-      } else if (type === "form5") {
-        setValue5({ ...value5, [e.target.name]: e.target.value });
-      }
-    };
-    const handleEdit = (type) => {
-      if (type === "form1") {
-        setValue1({ ...value1, status: false });
-        localStorage.setItem(type, JSON.stringify({ ...value1, status: false }));
-      } else if (type === "form2") {
-        setValue2({ ...value2, status: false });
-        localStorage.setItem(type, JSON.stringify({ ...value2, status: false }));
-      } else if (type === "form3") {
-        setValue3({ ...value3, status: false });
-        localStorage.setItem(type, JSON.stringify({ ...value3, status: false }));
-      } else if (type === "form4") {
-        setValue4({ ...value4, status: false });
-        localStorage.setItem(type, JSON.stringify({ ...value4, status: false }));
-      } else if (type === "form5") {
-        setValue5({ ...value5, status: false });
-        localStorage.setItem(type, JSON.stringify({ ...value5, status: false }));
-      }
-    };
-    const handleSave = (type) => {
-      if (type === "form1") {
-        setValue1({ ...value1, status: true });
-        localStorage.setItem(type, JSON.stringify({ ...value1, status: true }));
-      } else if (type === "form2") {
-        setValue2({ ...value2, status: true });
-        localStorage.setItem(type, JSON.stringify({ ...value2, status: true }));
-      } else if (type === "form3") {
-        setValue3({ ...value3, status: true });
-        localStorage.setItem(type, JSON.stringify({ ...value3, status: true }));
-      } else if (type === "form4") {
-        setValue4({ ...value4, status: true });
-        localStorage.setItem(type, JSON.stringify({ ...value4, status: true }));
-      } else if (type === "form5") {
-        setValue5({ ...value5, status: true });
-        localStorage.setItem(type, JSON.stringify({ ...value5, status: true }));
-      }
-    };
-    
-    const handleSubmit = async (e, type) => {
-      e.preventDefault();
-      alert("created");
-      const ans = await createHr({ ...value1, ...value2, ...value3, ...value4, ...value5 });
-      console.log(ans.data);
-      console.log({ ...value1, ...value2, ...value3, ...value4, ...value5 });
-      localStorage.removeItem({ ...value1, status: false });
-    };
+  const navigate = useNavigate();
+  const { user, createHr } = useMain();
+  const [value1, setValue1] = useState({
+    status: false,
+    fullName: "",
+    password: "",
+    department: "",
+    email: "",
+    reportingManager: "",
+    designation: "",
+    joiningDate: "",
+  });
+  const [value2, setValue2] = useState({
+    status: false,
+    gmail: "",
+    email1: "",
+    mobile: "",
+    gender: "",
+    dob: "",
+  });
+  const [value3, setValue3] = useState({
+    status: false,
+    pan: "",
+    adhar: "",
+    father: "",
+    currentAddress: "",
+    currentState: "",
+    currentCity: "",
+    currentPin: "",
+    residence: "",
+    perState: "",
+    perCity: "",
+    perPin: "",
+    Martial: "",
+    nationality: "",
+    Mother: "",
+  });
+
+  const [value4, setValue4] = useState({
+    status: false,
+    qualification: "",
+    specialization: "",
+    qualificationType: "",
+    yearPass: "",
+    university: "",
+    college: "",
+    percentage: "",
+    previousCompany: "",
+    previousDesignation: "",
+    toDate: "",
+    fromDate: "",
+    numberOfMonth: "",
+    Jobdescription: "",
+  });
+
+  const [value5, setValue5] = useState({
+    status: false,
+    SalaryPay: "",
+    SalaryBankName: "",
+    BeneficiaryName: "",
+    BankIfsc: "",
+    AccountNumber: "",
+    confirmAccount: "",
+    Branch: "",
+  });
+  useEffect(() => {
+    let form1 = localStorage.getItem("form1");
+    if (form1) {
+      form1 = JSON.parse(form1);
+      setValue1(form1);
+    }
+    let form2 = localStorage.getItem("form2");
+    if (form2) {
+      form2 = JSON.parse(form2);
+      setValue2(form2);
+    }
+    let form3 = localStorage.getItem("form3");
+    if (form3) {
+      form3 = JSON.parse(form3);
+      setValue3(form3);
+    }
+    let form4 = localStorage.getItem("form4");
+    if (form4) {
+      form4 = JSON.parse(form4);
+      setValue4(form4);
+    }
+    let form5 = localStorage.getItem("form5");
+    if (form5) {
+      form5 = JSON.parse(form5);
+      setValue5(form5);
+    }
+  }, []);
+  useEffect(() => {
+    let form1 = localStorage.getItem("form1");
+    if (form1) {
+      form1 = JSON.parse(form1);
+      setValue1(form1);
+    }
+    let form2 = localStorage.getItem("form2");
+    if (form2) {
+      form2 = JSON.parse(form2);
+      setValue2(form2);
+    }
+    let form3 = localStorage.getItem("form3");
+    if (form3) {
+      form3 = JSON.parse(form3);
+      setValue3(form3);
+    }
+    let form4 = localStorage.getItem("form4");
+    if (form4) {
+      form4 = JSON.parse(form4);
+      setValue4(form4);
+    }
+    let form5 = localStorage.getItem("form5");
+    if (form5) {
+      form5 = JSON.parse(form5);
+      setValue5(form5);
+    }
+  }, []);
+
+  const handleChange = (e, type) => {
+    if (type === "form1") {
+      setValue1({ ...value1, [e.target.name]: e.target.value });
+    } else if (type === "form2") {
+      setValue2({ ...value2, [e.target.name]: e.target.value });
+    } else if (type === "form3") {
+      setValue3({ ...value3, [e.target.name]: e.target.value });
+    } else if (type === "form4") {
+      setValue4({ ...value4, [e.target.name]: e.target.value });
+    } else if (type === "form5") {
+      setValue5({ ...value5, [e.target.name]: e.target.value });
+    }
+  };
+  const handleEdit = (type) => {
+    if (type === "form1") {
+      setValue1({ ...value1, status: false });
+      localStorage.setItem(type, JSON.stringify({ ...value1, status: false }));
+    } else if (type === "form2") {
+      setValue2({ ...value2, status: false });
+      localStorage.setItem(type, JSON.stringify({ ...value2, status: false }));
+    } else if (type === "form3") {
+      setValue3({ ...value3, status: false });
+      localStorage.setItem(type, JSON.stringify({ ...value3, status: false }));
+    } else if (type === "form4") {
+      setValue4({ ...value4, status: false });
+      localStorage.setItem(type, JSON.stringify({ ...value4, status: false }));
+    } else if (type === "form5") {
+      setValue5({ ...value5, status: false });
+      localStorage.setItem(type, JSON.stringify({ ...value5, status: false }));
+    }
+  };
+  const handleSave = (type) => {
+    if (type === "form1") {
+      setValue1({ ...value1, status: true });
+      localStorage.setItem(type, JSON.stringify({ ...value1, status: true }));
+    } else if (type === "form2") {
+      setValue2({ ...value2, status: true });
+      localStorage.setItem(type, JSON.stringify({ ...value2, status: true }));
+    } else if (type === "form3") {
+      setValue3({ ...value3, status: true });
+      localStorage.setItem(type, JSON.stringify({ ...value3, status: true }));
+    } else if (type === "form4") {
+      setValue4({ ...value4, status: true });
+      localStorage.setItem(type, JSON.stringify({ ...value4, status: true }));
+    } else if (type === "form5") {
+      setValue5({ ...value5, status: true });
+      localStorage.setItem(type, JSON.stringify({ ...value5, status: true }));
+    }
+  };
+
+  const handleSubmit = async (e, type) => {
+    e.preventDefault();
+    alert("created");
+    const ans = await createHr({ ...value1, ...value2, ...value3, ...value4, ...value5 });
+    console.log(ans.data);
+    console.log({ ...value1, ...value2, ...value3, ...value4, ...value5 });
+    localStorage.removeItem({ ...value1, status: false });
+  };
   return (
     <>
       <div className="employee-dash h-full">

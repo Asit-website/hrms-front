@@ -8,7 +8,7 @@ import akash from '../../images/akasha.png';
 import { useEffect } from 'react';
 
 const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
-  let todayDate=new Date().toLocaleDateString();
+  let todayDate = new Date().toLocaleDateString();
   const { user, postActivity, getStatisticsByUser, getActivitiesByUser } = useMain();
   const [value, onChange] = useState(new Date());
   const [loadFlag, setLoadFlag] = useState(false);
@@ -26,8 +26,8 @@ const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
     setLoadFlag(false);
   };
 
-  const handleCalendar=(e)=>{
-    let date=new Date(e).toLocaleDateString();
+  const handleCalendar = (e) => {
+    let date = new Date(e).toLocaleDateString();
     // console.log(date);
     getData(date);
   };
@@ -59,7 +59,7 @@ const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
 
                   </div>
                 </div>
-                
+
                 <div className="distinguish2 w-full">
                   <div className="total-timeCal">
                     <h2 className='total'>Total Time</h2>
@@ -69,7 +69,7 @@ const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
                         <h3>Clock In</h3>
                         <div className="clock1 flex items-center">
                           {/* <h2>07 : 35</h2> */}
-                          <h2>{mainData && Object.keys(mainData).length>0 ? new Date(mainData.activity[0].ts).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true}) : " - : - "}</h2>
+                          <h2>{mainData && Object.keys(mainData).length > 0 ? new Date(mainData.activity[0].ts).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : " - : - "}</h2>
                           {/* <p>Pm</p> */}
                         </div>
                       </div>
@@ -77,7 +77,7 @@ const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
                       <div className="clock clock2">
                         <h3>Clock Out</h3>
                         <div className=" clock1 flex items-center">
-                          <h2>{mainData && Object.keys(mainData).length>0 && mainData.activity[mainData.activity.length-1].message!=="" ? new Date(mainData.activity[mainData.activity.length-1].ts).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true}) : " - : -" }</h2>
+                          <h2>{mainData && Object.keys(mainData).length > 0 && mainData.activity[mainData.activity.length - 1].message !== "" ? new Date(mainData.activity[mainData.activity.length - 1].ts).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : " - : -"}</h2>
                           {/* <h2>07 : 35</h2>
                           <p>Pm</p> */}
                         </div>

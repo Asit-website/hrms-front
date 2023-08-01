@@ -7,23 +7,22 @@ import { useMain } from '../../hooks/useMain';
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
-  const {forgetPassword } = useMain();
+  const { forgetPassword } = useMain();
   const [value, setValue] = useState({
     employeeCode: '',
     email: '',
   });
 
-  const handleChange=(e)=>{
-    setValue({...value, [e.target.name]: e.target.value});
+  const handleChange = (e) => {
+    setValue({ ...value, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(value);
     let ans = await forgetPassword(value);
     console.log(ans);
-    if(ans.success)
-    {
+    if (ans.success) {
       localStorage.setItem('kds-reset-email', ans.email);
       navigate("/forget1");
     }

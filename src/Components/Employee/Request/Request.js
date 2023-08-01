@@ -6,7 +6,7 @@ import search from "../../images/search.png";
 import dist from "../../images/dist.png";
 import asit from "../../images/asit.png";
 import chirag from "../../images/chirag.png";
-const Request = ({ setAlert,pop1,setPop1 }) => {
+const Request = ({ setAlert, pop1, setPop1 }) => {
   const { user, postActivity, getStatisticsByUser } = useMain();
   return (
     <>
