@@ -53,7 +53,7 @@ const EmployeeSidebar = () => {
                 <span className="ml-3">Dashboard</span>
               </a>
             </li></NavLink>
-            <NavLink to="/employeeDash/request"><li className="most">
+           <li className="most">
               <button
                 type="button"
                 className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -107,7 +107,7 @@ const EmployeeSidebar = () => {
                   </a>
                 </li>
               </ul>
-            </li></NavLink>
+            </li>
             <li className="most">
               <button
                 type="button"

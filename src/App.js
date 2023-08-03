@@ -81,7 +81,7 @@ function App() {
               closeAlert={closeAlert}
             />
           ) : null}
-        
+
           <Routes>
             <Route path="/" element={<Home setAlert={setAlert} />} />
             <Route path="/login" element={<Auth setAlert={setAlert} />} />
@@ -147,14 +147,14 @@ function App() {
 
             {/* ================admin routing===================== */}
             {/* <Route element={<PrivateRoute role={[ROLES.ADMIN]} />}> */}
-              <Route
-                path="/adminDash"
-                element={<AdminDash pop={pop} setPop={setPop} setAlert={setAlert} />}
-              />
-              <Route path="/adminDash/EmployeeMan" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />} />
-              <Route path="/adminDash/profile-management" element={<ProfileManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
-              <Route path="/adminDash/HrManage" element={<HrManage pop={pop} setAlert={setAlert} setPop={setPop} />} />
-              <Route path="/adminDash/profile" element={<AdminProfile pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route
+              path="/adminDash"
+              element={<AdminDash pop={pop} setPop={setPop} setAlert={setAlert} />}
+            />
+            <Route path="/adminDash/EmployeeMan" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/adminDash/profile-management" element={<ProfileManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/adminDash/HrManage" element={<HrManage pop={pop} setAlert={setAlert} setPop={setPop} />} />
+            <Route path="/adminDash/profile" element={<AdminProfile pop={pop} setPop={setPop} setAlert={setAlert} />} />
             {/* </Route> */}
           </Routes>
         </BrowserRouter>

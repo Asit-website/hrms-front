@@ -266,12 +266,12 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
         <div className="logo ">
           <img src={kushel1} alt="" />
         </div>
-        <div className="second-logo flex items-center">
+      <NavLink to="/employeeDash"><div className="second-logo flex items-center">
           <img src={thir} alt="" />
           <p className="ml-2">
             Good {greet} {user?.fullName}
           </p>
-        </div>
+        </div></NavLink>
         <div className="third-logo ">
           <input type="search" placeholder="Search" />
         </div>
