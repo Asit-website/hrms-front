@@ -56,6 +56,7 @@ const AdminSidebar = ({ pop, setPop }) => {
                 </a>
               </li>
             </NavLink>
+            <NavLink to="/adminDash/profile-management">
             <li className="most">
               <button
                 type="button"
@@ -111,6 +112,7 @@ const AdminSidebar = ({ pop, setPop }) => {
                 </li>
               </ul>
             </li>
+            </NavLink>
             <NavLink to="#!">
               {" "}
               <li className="most">

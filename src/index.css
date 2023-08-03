@@ -2564,3 +2564,13 @@ abbr:where([title]) {
 .main_message {
   font-size: 16px !important;
 }
+#alert-border-3{
+   position: fixed;
+   right: 0px;
+   max-width: 600px;
+}
+#alert-border-2{
+  position: fixed;
+  right: 0px;
+  max-width: 600px;
+}
