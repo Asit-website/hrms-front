@@ -247,7 +247,14 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
       });
       console.log(ans.data);
       // console.log({ ...value1, ...value2, ...value3, ...value4, ...value5 });
-      localStorage.removeItem({ ...value1, status: false });
+      // localStorage.removeItem({ ...value1, status: false });
+
+      localStorage.removeItem('form1');
+      localStorage.removeItem('form2');
+      localStorage.removeItem('form3');
+      localStorage.removeItem('form4');
+      localStorage.removeItem('form5');
+
       setValue1({
         status: false,
         fullName: "",
@@ -370,6 +377,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                             >
                               <option>
                                 Department
+                              </option>
+                              <option value={`Intern`}>
+                                Intern
                               </option>
                               <option value={`UI/UX Designer`}>
                                 UI/UX Designer
