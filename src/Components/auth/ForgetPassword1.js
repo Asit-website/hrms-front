@@ -23,7 +23,7 @@ const ForgetPassword1 = () => {
     e.preventDefault();
     console.log(value.n1 + value.n2 + value.n3 + value.n4);
     let ans = await forgetPassword1({ email: localStorage.getItem('kds-reset-email'), otp: value.n1 + value.n2 + value.n3 + value.n4 })
-    // console.log(ans);
+    console.log(ans);
     if (ans.success) {
       navigate("/forget2");
     }
