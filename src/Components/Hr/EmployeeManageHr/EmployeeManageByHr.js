@@ -217,10 +217,21 @@ const EmployeeManageByHr = ({ setAlert, pop1, setPop1 }) => {
                               value={value1?.department}
                               disabled={value1.status}
                             >
-                              <option>Department</option>
-                              <option>UI/UX Designer</option>
-                              <option>Developer</option>
-                              <option>Designer</option>
+                              <option>
+                                Department
+                              </option>
+                              <option value={`Intern`}>
+                                Intern
+                              </option>
+                              <option value={`UI/UX Designer`}>
+                                UI/UX Designer
+                              </option>
+                              <option value={`Developer`}>
+                                Developer
+                              </option>
+                              <option value={`Manager`}>
+                                Manager/Project manager
+                              </option>
                             </select>
                             <input
                               onChange={(e) => {
@@ -252,8 +263,10 @@ const EmployeeManageByHr = ({ setAlert, pop1, setPop1 }) => {
                               disabled={value1.status}
                             >
                               <option>Designation</option>
-                              <option>Developer</option>
-                              <option>Designer</option>
+                              <option value="Developer">Developer</option>
+                              <option value="Designer">Designer</option>
+                              <option value="Hr">Hr</option>
+                              <option value="Manager">Manager/Project manager</option>
                             </select>
                             <input
                               onChange={(e) => {
@@ -534,7 +547,7 @@ const EmployeeManageByHr = ({ setAlert, pop1, setPop1 }) => {
                                 >
                                   Current state
                                 </label>
-                                <select
+                                {/* <select
                                   class="rounded-lg  w-full"
                                   name="currentState"
                                   id="currentState"
@@ -546,7 +559,19 @@ const EmployeeManageByHr = ({ setAlert, pop1, setPop1 }) => {
                                 >
                                   <option>CurrentState</option>
                                   <option>Jharkhand</option>
-                                </select>
+                                </select> */}
+                                <input
+                                  type="text"
+                                  id="currentState"
+                                  class="rounded-lg  w-full"
+                                  // required
+                                  name="currentState"
+                                  value={value3?.currentState}
+                                  onChange={(e) => {
+                                    handleChange(e, "form3");
+                                  }}
+                                  disabled={value3.status}
+                                />
                               </div>
                               <div class="mb-6 w-full try">
                                 <label
@@ -716,6 +741,7 @@ const EmployeeManageByHr = ({ setAlert, pop1, setPop1 }) => {
                                 >
                                   <option>Martial Status</option>
                                   <option>Married</option>
+                                  <option>UnMarried</option>
                                 </select>
                               </div>
                               <div class="mb-6 w-full try">
@@ -853,6 +879,8 @@ const EmployeeManageByHr = ({ setAlert, pop1, setPop1 }) => {
                                   <option>Qualification Type</option>
                                   <option>M.sc</option>
                                   <option>B.sc</option>
+                                  <option>10th</option>
+                                  <option>12th</option>
                                 </select>
                               </div>
                             </div>
@@ -876,6 +904,26 @@ const EmployeeManageByHr = ({ setAlert, pop1, setPop1 }) => {
                                   disabled={value4.status}
                                 >
                                   <option>year of passing</option>
+                                  <option>2000</option>
+                                  <option>2001</option>
+                                  <option>2002</option>
+                                  <option>2003</option>
+                                  <option>2004</option>
+                                  <option>2005</option>
+                                  <option>2006</option>
+                                  <option>2007</option>
+                                  <option>2008</option>
+                                  <option>2009</option>
+                                  <option>2010</option>
+                                  <option>2011</option>
+                                  <option>2012</option>
+                                  <option>2013</option>
+                                  <option>2014</option>
+                                  <option>2015</option>
+                                  <option>2016</option>
+                                  <option>2017</option>
+                                  <option>2018</option>
+                                  <option>2019</option>
                                   <option>2020</option>
                                   <option>2021</option>
                                 </select>

@@ -163,8 +163,21 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                     value={value.department}
                     id="department"
                   >
-                    <option>Department</option>
-                    <option>IT</option>
+                    <option value={`Intern`}>
+                      Intern
+                    </option>
+                    <option value={`UI/UX Designer`}>
+                      UI/UX Designer
+                    </option>
+                    <option value={`Developer`}>
+                      Developer
+                    </option>
+                    <option value={`Manager`}>
+                      Manager/Project manager
+                    </option>
+                    {
+                      user.role === "ADMIN" && <option value={`Hr`}>Hr</option>
+                    }
                   </select>
                 </div>
                 <div className="mb-6">
@@ -179,8 +192,10 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                     id="designation"
                   >
                     <option>Designation</option>
-                    <option>Developer</option>
-                    <option>Designer</option>
+                    <option value="Developer">Developer</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Hr">Hr</option>
+                    <option value="Manager">Manager/Project manager</option>
                   </select>
                 </div>
                 <div className="mb-6">
@@ -256,7 +271,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <label htmlFor="currentState" className="block mb-1">
                     Current state
                   </label>
-                  <select
+                  {/* <select
                     class="rounded-lg  w-full"
                     name="currentState"
                     id="currentState"
@@ -265,7 +280,17 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   >
                     <option>CurrentState</option>
                     <option>Jharkhand</option>
-                  </select>
+                  </select> */}
+                  <input
+                    type="text"
+                    id="currentState"
+                    className="rounded-lg  w-full"
+                    // required
+                    name="currentState"
+                    value={value.currentState}
+                    onChange={handleChange}
+                   
+                  />
                 </div>
                 <div className="mb-6">
                   <label htmlFor="currentCity" className="block mb-1">
@@ -351,6 +376,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   >
                     <option>Martial Status</option>
                     <option>Married</option>
+                    <option>UnMarried</option>
                   </select>
                 </div>
                 <div className="mb-6">
@@ -424,6 +450,8 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                     <option>Qualification Type</option>
                     <option>M.sc</option>
                     <option>B.sc</option>
+                    <option>10th</option>
+                    <option>12th</option>
                   </select>
                 </div>
                 <div className="mb-6">
@@ -438,6 +466,26 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                     onChange={handleChange}
                   >
                     <option>year of passing</option>
+                    <option>2000</option>
+                    <option>2001</option>
+                    <option>2002</option>
+                    <option>2003</option>
+                    <option>2004</option>
+                    <option>2005</option>
+                    <option>2006</option>
+                    <option>2007</option>
+                    <option>2008</option>
+                    <option>2009</option>
+                    <option>2010</option>
+                    <option>2011</option>
+                    <option>2012</option>
+                    <option>2013</option>
+                    <option>2014</option>
+                    <option>2015</option>
+                    <option>2016</option>
+                    <option>2017</option>
+                    <option>2018</option>
+                    <option>2019</option>
                     <option>2020</option>
                     <option>2021</option>
                   </select>
