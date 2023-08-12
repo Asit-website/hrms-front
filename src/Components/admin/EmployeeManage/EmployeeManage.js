@@ -13,6 +13,10 @@ import HrSidebar from "../../Hr/Sidebar/HrSidebar";
 import HrNavbar from "../../Hr/Navbar/HrNavbar";
 
 const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) => {
+  const date = new Date();
+  const d = date.getFullYear()-40;
+  console.log(d);
+
   const { id } = useParams();
   const navigate = useNavigate();
   const { user, createEmployee1, getUsers, updateUser } = useMain();
@@ -326,6 +330,8 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
     }
 
   };
+
+
   return (
     <>
       <div className="employee-dash h-full">
@@ -714,7 +720,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 >
                                   Current state
                                 </label>
-                                <select
+                                {/* <select
                                   class="rounded-lg  w-full"
                                   name="currentState"
                                   id="currentState"
@@ -726,7 +732,20 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 >
                                   <option>CurrentState</option>
                                   <option>Jharkhand</option>
-                                </select>
+                                </select> */}
+
+                                <input
+                                  type="text"
+                                  id="currentState"
+                                  class="rounded-lg  w-full"
+                                  // required
+                                  name="currentState"
+                                  value={value3?.currentState}
+                                  onChange={(e) => {
+                                    handleChange(e, "form3");
+                                  }}
+                                  disabled={value3.status}
+                                />
                               </div>
                               <div class="mb-6 w-full try">
                                 <label
@@ -896,6 +915,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 >
                                   <option>Martial Status</option>
                                   <option>Married</option>
+                                  <option>UnMarried</option>
                                 </select>
                               </div>
                               <div class="mb-6 w-full try">
@@ -1033,6 +1053,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   <option>Qualification Type</option>
                                   <option>M.sc</option>
                                   <option>B.sc</option>
+                                  <option>10th</option>
+                                  <option>12th</option>
+
                                 </select>
                               </div>
                             </div>
@@ -1056,6 +1079,26 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value4.status}
                                 >
                                   <option>year of passing</option>
+                                  <option>2000</option>
+                                  <option>2001</option>
+                                  <option>2002</option>
+                                  <option>2003</option>
+                                  <option>2004</option>
+                                  <option>2005</option>
+                                  <option>2006</option>
+                                  <option>2007</option>
+                                  <option>2008</option>
+                                  <option>2009</option>
+                                  <option>2010</option>
+                                  <option>2011</option>
+                                  <option>2012</option>
+                                  <option>2013</option>
+                                  <option>2014</option>
+                                  <option>2015</option>
+                                  <option>2016</option>
+                                  <option>2017</option>
+                                  <option>2018</option>
+                                  <option>2019</option>
                                   <option>2020</option>
                                   <option>2021</option>
                                 </select>
