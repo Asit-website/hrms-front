@@ -155,7 +155,7 @@ const ProfileManagement = ({ setAlert, pop, setPop }) => {
                               </div>
                               <div className="action menus hidden menu-0">
                                 <div onClick={() => {
-                                  navigate(`/hrDash/EmployeeReg/${e._id}`);
+                                  navigate(`/adminDash/EmployeeMan/${e._id}`);
                                 }} className="edit cursor-pointer flex items-center justify-center">
                                   <img width={13} height={11} src={edit1} alt="" />
                                   <p className="ml-2">Edit</p>
