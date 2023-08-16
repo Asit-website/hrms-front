@@ -9,7 +9,6 @@ import { useState } from 'react';
 
 const baseUrl = "https://hrms-backend-q2ta.onrender.com";
 
-
 const MainState = (props) => {
    const [user, setUser] = useState({});
    const [flag, setFlag] = useState(false);
