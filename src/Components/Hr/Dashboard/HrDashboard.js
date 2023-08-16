@@ -12,9 +12,13 @@ import signin from "../../images/signin.png";
 import Calendar from "react-calendar";
 import akash from '../../images/akash.png';
 import rahul from '../../images/rahul.png';
+import { NavLink } from "react-router-dom";
+import arrow from '../../images/arrow.png';
 var tc;
 var tc2;
 const HrDashboard = ({ setAlert, pop1, setPop1 }) => {
+
+  // tc2 is defined in the main server success trueley for the right combinat
 
   const [value, onChange] = useState(new Date());
   return (
@@ -219,9 +223,14 @@ const HrDashboard = ({ setAlert, pop1, setPop1 }) => {
                       <img src={tanj} alt="tanj" />
                     </div>
                     <hr className="test" />
-                    <div className="calendar calendar1">
+
+                    <div className="calendar calendar1  relative">
+                      <NavLink to="/hrDash/atten">
+                        <img clas width={12} src={arrow} alt="arrow" />
+                      </NavLink>
                       <Calendar onChange={onChange} value={value} />
                     </div>
+
                     <div className="col-akash flex items-center ">
                       <div className="col-img">
                         <img src={akash} alt="akash" />
@@ -232,6 +241,7 @@ const HrDashboard = ({ setAlert, pop1, setPop1 }) => {
                         <h5>12:30  June 12,2022</h5>
                       </div>
                     </div>
+
                     <div className="col-akash flex items-center ">
                       <div className="col-img">
                         <img src={rahul} alt="akash" />
@@ -242,6 +252,8 @@ const HrDashboard = ({ setAlert, pop1, setPop1 }) => {
                         <h5>12:30  June 12,2022</h5>
                       </div>
                     </div>
+
+
                     <div className="col-akash flex items-center ">
                       <div className="col-img">
                         <img src={akash} alt="akash" />
@@ -257,6 +269,7 @@ const HrDashboard = ({ setAlert, pop1, setPop1 }) => {
               </div>
             </div>
           </div>
+          {/* <p>cmMdbU5</p> */}
         </div>
       </div>
     </>

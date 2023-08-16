@@ -24,6 +24,7 @@ import UpdateProfileHr from "./Components/Hr/UpdateProfileHr/UpdateProfileHr";
 import AttendenceCalendar from "./Components/Employee/Request/AttendenceCalendar";
 import Payroll from "./Components/Hr/Payroll/Payroll";
 import ProfileManagement from "./Components/admin/ProfileManagement/ProfileManagement";
+import HrAttendence from "./Components/Hr/HrAttendence/HrAttendence";
 
 var tc;
 
@@ -143,6 +144,9 @@ function App() {
                 setPop1={setPop1} />} />
               <Route path="/hrDash/payroll" element={<Payroll setAlert={setAlert} pop1={pop1}
                 setPop1={setPop1} />} />
+
+                <Route path="/hrDash/atten" element={<HrAttendence pop1={pop1}
+                setPop1={setPop1} setAlert={setAlert}/>}/>
             </Route>
 
             {/* ================admin routing===================== */}
@@ -152,6 +156,7 @@ function App() {
               element={<AdminDash pop={pop} setPop={setPop} setAlert={setAlert} />}
             />
             <Route path="/adminDash/EmployeeMan" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/adminDash/EmployeeMan/:id" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/profile-management" element={<ProfileManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HrManage" element={<HrManage pop={pop} setAlert={setAlert} setPop={setPop} />} />
             <Route path="/adminDash/profile" element={<AdminProfile pop={pop} setPop={setPop} setAlert={setAlert} />} />
