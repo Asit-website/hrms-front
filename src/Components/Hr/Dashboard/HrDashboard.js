@@ -226,7 +226,7 @@ const HrDashboard = ({ setAlert, pop1, setPop1 }) => {
 
                     <div className="calendar calendar1  relative">
                       <NavLink to="/hrDash/atten">
-                        <img clas width={12} src={arrow} alt="arrow" />
+                        <img className="uio" width={12} src={arrow} alt="arrow" />
                       </NavLink>
                       <Calendar onChange={onChange} value={value} />
                     </div>
