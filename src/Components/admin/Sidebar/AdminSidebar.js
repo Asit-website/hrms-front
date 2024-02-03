@@ -7,9 +7,40 @@ import pdf from "../../images/pdf.png";
 import chakka from "../../images/chakka.png";
 import kushel1 from "../../images/kushel1.png";
 import Managment from "../Management/Managment";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import dashboard from "../../images/dashboard.png";
+import expand_more from "../../images/expand_more.png";
+
+import chooseDash from "../../images/choosedash.png";
+import unchosedash from "../../images/unchosedash.png";
+
+import adminSetting from "../../images/adminSetting.png"
+
 // import {user} from '../../../hooks/useMain'
+
+const dashboardItem = [
+  {
+    title: "HRM",
+    link:"/adminDash/HRM"
+  },
+  {
+    title: "Accounting",
+  },
+  {
+    title: "CRM",
+  },
+  {
+    title: "Projects",
+  },
+];
+
 const AdminSidebar = ({ pop, setPop }) => {
+  const [dashItem, setDashItem] = useState(0);
+
+  const navigate = useNavigate();
+
+  const [openDashItem, setOpenDashItem] = useState(false);
+
   return (
     <>
       <button
@@ -43,9 +74,106 @@ const AdminSidebar = ({ pop, setPop }) => {
         {/* <div className="logobar">
           <img src={kushel1} alt="" />
         </div> */}
+
         <div className="h-full px-3 py-4 overflow-y-auto sidebars sidebars1">
-          <ul className="space-y-2 font-medium sight">
-            <NavLink to="/adminDash">
+
+         <div className="allDasCon">
+
+                
+          <div className="adDasWrap">
+            {/* dashboard  */}
+            <div
+              onClick={() => setOpenDashItem((prev) => !prev)}
+              className="side-dash-box"
+            >
+              <div className="dash-wrap">
+                <img src={dashboard} alt="" />
+                <p>Dashboard</p>
+              </div>
+
+              <img src={expand_more} alt="" />
+            </div>
+
+            {openDashItem && (
+              <div className="alladminDash-item">
+                {dashboardItem?.map((item, index) => (
+                  <div
+                    onClick={() =>{
+                       setDashItem(index)
+                           navigate(item?.link)
+                      }
+
+                    }
+                    className="sinADDasItem"
+                    key={index}
+                  >
+                    {dashItem == index ? (
+                      <img src={chooseDash} alt="" />
+                    ) : (
+                      <img src={unchosedash} alt="" />
+                    )}
+                    <p
+                      className={` ${
+                        dashItem === index ? "dashItemp" : "dITitl"
+                      }`}
+                    >
+                      {item?.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+
+{/* HRMS  */}
+          <div  className="HRMS-dash-box"
+            >
+              <div className="HRMS-wrap">
+                <img src={unchosedash} alt="" />
+                <p>HRMS</p>
+              </div>
+
+              <img src={expand_more} alt="" />
+            </div>
+
+            {/* setting  */}
+            <div className="setWrap">
+              <p>Setting</p>
+              <div className="systSset">
+                <img src={adminSetting} alt="" />
+                <span>System Settings</span>
+              </div>
+            </div>
+          
+
+          </div>
+
+          <div className="red-box">
+            <div className="white-box">
+              <img src={chakka} alt="chakka" />
+              <div className="black-box">
+                <h3>Need Help?</h3>
+                <p>Our support team is ready for you</p>
+                <button>Get Help</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <div className="p-0 sm:ml-64"></div>
+
+      {pop && <Managment setPop={setPop} />}
+    </>
+  );
+};
+
+export default AdminSidebar;
+
+{
+  /* <NavLink to="/adminDash">
               <li className="most">
                 <a
                   href="#"
@@ -56,6 +184,7 @@ const AdminSidebar = ({ pop, setPop }) => {
                 </a>
               </li>
             </NavLink>
+
             <NavLink to="/adminDash/profile-management">
             <li className="most">
               <button
@@ -113,6 +242,8 @@ const AdminSidebar = ({ pop, setPop }) => {
               </ul>
             </li>
             </NavLink>
+
+
             <NavLink to="#!">
               {" "}
               <li className="most">
@@ -154,27 +285,5 @@ const AdminSidebar = ({ pop, setPop }) => {
                   </li>
                 </ul>
               </li>
-            </NavLink>
-
-            <div className="red-box">
-              <div className="white-box">
-                <img src={chakka} alt="chakka" />
-                <div className="black-box">
-                  <h3>Need Help?</h3>
-                  <p>Our support team is ready for you</p>
-                  <button>Get Help</button>
-                </div>
-              </div>
-            </div>
-          </ul>
-        </div>
-      </aside>
-
-      <div className="p-0 sm:ml-64"></div>
-
-      {pop && <Managment setPop={setPop} />}
-    </>
-  );
-};
-
-export default AdminSidebar;
+            </NavLink> */
+}
