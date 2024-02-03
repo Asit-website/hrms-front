@@ -25,6 +25,11 @@ import AttendenceCalendar from "./Components/Employee/Request/AttendenceCalendar
 import Payroll from "./Components/Hr/Payroll/Payroll";
 import ProfileManagement from "./Components/admin/ProfileManagement/ProfileManagement";
 import HrAttendence from "./Components/Hr/HrAttendence/HrAttendence";
+import EmployeeHRM from "./Components/admin/EmployeeHRM/EmployeeHRM";
+import TotalEmployee from "./Components/admin/EmployeeHRM/TotalEmployee";
+import LeaveEmployee from "./Components/admin/EmployeeHRM/LeaveEmployee";
+import ActiveEmplyee from "./Components/admin/EmployeeHRM/ActiveEmplyee";
+import LeaveRequest from "./Components/admin/EmployeeHRM/LeaveRequest";
 
 var tc;
 
@@ -156,6 +161,12 @@ function App() {
               element={<AdminDash pop={pop} setPop={setPop} setAlert={setAlert} />}
             />
             <Route path="/adminDash/EmployeeMan" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/adminDash/HRM" element={<EmployeeHRM pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/adminDash/HRM/activeEmployee" element={<ActiveEmplyee pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/adminDash/HRM/leaveRequest" element={<LeaveRequest pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            
             <Route path="/adminDash/EmployeeMan/:id" element={<EmployeeManage pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/profile-management" element={<ProfileManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HrManage" element={<HrManage pop={pop} setAlert={setAlert} setPop={setPop} />} />

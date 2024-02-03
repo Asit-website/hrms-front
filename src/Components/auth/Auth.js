@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useMain } from "../../hooks/useMain";
 
 const Auth = (props) => {
+
   const { login, setUser } = useMain();
   const navigate = useNavigate();
   var [value, setValue] = useState({
@@ -65,15 +66,23 @@ const Auth = (props) => {
 
   return (
     <div className="auth">
+
       <div className="login-page">
+
         <div className="login-page1">
           <img className="path6" src={path} alt="path" />
           <img className="kushel-logo" src={kushel} alt="" />
           <img src={photo} alt="photo" />
         </div>
+
         <div className="login-page2">
+
+
+         
+
           <h2>Login Account</h2>
           <p className="mt-4">
+
             This is a secure system and you will need to provide your login
             details to access the site.
           </p>
@@ -123,7 +132,10 @@ const Auth = (props) => {
               </div>
             </form>
           </div>
+
+          
         </div>
+
       </div>
     </div>
   );

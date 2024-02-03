@@ -26,9 +26,13 @@ const AdminDash = ({ setAlert, pop, setPop }) => {
   return (
     <>
       <div className="employee-dash h-full">
+        
         <AdminSidebar pop={pop} setPop={setPop} />
+
         <div className="tm">
           <AdminNavbar user={user} setAlert={setAlert} />
+
+
           <div className="em">
             <div className="flex-col">
               <div className="admin-main">

@@ -1,10 +1,11 @@
 import React from "react";
 import kushel1 from "../../images/kushel1.png";
-import thir from "../../images/thir.png";
-import lok from "../../images/lok.png";
-import bottom from "../../images/bottom.png";
-import bell from "../../images/bell.png";
-import OutsideClickHandler from "react-outside-click-handler";
+import arrowDown from "../../images/keyboard_arrow_down.png"
+import notification from "../../images/notifications.png"
+import chatbot from "../../images/chat_bubble_outline.png"
+import profile from "../../images/adProfile.png"
+
+
 import { NavLink } from "react-router-dom";
 const AdminNavbar = ({ setAlert, user }) => {
   const updateUser = () => {
@@ -30,45 +31,43 @@ const AdminNavbar = ({ setAlert, user }) => {
   return (
     <>
       <div className="Employee-nav w-full">
+
+
+          <div className="logo-namewrap">
+
         <div className="logo ">
           <img src={kushel1} alt="" />
         </div>
-        <NavLink to="/adminDash"> <div className="second-logo flex items-center">
-       <img src={thir} alt="" />
-          <p className="ml-2">Good {greet} {user?.fullName}</p>
-        </div></NavLink>
-        <div className="third-logo ">
-          <input type="search" placeholder="Search" />
+
+        <NavLink to="/adminDash">
+
+           <div className="second-logo flex items-center">
+
+           {/* <img src={thir} alt="" /> */}
+
+          
+          <p className="">Hi, {user?.fullName ==null ?("Shubham Gupta"):user?.fullName}!</p>
+
+            <span><img src={arrowDown} alt="" /></span>
+
         </div>
-        {/* <div className="fourth-logo ">
-                <button>Clock In</button>
-            </div> */}
-        <div className="fifth-logo ">
-          <img src={bell} alt="" />
+        
+        </NavLink>
+
         </div>
 
-        <OutsideClickHandler
-          onOutsideClick={() => {
-            document.getElementById("ty").classList.remove("tys") &&
-              document.getElementById("ty").classList.add("kys");
-          }}
-        >
-          <div className="relative cursor-pointer" onClick={updateUser}>
-            <div className="sixth-logo flex items-center relative ">
-              <img className="john" src={lok} alt="lok" />
-              <p className="ml-2.5">{user?.fullName}</p>
-              <img className="ml-2.5 bottom" src={bottom} alt="bottom" />
-            </div>
-            <div id="ty" className="bg-white w-40 absolute user-profile hidden">
-              <p onClick={handleLogout} className=" text-center">
-                Logout
-              </p>
-              <NavLink to="/adminDash/profile">
-                <p className=" text-center">Edit Profile</p>
-              </NavLink>
-            </div>
-          </div>
-        </OutsideClickHandler>
+
+         <div className="navProfiIcons">
+
+              <img src={notification} alt="" />
+              <img src={chatbot} alt="" />
+              <img src={profile} alt="" />
+
+         </div>
+
+      
+      
+
       </div>
     </>
   );
