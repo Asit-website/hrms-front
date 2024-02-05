@@ -34,12 +34,23 @@ const dashboardItem = [
   },
 ];
 
+const HRMSItem = [
+  {
+    title: "Employee Management",
+    link:"/adminDash/HRM/employeeManagement"
+  },
+]
+
 const AdminSidebar = ({ pop, setPop }) => {
   const [dashItem, setDashItem] = useState(0);
+
+  const [HRMS , setHRMS] = useState(null);
 
   const navigate = useNavigate();
 
   const [openDashItem, setOpenDashItem] = useState(false);
+  const [openHRMSItem, setOpenHRMSItem] = useState(false);
+
 
   return (
     <>
@@ -81,6 +92,7 @@ const AdminSidebar = ({ pop, setPop }) => {
 
                 
           <div className="adDasWrap">
+
             {/* dashboard  */}
             <div
               onClick={() => setOpenDashItem((prev) => !prev)}
@@ -127,7 +139,7 @@ const AdminSidebar = ({ pop, setPop }) => {
 
 
 {/* HRMS  */}
-          <div  className="HRMS-dash-box"
+          <div onClick={()=>setOpenHRMSItem((prev)=>!prev)}  className="HRMS-dash-box"
             >
               <div className="HRMS-wrap">
                 <img src={unchosedash} alt="" />
@@ -136,6 +148,34 @@ const AdminSidebar = ({ pop, setPop }) => {
 
               <img src={expand_more} alt="" />
             </div>
+
+            {openHRMSItem && (
+              <div className="alladminDash-item">
+                {HRMSItem?.map((item, index) => (
+                  <div
+                        onClick={()=>navigate("/adminDash/HRM/EmployeeManagement")}
+                    className="sinADDasItem"
+                    key={index}
+                  >
+                    {dashItem == index ? (
+                      <img src={chooseDash} alt="" />
+                    ) : (
+                      <img src={unchosedash} alt="" />
+                    )}
+                    <p
+                      className={` ${
+                        HRMS === index ? "dashItemp" : "dITitl"
+                      }`}
+                    >
+                      {item?.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          
+
+
 
             {/* setting  */}
             <div className="setWrap">

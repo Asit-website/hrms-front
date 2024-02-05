@@ -31,6 +31,8 @@ export const post = async (url, body, authFlag) => {
             body: JSON.stringify(body)
         });
 
+        console.log("respon" ,response);
+
         const data = await response.json();
         return data;
     } catch (error) {
