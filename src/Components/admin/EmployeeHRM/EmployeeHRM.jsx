@@ -247,6 +247,7 @@ const EmployeeHRM = ({
 
                       </div>
 
+
                       <div className="clockINOUTBtn">
                         <button className="clockIN">
                           <span>Clock In</span>
@@ -255,6 +256,9 @@ const EmployeeHRM = ({
                           <span>Clock Out</span>
                         </button>
                       </div>
+
+                    
+
                     </div>
                   </div>
 

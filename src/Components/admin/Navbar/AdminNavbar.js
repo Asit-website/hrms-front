@@ -4,6 +4,9 @@ import arrowDown from "../../images/keyboard_arrow_down.png"
 import notification from "../../images/notifications.png"
 import chatbot from "../../images/chat_bubble_outline.png"
 import profile from "../../images/adProfile.png"
+import lok from "../../images/lok.png";
+import bottom from "../../images/bottom.png";
+
 
 
 import { NavLink } from "react-router-dom";
@@ -61,7 +64,29 @@ const AdminNavbar = ({ setAlert, user }) => {
 
               <img src={notification} alt="" />
               <img src={chatbot} alt="" />
-              <img src={profile} alt="" />
+
+
+              {/* <img src={profile} alt="" /> */}
+
+              {/* navitem  */}
+              <div className="relative cursor-pointer" onClick={updateUser}>
+            
+            <div className="sixth-logo flex items-center relative ">
+              <img className="john" src={lok} alt="lok" />
+              <p className="ml-2.5">{user?.fullName}</p>
+              <img className="ml-2.5 bottom" src={bottom} alt="bottom" />
+            </div>
+
+            <div id="ty" className="bg-white w-40 absolute user-profile hidden">
+              <p onClick={handleLogout} className=" text-center">
+                Logout
+              </p>
+              {/* <NavLink to="/employeeDash/update">
+                <p className=" text-center">Edit Profile</p>
+              </NavLink> */}
+            </div>
+
+          </div>
 
          </div>
 

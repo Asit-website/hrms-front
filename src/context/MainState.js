@@ -3,13 +3,13 @@ import MainContext from './MainContext';
 import { deleteReq, get, post, put } from '../Api/api'
 import { useState } from 'react';
 
-// const baseUrl = "http://localhost:5000";
+const baseUrl = "http://localhost:5000";
 
 // const baseUrl = "https://172.105.48.246:5000";
 
 // const baseUrl = "https://hrms-backend-q2ta.onrender.com";
 
-const baseUrl = "https://hmsbackend.kusheldigi.com";
+// const baseUrl = "https://hmsbackend.kusheldigi.com";
 
 const MainState = (props) => {
    const [user, setUser] = useState({});
@@ -17,7 +17,9 @@ const MainState = (props) => {
    const [chatUser, setChatUser] = useState({});
 
    const login = async ({ email, employeeCode, password }) => {
-      const data = post(`${baseUrl}/auth/login`, { email, employeeCode, password }, false);
+      const data = post(`${baseUrl}/auth/login`, { email, employeeCode, password , role:"Admin" }, false);
+
+      console.log("data",data);
       return data;
    };
 

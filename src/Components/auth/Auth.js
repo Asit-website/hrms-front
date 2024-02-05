@@ -8,6 +8,7 @@ import { useMain } from "../../hooks/useMain";
 const Auth = (props) => {
 
   const { login, setUser } = useMain();
+  
   const navigate = useNavigate();
   var [value, setValue] = useState({
     email: "",
@@ -33,7 +34,10 @@ const Auth = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     let ans = await login(value);
+
+    console.log("ans",ans);
 
     if (ans.success) {
       setUser(ans.user);
@@ -57,6 +61,7 @@ const Auth = (props) => {
       } else {
         navigate("/adminDash");
       }
+
     } else {
       props.setAlert("error", ans.message);
     }
