@@ -8,9 +8,9 @@ import lok from "../../images/lok.png";
 import bottom from "../../images/bottom.png";
 
 
-
 import { NavLink } from "react-router-dom";
-const AdminNavbar = ({ setAlert, user }) => {
+const AdminNavbar = ({ setAlert }) => {
+  let user = JSON.parse(localStorage.getItem("hrms_user"));
   const updateUser = () => {
     document.getElementById("ty").classList.toggle("tys");
   };

@@ -106,7 +106,7 @@ const AdminSidebar = ({ pop, setPop }) => {
               <img src={expand_more} alt="" />
             </div>
 
-            {openDashItem && (
+            {/* {openDashItem && (
               <div className="alladminDash-item">
                 {dashboardItem?.map((item, index) => (
                   <div
@@ -134,12 +134,12 @@ const AdminSidebar = ({ pop, setPop }) => {
                   </div>
                 ))}
               </div>
-            )}
+            )} */}
           </div>
 
 
-{/* HRMS  */}
-          <div onClick={()=>setOpenHRMSItem((prev)=>!prev)}  className="HRMS-dash-box"
+
+          {/* <div onClick={()=>setOpenHRMSItem((prev)=>!prev)}  className="HRMS-dash-box"
             >
               <div className="HRMS-wrap">
                 <img src={unchosedash} alt="" />
@@ -172,14 +172,14 @@ const AdminSidebar = ({ pop, setPop }) => {
                   </div>
                 ))}
               </div>
-            )}
+            )} */}
           
 
 
 
-            {/* setting  */}
+          
             <div className="setWrap">
-              <p>Setting</p>
+              {/* <p>Setting</p> */}
               <div className="systSset">
                 <img src={adminSetting} alt="" />
                 <span>System Settings</span>

@@ -11,7 +11,9 @@ const AdminProfile = ({ pop, setPop, setAlert }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setValue(user);
+    // setValue(user);
+    let user1 = JSON.parse(localStorage.getItem("hrms_user"));
+    setValue(user1);
   }, []);
 
 
