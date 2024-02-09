@@ -83,18 +83,14 @@ const Auth = (props) => {
         <div className="login-page2">
 
 
-         
+         <div className="login_new_div">
 
-          <h2>Login Account</h2>
-          <p className="mt-4">
-
-            This is a secure system and you will need to provide your login
-            details to access the site.
-          </p>
-          <div className="login-buttons flex items-center justify-center">
+          <h2>Log In </h2>
+          
+          {/* <div className="login-buttons flex items-center justify-center">
             <button onClick={adminLogin} className="mr-3">Admin Login</button>
             <button onClick={userLogin} className="ml-3">User Login</button>
-          </div>
+          </div> */}
           <div className="login-form">
             <form onSubmit={handleSubmit}>
               <div className=" flex flex-col mt-4 ">
@@ -125,19 +121,16 @@ const Auth = (props) => {
                 </NavLink>
               </div>
 
-              <button>Sign In</button>
+              <button>Log in</button>
 
               <div className="sign-information">
                 <p>
-                  Powered by{" "}
-                  <a href="http://www.kusheldigi.com/">
-                    <span>KusheldigiSolutions</span>
-                  </a>
+                Terms of Use and Privacy Policy.
                 </p>
               </div>
             </form>
           </div>
-
+          </div>
           
         </div>
 
