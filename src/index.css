@@ -18,13 +18,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 .login-page2 h2 {
   font-family: "Bold" !important;
   font-size: 36px;
   color: #000000;
+  text-align: center;
 }
 
 .login-page2 p {
@@ -261,9 +261,8 @@ width: 100%;
 }
 
 .login-page1 {
-  width: 77em;
   max-width: 100%;
-  position: relative;
+
 }
 
 .login-page1 .kushel-logo {
@@ -282,7 +281,7 @@ width: 100%;
 .login-page2 {
   width: 63em;
   max-width: 100%;
-  padding: 0 100px;
+  padding: 0 155px;
 }
 
 .login-page2 button {
@@ -318,7 +317,11 @@ width: 100%;
   font-family: gilroy !important;
   font-size: 17px !important;
   font-weight: 400 !important;
-  margin-top: 30px;
+
+}
+.login_new_div{
+  border: 1px solid;
+  padding: 50px;
 }
 
 .indexest {
