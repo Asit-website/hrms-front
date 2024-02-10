@@ -50,7 +50,7 @@ color: #293240;
 .hrmActLeft{
     max-width: 650px;
     width:100%;
-    padding: 30px 0px;
+   
     display: flex;
     flex-direction: column;
     gap: 20px;

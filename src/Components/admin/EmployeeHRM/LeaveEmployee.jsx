@@ -120,7 +120,7 @@ const LeaveEmployee = ({
                            <h2>{employ?.name}</h2>
                            <p>{employ?.profession}</p>
 
-                           <button className="inactBtn"><span>Inactive</span></button>
+                           <button className="inactBtn55"><span>Inactive</span></button>
                              </div>
 
                              <div className="empEmail_phnL">

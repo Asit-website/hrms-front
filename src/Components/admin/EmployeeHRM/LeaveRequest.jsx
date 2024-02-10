@@ -129,7 +129,7 @@ const LeaveRequest = ({
                 Jan25, 2024
                     </td>
     
-                <td class="px-6 py-4  flex items-center gap-[10px] ">
+                <td class="px-6 py-4  flex items-center hiii_gap">
                <img src={write} alt=""  />
                <img src={write2} alt="" className="mx-3" />
                <img src={del} alt="" />

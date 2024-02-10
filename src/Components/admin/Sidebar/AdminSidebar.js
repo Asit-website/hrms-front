@@ -106,7 +106,7 @@ const AdminSidebar = ({ pop, setPop }) => {
               <img src={expand_more} alt="" />
             </div>
 
-            {/* {openDashItem && (
+            {openDashItem && (
               <div className="alladminDash-item">
                 {dashboardItem?.map((item, index) => (
                   <div
@@ -134,7 +134,7 @@ const AdminSidebar = ({ pop, setPop }) => {
                   </div>
                 ))}
               </div>
-            )} */}
+            )}
           </div>
 
 

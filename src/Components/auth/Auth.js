@@ -87,10 +87,10 @@ const Auth = (props) => {
 
           <h2>Log In </h2>
           
-          {/* <div className="login-buttons flex items-center justify-center">
+          <div className="login-buttons flex items-center justify-center">
             <button onClick={adminLogin} className="mr-3">Admin Login</button>
             <button onClick={userLogin} className="ml-3">User Login</button>
-          </div> */}
+          </div>
           <div className="login-form">
             <form onSubmit={handleSubmit}>
               <div className=" flex flex-col mt-4 ">
