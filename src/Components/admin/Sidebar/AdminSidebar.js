@@ -21,7 +21,7 @@ import adminSetting from "../../images/adminSetting.png"
 const dashboardItem = [
   {
     title: "HRM",
-    link:"/adminDash/HRM"
+    link: "/adminDash/HRM"
   },
   {
     title: "Accounting",
@@ -37,14 +37,14 @@ const dashboardItem = [
 const HRMSItem = [
   {
     title: "Employee Management",
-    link:"/adminDash/HRM/employeeManagement"
+    link: "/adminDash/HRM/employeeManagement"
   },
 ]
 
 const AdminSidebar = ({ pop, setPop }) => {
   const [dashItem, setDashItem] = useState(0);
 
-  const [HRMS , setHRMS] = useState(null);
+  const [HRMS, setHRMS] = useState(null);
 
   const navigate = useNavigate();
 
@@ -88,58 +88,61 @@ const AdminSidebar = ({ pop, setPop }) => {
 
         <div className="h-full px-3 py-4 overflow-y-auto sidebars sidebars1">
 
-         <div className="allDasCon">
+          <div className="allDasCon">
 
-                
-          <div className="adDasWrap">
 
-            {/* dashboard  */}
-            <div
-              onClick={() => setOpenDashItem((prev) => !prev)}
-              className="side-dash-box"
-            >
-              <div className="dash-wrap">
-                <img src={dashboard} alt="" />
-                <p>Dashboard</p>
+            <div className="adDasWrap">
+
+              {/* dashboard  */}
+              <div
+                onClick={() => setOpenDashItem((prev) => !prev)}
+                className="side-dash-box"
+              >
+                <div className="dash-wrap">
+                  <img src={dashboard} alt="" />
+                  <p>Dashboard</p>
+                </div>
+
+                <img src={expand_more} alt="" />
               </div>
 
-              <img src={expand_more} alt="" />
-            </div>
-
-            {openDashItem && (
-              <div className="alladminDash-item">
-                {dashboardItem?.map((item, index) => (
-                  <div
-                    onClick={() =>{
-                       setDashItem(index)
-                           navigate(item?.link)
+              {openDashItem && (
+                <div className="alladminDash-item">
+                  {dashboardItem?.map((item, index) => (
+                    <div
+                      onClick={() => {
+                        setDashItem(index)
+                        navigate(item?.link)
                       }
 
-                    }
-                    className="sinADDasItem"
-                    key={index}
-                  >
-                    {dashItem == index ? (
-                      <img src={chooseDash} alt="" />
-                    ) : (
-                      <img src={unchosedash} alt="" />
-                    )}
-                    <p
-                      className={` ${
-                        dashItem === index ? "dashItemp" : "dITitl"
-                      }`}
+                      }
+                      className="sinADDasItem"
+                      key={index}
                     >
-                      {item?.title}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+                      {dashItem == index ? (
+                        <img src={chooseDash} alt="" />
+                      ) : (
+                        <img src={unchosedash} alt="" />
+                      )}
+                      <p
+                        className={` ${dashItem === index ? "dashItemp" : "dITitl"
+                          }`}
+                      >
+                        {item?.title}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
 
 
 
-          {/* <div onClick={()=>setOpenHRMSItem((prev)=>!prev)}  className="HRMS-dash-box"
+              
+            </div>
+
+
+
+            <div onClick={()=>setOpenHRMSItem((prev)=>!prev)}  className="HRMS-dash-box"
             >
               <div className="HRMS-wrap">
                 <img src={unchosedash} alt="" />
@@ -172,12 +175,12 @@ const AdminSidebar = ({ pop, setPop }) => {
                   </div>
                 ))}
               </div>
-            )} */}
-          
+            )}
 
 
 
-          
+
+
             <div className="setWrap">
               {/* <p>Setting</p> */}
               <div className="systSset">
@@ -185,7 +188,7 @@ const AdminSidebar = ({ pop, setPop }) => {
                 <span>System Settings</span>
               </div>
             </div>
-          
+
 
           </div>
 

@@ -4,3 +4,11 @@
 .hiii_gap{
     gap: 10px;
 }
+.checkbox_ss{
+    gap: 10px;
+}
+.ACTIVITYsss{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
