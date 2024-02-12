@@ -45,10 +45,11 @@ color: #293240;
     justify-content: space-between;
     max-width: 1440px;
     margin: 0 auto;
+    margin-top: 30px;
 }
 
 .hrmActLeft{
-    max-width: 650px;
+    max-width: 663px;
     width:100%;
    
     display: flex;
@@ -63,8 +64,8 @@ color: #293240;
   justify-content: center;
 }
 .hrmActLeft .sinActDat{
-    width: 145px;
-    height: 171px;
+    width: 150px;
+    height: 176px;
     top: 233px;
     left: 315px;
     border-radius: 5px;

@@ -152,6 +152,15 @@ const EmployeeManagement = ({
                         <th scope="col" class="px-6 py-3 taskTitl ">
                           DESIGNATION
                         </th>
+                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        date of joining
+                        </th>
+                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        Last login
+                        </th>
+                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        active
+                        </th>
                       </tr>
                     </thead>
 
