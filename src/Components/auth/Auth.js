@@ -6,10 +6,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useMain } from "../../hooks/useMain";
 
 const Auth = (props) => {
-
   const { login, setUser } = useMain();
   
   const navigate = useNavigate();
+  
   var [value, setValue] = useState({
     email: "",
     password: "",

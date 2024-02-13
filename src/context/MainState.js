@@ -436,7 +436,6 @@ const MainState = (props) => {
       return data;
    };
 
-
    const updateUser = async (userId, value1, value2, value3, value4, value5) => {
       console.log({ ...value2 });
       const data = put(`${baseUrl}/user/updateUser/${userId}`, { ...value1, ...value2, ...value3, ...value4, ...value5 }, true);

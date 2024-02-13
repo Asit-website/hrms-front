@@ -10,12 +10,11 @@ import ac2 from "../../images/ac2.png";
 import ac3 from "../../images/ac3.png";
 import ac4 from "../../images/ac4.png";
 import timer from "../../images/timer.png";
-import  MagnifyingGlass  from "../../images/MagnifyingGlass.png"
-import  calendarMonth  from "../../images/calendar_month.png"
-
-
+import MagnifyingGlass from "../../images/MagnifyingGlass.png"
+import calendarMonth from "../../images/calendar_month.png"
 import "./hrm.css";
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const activeData = [
   {
@@ -23,28 +22,28 @@ const activeData = [
     title1: "Active",
     title2: "Employees",
     num: "18",
-    link:"/adminDash/HRM/activeEmployee"
+    link: "/adminDash/HRM/activeEmployee"
   },
   {
     img: ac2,
     title1: "Leave",
     title2: "Requests",
     num: "02",
-    link:"/adminDash/HRM/leaveRequest"
+    link: "/adminDash/HRM/leaveRequest"
   },
   {
     img: ac3,
     title1: "Employees on",
     title2: "Leave",
     num: "02",
-    link:"/adminDash/HRM/LeaveEmployee"
+    link: "/adminDash/HRM/LeaveEmployee"
   },
   {
     img: ac4,
     title1: "Total",
     title2: "Employees",
     num: "20",
-    link:"/adminDash/HRM/totalEmployee"
+    link: "/adminDash/HRM/totalEmployee"
   },
 ];
 
@@ -56,12 +55,34 @@ const EmployeeHRM = ({
   setAlert,
   isHr = false,
 }) => {
-  const { user } = useMain();
+  const { user, getUsers } = useMain();
+  const [counts, setCounts] = useState({
+    activeEmployees: 0,
+    leaveRequest: 0,
+    employeesLeaves: 0,
+    totalEmployees: 0
+  });
+  const [loadFlag, setLoadFlag] = useState(true);
+
+  useEffect(()=>{
+    getData();
+  },[]);
+
+  const getData=async()=>{
+    setLoadFlag(true);
+    const ans = await getUsers();
+    console.log(ans);
+    setCounts({
+      ...counts, totalEmployees: ans.data.length
+    });
+    setLoadFlag(false);
+  };
 
   return (
     <>
       <div className="employee-dash h-full">
         {isHr ? <HrSidebar /> : <AdminSidebar pop={pop} setPop={setPop} />}
+        
         <div className="tm">
           {isHr ? (
             <HrNavbar
@@ -74,129 +95,159 @@ const EmployeeHRM = ({
             <AdminNavbar user={user} setAlert={setAlert} />
           )}
 
-          <div className="em">
+          {loadFlag ? 'Loading ..' : <div className="em">
             <div className="flex-col">
-              
-              {/* first  */}
               <div className="hrmDasTxtFir">
                 <p className="hrmHed">Dashboard</p>
                 <div className="hrDsPa">
-                  <p className="hrFirDs">Dashboard</p>{" "}
+                  <p className="hrFirDs">Dashboard</p>
                   <span>
                     <img src={chevron} alt="" />
-                  </span>{" "}
+                  </span>
                   <span className="html">HRM</span>
                 </div>
               </div>
 
-              {/* second  */}
               <main className="attend-ctiveWrap">
-
                 {/* left side */}
                 <div className="hrmActLeft">
 
                   {/* first  */}
                   <div className="hrLefFir">
-                    {activeData?.map((data, index) => (
-                      <NavLink to={`${data?.link}`}>
-
-                      <div key={index} className="sinActDat">
-                        <img className="firImg" src={data.img} alt="" />
+                    <NavLink to={`/adminDash/HRM/activeEmployee`}>
+                      <div className="sinActDat">
+                        <img className="firImg" src={ac1} alt="" />
 
                         <div className="titWrap">
-                          <p className="t1">{data.title1}</p>
-                          <p className="t2">{data.title2}</p>
+                          <p className="t1">{'Active'}</p>
+                          <p className="t2">{'Employees'}</p>
                         </div>
 
-                        <p className="hrmlRNu">{data.num}</p>
+                        <p className="hrmlRNu">{counts?.activeEmployees}</p>
                       </div>
-                      </NavLink>
-                    ))}
+                    </NavLink>
+
+                    <NavLink to={`/adminDash/HRM/leaveRequest`}>
+                      <div className="sinActDat">
+                        <img className="firImg" src={ac2} alt="" />
+
+                        <div className="titWrap">
+                          <p className="t1">{'Leave'}</p>
+                          <p className="t2">{'Requests'}</p>
+                        </div>
+
+                        <p className="hrmlRNu">{counts?.leaveRequest}</p>
+                      </div>
+                    </NavLink>
+
+                    <NavLink to={`/adminDash/HRM/LeaveEmployee`}>
+                      <div className="sinActDat">
+                        <img className="firImg" src={ac3} alt="" />
+
+                        <div className="titWrap">
+                          <p className="t1">{'Employees on'}</p>
+                          <p className="t2">{'Leave'}</p>
+                        </div>
+
+                        <p className="hrmlRNu">{counts?.employeesLeaves}</p>
+                      </div>
+                    </NavLink>
+
+                    <NavLink to={`/adminDash/HRM/totalEmployee`}>
+                      <div className="sinActDat">
+                        <img className="firImg" src={ac4} alt="" />
+
+                        <div className="titWrap">
+                          <p className="t1">{'Total'}</p>
+                          <p className="t2">{'Employees'}</p>
+                        </div>
+
+                        <p className="hrmlRNu">{counts?.totalEmployees}</p>
+                      </div>
+                    </NavLink>
                   </div>
 
+                  {/* second  */}
+                  <div className="hrLefThi">
 
-{/* second  */}
-<div className="hrLefThi">
+                    <h2>Announcement Lists</h2>
 
-  <h2>Announcement Lists</h2>
+                    <div class="relative overflow-x-auto">
+                      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs uppercase textALLtITL ">
+                          <tr  >
+                            <th scope="col" class="px-6 py-3 taskTitl">
+                              TITLE
+                            </th>
+                            <th scope="col" class="px-2 py-3 taskTitl">
+                              START DATE
+                            </th>
+                            <th scope="col" class="px-6 py-3 taskTitl">
+                              END DATE
+                            </th>
 
-  <div class="relative overflow-x-auto">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs uppercase textALLtITL ">
-            <tr  >
-                <th scope="col" class="px-6 py-3 taskTitl">
-                TITLE
-                </th>
-                <th scope="col" class="px-2 py-3 taskTitl">
-                START DATE
-                </th>
-                <th scope="col" class="px-6 py-3 taskTitl">
-                END DATE
-                </th>
-              
-                <th scope="col" class="px-6 py-3 taskTitl">
-                DESCRIPTION
-                </th>
-              
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                WORK FROM HOME
-                                </th>
-                <td class="px-2 py-4 taskAns">
-                JAN 22,2024     
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024
-                </td>
-                <td class="px-6 py-4 taskAns">
-                AYODHYA RAM MANDIR
-                                </td>
-    
-            </tr>
+                            <th scope="col" class="px-6 py-3 taskTitl">
+                              DESCRIPTION
+                            </th>
 
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                WORK FROM HOME
-                                </th>
-                <td class="px-2 py-4 taskAns">
-                JAN 22,2024     
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024
-                </td>
-                <td class="px-6 py-4 taskAns">
-                AYODHYA RAM MANDIR
-                                </td>
-    
-            </tr>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              WORK FROM HOME
+                            </th>
+                            <td class="px-2 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              AYODHYA RAM MANDIR
+                            </td>
 
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                WORK FROM HOME
-                                </th>
-                <td class="px-2 py-4 taskAns">
-                JAN 22,2024     
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024
-                </td>
-                <td class="px-6 py-4 taskAns">
-                AYODHYA RAM MANDIR
-                                </td>
-    
-            </tr>
-          
-          
-        </tbody>
-    </table>
-</div>
+                          </tr>
+
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              WORK FROM HOME
+                            </th>
+                            <td class="px-2 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              AYODHYA RAM MANDIR
+                            </td>
+
+                          </tr>
+
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              WORK FROM HOME
+                            </th>
+                            <td class="px-2 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              AYODHYA RAM MANDIR
+                            </td>
+
+                          </tr>
 
 
-</div>
+                        </tbody>
+                      </table>
+                    </div>
 
+
+                  </div>
                 </div>
 
                 {/* right side */}
@@ -218,7 +269,7 @@ const EmployeeHRM = ({
 
                       <div className="oficTime">
 
-                          {/* single */}
+                        {/* single */}
                         <div className="ofSin">
                           <div className="singlTime">
                             <p>00</p>
@@ -227,7 +278,7 @@ const EmployeeHRM = ({
                           <p className="day">Hours</p>
                         </div>
 
-                          {/* single */}
+                        {/* single */}
                         <div className="ofSin">
                           <div className="singlTime">
                             <p>00</p>
@@ -236,7 +287,7 @@ const EmployeeHRM = ({
                           <p className="day">Minutes</p>
                         </div>
 
-                          {/* single */}
+                        {/* single */}
                         <div className="ofSin">
                           <div className="singlTime">
                             <p>00</p>
@@ -257,137 +308,137 @@ const EmployeeHRM = ({
                         </button>
                       </div>
 
-                    
+
 
                     </div>
                   </div>
 
-{/* second  */}
-<div className="timeSheetWrap">
- 
-      <div className="tScONT">
-        <p className="time">Timesheets</p>
+                  {/* second  */}
+                  <div className="timeSheetWrap">
 
-        <div className="caleMagnify">
-    <img src={calendarMonth} alt="" />
-    <img src={MagnifyingGlass} alt="" />
-    <span>Search..</span>
-        </div>
-      </div>
+                    <div className="tScONT">
+                      <p className="time">Timesheets</p>
 
-     {/* table  */}
-     
+                      <div className="caleMagnify">
+                        <img src={calendarMonth} alt="" />
+                        <img src={MagnifyingGlass} alt="" />
+                        <span>Search..</span>
+                      </div>
+                    </div>
 
-<div class="relative overflow-x-auto">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs uppercase textALLtITL ">
-            <tr >
-                <th scope="col" class="px-6 py-3 taskTitl">
-                    NAME
-                </th>
-                <th scope="col" class="px-6 py-3 taskTitl">
-                    DATE
-                </th>
-                <th scope="col" class="px-6 py-3 taskTitl">
-                    TASKS
-                </th>
-              
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                Surbhi Rajwanshi
-                </th>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024             
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                Skimoil, Madfish
-                </td>
-    
-            </tr>
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                Surbhi Rajwanshi
-                </th>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024             
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                Skimoil, Madfish
-                </td>
-    
-            </tr>
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                Surbhi Rajwanshi
-                </th>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024             
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                Skimoil, Madfish
-                </td>
-    
-            </tr>
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                Surbhi Rajwanshi
-                </th>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024             
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                Skimoil, Madfish
-                </td>
-    
-            </tr>
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                Surbhi Rajwanshi
-                </th>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024             
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                Skimoil, Madfish
-                </td>
-    
-            </tr>
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                Surbhi Rajwanshi
-                </th>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024             
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                Skimoil, Madfish
-                </td>
-    
-            </tr>
-            <tr class="bg-white border-b  ">
-                <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
-                Surbhi Rajwanshi
-                </th>
-                <td class="px-6 py-4 taskAns">
-                JAN 22,2024             
-                   </td>
-                <td class="px-6 py-4 taskAns">
-                Skimoil, Madfish
-                </td>
-    
-            </tr>
-          
-        </tbody>
-    </table>
-</div>
+                    {/* table  */}
 
-     {/* table  */}
-    
 
-</div>
+                    <div class="relative overflow-x-auto">
+                      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs uppercase textALLtITL ">
+                          <tr >
+                            <th scope="col" class="px-6 py-3 taskTitl">
+                              NAME
+                            </th>
+                            <th scope="col" class="px-6 py-3 taskTitl">
+                              DATE
+                            </th>
+                            <th scope="col" class="px-6 py-3 taskTitl">
+                              TASKS
+                            </th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              Surbhi Rajwanshi
+                            </th>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              Skimoil, Madfish
+                            </td>
+
+                          </tr>
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              Surbhi Rajwanshi
+                            </th>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              Skimoil, Madfish
+                            </td>
+
+                          </tr>
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              Surbhi Rajwanshi
+                            </th>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              Skimoil, Madfish
+                            </td>
+
+                          </tr>
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              Surbhi Rajwanshi
+                            </th>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              Skimoil, Madfish
+                            </td>
+
+                          </tr>
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              Surbhi Rajwanshi
+                            </th>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              Skimoil, Madfish
+                            </td>
+
+                          </tr>
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              Surbhi Rajwanshi
+                            </th>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              Skimoil, Madfish
+                            </td>
+
+                          </tr>
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              Surbhi Rajwanshi
+                            </th>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              Skimoil, Madfish
+                            </td>
+
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* table  */}
+
+
+                  </div>
 
 
 
@@ -395,7 +446,7 @@ const EmployeeHRM = ({
                 </div>
               </main>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </>
