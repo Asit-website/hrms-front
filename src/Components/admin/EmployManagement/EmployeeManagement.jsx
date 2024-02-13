@@ -20,8 +20,12 @@ const emplyData = [
         email:"Surbhi@kusheldigi.com",
         branch:"Head Office",
         department:"Developer",
-        designation:"Developer"
+        designation:"Developer",
+        date_of_joining:" Sep 1, 2023",
+        Last_login:"2024-1-29 10:43:55",
+        active:""
     },
+
     
     {
         employeId : "#EMP0000001",
@@ -29,7 +33,10 @@ const emplyData = [
         email:"Surbhi@kusheldigi.com",
         branch:"Head Office",
         department:"Developer",
-        designation:"Developer"
+        designation:"Developer",
+        date_of_joining:" Sep 1, 2023",
+        Last_login:"2024-1-29 10:43:55",
+        active:""
     },
     {
         employeId : "#EMP0000001",
@@ -37,7 +44,10 @@ const emplyData = [
         email:"Surbhi@kusheldigi.com",
         branch:"Head Office",
         department:"Developer",
-        designation:"Developer"
+        designation:"Developer",
+        date_of_joining:" Sep 1, 2023",
+        Last_login:"2024-1-29 10:43:55",
+        active:""
     },
     {
         employeId : "#EMP0000001",
@@ -45,7 +55,10 @@ const emplyData = [
         email:"Surbhi@kusheldigi.com",
         branch:"Head Office",
         department:"Developer",
-        designation:"Developer"
+        designation:"Developer",
+        date_of_joining:" Sep 1, 2023",
+        Last_login:"2024-1-29 10:43:55",
+        active:""
     },
     {
         employeId : "#EMP0000001",
@@ -53,7 +66,10 @@ const emplyData = [
         email:"Surbhi@kusheldigi.com",
         branch:"Head Office",
         department:"Developer",
-        designation:"Developer"
+        designation:"Developer",
+        date_of_joining:" Sep 1, 2023",
+        Last_login:"2024-1-29 10:43:55",
+        active:""
     },
     {
         employeId : "#EMP0000001",
@@ -61,7 +77,10 @@ const emplyData = [
         email:"Surbhi@kusheldigi.com",
         branch:"Head Office",
         department:"Developer",
-        designation:"Developer"
+        designation:"Developer",
+        date_of_joining:" Sep 1, 2023",
+        Last_login:"2024-1-29 10:43:55",
+        active:""
     },
 
 ]
@@ -175,6 +194,9 @@ const EmployeeManagement = ({
                         <td class="px-6 py-4 taskAns">{item?.branch}</td>
                         <td class="px-6 py-4 taskAns">{item?.department}</td>
                         <td class="px-6 py-4 taskAns">{item?.designation}</td>
+                        <td class="px-6 py-4 taskAns">{item?.date_of_joining}</td>
+                        <td class="px-6 py-4 taskAns">{item?.Last_login}</td>
+                        <td class="px-6 py-4 taskAns">{item?.active}</td>
                        
                       </tr> 
                             ))
