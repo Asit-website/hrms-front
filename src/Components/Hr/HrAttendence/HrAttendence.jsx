@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import HrNavbar from '../Navbar/HrNavbar';
 import HrSidebar from '../Sidebar/HrSidebar';
 import { useMain } from '../../../hooks/useMain';
@@ -6,8 +6,9 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import akash from '../../images/akasha.png';
 import { useEffect } from 'react';
-const HrAttendence = ({setAlert,pop1,setPop1}) => {
-    let todayDate = new Date().toLocaleDateString();
+
+const HrAttendence = ({ setAlert, pop1, setPop1 }) => {
+  let todayDate = new Date().toLocaleDateString('en-GB');
   const { user, postActivity, getStatisticsByUser, getActivitiesByUser } = useMain();
   const [value, onChange] = useState(new Date());
   const [loadFlag, setLoadFlag] = useState(false);
@@ -26,14 +27,14 @@ const HrAttendence = ({setAlert,pop1,setPop1}) => {
   };
 
   const handleCalendar = (e) => {
-    let date = new Date(e).toLocaleDateString();
+    let date = new Date(e).toLocaleDateString('en-GB');
     // console.log(date);
     getData(date);
   };
 
   return (
-   <>
-       <div className="employee-dash h-full">
+    <>
+      <div className="employee-dash h-full">
         <HrSidebar />
 
         <div className="tm">
@@ -129,7 +130,7 @@ const HrAttendence = ({setAlert,pop1,setPop1}) => {
           </div>
         </div>
       </div>
-   </>
+    </>
   )
 }
 

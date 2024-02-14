@@ -98,7 +98,7 @@ const EmployeeManagement = ({
 
   const navigate = useNavigate();
 
-  let todayDate = new Date().toLocaleDateString();
+  let todayDate = new Date().toLocaleDateString('en-GB');
 
   const { user, getUsers, getActivitiesByUser } = useMain();
 
@@ -132,7 +132,7 @@ const EmployeeManagement = ({
   };
 
   const handleCalendar = (e) => {
-    let date = new Date(e).toLocaleDateString();
+    let date = new Date(e).toLocaleDateString('en-GB');
     // console.log(date);
     getData(date);
   };
