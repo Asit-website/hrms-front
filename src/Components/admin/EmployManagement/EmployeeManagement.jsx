@@ -100,7 +100,7 @@ const EmployeeManagement = ({
 
   let todayDate = new Date().toLocaleDateString();
 
-  const { user, getUsers,getActivitiesByUser } = useMain();
+  const { user, getUsers, getActivitiesByUser } = useMain();
 
   const [data, setData] = useState([])
 
@@ -227,19 +227,19 @@ const EmployeeManagement = ({
                         data?.map((item, index) => (
                           // let slice1 = slice()
                           <tr key={index} className="bg-white border-b">
-                            <th scope="row" class="px-6 py-4  taskAns employId "><span className=" cursor-pointer">{(item._id).slice(0,5)}</span> </th>
+                            <th scope="row" class="px-6 py-4  taskAns employId "><span className=" cursor-pointer">{(item._id).slice(0, 5)}</span> </th>
                             <td class="px-6 py-4 taskAns">{item?.fullName}</td>
                             <td class="px-6 py-4 taskAns">{item?.email}</td>
                             <td class="px-6 py-4 taskAns">{item?.branch}</td>
                             <td class="px-6 py-4 taskAns">{item?.department}</td>
                             <td class="px-6 py-4 taskAns">{item?.designation}</td>
                             <td class="px-6 py-4 taskAns">{item?.joiningDate}</td>
-                          {
-                           
-                            !loadFlag ? <> <td id={item._id} class="px-6 py-4 taskAns">{mainData && Object.keys(mainData).length > 0 && mainData.activity[mainData.activity.length - 1].message !== "" ? new Date(mainData.activity[mainData.activity.length - 1].ts).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : " - : -"}</td>
-                            <td class="px-6 py-4 taskAns">{item?.active}</td></> : null
-                           
-                          }  
+                            {
+
+                              !loadFlag ? <> <td id={item._id} class="px-6 py-4 taskAns">{mainData && Object.keys(mainData).length > 0 && mainData.activity[mainData.activity.length - 1].message !== "" ? new Date(mainData.activity[mainData.activity.length - 1].ts).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : " - : -"}</td>
+                                <td class="px-6 py-4 taskAns">{item?.active}</td></> : null
+
+                            }
 
                           </tr>
                         ))
