@@ -1,5 +1,6 @@
 import AdminNavbar from "../../admin/Navbar/AdminNavbar";
 import AdminSidebar from "../../admin/Sidebar/AdminSidebar";
+// import React,{useState,useEffect} from "react";
 import "react-calendar/dist/Calendar.css";
 import { useMain } from "../../../hooks/useMain";
 import HrSidebar from "../../Hr/Sidebar/HrSidebar";
@@ -13,6 +14,7 @@ import mail from "../../images/mail.png"
 import "./hrm.css";
 import "./totalEmploy.css"
 import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 
 
@@ -24,118 +26,133 @@ const TotalEmployee = ({
   setAlert,
   isHr = false,
 }) => {
-  const { user } = useMain();
+  const { user, getUsers } = useMain();
 
-  const data = [
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-    {
-        profile: emplyee,
-        name:"Surbhi Rajwanshi",
-        title:"Project Manager",
-        email:"Surbhi@kusheldigi.com",
-        phoneNumber:"9873******",
-        department:"Developer",
-        dateOfJoin:"02 March,2022"
-    },
-  ]
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const ans = await getUsers();
+    // console.log(ans);
+    setData(ans.data);
+  };
+
+
+  // const data = [
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  //   {
+  //       profile: emplyee,
+  //       name:"Surbhi Rajwanshi",
+  //       title:"Project Manager",
+  //       email:"Surbhi@kusheldigi.com",
+  //       phoneNumber:"9873******",
+  //       department:"Developer",
+  //       dateOfJoin:"02 March,2022"
+  //   },
+  // ]
+
+
 
   return (
     <>
@@ -168,11 +185,11 @@ const TotalEmployee = ({
                     <img src={chevron} alt="" />
                   </span>{" "}
 
-<NavLink to={`/adminDash/HRM`}>
+                  <NavLink to={`/adminDash/HRM`}>
 
-                  <span  className="hrFirDs">HRM</span>
-</NavLink>
-                  
+                    <span className="hrFirDs">HRM</span>
+                  </NavLink>
+
                   <span>
                     <img src={chevron} alt="" />
                   </span>{" "}
@@ -183,40 +200,40 @@ const TotalEmployee = ({
 
               </div>
 
-{/* second */}
-             <main className="totalEmpl">
-             {
-                data?.map((employ , index)=>(
+              {/* second */}
+              <main className="totalEmpl">
+                {
+                  data?.map((employ, index) => (
                     <div key={index} className="singl_Emply">
 
-                             <div className="singEmp_profile">
+                      <div className="singEmp_profile">
 
                         <img src={employ?.profile} alt="" />
-                           <h2>{employ?.name}</h2>
-                           <p>{employ?.title}</p>
-                             </div>
+                        <h2>{employ?.name}</h2>
+                        <p>{employ?.title}</p>
+                      </div>
 
-                             <div className="empEmail_phn">
-                                <p><img src={mail} alt="" /> <span>{employ?.email}</span></p>
-                                <p><img src={call} alt="" /> <span>{employ?.phoneNumber}</span></p>
-                             </div>
+                      <div className="empEmail_phn">
+                        <p><img src={mail} alt="" /> <span>{employ?.email}</span></p>
+                        <p><img src={call} alt="" /> <span>{employ?.mobile}</span></p>
+                      </div>
 
-                             <div className="empDep_join">
-                                <p>
-                                    <span>Department</span>
-                                    <span className="sns">{employ?.department}</span>
-                                </p>
-                                <p>
-                                    <span>Date of Joining</span>
-                                    <span className="sns">{employ?.dateOfJoin}</span>
-                                </p>
-                             </div>
+                      <div className="empDep_join">
+                        <p>
+                          <span>Department</span>
+                          <span className="sns">{employ?.department}</span>
+                        </p>
+                        <p>
+                          <span>Date of Joining</span>
+                          <span className="sns">{employ?.joiningDate}</span>
+                        </p>
+                      </div>
 
                     </div>
-                ))
-             }
+                  ))
+                }
 
-             </main>
+              </main>
 
 
             </div>
