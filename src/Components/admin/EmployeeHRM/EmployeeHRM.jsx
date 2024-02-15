@@ -55,7 +55,8 @@ const EmployeeHRM = ({
   setAlert,
   isHr = false,
 }) => {
-  const { user, getUsers, getActiveUsers } = useMain();
+  const { user, getUsers, getActiveUsersCount } = useMain();
+
   const [counts, setCounts] = useState({
     activeEmployees: 0,
     leaveRequest: 0,
@@ -71,10 +72,10 @@ const EmployeeHRM = ({
   const getData=async()=>{
     setLoadFlag(true);
     const ans = await getUsers();
-    const ans1 = await getActiveUsers();
+    const ans1 = await getActiveUsersCount();
     console.log(ans1);
     setCounts({
-      ...counts, totalEmployees: ans.data.length, activeEmployees: ans1.data.length
+      ...counts, totalEmployees: ans.data.length, activeEmployees: ans1.data
     });
     setLoadFlag(false);
   };
