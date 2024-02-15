@@ -18,7 +18,7 @@ const HrNavbar = ({ setAlert, pop1, setPop1 }) => {
   const { user, postActivity, getStatisticsByUser, getActivitiesByUser } =
     useMain();
 
-  let todayDate = new Date().toLocaleDateString();
+  let todayDate = new Date().toLocaleDateString('en-GB');
   const updateUser = () => {
     document.getElementById("ty").classList.toggle("tys");
   };
@@ -291,9 +291,7 @@ const HrNavbar = ({ setAlert, pop1, setPop1 }) => {
             <div className="clock-nav flex">
               <div className="sat">
                 <h3>
-                  {new Date()
-                    .toLocaleDateString("en-US", { weekday: "short" })
-                    .slice(0, 2)}
+                  {new Date().toLocaleDateString("en-GB", { weekday: "short" }).slice(0, 2)}
                 </h3>
                 <p>DAY</p>
               </div>

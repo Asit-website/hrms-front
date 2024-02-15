@@ -43,6 +43,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
     <>
       <div className="employee-dash h-full">
         <EmployeeSidebar />
+        
         <div className="tm">
           <EmployeeNavbar
             user={user}
@@ -289,7 +290,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                     name="currentState"
                     value={value.currentState}
                     onChange={handleChange}
-                   
+
                   />
                 </div>
                 <div className="mb-6">

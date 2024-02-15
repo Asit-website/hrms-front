@@ -16,7 +16,7 @@ var tc;
 var tc2;
 
 const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
-  let todayDate = new Date().toLocaleDateString();
+  let todayDate = new Date().toLocaleDateString('en-GB');
   const [pass, setPass] = useState(false);
   const [pass1, setPass1] = useState(false);
   const stylePeer = {
@@ -74,14 +74,16 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
   const getData = async () => {
     let data = await getActivitiesByUser(todayDate, "", "", 0, 10, "");
     console.log(data);
+
     if (data.data.length > 0) {
-      let isLoggedOut =
-        data.data[0].activity[data.data[0].activity.length - 1].message !== "";
+      let isLoggedOut = data.data[0].activity[data.data[0].activity.length - 1].message !== "";
+
       if (!isLoggedOut) {
         setIsLoggedOut(false);
         let timerFlag = -1;
         let breakFlag = -1;
         let bt = JSON.parse(localStorage.getItem("kds_jf832hif839"));
+
         if (bt) {
           if (bt.date === todayDate) {
             console.log(bt.time);
@@ -189,6 +191,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
           hours: timer,
           status,
         });
+
         console.log(ans);
       } else {
         setIsPunched(false);
@@ -244,10 +247,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
       }
     } else {
       // alert("you have been logged out. Please login next working day!");
-      setAlert(
-        "success",
-        "you have been logged out. Please login next working day!"
-      );
+      setAlert("success", "you have been logged out. Please login next working day!");
     }
   };
 
@@ -266,7 +266,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
         <div className="logo ">
           <img src={kushel1} alt="" />
         </div>
-      <NavLink to="/employeeDash"><div className="second-logo flex items-center">
+        <NavLink to="/employeeDash"><div className="second-logo flex items-center">
           <img src={thir} alt="" />
           <p className="ml-2">
             Good {greet} {user?.fullName}
@@ -290,7 +290,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
               <div className="sat">
                 <h3>
                   {new Date()
-                    .toLocaleDateString("en-US", { weekday: "short" })
+                    .toLocaleDateString("en-GB", { weekday: "short" })
                     .slice(0, 2)}
                 </h3>
                 <p>DAY</p>
@@ -387,7 +387,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
           }}
         >
           <div className="relative cursor-pointer" onClick={updateUser}>
-            
+
             <div className="sixth-logo flex items-center relative ">
               <img className="john" src={lok} alt="lok" />
               <p className="ml-2.5">{user?.fullName}</p>
@@ -406,6 +406,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
           </div>
         </OutsideClickHandler>
       </div>
+
       {pop1 && (
         <LogoutPop
           setPop1={setPop1}

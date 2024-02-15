@@ -8,7 +8,7 @@ import akash from '../../images/akasha.png';
 import { useEffect } from 'react';
 
 const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
-  let todayDate = new Date().toLocaleDateString();
+  let todayDate = new Date().toLocaleDateString('en-GB');
   const { user, postActivity, getStatisticsByUser, getActivitiesByUser } = useMain();
   const [value, onChange] = useState(new Date());
   const [loadFlag, setLoadFlag] = useState(false);
@@ -27,7 +27,7 @@ const AttendenceCalendar = ({ setAlert, pop1, setPop1 }) => {
   };
 
   const handleCalendar = (e) => {
-    let date = new Date(e).toLocaleDateString();
+    let date = new Date(e).toLocaleDateString('en-GB');
     // console.log(date);
     getData(date);
   };
