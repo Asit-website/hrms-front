@@ -166,7 +166,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
             <div className="flex-col">
               <div className="bedge">
                 <div className="first-bedge w-full ">
-                  <div className="bret">
+                  {/* <div className="bret">
                     <div className="give flex items-center">
                       <img className="btr" src={bret} alt="" />
                       <p className="ml-3">Give a Badge</p>
@@ -174,7 +174,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                     <div className="give1">
                       <img className="plus" src={plus} alt="" />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="celeberation w-full">
                     <div className="cel-head">
@@ -187,7 +187,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                           <div className="cel-boxing1">
                             <img src={punjabi} alt="" />
                           </div>
-                          <div className="cel-boxing2 ml-3">
+                          <div className="cel-boxing2 ml-4 mt-4">
                             <h2>Steve wills</h2>
                             <p>Assistant manager</p>
                             <button>Wish Birthday</button>
@@ -199,7 +199,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                           <div className="cel-boxing1">
                             <img src={punjabi} alt="" />
                           </div>
-                          <div className="cel-boxing2 ml-3">
+                          <div className="cel-boxing2 ml-4 mt-4">
                             <h2>Steve wills</h2>
                             <p>Assistant manager</p>
                             <button>Wish Birthday</button>
@@ -211,7 +211,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                           <div className="cel-boxing1">
                             <img src={punjabi} alt="" />
                           </div>
-                          <div className="cel-boxing2 ml-3">
+                          <div className="cel-boxing2 ml-4 mt-4">
                             <h2>Steve wills</h2>
                             <p>Assistant manager</p>
                             <button>Wish Birthday</button>
@@ -220,7 +220,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="new-joiner">
+                  {/* <div className="new-joiner">
                     <h3>
                       Welcome Onboard
                       <span className="ml-2">(May 12, 2023)</span>
@@ -258,9 +258,238 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         </p>
                       </div>
                     </div>
+                  </div> */}
+                  <div className="metting_div_surbhi">
+                    <div className="second-bedge w-full ">
+                      <div className="calend falend">
+                        <div className="calend-head">
+                          <h2>Meetings & more</h2>
+                          <img src={goals} alt="goals" />
+                        </div>
+                        <hr />
+                        <div className="cals-dent relative">
+                          <NavLink to="/employeeDash/atten">
+                            <img width={12} src={arrow} alt="arrow" />
+                          </NavLink>
+                          <Calendar onChange={onChange} value={value} />
+                        </div>
+                        {/* <div className="distinguish-fard">
+                          <div className="distinguish-box">
+                            <img src={akash} alt="akash" />
+                            <div className='akash'>
+                              <h3>Interview with Akash Negi</h3>
+                              <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                              <h4>12:30  June 12,2022</h4>
+                            </div>
+                          </div>
+                          <div className="distinguish-box">
+                            <img src={akash} alt="akash" />
+                            <div className='akash'>
+                              <h3>Interview with Akash Negi</h3>
+                              <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+                              <h4>12:30  June 12,2022</h4>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div className="show-all">
+                          <p className="text-center">Show all meetings and Interviews</p>
+                        </div> */}
+                      </div>
+                    </div>
+                    <div>
+
+                      <a href="#" class="block max-w-2xl p-5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+                        <h5 class="mb-3 text-xl  tracking-tight text-gray-900 dark:text-white">Time Log</h5>
+                        <hr />
+                        <h5 class="mb-3 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">Today</h5>
+                        <hr />
+                        <div className="time_emp_desh_flex">
+                          <div className="time_emp_desh">
+                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">00:00</h5>
+                            <p>Scheduled</p>
+                          </div>
+                          <div className="time_emp_desh">
+                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">00:00</h5>
+                            <p>Worked</p>
+                          </div>
+                          <div className="time_emp_desh">
+                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">00:00</h5>
+                            <p>brack</p>
+                          </div>
+                          <div className="time_emp_desh">
+                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">00:00</h5>
+                            <p>balance</p>
+                          </div>
+                        </div>
+                        <h5 class="mb-3 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">This month</h5>
+                        <hr />
+                        <div className="time_emp_desh_flex2">
+                          <div className="time_emp_desh">
+                            <div class="mt-5">
+                              <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="50" height="50" rx="4" fill="#0B60FF" />
+                              </svg>
+
+                            </div>
+
+                          </div>
+                          <div className="time_emp_desh">
+                            <h5 class=" mt-5 text-xl font-bold  tracking-tight text-gray-900 dark:text-white">168 h</h5>
+                            <p>Total schedule time</p>
+                          </div>
+
+                        </div>
+                        {/* <div class="mb-1 text-lg font-medium dark:text-white">Worked time - 116 h</div>
+                        <div class="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-700">
+                          <div class="h-4 bg-blue-600 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        </div>
+                        <div class="mb-1 text-lg font-medium dark:text-white">Over time - 116 h</div>
+                        <div class="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-700">
+                          <div class="h-4 bg-blue-600 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        </div> */}
+                      </a>
+                    </div>
+
+
+                  </div>
+                  <div className="hrLefThi22">
+                     <div class="leaves_request_emp">
+                    <h2>Leaves</h2>
+                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4  mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">create leave</button>
+                    </div> 
+                    <hr />
+                    <div className="leave_setion_emp">
+                      <div className="totel_leave_allowance1">
+                          <div>
+                          <h5 class="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
+                          <p>Total leave allowance</p>
+                          </div> 
+                          <div>
+                          <p>casual - 07</p>
+                          <p>Sick - 08</p>
+                          </div> 
+                      </div>
+                      <div className="totel_leave_allowance1">
+                          <div>
+                          <h5 class="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
+                          <p>Total leave taken</p>
+                          </div> 
+                          <div>
+                          <p>casual - 07</p>
+                          <p>Sick - 08</p>
+                          </div> 
+                      </div>
+                    </div>
+                    <div className="leave_setion_emp">
+                      <div className="totel_leave_allowance1">
+                          <div>
+                          <h5 class="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
+                          <p>Total leave available</p>
+                          </div> 
+                          <div>
+                          <p>casual - 07</p>
+                          <p>Sick - 08</p>
+                          </div> 
+                      </div>
+                      <div className="totel_leave_allowance1">
+                          <div>
+                          <h5 class="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
+                          <p>Total request pending</p>
+                          </div> 
+                          <div>
+                          <p>casual - 07</p>
+                          <p>Sick - 08</p>
+                          </div> 
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div className="hrLefThi">
+
+                    <h2>Announcement Lists</h2>
+
+                    <div class="relative overflow-x-auto">
+                      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs uppercase textALLtITL ">
+                          <tr  >
+                            <th scope="col" class="px-6 py-3 taskTitl">
+                              TITLE
+                            </th>
+                            <th scope="col" class="px-2 py-3 taskTitl">
+                              START DATE
+                            </th>
+                            <th scope="col" class="px-6 py-3 taskTitl">
+                              END DATE
+                            </th>
+
+                            <th scope="col" class="px-6 py-3 taskTitl">
+                              DESCRIPTION
+                            </th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              WORK FROM HOME
+                            </th>
+                            <td class="px-2 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              AYODHYA RAM MANDIR
+                            </td>
+
+                          </tr>
+
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              WORK FROM HOME
+                            </th>
+                            <td class="px-2 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              AYODHYA RAM MANDIR
+                            </td>
+
+                          </tr>
+
+                          <tr class="bg-white border-b  ">
+                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                              WORK FROM HOME
+                            </th>
+                            <td class="px-2 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              JAN 22,2024
+                            </td>
+                            <td class="px-6 py-4 taskAns">
+                              AYODHYA RAM MANDIR
+                            </td>
+
+                          </tr>
+
+
+                        </tbody>
+                      </table>
+                    </div>
+
+
                   </div>
                 </div>
-                <div className="second-bedge w-full ">
+                {/* <div className="second-bedge w-full ">
                   <div className="calend falend">
                     <div className="calend-head">
                       <h2>Meetings & more</h2>
@@ -297,10 +526,14 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                       <p className="text-center">Show all meetings and Interviews</p>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
+
+
+
+
         </div>
       </div>
     </>
