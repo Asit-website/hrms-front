@@ -695,7 +695,7 @@ gap: 90px;
 }
 
 .first-bedge {
-  margin-right: 15px;
+ 
   width: 100%;
   overflow-y: scroll;
   height: 690px;
@@ -716,10 +716,60 @@ gap: 90px;
   display: none !important;
   width: 0px;
 }
-
+.metting_div_surbhi{
+  padding: 35px 0px;
+  display: flex;
+  gap: 35px;
+}
+.time_emp_desh_flex{
+  display: flex;
+  gap: 47px;
+}
+.time_emp_desh_flex2{
+  display: flex;
+  gap: 20px;
+}
+.time_emp_desh p{
+  font-size: 20px;
+  font-weight: 400;
+  color: #293240;
+  font-family: Gilroy-Regular;
+}
+.leaves_request_emp{
+  display: flex;
+  justify-content: space-between;
+}
+.leave_setion_emp{
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+.totel_leave_allowance1{
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  background: whitesmoke;
+  width: 50%;
+}
+.hrLefThi22{
+  background-color: #FFFFFF;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 35px;
+}
+.hrLefThi22  h2{
+  padding: 20px 20px;
+  font-family: Gilroy-Medium;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #060606;
+}
 .second-bedge {
-  margin-left: 15px;
-  max-width: 450px;
+ 
+  max-width: 650px;
   width: 100%;
 }
 
@@ -735,7 +785,7 @@ gap: 90px;
   width: 100%;
   background-image: url("./Components/images/pong.png");
   /* height: 100%; */
-  padding: 40px 20px;
+  padding: 20px 20px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -765,13 +815,13 @@ gap: 90px;
 
 .cel-head h3 {
   color: #000f2b;
-  font-size: 18px;
-  font-family: "Bold" !important;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .cel-head p {
   color: #0b60ff;
-  font-size: 14.5px;
+  font-size: 18px;
   font-family: "Semi Bold" !important;
 }
 
@@ -786,7 +836,7 @@ gap: 90px;
   border-radius: 10px;
   width: 100%;
   background-color: #ffffff;
-  padding: 12px 20px;
+  padding:20px;
 }
 
 .cel-boxing {
@@ -795,35 +845,34 @@ gap: 90px;
 }
 
 .cel-boxing1 img {
-  width: 62px;
+ 
   max-width: 100%;
-  margin-top: 10px;
+ 
 }
 
 .cel-boxing2 h2 {
-  color: #000000;
-  font-size: 15px;
-  /* letter-spacing: .5px; */
-  font-family: "Semi Bold" !important;
+  color: #0B60FF;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.5px;
 }
 
 .cel-boxing2 p {
   color: #000000;
-  opacity: 50%;
-  font-size: 11px;
+  font-size: 16px;
+  font-weight: 400;
   font-family: "Medium" !important;
 }
 
 .cel-boxing2 button {
-  width: 115px;
+  width: 147px;
   max-width: 100%;
-  border: 2px solid #0B60FF;
-  font-size: 12px;
-  height: 28px;
+  border: 2px solid #000F2B80;
+  font-size: 14px;
+  height: 34px;
   font-family: "Semi Bold" !important;
-  color: #0B60FF;
+  color: #000F2B;
   border-radius: 5px;
-  opacity: 50%;
   margin-top: 15px;
 }
 
