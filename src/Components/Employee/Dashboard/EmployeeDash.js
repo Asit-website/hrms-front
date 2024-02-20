@@ -12,6 +12,7 @@ import goals from "../../images/goals.png";
 import arrow from "../../images/arrow.png";
 import { NavLink } from "react-router-dom";
 import akash from '../../images/akash.png';
+import timer1 from "../../images/timer.png";
 var tc;
 var tc2;
 
@@ -175,49 +176,113 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                       <img className="plus" src={plus} alt="" />
                     </div>
                   </div> */}
-
-                  <div className="celeberation w-full">
-                    <div className="cel-head">
-                      <h3>Today's celebrations</h3>
-                      <p>See all</p>
+                  <div className="attend-ctiveWrapempp">
+                    <div className="celeberation w-full">
+                      <div className="cel-head">
+                        <h3>Today's celebrations</h3>
+                        <p>See all</p>
+                      </div>
+                      <div className="cel-card">
+                        <div className="cel-box">
+                          <div className="cel-boxing">
+                            <div className="cel-boxing1">
+                              <img src={punjabi} alt="" />
+                            </div>
+                            <div className="cel-boxing2 ml-4 mt-4">
+                              <h2>Steve wills</h2>
+                              <p>Assistant manager</p>
+                              <button>Wish Birthday</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="cel-box ml-5">
+                          <div className="cel-boxing">
+                            <div className="cel-boxing1">
+                              <img src={punjabi} alt="" />
+                            </div>
+                            <div className="cel-boxing2 ml-4 mt-4">
+                              <h2>Steve wills</h2>
+                              <p>Assistant manager</p>
+                              <button>Wish Birthday</button>
+                            </div>
+                          </div>
+                        </div>
+                        {/* <div className="cel-box ml-5">
+                        <div className="cel-boxing">
+                          <div className="cel-boxing1">
+                            <img src={punjabi} alt="" />
+                          </div>
+                          <div className="cel-boxing2 ml-4 mt-4">
+                            <h2>Steve wills</h2>
+                            <p>Assistant manager</p>
+                            <button>Wish Birthday</button>
+                          </div>
+                        </div>
+                      </div> */}
+                      </div>
                     </div>
-                    <div className="cel-card">
-                      <div className="cel-box">
-                        <div className="cel-boxing">
-                          <div className="cel-boxing1">
-                            <img src={punjabi} alt="" />
+                    <div className="hrmActRight55">
+
+
+                      {/* first  */}
+                      <div className="markAttWrap55">
+                        {/* top */}
+                        <div className="markAtt55">
+                          <p>Mark Attandance</p>
+                          <img src={timer1} alt="" />
+                        </div>
+
+                        <hr />
+
+                        <div className="myOficeWrap55">
+                          <p className="myOfText55">My Office Time: 10:00 to 19:00</p>
+
+                          <div className="oficTime55">
+
+                            {/* single */}
+                            <div className="ofSin55">
+                              <div className="singlTime55">
+                                <p>00</p>
+                              </div>
+
+                              <p className="day55">Hours</p>
+                            </div>
+
+                            {/* single */}
+                            <div className="ofSin55">
+                              <div className="singlTime55">
+                                <p>00</p>
+                              </div>
+
+                              <p className="day55">Minutes</p>
+                            </div>
+
+                            {/* single */}
+                            <div className="ofSin55">
+                              <div className="singlTime55">
+                                <p>00</p>
+                              </div>
+
+                              <p className="day55">Seconds</p>
+                            </div>
+
                           </div>
-                          <div className="cel-boxing2 ml-4 mt-4">
-                            <h2>Steve wills</h2>
-                            <p>Assistant manager</p>
-                            <button>Wish Birthday</button>
+
+
+                          <div className="clockINOUTBtn55">
+                            <button className="clockIN55">
+                              <span>Clock In</span>
+                            </button>
+                            <button className="clockOUT55">
+                              <span>Clock Out</span>
+                            </button>
                           </div>
+
+
+
                         </div>
                       </div>
-                      <div className="cel-box ml-5">
-                        <div className="cel-boxing">
-                          <div className="cel-boxing1">
-                            <img src={punjabi} alt="" />
-                          </div>
-                          <div className="cel-boxing2 ml-4 mt-4">
-                            <h2>Steve wills</h2>
-                            <p>Assistant manager</p>
-                            <button>Wish Birthday</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="cel-box ml-5">
-                        <div className="cel-boxing">
-                          <div className="cel-boxing1">
-                            <img src={punjabi} alt="" />
-                          </div>
-                          <div className="cel-boxing2 ml-4 mt-4">
-                            <h2>Steve wills</h2>
-                            <p>Assistant manager</p>
-                            <button>Wish Birthday</button>
-                          </div>
-                        </div>
-                      </div>
+
                     </div>
                   </div>
                   {/* <div className="new-joiner">
@@ -356,53 +421,73 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
 
                   </div>
                   <div className="hrLefThi22">
-                     <div class="leaves_request_emp">
-                    <h2>Leaves</h2>
-                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4  mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">create leave</button>
-                    </div> 
+                    <div class="leaves_request_emp">
+                      <h2>Leaves</h2>
+                      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4  mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">create leave</button>
+                    </div>
                     <hr />
                     <div className="leave_setion_emp">
                       <div className="totel_leave_allowance1">
-                          <div>
+                        <div>
                           <h5 class="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
                           <p>Total leave allowance</p>
-                          </div> 
-                          <div>
-                          <p>casual - 07</p>
-                          <p>Sick - 08</p>
-                          </div> 
+                        </div>
+                        <div>
+                          <p> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="18" height="18" rx="2" fill="#019AFF" />
+                          </svg><span> casual - 07</span></p>
+                          <p><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="18" height="18" rx="2" fill="#46C35F" />
+                          </svg>
+                            <span>Sick - 08</span> </p>
+                        </div>
                       </div>
                       <div className="totel_leave_allowance1">
-                          <div>
+                        <div>
                           <h5 class="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
                           <p>Total leave taken</p>
-                          </div> 
-                          <div>
-                          <p>casual - 07</p>
-                          <p>Sick - 08</p>
-                          </div> 
+                        </div>
+                        <div>
+                          <p> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="18" height="18" rx="2" fill="#019AFF" />
+                          </svg><span> casual - 07</span></p>
+                          <p><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="18" height="18" rx="2" fill="#46C35F" />
+                          </svg>
+                            <span>Sick - 08</span> </p>
+                        </div>
                       </div>
                     </div>
                     <div className="leave_setion_emp">
                       <div className="totel_leave_allowance1">
-                          <div>
+                        <div>
                           <h5 class="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
                           <p>Total leave available</p>
-                          </div> 
-                          <div>
-                          <p>casual - 07</p>
-                          <p>Sick - 08</p>
-                          </div> 
+                        </div>
+                        <div>
+                          <p> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="18" height="18" rx="2" fill="#019AFF" />
+                          </svg><span> casual - 07</span></p>
+                          <p><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="18" height="18" rx="2" fill="#46C35F" />
+                          </svg>
+                            <span>Sick - 08</span> </p>
+                        </div>
                       </div>
                       <div className="totel_leave_allowance1">
-                          <div>
+                        <div>
                           <h5 class="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
                           <p>Total request pending</p>
-                          </div> 
-                          <div>
-                          <p>casual - 07</p>
-                          <p>Sick - 08</p>
-                          </div> 
+                        </div>
+                        <div>
+                          <p> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="18" height="18" rx="2" fill="#019AFF" />
+                          </svg><span> casual - 07</span></p>
+                          <p><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="18" height="18" rx="2" fill="#46C35F" />
+                          </svg>
+                            <span>Sick - 08</span> </p>
+                        </div>
                       </div>
                     </div>
 

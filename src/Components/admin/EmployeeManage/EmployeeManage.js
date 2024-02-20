@@ -14,7 +14,7 @@ import HrNavbar from "../../Hr/Navbar/HrNavbar";
 
 const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) => {
   const date = new Date();
-  const d = date.getFullYear()-40;
+  const d = date.getFullYear() - 40;
   console.log(d);
 
   const { id } = useParams();
@@ -327,15 +327,15 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
       const ans = await updateUser(id, value1, value2, value3, value4, value5);
       console.log(ans.data);
       // alert('Updated');
-      setAlert("success","Profile updated Successfully");
-      if(!isHr){
+      setAlert("success", "Profile updated Successfully");
+      if (!isHr) {
         navigate("/adminDash/profile-management");
       }
-      else{
-       navigate("/hrDash/EmployeeMan");
+      else {
+        navigate("/hrDash/EmployeeMan");
       }
     }
-     
+
   };
 
 
@@ -352,6 +352,219 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                   handleSubmit(f, "submit");
                 }}
               >
+                <div class="bg-white border-none ">
+                  <div class=" p-3 pl-9  ">
+                    <a href="#">
+                      <h5 class="text-xl font-bold  ">Personal Details</h5>
+                    </a>
+                  </div>
+                  <hr />
+                  <div class=" p-3 pl-7 pr-7 ">
+                    <div className="flex w-full ">
+                      <div className=" w-full try">
+                        <div class="pb-4 w-full try">
+                          <label for="name-input" class="block  text-lg font-bold ">Name</label>
+                          <input type="text" id="name-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="First Name" />
+                        </div>
+                        <div class="pb-5 w-full try">
+                          <label for="email-input" class="block  text-lg font-bold ">Email Address</label>
+                          <input type="email" id="email-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Email" />
+                        </div>
+
+                        <div class="pb-5 w-full try">
+                          <label for="comemail-input" class="block  text-lg font-bold ">Company email id</label>
+                          <input type="email" id="comemail-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Company Email" />
+                        </div>
+                        <div class="pb-2 w-full try">
+                          <label for="gender-input" class="block  text-lg font-bold ">Gender</label>
+                          <div class="flex hiiihih">
+                            <div class="flex items-center hiiihih">
+                              <input id="gender-input" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                              male
+                            </div>
+                            <div class="flex items-center hiiihih">
+                              <input id="gender-input" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-50 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                              Female
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div className=" w-full try ">
+                        <div class="pb-4 w-full try">
+                          <label for="namelast-input" class="block  text-lg font-bold ">Last Name</label>
+                          <input type="text" id="namelast-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Last Name" />
+                        </div>
+                        <div class="pb-2 w-full try">
+                          <label for="peraddress-input" class="block  text-lg font-bold ">Permanent Address</label>
+                          <input type="text" id="peraddress-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Address" />
+                        </div>
+
+
+                      </div>
+                      <div className=" w-full try ">
+                        <div class="pb-4 w-full try">
+                          <label for="phone-input" class="block  text-lg font-bold ">Phone</label>
+                          <input type="number" id="phone-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Number" />
+                        </div>
+                        <div class="pb-2 w-full try">
+                          <label for="temaddress-input" class="block  text-lg font-bold ">Temporary Address</label>
+                          <input type="text" id="temaddress-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Address" />
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="bg-white border-none mt-7 ">
+                  <div class=" p-3 pl-9  ">
+                    <a href="#">
+                      <h5 class="text-xl font-bold  ">Company Details</h5>
+                    </a>
+                  </div>
+                  <hr />
+                  <div class=" p-3 pl-7 pr-7 ">
+                    <div className="flex w-full ">
+                      <div className=" w-full try">
+                        <div class="pb-4 w-full try">
+                          <label for="emailid-input" class="block  text-lg font-bold ">Email id </label>
+                          <input type="email" id="emailid-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Email id" />
+                        </div>
+                        <div class="pb-4 w-full try">
+                        <form class="max-w-sm mx-auto">
+                          <label for="Department" class="block  text-lg font-bold ">Department</label>
+                          <select id="Department" class="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                            <option selected >Select Department</option>
+                            <option value="Web">Web</option>
+                            <option value="UI">UI</option>
+                            <option value="SEO">SEO</option>
+                            <option value="Degital">Degital</option>
+                          </select>
+                        </form>
+                        </div>
+
+
+                       
+                      </div>
+                      <div className=" w-full try ">
+                        <div class="pb-4 w-full try">
+                          <label for="joiningdate-input" class="block  text-lg font-bold ">Date of Joining</label>
+                          <input type="date" id="joiningdate-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Last Name" />
+                        </div>
+                        <div class="pb-4 w-full try">
+                        <form class="max-w-sm mx-auto">
+                          <label for="Designation" class="block  text-lg font-bold ">Designation</label>
+                          <select id="Designation" class="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                            <option selected >Select Designation</option>
+                            <option value="Web">Web</option>
+                            <option value="UI">UI</option>
+                            <option value="SEO">SEO</option>
+                            <option value="Degital">Degital</option>
+                          </select>
+                        </form>
+                        </div>
+
+
+
+                      </div>
+                      <div className=" w-full try ">
+                      <div class="pb-4 w-full try">
+                        <form class="max-w-sm mx-auto">
+                          <label for="Branch" class="block  text-lg font-bold ">Branch</label>
+                          <select id="Branch" class="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                            <option selected >Select Branch</option>
+                            <option value="Web">Web</option>
+                            <option value="UI">UI</option>
+                            <option value="SEO">SEO</option>
+                            <option value="Degital">Degital</option>
+                          </select>
+                        </form>
+                        </div>
+                        <div class="pb-2 w-full try">
+                          <label for="salary-input" class="block  text-lg font-bold ">salary</label>
+                          <input type="number" id="salary-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Salary" />
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="bg-white border-none mt-7 ">
+                  <div class=" p-3 pl-9  ">
+                    <a href="#">
+                      <h5 class="text-xl font-bold  ">Document Details </h5>
+                    </a>
+                  </div>
+                  <hr />
+                  <div class=" p-3 pl-7 pr-7 ">
+                    <div className="flex w-full ">
+                      <div className=" w-full try">
+                        <div class="pb-4 w-full try">
+                          <label for="PanNumber-input" class="block  text-lg font-bold ">Pan Number</label>
+                          <input type="number" id="PanNumber-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Pan Number" />
+                        </div>
+                        <div class="pb-5 w-full try">
+                          <label for="penfile-input" class="block  text-lg font-bold "></label>
+                          <input type="file" id="penfile-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Upload Pan Card" />
+                        </div>
+                        <div class="pb-5 w-full try">
+                          <label for="Cancelfile-input" class="block  text-lg font-bold "></label>
+                          <input type="file" id="Cancelfile-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Cancel Check Upload" />
+                        </div>
+                       
+                        
+                      </div>
+                      <div className=" w-full try ">
+                        <div class="pb-5 w-full try">
+                          <label for="Aadharcard-input" class="block  text-lg font-bold ">Aadhar card </label>
+                          <input type="number" id="Aadharcard-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter number" />
+                        </div>
+                        <div class="pb-5 w-full try">
+                          <label for="Aadharfile-input" class="block  text-lg font-bold "></label>
+                          <input type="file" id="Aadharfile-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Upload Aadhar Card" />
+                        </div>
+                        <div class="pb-5 w-full try">
+                          <label for="12file-input" class="block  text-lg font-bold "></label>
+                          <input type="file" id="12file-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="12th  Certificate" />
+                        </div>
+
+
+                      </div>
+                      <div className=" w-full try ">
+                        <div class="pb-5 w-full try">
+                          <label for="Validation-input" class="block  text-lg font-bold ">Validation Of Pan Number</label>
+                          <input type="number" id="Validation-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 "  />
+                        </div>
+                        <div class="pb-5 w-full try">
+                          <label for="10file-input" class="block  text-lg font-bold "></label>
+                          <input type="file" id="10file-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="10th Certificate" />
+                        </div>
+                        <div class="pb-5 w-full try">
+                          <label for="Graduationfile-input" class="block  text-lg font-bold "></label>
+                          <input type="file" id="Graduationfile-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Graduation Certificate" />
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
                 <div className="admin-main admin-main1">
                   <div className="admin-form">
                     <div className="admin-form1">
