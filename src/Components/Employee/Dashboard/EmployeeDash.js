@@ -13,8 +13,11 @@ import arrow from "../../images/arrow.png";
 import { NavLink } from "react-router-dom";
 import akash from '../../images/akash.png';
 import timer1 from "../../images/timer.png";
+
 var tc;
 var tc2;
+var tc3;
+var tc4;
 
 const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   // =================punch in punch out concept==========
@@ -150,6 +153,87 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
 
   const getData = async () => { };
 
+  var [clock, setClock] = useState(0);
+  var [breakClock, setBreakClock] = useState(0);
+
+  useEffect(()=>{
+    let t=localStorage.getItem('clock-in');
+    let t1=localStorage.getItem('clock-status');
+    let t2=localStorage.getItem('break-seconds');
+    if(t1 && t1!=="out")
+    {
+      let t5=new Date().getTime()-t
+      setClock(t5);
+      if(t2)
+      {
+        setBreakClock(t2);
+      }
+
+      tc4=setInterval(() => {
+        // setClock(++clock);
+        setClock(++t5);
+      }, 1000);
+
+      if(t1==='resume')
+      {
+        tc3=setInterval(() => {
+          setBreakClock(++t2);
+        }, 1000);
+        // setBreakClock(++breakClock);
+      }
+    }
+  }, []);
+
+  const clockIn = () => {
+    let t = localStorage.getItem('clock-status');
+    if (!t) {
+      localStorage.setItem('clock-in', new Date().getTime());
+      localStorage.setItem('clock-status', 'break');
+      tc4=setInterval(() => {
+        setClock(++clock);
+      }, 1000);
+    }
+    else {
+      if (t === 'break') {
+        localStorage.setItem('break-time', new Date().getTime());
+        localStorage.setItem('clock-status', 'resume');
+        clearInterval(tc3);
+        let t3=localStorage.getItem('break-seconds');
+
+        tc3=setInterval(() => {
+          setBreakClock(++t3);
+        }, 1000);
+      }
+      else if (t === 'resume') {
+        let t1=localStorage.getItem('break-time');
+        if(t1)
+        {
+          localStorage.setItem('break-seconds', new Date()-t1);
+        }
+        localStorage.setItem('clock-status', 'break');
+        clearInterval(tc3);
+      }
+      else if(t==="out")
+      {
+        localStorage.setItem('clock-in', new Date().getTime());
+        localStorage.setItem('clock-status', 'break');
+        localStorage.removeItem('break-seconds');
+        localStorage.removeItem('break-time');
+        tc4=setInterval(() => {
+          setClock(++clock);
+        }, 1000);
+        // clearInterval(tc3);
+        // clearInterval(tc4);
+      }
+    }
+  };
+
+  const clockOut = () => {
+    localStorage.setItem('clock-status', 'out');
+    clearInterval(tc3);
+    clearInterval(tc4);
+  };
+
   return (
     <>
       <div className="employee-dash h-full">
@@ -163,6 +247,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
             pop1={pop1}
             setPop1={setPop1}
           />
+
           <div className="em">
             <div className="flex-col">
               <div className="bedge">
@@ -221,12 +306,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                       </div> */}
                       </div>
                     </div>
+
                     <div className="hrmActRight55">
-
-
-                      {/* first  */}
                       <div className="markAttWrap55">
-                        {/* top */}
                         <div className="markAtt55">
                           <p>Mark Attandance</p>
                           <img src={timer1} alt="" />
@@ -238,48 +320,37 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                           <p className="myOfText55">My Office Time: 10:00 to 19:00</p>
 
                           <div className="oficTime55">
-
-                            {/* single */}
                             <div className="ofSin55">
                               <div className="singlTime55">
-                                <p>00</p>
+                                <p>{Math.floor(Math.floor(clock / 1000) / 3600)}</p>
                               </div>
-
                               <p className="day55">Hours</p>
                             </div>
 
-                            {/* single */}
                             <div className="ofSin55">
                               <div className="singlTime55">
-                                <p>00</p>
+                                <p>{Math.floor((Math.floor(clock / 1000) % 3600) / 60)}</p>
                               </div>
-
                               <p className="day55">Minutes</p>
                             </div>
 
-                            {/* single */}
                             <div className="ofSin55">
                               <div className="singlTime55">
-                                <p>00</p>
+                                <p>{Math.floor(clock / 1000) % 60}</p>
                               </div>
 
                               <p className="day55">Seconds</p>
                             </div>
-
                           </div>
 
-
                           <div className="clockINOUTBtn55">
-                            <button className="clockIN55">
+                            <button className="clockIN55" onClick={clockIn}>
                               <span>Clock In</span>
                             </button>
-                            <button className="clockOUT55">
+                            <button className="clockOUT55" onClick={clockOut}>
                               <span>Clock Out</span>
                             </button>
                           </div>
-
-
-
                         </div>
                       </div>
 
