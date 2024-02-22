@@ -151,45 +151,52 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
     // getData();
   }, []);
 
-  const getData = async () => { };
+  // const getData = async () => { };
 
   var [clock, setClock] = useState(0);
   var [breakClock, setBreakClock] = useState(0);
+  const [mount, setMount] = useState(false);
 
-  useEffect(()=>{
-    let t=localStorage.getItem('clock-in');
-    let t1=localStorage.getItem('clock-status');
-    let t2=localStorage.getItem('break-seconds');
-    if(t1 && t1!=="out")
-    {
-      let t5=new Date().getTime()-t
-      setClock(t5);
-      if(t2)
-      {
+  useEffect(() => {
+    let t = localStorage.getItem('clock-in');
+    let t1 = localStorage.getItem('clock-status');
+    let t2 = localStorage.getItem('break-seconds');
+
+    if (t1) {
+      if (t2) {
         setBreakClock(t2);
       }
 
-      tc4=setInterval(() => {
-        // setClock(++clock);
-        setClock(++t5);
-      }, 1000);
+      if (t1 !== "out") {
+        let t5 = Math.floor((new Date().getTime() - t) / 1000);
+        setClock(t5);
 
-      if(t1==='resume')
-      {
-        tc3=setInterval(() => {
-          setBreakClock(++t2);
+        tc4 = setInterval(() => {
+          setClock(++t5);
         }, 1000);
-        // setBreakClock(++breakClock);
+
+        if (t1 === 'resume') {
+          tc3 = setInterval(() => {
+            setBreakClock(++t2);
+          }, 1000);
+        }
+      }
+      else {
+        let t7 = localStorage.getItem('clock-out-time');
+        let t5 = Math.floor((t7 - t) / 1000);
+        setClock(t5);
       }
     }
   }, []);
 
   const clockIn = () => {
     let t = localStorage.getItem('clock-status');
+    // console.log(t);
+
     if (!t) {
       localStorage.setItem('clock-in', new Date().getTime());
       localStorage.setItem('clock-status', 'break');
-      tc4=setInterval(() => {
+      tc4 = setInterval(() => {
         setClock(++clock);
       }, 1000);
     }
@@ -198,40 +205,50 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
         localStorage.setItem('break-time', new Date().getTime());
         localStorage.setItem('clock-status', 'resume');
         clearInterval(tc3);
-        let t3=localStorage.getItem('break-seconds');
+        let t3 = localStorage.getItem('break-seconds');
 
-        tc3=setInterval(() => {
+        tc3 = setInterval(() => {
           setBreakClock(++t3);
         }, 1000);
       }
       else if (t === 'resume') {
-        let t1=localStorage.getItem('break-time');
-        if(t1)
-        {
-          localStorage.setItem('break-seconds', new Date()-t1);
+        let t1 = localStorage.getItem('break-time');
+        if (t1) {
+          let t2 = localStorage.getItem('break-seconds');
+          if (t2) {
+            localStorage.setItem('break-seconds', Math.floor((new Date() - t1) / 1000) + Number(t2));
+          }
+          else {
+            localStorage.setItem('break-seconds', Math.floor((new Date() - t1) / 1000));
+          }
         }
         localStorage.setItem('clock-status', 'break');
         clearInterval(tc3);
       }
-      else if(t==="out")
-      {
+      else if (t === "out") {
         localStorage.setItem('clock-in', new Date().getTime());
         localStorage.setItem('clock-status', 'break');
+        localStorage.removeItem('clock-out-time');
         localStorage.removeItem('break-seconds');
         localStorage.removeItem('break-time');
-        tc4=setInterval(() => {
-          setClock(++clock);
+
+        let t8=0;
+        tc4 = setInterval(() => {
+          setClock(++t8);
         }, 1000);
         // clearInterval(tc3);
         // clearInterval(tc4);
       }
     }
+    setMount(!mount);
   };
 
   const clockOut = () => {
     localStorage.setItem('clock-status', 'out');
+    localStorage.setItem('clock-out-time', new Date().getTime());
     clearInterval(tc3);
     clearInterval(tc4);
+    setMount(!mount);
   };
 
   return (
@@ -322,21 +339,21 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                           <div className="oficTime55">
                             <div className="ofSin55">
                               <div className="singlTime55">
-                                <p>{Math.floor(Math.floor(clock / 1000) / 3600)}</p>
+                                <p>{Math.floor(clock / 3600)}</p>
                               </div>
                               <p className="day55">Hours</p>
                             </div>
 
                             <div className="ofSin55">
                               <div className="singlTime55">
-                                <p>{Math.floor((Math.floor(clock / 1000) % 3600) / 60)}</p>
+                                <p>{Math.floor((clock % 3600) / 60)}</p>
                               </div>
                               <p className="day55">Minutes</p>
                             </div>
 
                             <div className="ofSin55">
                               <div className="singlTime55">
-                                <p>{Math.floor(clock / 1000) % 60}</p>
+                                <p>{clock % 60}</p>
                               </div>
 
                               <p className="day55">Seconds</p>
@@ -344,18 +361,19 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                           </div>
 
                           <div className="clockINOUTBtn55">
-                            <button className="clockIN55" onClick={clockIn}>
-                              <span>Clock In</span>
-                            </button>
-                            <button className="clockOUT55" onClick={clockOut}>
+                            {(mount || !mount) && <button className="clockIN55" onClick={clockIn}>
+                              <span>{!localStorage.getItem('clock-status') ? 'Clock In' : localStorage.getItem('clock-status') === 'break' ? 'Break' : localStorage.getItem('clock-status') === 'resume' ? 'Resume' : localStorage.getItem('clock-status') === 'out' ? 'Clock In' : null}</span>
+                            </button>}
+
+                            {(mount || !mount) && <button className="clockOUT55" disabled={!localStorage.getItem('clock-status') || localStorage.getItem('clock-status') === 'out'} onClick={clockOut}>
                               <span>Clock Out</span>
-                            </button>
+                            </button>}
                           </div>
                         </div>
                       </div>
-
                     </div>
                   </div>
+
                   {/* <div className="new-joiner">
                     <h3>
                       Welcome Onboard
@@ -434,8 +452,8 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         </div> */}
                       </div>
                     </div>
-                    <div>
 
+                    <div>
                       <a href="#" class="block max-w-2xl p-5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
                         <h5 class="mb-3 text-xl  tracking-tight text-gray-900 dark:text-white">Time Log</h5>
@@ -444,19 +462,22 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         <hr />
                         <div className="time_emp_desh_flex">
                           <div className="time_emp_desh">
-                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">00:00</h5>
+                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${(Math.floor((clock) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((clock) % 3600) / 60)).toString().padStart(2, '0')}`}</h5>
                             <p>Scheduled</p>
                           </div>
+
                           <div className="time_emp_desh">
-                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">00:00</h5>
+                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${(Math.floor((clock - breakClock) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((clock - breakClock) % 3600) / 60)).toString().padStart(2, '0')}`}</h5>
                             <p>Worked</p>
                           </div>
+
                           <div className="time_emp_desh">
-                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">00:00</h5>
-                            <p>brack</p>
+                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${(Math.floor((breakClock) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((breakClock) % 3600) / 60)).toString().padStart(2, '0')}`}</h5>
+                            <p>Break</p>
                           </div>
+
                           <div className="time_emp_desh">
-                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">00:00</h5>
+                            <h5 class="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${(Math.floor((32400 - clock) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((32400 - clock) % 3600) / 60)).toString().padStart(2, '0')}`}</h5>
                             <p>balance</p>
                           </div>
                         </div>
@@ -488,15 +509,16 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         </div> */}
                       </a>
                     </div>
-
-
                   </div>
+
                   <div className="hrLefThi22">
                     <div class="leaves_request_emp">
                       <h2>Leaves</h2>
                       <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4  mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">create leave</button>
                     </div>
+
                     <hr />
+
                     <div className="leave_setion_emp">
                       <div className="totel_leave_allowance1">
                         <div>
@@ -529,6 +551,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         </div>
                       </div>
                     </div>
+
                     <div className="leave_setion_emp">
                       <div className="totel_leave_allowance1">
                         <div>
@@ -561,11 +584,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         </div>
                       </div>
                     </div>
-
-
                   </div>
-                  <div className="hrLefThi">
 
+                  <div className="hrLefThi">
                     <h2>Announcement Lists</h2>
 
                     <div class="relative overflow-x-auto">
@@ -641,10 +662,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         </tbody>
                       </table>
                     </div>
-
-
                   </div>
                 </div>
+
                 {/* <div className="second-bedge w-full ">
                   <div className="calend falend">
                     <div className="calend-head">
