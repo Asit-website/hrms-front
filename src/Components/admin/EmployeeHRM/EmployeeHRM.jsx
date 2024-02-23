@@ -47,6 +47,9 @@ const activeData = [
   },
 ];
 
+var tc3;
+var tc4;
+
 const EmployeeHRM = ({
   pop1,
   setPop1,
@@ -65,11 +68,11 @@ const EmployeeHRM = ({
   });
   const [loadFlag, setLoadFlag] = useState(true);
 
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[]);
+  }, []);
 
-  const getData=async()=>{
+  const getData = async () => {
     setLoadFlag(true);
     const ans = await getUsers();
     const ans1 = await getActiveUsersCount();
@@ -79,12 +82,109 @@ const EmployeeHRM = ({
     });
     setLoadFlag(false);
   };
+  var [clock, setClock] = useState(0);
+  var [breakClock, setBreakClock] = useState(0);
+  const [mount, setMount] = useState(false);
+
+  useEffect(() => {
+    let t = localStorage.getItem('clock-in');
+    let t1 = localStorage.getItem('clock-status');
+    let t2 = localStorage.getItem('break-seconds');
+
+    if (t1) {
+      if (t2) {
+        setBreakClock(t2);
+      }
+
+      if (t1 !== "out") {
+        let t5 = Math.floor((new Date().getTime() - t) / 1000);
+        setClock(t5);
+
+        tc4 = setInterval(() => {
+          setClock(++t5);
+        }, 1000);
+
+        if (t1 === 'resume') {
+          tc3 = setInterval(() => {
+            setBreakClock(++t2);
+          }, 1000);
+        }
+      }
+      else {
+        let t7 = localStorage.getItem('clock-out-time');
+        let t5 = Math.floor((t7 - t) / 1000);
+        setClock(t5);
+      }
+    }
+  }, []);
+
+  const clockIn = () => {
+    let t = localStorage.getItem('clock-status');
+    // console.log(t);
+
+    if (!t) {
+      localStorage.setItem('clock-in', new Date().getTime());
+      localStorage.setItem('clock-status', 'break');
+      tc4 = setInterval(() => {
+        setClock(++clock);
+      }, 1000);
+    }
+    else {
+      if (t === 'break') {
+        localStorage.setItem('break-time', new Date().getTime());
+        localStorage.setItem('clock-status', 'resume');
+        clearInterval(tc3);
+        let t3 = localStorage.getItem('break-seconds');
+
+        tc3 = setInterval(() => {
+          setBreakClock(++t3);
+        }, 1000);
+      }
+      else if (t === 'resume') {
+        let t1 = localStorage.getItem('break-time');
+        if (t1) {
+          let t2 = localStorage.getItem('break-seconds');
+          if (t2) {
+            localStorage.setItem('break-seconds', Math.floor((new Date() - t1) / 1000) + Number(t2));
+          }
+          else {
+            localStorage.setItem('break-seconds', Math.floor((new Date() - t1) / 1000));
+          }
+        }
+        localStorage.setItem('clock-status', 'break');
+        clearInterval(tc3);
+      }
+      else if (t === "out") {
+        localStorage.setItem('clock-in', new Date().getTime());
+        localStorage.setItem('clock-status', 'break');
+        localStorage.removeItem('clock-out-time');
+        localStorage.removeItem('break-seconds');
+        localStorage.removeItem('break-time');
+
+        let t8 = 0;
+        tc4 = setInterval(() => {
+          setClock(++t8);
+        }, 1000);
+        // clearInterval(tc3);
+        // clearInterval(tc4);
+      }
+    }
+    setMount(!mount);
+  };
+
+  const clockOut = () => {
+    localStorage.setItem('clock-status', 'out');
+    localStorage.setItem('clock-out-time', new Date().getTime());
+    clearInterval(tc3);
+    clearInterval(tc4);
+    setMount(!mount);
+  };
 
   return (
     <>
       <div className="employee-dash h-full">
         {isHr ? <HrSidebar /> : <AdminSidebar pop={pop} setPop={setPop} />}
-        
+
         <div className="tm">
           {isHr ? (
             <HrNavbar
@@ -274,7 +374,7 @@ const EmployeeHRM = ({
                         {/* single */}
                         <div className="ofSin">
                           <div className="singlTime">
-                            <p>00</p>
+                            <p>{Math.floor(clock / 3600)}</p>
                           </div>
 
                           <p className="day">Hours</p>
@@ -283,7 +383,7 @@ const EmployeeHRM = ({
                         {/* single */}
                         <div className="ofSin">
                           <div className="singlTime">
-                            <p>00</p>
+                            <p>{Math.floor((clock % 3600) / 60)}</p>
                           </div>
 
                           <p className="day">Minutes</p>
@@ -292,32 +392,27 @@ const EmployeeHRM = ({
                         {/* single */}
                         <div className="ofSin">
                           <div className="singlTime">
-                            <p>00</p>
+                            <p>{clock % 60}</p>
                           </div>
 
                           <p className="day">Seconds</p>
                         </div>
-
                       </div>
-
 
                       <div className="clockINOUTBtn">
-                        <button className="clockIN">
-                          <span>Clock In</span>
-                        </button>
-                        <button className="clockOUT">
+                        {(mount || !mount) && <button className="clockIN" onClick={clockIn}>
+                          <span>{!localStorage.getItem('clock-status') ? 'Clock In' : localStorage.getItem('clock-status') === 'break' ? 'Break' : localStorage.getItem('clock-status') === 'resume' ? 'Resume' : localStorage.getItem('clock-status') === 'out' ? 'Clock In' : null}</span>
+                        </button>}
+
+                        {(mount || !mount) && <button className="clockOUT" disabled={!localStorage.getItem('clock-status') || localStorage.getItem('clock-status') === 'out'} onClick={clockOut}>
                           <span>Clock Out</span>
-                        </button>
+                        </button>}
                       </div>
-
-
-
                     </div>
                   </div>
 
                   {/* second  */}
                   <div className="timeSheetWrap">
-
                     <div className="tScONT">
                       <p className="time">Timesheets</p>
 
@@ -327,9 +422,6 @@ const EmployeeHRM = ({
                         <span>Search..</span>
                       </div>
                     </div>
-
-                    {/* table  */}
-
 
                     <div class="relative overflow-x-auto">
                       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -436,15 +528,7 @@ const EmployeeHRM = ({
                         </tbody>
                       </table>
                     </div>
-
-                    {/* table  */}
-
-
                   </div>
-
-
-
-
                 </div>
               </main>
             </div>
