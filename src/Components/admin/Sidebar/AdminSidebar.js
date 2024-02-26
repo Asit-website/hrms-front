@@ -39,6 +39,10 @@ const HRMSItem = [
     title: "Employee Management",
     link: "/adminDash/HRM/employeeManagement"
   },
+  {
+    title: "HRM System Setup",
+    link: "/adminDash/HRM/HRMsystemSetup"
+  },
 ]
 
 const AdminSidebar = ({ pop, setPop }) => {
@@ -90,7 +94,7 @@ const AdminSidebar = ({ pop, setPop }) => {
 
           <div className="allDasCon">
 
-
+            {/* <-------------dashboard----------------> */}
             <div className="adDasWrap">
 
               {/* dashboard  */}
@@ -135,13 +139,10 @@ const AdminSidebar = ({ pop, setPop }) => {
                 </div>
               )}
 
-
-
-              
             </div>
 
 
-
+           {/* <-----------HRMS--------------> */}
             <div onClick={()=>setOpenHRMSItem((prev)=>!prev)}  className="HRMS-dash-box"
             >
               <div className="HRMS-wrap">
@@ -156,7 +157,12 @@ const AdminSidebar = ({ pop, setPop }) => {
               <div className="alladminDash-item">
                 {HRMSItem?.map((item, index) => (
                   <div
-                        onClick={()=>navigate("/adminDash/HRM/EmployeeManagement")}
+                    // onClick={()=>navigate("/adminDash/HRM/EmployeeManagement")}
+                    // onClick={()=>navigate("")}
+                    onClick={()=>{
+                      setHRMS(index)
+                      navigate(item?.link)
+                    }}
                     className="sinADDasItem"
                     key={index}
                   >
@@ -180,7 +186,7 @@ const AdminSidebar = ({ pop, setPop }) => {
 
 
 
-
+            {/* <---------------System setting------------------> */}
             <div className="setWrap">
               {/* <p>Setting</p> */}
               <div className="systSset">
