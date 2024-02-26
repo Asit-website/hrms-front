@@ -33,6 +33,8 @@ import LeaveRequest from "./Components/admin/EmployeeHRM/LeaveRequest";
 import CreateEmployee from "./Components/admin/EmployManagement/CreateEmploy";
 import EmployeeManagement from "./Components/admin/EmployManagement/EmployeeManagement";
 import EmployeeManagementID from "./Components/admin/EmployManagement/EmployeeManagementID";
+import HRMsystemSetup from "./Components/admin/EmployManagement/HRMsystemSetup";
+
 
 var tc;
 
@@ -169,7 +171,10 @@ function App() {
             <Route path="/adminDash/HRM/createEmployee" element={<CreateEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/EmployeeManagement" element={<EmployeeManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/EmployeeManagement/:id" element={<EmployeeManagementID pop={pop} setPop={setPop} setAlert={setAlert} />} />
-            <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            {/* dinesh  */}
+            <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup  />} />  
+           
+           <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/activeEmployee" element={<ActiveEmplyee pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/leaveRequest" element={<LeaveRequest pop={pop} setPop={setPop} setAlert={setAlert} />} />
