@@ -3,13 +3,13 @@ import MainContext from './MainContext';
 import { deleteReq, get, post, put } from '../Api/api'
 import { useState } from 'react';
 
-// const baseUrl = "http://localhost:5000";
+const baseUrl = "http://localhost:5000";
 
 // const baseUrl = "https://172.105.48.246:5000";
 
 // const baseUrl = "https://hrms-backend-q2ta.onrender.com";
 
-const baseUrl = "https://hmsbackend.kusheldigi.com";
+// const baseUrl = "https://hmsbackend.kusheldigi.com";
 
 const MainState = (props) => {
    const [user, setUser] = useState({});
@@ -449,6 +449,66 @@ const MainState = (props) => {
    const updateUser = async (userId, value1, value2, value3, value4, value5) => {
       console.log({ ...value2 });
       const data = await put(`${baseUrl}/user/updateUser/${userId}`, { ...value1, ...value2, ...value3, ...value4, ...value5 }, true);
+      return data;
+   };
+
+   const getBranchs = async () => {
+      const data = await get(`${baseUrl}/branch/getBranchs`, true);
+      return data;
+   };
+
+   const postBranch = async ({ name, time }) => {
+      const data = await post(`${baseUrl}/branch/postBranch`, { name, time }, true);
+      return data;
+   };
+
+   const updateBranch = async ({ id, status }) => {
+      const data = await put(`${baseUrl}/branch/updateBranch/${id}`, { status }, true);
+      return data;
+   };
+
+   const deleteBranch = async ({ id }) => {
+      const data = await deleteReq(`${baseUrl}/branch/deleteBranch/${id}`, true);
+      return data;
+   };
+   
+   const getDepartments = async () => {
+      const data = await get(`${baseUrl}/department/getDepartments`, true);
+      return data;
+   };
+
+   const postDepartment = async ({ name, time }) => {
+      const data = await post(`${baseUrl}/department/postDepartment`, { name, time }, true);
+      return data;
+   };
+
+   const updateDepartment = async ({ id, status }) => {
+      const data = await put(`${baseUrl}/department/updateDepartment/${id}`, { status }, true);
+      return data;
+   };
+
+   const deleteDepartment = async ({ id }) => {
+      const data = await deleteReq(`${baseUrl}/department/deleteDepartment/${id}`, true);
+      return data;
+   };
+   
+   const getDesignations = async () => {
+      const data = await get(`${baseUrl}/designation/getDesignations`, true);
+      return data;
+   };
+
+   const postDesignation = async ({ name, time }) => {
+      const data = await post(`${baseUrl}/designation/postDesignation`, { name, time }, true);
+      return data;
+   };
+
+   const updateDesignation = async ({ id, status }) => {
+      const data = await put(`${baseUrl}/designation/updateDesignation/${id}`, { status }, true);
+      return data;
+   };
+
+   const deleteDesignation = async ({ id }) => {
+      const data = await deleteReq(`${baseUrl}/designation/deleteDesignation/${id}`, true);
       return data;
    };
 
