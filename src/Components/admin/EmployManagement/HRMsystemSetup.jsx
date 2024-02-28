@@ -28,7 +28,7 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-   
+
   },
   {
     title: "Department",
@@ -43,7 +43,7 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-   
+
   },
   {
     title: "Designation",
@@ -58,14 +58,13 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-   
+
   },
 ];
 
-
-
 const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
-  const { user } = useMain();
+  const { user, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation } = useMain();
+
   const [value, onChange] = useState(new Date());
   const [gen, setGen] = useState([]);
   const [flag, setFlag] = useState();
@@ -86,59 +85,131 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
   // };
 
+  const data1 = [
+    {
+      type: "Head office",
+    },
+    {
+      type: "Head office",
+    },
+    {
+      type: "Head office",
+    },
+  ]
 
-   const data1 = [
-{
-  type:"Head office",
-},
-{
-  type:"Head office",
-},
-{
-  type:"Head office",
-},
-   ]
+  const data2 = [
+    {
+      branch: "Head office",
+      department: "Admin"
+    },
+    {
+      branch: "Head office",
+      department: "Admin"
+    },
+    {
+      branch: "Head office",
+      department: "Admin"
+    },
 
-   const data2 = [
-{
-  branch:"Head office",
-  department:"Admin"
-},
-{
-  branch:"Head office",
-  department:"Admin"
-},
-{
-  branch:"Head office",
-  department:"Admin"
-},
+  ]
 
-   ]
+  const data3 = [
+    {
+      department: "Head office",
+      designation: "Admin"
+    },
+    {
+      department: "Head office",
+      designation: "Admin"
+    },
+    {
+      department: "Head office",
+      designation: "Admin"
+    },
 
-   const data3 = [
-{
-  department:"Head office",
-  designation:"Admin"
-},
-{
-  department:"Head office",
-  designation:"Admin"
-},
-{
-  department:"Head office",
-  designation:"Admin"
-},
+  ]
 
-   ]
+  const [popup1, setPopup1] = useState(false);
+  const [popup2, setPopup2] = useState(false);
+  const [popup3, setPopup3] = useState(false);
+  const [branches, setBranches] = useState([]);
+  const [departments, setDepartments] = useState([]);
+  const [designations, setDesignations] = useState([]);
+  const [branch, setBranch] = useState('');
+  const [departmentValue, setDepartmentValue] = useState({
+    branch: '',
+    name: ''
+  });
+  const [designationValue, setDesignationValue] = useState({
+    department: '',
+    name: ''
+  });
+  const [refreshFlag, setRefreshFlag] = useState(false);
 
-   const [popup1 , setPopup1] = useState(false);
-   const [popup2 , setPopup2] = useState(false);
-   const [popup3 , setPopup3] = useState(false);
+  useEffect(() => {
+    getData();
+  }, [refreshFlag]);
+
+  const getData = async () => {
+    const ans1 = await getBranchs();
+    const ans2 = await getDepartments();
+    const ans3 = await getDesignations();
+    setBranches(ans1.data);
+    setDepartments(ans2.data);
+    setDesignations(ans3.data);
+  };
+
+  const handleCreateBranch=async()=>{
+    console.log(branch);
+    const ans = await postBranch({name: branch});
+    console.log(ans);
+    if(ans.status)
+    {
+      alert(ans.message);
+      setBranch('');
+      setRefreshFlag(!refreshFlag);
+    }
+    else
+    {
+      alert('something went wrong');
+    }
+  };
+
+  const handleCreateDepartment=async()=>{
+    console.log(departmentValue);
+    const ans = await postDepartment({name: departmentValue.name, branch: departmentValue.branch});
+    console.log(ans);
+    if(ans.status)
+    {
+      alert(ans.message);
+      setBranch('');
+      setRefreshFlag(!refreshFlag);
+    }
+    else
+    {
+      alert('something went wrong');
+    }
+  };
+
+  const handleCreateDesignation=async()=>{
+    console.log(designationValue);
+    const ans = await postDesignation({name: designationValue.name, designation: designationValue.department});
+    console.log(ans);
+    if(ans.status)
+    {
+      alert(ans.message);
+      setBranch('');
+      setRefreshFlag(!refreshFlag);
+    }
+    else
+    {
+      alert('something went wrong');
+    }
+  };
 
   return (
     <>
       <div className="employee-dash h-full">
-
         <AdminSidebar pop={pop} setPop={setPop} />
 
         <div className="tm">
@@ -147,258 +218,214 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
           <div className="em">
             <div className="flex-col">
               <div className="admin-main">
+                <div className="plusSection">
+                  <div className="adminFirt">
 
 
-           <div className="plusSection">
-            <div className="adminFirt">
 
-            
-               
-                <h2 className="hrmShed">HRMS</h2>
+                    <h2 className="hrmShed">HRMS</h2>
 
-                <div className="hrmDoHe">
-                  <p>HRMS</p>
-                  <img src={chevron} alt="" />
-                  <span>HRM System Setup</span>
+                    <div className="hrmDoHe">
+                      <p>HRMS</p>
+                      <img src={chevron} alt="" />
+                      <span>HRM System Setup</span>
+                    </div>
+
+                  </div>
+
+                  <img onClick={() => {
+
+                    if (open === 0) {
+                      setPopup1(true);
+                    }
+                    else if (open === 1) {
+                      setPopup2(true);
+                    }
+                    else if (open === 2) {
+                      setPopup3(true);
+                    }
+
+                  }} className="plusiCON" src={plusIcon} alt="" />
+
                 </div>
-
-                </div>
- 
- <img onClick={()=>{
-
-     if(open === 0){
-            setPopup1(true);
-     }
-     else if(open === 1){
-      setPopup2(true);
-     }
-     else if(open === 2){
-      setPopup3(true);
-     }
-
- }} className="plusiCON" src={plusIcon} alt="" />
-
-           </div>
 
                 <div className="hrmssystemsetup-parents">
                   <div className="hrmssystemsetup-rightmenu">
                     {sidebarItem.map((item, index) => (
-                      <div
-                        key={index}
+                      <div key={index}
                         onClick={() => setOpen(index)}
-                        className={`hrmsystemsetup-subrightmenu ${
-                          open === index && "openItem"
-                        } `}
-                      >
+                        className={`hrmsystemsetup-subrightmenu ${open === index && "openItem"
+                          } `}>
                         <span>{item.title}</span>
                         <img src={blackRight} alt="" />
                       </div>
                     ))}
                   </div>
 
-
-           {
-            open === 0 && 
-            <div className="hrmsystemsetup-leftmenu">
-            <div class="hrmsystemsetup-container">
-
-              <div class="hrmsystemsetup-pagination">
-                {/* <select id="entries">
+                  {
+                    open === 0 &&
+                    <div className="hrmsystemsetup-leftmenu">
+                      <div class="hrmsystemsetup-container">
+                        <div class="hrmsystemsetup-pagination">
+                          {/* <select id="entries">
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
                   </select> */}
 
-                <p>Filter</p>
-                <div class="hrmsystemsetup-search">
-                  <img src={srchIcon} alt="" />
-                  <input type="text" placeholder="Search..." />
-                </div>
-              </div>
+                          <p>Filter</p>
+                          <div class="hrmsystemsetup-search">
+                            <img src={srchIcon} alt="" />
+                            <input type="text" placeholder="Search..." />
+                          </div>
+                        </div>
 
+                        <div class="relative overflow-x-auto">
+                          <table class="w-full text-left   text-[#060606]">
+                            <thead class=" uppercase text-[#060606]">
+                              <tr>
+                                {sidebarItem[open].tableData.map(
+                                  (item, index) => (
+                                    <th key={index} scope="col" class="px-6 py-3">
+                                      {item.title}
+                                    </th>
+                                  )
+                                )}
+                              </tr>
+                            </thead>
 
-              {/* this is table  */}
-              <div class="relative overflow-x-auto">
-                <table class="w-full text-left   text-[#060606]">
-                  <thead class=" uppercase text-[#060606]">
-                    <tr>
-                      {sidebarItem[open].tableData.map(
-                        (item, index) => (
-                          <th key={index} scope="col" class="px-6 py-3">
-                            {item.title}
-                          </th>
-                        )
-                      )}
-                    </tr>
-                  </thead>
+                            <tbody>
+                              {branches.map((item, index) => (
+                                <tr key={index} class="bg-white ">
+                                  <td class="px-6 py-4 ">
+                                    {item?.name}
+                                  </td>
 
-                  <tbody>
+                                  <td class="px-6 py-4 flex hrmActions">
+                                    <img onClick={() => {
 
-                    {
-                      data1.map((item ,index)=>(
-                        <tr key={index} class="bg-white ">
+                                    }} src={edited} alt="" />
+                                    <img onClick={() => {
+                                      // handleDelete();
+                                    }} src={deleted} alt="" />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  }
 
-
-                        <td class="px-6 py-4 ">
-                          {item.type}
-                        </td>
-                        <td class="px-6 py-4 flex hrmActions">
-                          <img src={edited} alt="" />
-                          <img src={deleted} alt="" />
-                        </td>
-
-                      </tr>
-                      ))
-                    }
-
-                   
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-           }
-          
-           {
-            open === 1 && 
-            <div className="hrmsystemsetup-leftmenu">
-            <div class="hrmsystemsetup-container">
-
-              <div class="hrmsystemsetup-pagination">
-                {/* <select id="entries">
+                  {
+                    open === 1 &&
+                    <div className="hrmsystemsetup-leftmenu">
+                      <div class="hrmsystemsetup-container">
+                        <div class="hrmsystemsetup-pagination">
+                          {/* <select id="entries">
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
                   </select> */}
 
-                <p>Filter</p>
-                <div class="hrmsystemsetup-search">
-                  <img src={srchIcon} alt="" />
-                  <input type="text" placeholder="Search..." />
-                </div>
-              </div>
+                          <p>Filter</p>
+                          <div class="hrmsystemsetup-search">
+                            <img src={srchIcon} alt="" />
+                            <input type="text" placeholder="Search..." />
+                          </div>
+                        </div>
 
+                        <div class="relative overflow-x-auto">
+                          <table class="w-full text-left   text-[#060606]">
+                            <thead class=" uppercase text-[#060606]">
+                              <tr>
+                                {sidebarItem[open].tableData.map(
+                                  (item, index) => (
+                                    <th key={index} scope="col" class="px-6 py-3">
+                                      {item.title}
+                                    </th>
+                                  )
+                                )}
+                              </tr>
+                            </thead>
 
-              {/* this is table  */}
-              <div class="relative overflow-x-auto">
-                <table class="w-full text-left   text-[#060606]">
-                  <thead class=" uppercase text-[#060606]">
-                    <tr>
-                      {sidebarItem[open].tableData.map(
-                        (item, index) => (
-                          <th key={index} scope="col" class="px-6 py-3">
-                            {item.title}
-                          </th>
-                        )
-                      )}
-                    </tr>
-                  </thead>
+                            <tbody>
+                              {departments.map((item, index) => (
+                                <tr key={index} class="bg-white ">
+                                  <td class="px-6 py-4 ">
+                                    {item?.branch?.name}
+                                  </td>
+                                  <td class="px-6 py-4 ">
+                                    {item?.name}
+                                  </td>
+                                  <td class="px-6 py-4 flex hrmActions">
+                                    <img src={edited} alt="" />
+                                    <img src={deleted} alt="" />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  }
 
-                  <tbody>
-
-                    {
-                      data2.map((item ,index)=>(
-                        <tr key={index} class="bg-white ">
-
-
-                        <td class="px-6 py-4 ">
-                          {item.branch}
-                        </td>
-                        <td class="px-6 py-4 ">
-                          {item.department}
-                        </td>
-                        <td class="px-6 py-4 flex hrmActions">
-                          <img src={edited} alt="" />
-                          <img src={deleted} alt="" />
-                        </td>
-
-                      </tr>
-                      ))
-                    }
-
-                   
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-           }
-          
-           
-           {
-            open === 2 && 
-            <div className="hrmsystemsetup-leftmenu">
-            <div class="hrmsystemsetup-container">
-
-              <div class="hrmsystemsetup-pagination">
-                {/* <select id="entries">
+                  {
+                    open === 2 &&
+                    <div className="hrmsystemsetup-leftmenu">
+                      <div class="hrmsystemsetup-container">
+                        <div class="hrmsystemsetup-pagination">
+                          {/* <select id="entries">
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
                   </select> */}
 
-                <p>Filter</p>
-                <div class="hrmsystemsetup-search">
-                  <img src={srchIcon} alt="" />
-                  <input type="text" placeholder="Search..." />
-                </div>
-              </div>
+                          <p>Filter</p>
+                          <div class="hrmsystemsetup-search">
+                            <img src={srchIcon} alt="" />
+                            <input type="text" placeholder="Search..." />
+                          </div>
+                        </div>
 
+                        <div class="relative overflow-x-auto">
+                          <table class="w-full text-left   text-[#060606]">
+                            <thead class=" uppercase text-[#060606]">
+                              <tr>
+                                {sidebarItem[open].tableData.map(
+                                  (item, index) => (
+                                    <th key={index} scope="col" class="px-6 py-3">
+                                      {item.title}
+                                    </th>
+                                  )
+                                )}
+                              </tr>
+                            </thead>
 
-              {/* this is table  */}
-              <div class="relative overflow-x-auto">
-                <table class="w-full text-left   text-[#060606]">
-                  <thead class=" uppercase text-[#060606]">
-                    <tr>
-                      {sidebarItem[open].tableData.map(
-                        (item, index) => (
-                          <th key={index} scope="col" class="px-6 py-3">
-                            {item.title}
-                          </th>
-                        )
-                      )}
-                    </tr>
-                  </thead>
+                            <tbody>
+                              {designations.map((item, index) => (
+                                <tr key={index} class="bg-white ">
+                                  <td class="px-6 py-4 ">
+                                    {item?.department?.name}
+                                  </td>
+                                  <td class="px-6 py-4 ">
+                                    {item?.name}
+                                  </td>
+                                  <td class="px-6 py-4 flex hrmActions">
+                                    <img src={edited} alt="" />
+                                    <img src={deleted} alt="" />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  }
 
-                  <tbody>
-
-                    {
-                      data3.map((item ,index)=>(
-                        <tr key={index} class="bg-white ">
-
-
-                        <td class="px-6 py-4 ">
-                          {item.department}
-                        </td>
-                        <td class="px-6 py-4 ">
-                          {item.designation}
-                        </td>
-                        <td class="px-6 py-4 flex hrmActions">
-                          <img src={edited} alt="" />
-                          <img src={deleted} alt="" />
-                        </td>
-
-                      </tr>
-                      ))
-                    }
-
-                   
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-           }
-          
-           
-                  
-                 
                   {/* {open === 1 && (
                     <div className="hrmsystemsetup-leftmenu">
                       <div class="hrmsystemsetup-container">
@@ -710,105 +737,98 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
           </div>
         </div>
 
+        {
+          popup1 &&
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Create New Branch</h2>
 
-{
-popup1 && 
- <div className="allPopupWrap">
+              <hr />
 
-        
-          <div className="popup1">
+              <label htmlFor="">
+                <p>Name</p>
+                <input type="text" name="branch" onChange={(e)=>{
+                  setBranch(e.target.value);
+                }} value={branch} placeholder="Enter Branch Name"  />
+              </label>
 
-            <h2>Create New Branch</h2>
-            <hr />
-            <label htmlFor="">
-              <p>Name</p>
-              <input type="text" placeholder="Enter Branch Name" />
-            </label>
+              <hr />
 
-            <hr />
-
-            <div className="btnWrap">
-              <button className="cencel" onClick={()=>setPopup1(false)}>
-                <span>Cancel</span>
-              </button>
-              <button className="create">
-                <span>Create</span>
-              </button>
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup1(false)}>
+                  <span>Cancel</span>
+                </button>
+                <button className="create" onClick={handleCreateBranch}>
+                  <span>Create</span>
+                </button>
+              </div>
             </div>
-
           </div>
-        
-        </div>
-}
-{
-popup2 && 
- <div className="allPopupWrap">
+        }
 
-        
-          <div className="popup1">
+        {
+          popup2 &&
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Create New Department</h2>
+              <hr />
+              <select className="selectBRANCH" name="" id="">
+                <option value="" selected>select Branch</option>
+                {branches.map((e,index)=>{
+                  return (
+                    <option key={index} value={e._id}>{e.name}</option>
+                  );
+                })}
+              </select>
+              <label>
+                <p>Name</p>
+                <input type="text" placeholder="Enter Department Name" />
+              </label>
 
-            <h2>Create New Department</h2>
-            <hr />
-            <select className="selectBRANCH" name="" id="">
-              <option value="" disabled selected>select Branch</option>
-            </select>
-            <label htmlFor="">
-              <p>Name</p>
-              <input type="text" placeholder="Enter Department Name" />
-            </label>
+              <hr />
 
-            <hr />
-
-            <div className="btnWrap">
-              <button className="cencel" onClick={()=>setPopup2(false)}>
-                <span>Cancel</span>
-              </button>
-              <button className="create">
-                <span>Create</span>
-              </button>
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup2(false)}>
+                  <span>Cancel</span>
+                </button>
+                <button className="create" onClick={handleCreateDepartment}>
+                  <span>Create</span>
+                </button>
+              </div>
             </div>
-
           </div>
-        
-        </div>
-}
+        }
 
-{
-popup3 && 
- <div className="allPopupWrap">
+        {
+          popup3 &&
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Create New Designation</h2>
+              <hr />
+              <label htmlFor>
+                <p>Department</p>
+                <select className="selectBRANCH" name="" id="">
+                  <option value="" disabled selected>Admin</option>
+                </select>
+              </label>
+              <label htmlFor="">
+                <p>Name</p>
+                <input type="text" placeholder="Enter Designation Name" />
+              </label>
 
-        
-          <div className="popup1">
+              <hr />
 
-            <h2>Create New Designation</h2>
-            <hr />
-            <label htmlFor>
-<p>Department</p>
-            <select className="selectBRANCH" name="" id="">
-              <option value="" disabled selected>Admin</option>
-            </select>
-            </label>
-            <label htmlFor="">
-              <p>Name</p>
-              <input type="text" placeholder="Enter Designation Name" />
-            </label>
-
-            <hr />
-
-            <div className="btnWrap">
-              <button className="cencel" onClick={()=>setPopup3(false)}>
-                <span>Cancel</span>
-              </button>
-              <button className="create">
-                <span>Create</span>
-              </button>
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup3(false)}>
+                  <span>Cancel</span>
+                </button>
+                <button className="create" onClick={handleCreateDesignation}>
+                  <span>Create</span>
+                </button>
+              </div>
             </div>
-
           </div>
-        
-        </div>
-}
-
+        }
       </div>
     </>
   );

@@ -453,67 +453,67 @@ const MainState = (props) => {
    };
 
    const getBranchs = async () => {
-      const data = await get(`${baseUrl}/branch/getBranchs`, true);
+      const data = await get(`${baseUrl}/system/getBranchs`, true);
       return data;
    };
 
-   const postBranch = async ({ name, time }) => {
-      const data = await post(`${baseUrl}/branch/postBranch`, { name, time }, true);
+   const postBranch = async ({ name }) => {
+      const data = await post(`${baseUrl}/system/postBranch`, { name }, true);
       return data;
    };
 
-   const updateBranch = async ({ id, status }) => {
-      const data = await put(`${baseUrl}/branch/updateBranch/${id}`, { status }, true);
+   const updateBranch = async ({ id, status, name }) => {
+      const data = await put(`${baseUrl}/system/updateBranch/${id}`, { name, status }, true);
       return data;
    };
 
    const deleteBranch = async ({ id }) => {
-      const data = await deleteReq(`${baseUrl}/branch/deleteBranch/${id}`, true);
+      const data = await deleteReq(`${baseUrl}/system/deleteBranch/${id}`, true);
       return data;
    };
    
    const getDepartments = async () => {
-      const data = await get(`${baseUrl}/department/getDepartments`, true);
+      const data = await get(`${baseUrl}/system/getDepartments`, true);
       return data;
    };
 
-   const postDepartment = async ({ name, time }) => {
-      const data = await post(`${baseUrl}/department/postDepartment`, { name, time }, true);
+   const postDepartment = async ({ name, branch }) => {
+      const data = await post(`${baseUrl}/system/postDepartment`, { name, branch }, true);
       return data;
    };
 
-   const updateDepartment = async ({ id, status }) => {
-      const data = await put(`${baseUrl}/department/updateDepartment/${id}`, { status }, true);
+   const updateDepartment = async ({ id, status, name }) => {
+      const data = await put(`${baseUrl}/system/updateDepartment/${id}`, { status, name }, true);
       return data;
    };
 
    const deleteDepartment = async ({ id }) => {
-      const data = await deleteReq(`${baseUrl}/department/deleteDepartment/${id}`, true);
+      const data = await deleteReq(`${baseUrl}/system/deleteDepartment/${id}`, true);
       return data;
    };
    
    const getDesignations = async () => {
-      const data = await get(`${baseUrl}/designation/getDesignations`, true);
+      const data = await get(`${baseUrl}/system/getDesignations`, true);
       return data;
    };
 
-   const postDesignation = async ({ name, time }) => {
-      const data = await post(`${baseUrl}/designation/postDesignation`, { name, time }, true);
+   const postDesignation = async ({ name, department }) => {
+      const data = await post(`${baseUrl}/system/postDesignation`, { name, department }, true);
       return data;
    };
 
-   const updateDesignation = async ({ id, status }) => {
-      const data = await put(`${baseUrl}/designation/updateDesignation/${id}`, { status }, true);
+   const updateDesignation = async ({ id, status, name }) => {
+      const data = await put(`${baseUrl}/system/updateDesignation/${id}`, { status, name }, true);
       return data;
    };
 
    const deleteDesignation = async ({ id }) => {
-      const data = await deleteReq(`${baseUrl}/designation/deleteDesignation/${id}`, true);
+      const data = await deleteReq(`${baseUrl}/system/deleteDesignation/${id}`, true);
       return data;
    };
 
    return (
-      <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2 }}>
+      <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation }}>
          {props.children}
       </MainContext.Provider>
    );
