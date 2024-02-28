@@ -132,6 +132,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
    ]
 
    const [popup1 , setPopup1] = useState(false);
+   const [popup2 , setPopup2] = useState(false);
+   const [popup3 , setPopup3] = useState(false);
 
   return (
     <>
@@ -166,6 +168,12 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
      if(open === 0){
             setPopup1(true);
+     }
+     else if(open === 1){
+      setPopup2(true);
+     }
+     else if(open === 2){
+      setPopup3(true);
      }
 
  }} className="plusiCON" src={plusIcon} alt="" />
@@ -732,6 +740,75 @@ popup1 &&
         
         </div>
 }
+{
+popup2 && 
+ <div className="allPopupWrap">
+
+        
+          <div className="popup1">
+
+            <h2>Create New Department</h2>
+            <hr />
+            <select className="selectBRANCH" name="" id="">
+              <option value="" disabled selected>select Branch</option>
+            </select>
+            <label htmlFor="">
+              <p>Name</p>
+              <input type="text" placeholder="Enter Department Name" />
+            </label>
+
+            <hr />
+
+            <div className="btnWrap">
+              <button className="cencel" onClick={()=>setPopup2(false)}>
+                <span>Cancel</span>
+              </button>
+              <button className="create">
+                <span>Create</span>
+              </button>
+            </div>
+
+          </div>
+        
+        </div>
+}
+
+{
+popup3 && 
+ <div className="allPopupWrap">
+
+        
+          <div className="popup1">
+
+            <h2>Create New Designation</h2>
+            <hr />
+            <label htmlFor>
+<p>Department</p>
+            <select className="selectBRANCH" name="" id="">
+              <option value="" disabled selected>Admin</option>
+            </select>
+            </label>
+            <label htmlFor="">
+              <p>Name</p>
+              <input type="text" placeholder="Enter Designation Name" />
+            </label>
+
+            <hr />
+
+            <div className="btnWrap">
+              <button className="cencel" onClick={()=>setPopup3(false)}>
+                <span>Cancel</span>
+              </button>
+              <button className="create">
+                <span>Create</span>
+              </button>
+            </div>
+
+          </div>
+        
+        </div>
+}
+
       </div>
     </>
   );
