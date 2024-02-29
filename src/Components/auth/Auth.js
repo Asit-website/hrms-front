@@ -94,7 +94,7 @@ const Auth = (props) => {
           <div className="login-form">
             <form onSubmit={handleSubmit}>
               <div className=" flex flex-col mt-4 ">
-                <label class="custom-field one">
+                <label className="custom-field one">
                   <input
                     required
                     name={tab === 1 ? "email" : "employeeCode"}
@@ -103,9 +103,9 @@ const Auth = (props) => {
                     type={tab === 1 ? "email" : "text"}
                     placeholder=" "
                   />
-                  <span class="placeholder">{tab === 1 ? "Email" : "Employee Code"}</span>
+                  <span className="placeholder">{tab === 1 ? "Email" : "Employee Code"}</span>
                 </label>
-                <label class="custom-field one">
+                <label className="custom-field one">
                   <input
                     required
                     name="password"
@@ -114,7 +114,7 @@ const Auth = (props) => {
                     type="password"
                     placeholder=" "
                   />
-                  <span class="placeholder">Password</span>
+                  <span className="placeholder">Password</span>
                 </label>
                 <NavLink to="/forget">
                   <p className=" text-right  forget">Forgot password?</p>

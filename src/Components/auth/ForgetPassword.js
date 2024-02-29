@@ -45,13 +45,13 @@ const ForgetPassword = () => {
           <div className="login-form">
             <form onSubmit={handleSubmit}>
               <div className=" flex flex-col mt-4 ">
-                <label class="custom-field one">
+                <label className="custom-field one">
                   <input required type="text" placeholder=" " onChange={handleChange} name="employeeCode" value={value.employeeCode} />
-                  <span class="placeholder">Employee Code</span>
+                  <span className="placeholder">Employee Code</span>
                 </label>
-                <label class="custom-field one">
+                <label className="custom-field one">
                   <input required type="email" placeholder=" " onChange={handleChange} name="email" value={value.email} />
-                  <span class="placeholder">Email Id</span>
+                  <span className="placeholder">Email Id</span>
                 </label>
               </div>
               <button type='submit'>Next</button>

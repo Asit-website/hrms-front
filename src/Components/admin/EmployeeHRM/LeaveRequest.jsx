@@ -69,11 +69,11 @@ const LeaveRequest = ({
 
 
 
-                <div class="relative overflow-x-auto">
-                  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs uppercase textALLtITL ">
+                <div className="relative overflow-x-auto">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs uppercase textALLtITL ">
                       <tr >
-                        <th scope="col" class="px-3 py-3 Uppercase">
+                        <th scope="col" className="px-3 py-3 Uppercase">
                           <div className="flex items-center checkbox_ss ">
                             <input
                               disabled=""
@@ -91,35 +91,35 @@ const LeaveRequest = ({
                           </div>
 
                         </th>
-                        <th scope="col" class="px-3 py-3 uppercase">
+                        <th scope="col" className="px-3 py-3 uppercase">
                           DATE & tIME
                         </th>
-                        <th scope="col" class="px-3 py-3 uppercase">
+                        <th scope="col" className="px-3 py-3 uppercase">
                           LEAVE dURATION
                         </th>
-                        <th scope="col" class="px-3 py-3 uppercase">
+                        <th scope="col" className="px-3 py-3 uppercase">
                           LEAVE TYPE
                         </th>
-                        <th scope="col" class="px-3 py-3 uppercase">
+                        <th scope="col" className="px-3 py-3 uppercase">
                           APPLIED ON
                         </th>
-                        <th scope="col" class="px-3 py-3 uppercase">
+                        <th scope="col" className="px-3 py-3 uppercase">
                           LEAVE REASON
                         </th>
-                        <th scope="col" class="px-3 py-3 uppercase">
+                        <th scope="col" className="px-3 py-3 uppercase">
                           STATUS
                         </th>
-                        <th scope="col" class="px-3 py-3 uppercase">
+                        <th scope="col" className="px-3 py-3 uppercase">
                           ACTIVITY
                         </th>
-                        <th scope="col" class="px-3 py-3 uppercase">
+                        <th scope="col" className="px-3 py-3 uppercase">
                           ACTIONS
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="bg-white border-b  ">
-                        <th scope="row" class="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
+                      <tr className="bg-white border-b  ">
+                        <th scope="row" className="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
                           <div className="flex items-center checkbox_ss ">
                             <input
                               disabled=""
@@ -136,22 +136,22 @@ const LeaveRequest = ({
                             </label>
                           </div>
                         </th>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           JAN25, 2024
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Two Days
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           ----
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           {/* <button
                             type="button"
                             className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
@@ -160,7 +160,7 @@ const LeaveRequest = ({
                           </button> */}
 
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           <div className="ACTIVITYsss">
                             <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M3.66536 13.9998H10.332V12.3332H3.66536V13.9998ZM3.66536 10.6665H10.332V8.99984H3.66536V10.6665ZM1.9987 17.3332C1.54036 17.3332 1.148 17.17 0.821615 16.8436C0.495226 16.5172 0.332031 16.1248 0.332031 15.6665V2.33317C0.332031 1.87484 0.495226 1.48248 0.821615 1.15609C1.148 0.829698 1.54036 0.666504 1.9987 0.666504H8.66536L13.6654 5.6665V15.6665C13.6654 16.1248 13.5022 16.5172 13.1758 16.8436C12.8494 17.17 12.457 17.3332 11.9987 17.3332H1.9987ZM7.83203 6.49984V2.33317H1.9987V15.6665H11.9987V6.49984H7.83203Z" fill="#293240" />
@@ -170,7 +170,7 @@ const LeaveRequest = ({
                             </svg></div>
                         </td>
 
-                        <td class="px-6 py-4  flex items-center hiii_gap">
+                        <td className="px-6 py-4  flex items-center hiii_gap">
                           <>
                             <button
                               id="dropdownMenuIconButton2222"
@@ -236,8 +236,8 @@ const LeaveRequest = ({
                         </td>
 
                       </tr>
-                      <tr class="bg-white border-b  ">
-                        <th scope="row" class="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
+                      <tr className="bg-white border-b  ">
+                        <th scope="row" className="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
                           <div className="flex items-center checkbox_ss ">
                             <input
                               disabled=""
@@ -254,22 +254,22 @@ const LeaveRequest = ({
                             </label>
                           </div>
                         </th>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           JAN25, 2024
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Two Days
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           ----
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           {/* <button
                             type="button"
                             className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
@@ -278,7 +278,7 @@ const LeaveRequest = ({
                           </button> */}
 
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           <div className="ACTIVITYsss">
                             <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M3.66536 13.9998H10.332V12.3332H3.66536V13.9998ZM3.66536 10.6665H10.332V8.99984H3.66536V10.6665ZM1.9987 17.3332C1.54036 17.3332 1.148 17.17 0.821615 16.8436C0.495226 16.5172 0.332031 16.1248 0.332031 15.6665V2.33317C0.332031 1.87484 0.495226 1.48248 0.821615 1.15609C1.148 0.829698 1.54036 0.666504 1.9987 0.666504H8.66536L13.6654 5.6665V15.6665C13.6654 16.1248 13.5022 16.5172 13.1758 16.8436C12.8494 17.17 12.457 17.3332 11.9987 17.3332H1.9987ZM7.83203 6.49984V2.33317H1.9987V15.6665H11.9987V6.49984H7.83203Z" fill="#293240" />
@@ -288,7 +288,7 @@ const LeaveRequest = ({
                             </svg></div>
                         </td>
 
-                        <td class="px-6 py-4  flex items-center hiii_gap">
+                        <td className="px-6 py-4  flex items-center hiii_gap">
                           <>
                             <button
                               id="dropdownMenuIconButton2222"
@@ -354,8 +354,8 @@ const LeaveRequest = ({
                         </td>
 
                       </tr>
-                      <tr class="bg-white border-b  ">
-                        <th scope="row" class="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
+                      <tr className="bg-white border-b  ">
+                        <th scope="row" className="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
                           <div className="flex items-center checkbox_ss ">
                             <input
                               disabled=""
@@ -372,22 +372,22 @@ const LeaveRequest = ({
                             </label>
                           </div>
                         </th>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           JAN25, 2024
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Two Days
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           ----
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           {/* <button
                             type="button"
                             className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
@@ -396,7 +396,7 @@ const LeaveRequest = ({
                           </button> */}
 
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           <div className="ACTIVITYsss">
                             <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M3.66536 13.9998H10.332V12.3332H3.66536V13.9998ZM3.66536 10.6665H10.332V8.99984H3.66536V10.6665ZM1.9987 17.3332C1.54036 17.3332 1.148 17.17 0.821615 16.8436C0.495226 16.5172 0.332031 16.1248 0.332031 15.6665V2.33317C0.332031 1.87484 0.495226 1.48248 0.821615 1.15609C1.148 0.829698 1.54036 0.666504 1.9987 0.666504H8.66536L13.6654 5.6665V15.6665C13.6654 16.1248 13.5022 16.5172 13.1758 16.8436C12.8494 17.17 12.457 17.3332 11.9987 17.3332H1.9987ZM7.83203 6.49984V2.33317H1.9987V15.6665H11.9987V6.49984H7.83203Z" fill="#293240" />
@@ -406,7 +406,7 @@ const LeaveRequest = ({
                             </svg></div>
                         </td>
 
-                        <td class="px-6 py-4  flex items-center hiii_gap">
+                        <td className="px-6 py-4  flex items-center hiii_gap">
                           <>
                             <button
                               id="dropdownMenuIconButton2222"
@@ -472,8 +472,8 @@ const LeaveRequest = ({
                         </td>
 
                       </tr>
-                      <tr class="bg-white border-b  ">
-                        <th scope="row" class="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
+                      <tr className="bg-white border-b  ">
+                        <th scope="row" className="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
                           <div className="flex items-center checkbox_ss ">
                             <input
                               disabled=""
@@ -490,22 +490,22 @@ const LeaveRequest = ({
                             </label>
                           </div>
                         </th>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           JAN25, 2024
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Two Days
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           ----
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           {/* <button
                             type="button"
                             className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
@@ -514,7 +514,7 @@ const LeaveRequest = ({
                           </button> */}
 
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           <div className="ACTIVITYsss">
                             <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M3.66536 13.9998H10.332V12.3332H3.66536V13.9998ZM3.66536 10.6665H10.332V8.99984H3.66536V10.6665ZM1.9987 17.3332C1.54036 17.3332 1.148 17.17 0.821615 16.8436C0.495226 16.5172 0.332031 16.1248 0.332031 15.6665V2.33317C0.332031 1.87484 0.495226 1.48248 0.821615 1.15609C1.148 0.829698 1.54036 0.666504 1.9987 0.666504H8.66536L13.6654 5.6665V15.6665C13.6654 16.1248 13.5022 16.5172 13.1758 16.8436C12.8494 17.17 12.457 17.3332 11.9987 17.3332H1.9987ZM7.83203 6.49984V2.33317H1.9987V15.6665H11.9987V6.49984H7.83203Z" fill="#293240" />
@@ -524,7 +524,7 @@ const LeaveRequest = ({
                             </svg></div>
                         </td>
 
-                        <td class="px-6 py-4  flex items-center hiii_gap">
+                        <td className="px-6 py-4  flex items-center hiii_gap">
                           <>
                             <button
                               id="dropdownMenuIconButton2222"
@@ -590,8 +590,8 @@ const LeaveRequest = ({
                         </td>
 
                       </tr>
-                      <tr class="bg-white border-b  ">
-                        <th scope="row" class="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
+                      <tr className="bg-white border-b  ">
+                        <th scope="row" className="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
                           <div className="flex items-center checkbox_ss ">
                             <input
                               disabled=""
@@ -608,22 +608,22 @@ const LeaveRequest = ({
                             </label>
                           </div>
                         </th>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           JAN25, 2024
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Two Days
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           ----
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           {/* <button
                             type="button"
                             className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
@@ -632,7 +632,7 @@ const LeaveRequest = ({
                           </button> */}
 
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           <div className="ACTIVITYsss">
                             <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M3.66536 13.9998H10.332V12.3332H3.66536V13.9998ZM3.66536 10.6665H10.332V8.99984H3.66536V10.6665ZM1.9987 17.3332C1.54036 17.3332 1.148 17.17 0.821615 16.8436C0.495226 16.5172 0.332031 16.1248 0.332031 15.6665V2.33317C0.332031 1.87484 0.495226 1.48248 0.821615 1.15609C1.148 0.829698 1.54036 0.666504 1.9987 0.666504H8.66536L13.6654 5.6665V15.6665C13.6654 16.1248 13.5022 16.5172 13.1758 16.8436C12.8494 17.17 12.457 17.3332 11.9987 17.3332H1.9987ZM7.83203 6.49984V2.33317H1.9987V15.6665H11.9987V6.49984H7.83203Z" fill="#293240" />
@@ -642,7 +642,7 @@ const LeaveRequest = ({
                             </svg></div>
                         </td>
 
-                        <td class="px-6 py-4  flex items-center hiii_gap">
+                        <td className="px-6 py-4  flex items-center hiii_gap">
                           <>
                             <button
                               id="dropdownMenuIconButton2222"
@@ -708,8 +708,8 @@ const LeaveRequest = ({
                         </td>
 
                       </tr>
-                      <tr class="bg-white border-b  ">
-                        <th scope="row" class="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
+                      <tr className="bg-white border-b  ">
+                        <th scope="row" className="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
                           <div className="flex items-center checkbox_ss ">
                             <input
                               disabled=""
@@ -726,22 +726,22 @@ const LeaveRequest = ({
                             </label>
                           </div>
                         </th>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           JAN25, 2024
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Two Days
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           ----
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           Sick Leave
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           {/* <button
                             type="button"
                             className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
@@ -750,7 +750,7 @@ const LeaveRequest = ({
                           </button> */}
 
                         </td>
-                        <td class="px-3 py-4 taskAns">
+                        <td className="px-3 py-4 taskAns">
                           <div className="ACTIVITYsss">
                             <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M3.66536 13.9998H10.332V12.3332H3.66536V13.9998ZM3.66536 10.6665H10.332V8.99984H3.66536V10.6665ZM1.9987 17.3332C1.54036 17.3332 1.148 17.17 0.821615 16.8436C0.495226 16.5172 0.332031 16.1248 0.332031 15.6665V2.33317C0.332031 1.87484 0.495226 1.48248 0.821615 1.15609C1.148 0.829698 1.54036 0.666504 1.9987 0.666504H8.66536L13.6654 5.6665V15.6665C13.6654 16.1248 13.5022 16.5172 13.1758 16.8436C12.8494 17.17 12.457 17.3332 11.9987 17.3332H1.9987ZM7.83203 6.49984V2.33317H1.9987V15.6665H11.9987V6.49984H7.83203Z" fill="#293240" />
@@ -760,7 +760,7 @@ const LeaveRequest = ({
                             </svg></div>
                         </td>
 
-                        <td class="px-6 py-4  flex items-center hiii_gap">
+                        <td className="px-6 py-4  flex items-center hiii_gap">
                           <>
                             <button
                               id="dropdownMenuIconButton2222"

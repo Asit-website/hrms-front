@@ -265,8 +265,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   {
                     open === 0 &&
                     <div className="hrmsystemsetup-leftmenu">
-                      <div class="hrmsystemsetup-container">
-                        <div class="hrmsystemsetup-pagination">
+                      <div className="hrmsystemsetup-container">
+                        <div className="hrmsystemsetup-pagination">
                           {/* <select id="entries">
                     <option value="10">10</option>
                     <option value="20">20</option>
@@ -274,19 +274,19 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   </select> */}
 
                           <p>Filter</p>
-                          <div class="hrmsystemsetup-search">
+                          <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
                             <input type="text" placeholder="Search..." />
                           </div>
                         </div>
 
-                        <div class="relative overflow-x-auto">
-                          <table class="w-full text-left   text-[#060606]">
-                            <thead class=" uppercase text-[#060606]">
+                        <div className="relative overflow-x-auto">
+                          <table className="w-full text-left   text-[#060606]">
+                            <thead className=" uppercase text-[#060606]">
                               <tr>
                                 {sidebarItem[open].tableData.map(
                                   (item, index) => (
-                                    <th key={index} scope="col" class="px-6 py-3">
+                                    <th key={index} scope="col" className="px-6 py-3">
                                       {item.title}
                                     </th>
                                   )
@@ -296,12 +296,12 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
                             <tbody>
                               {branches.map((item, index) => (
-                                <tr key={index} class="bg-white ">
-                                  <td class="px-6 py-4 ">
+                                <tr key={index} className="bg-white ">
+                                  <td className="px-6 py-4 ">
                                     {item?.name}
                                   </td>
 
-                                  <td class="px-6 py-4 flex hrmActions">
+                                  <td className="px-6 py-4 flex hrmActions">
                                     <img onClick={() => {
 
                                     }} src={edited} alt="" />
@@ -321,8 +321,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   {
                     open === 1 &&
                     <div className="hrmsystemsetup-leftmenu">
-                      <div class="hrmsystemsetup-container">
-                        <div class="hrmsystemsetup-pagination">
+                      <div className="hrmsystemsetup-container">
+                        <div className="hrmsystemsetup-pagination">
                           {/* <select id="entries">
                     <option value="10">10</option>
                     <option value="20">20</option>
@@ -330,19 +330,19 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   </select> */}
 
                           <p>Filter</p>
-                          <div class="hrmsystemsetup-search">
+                          <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
                             <input type="text" placeholder="Search..." />
                           </div>
                         </div>
 
-                        <div class="relative overflow-x-auto">
-                          <table class="w-full text-left   text-[#060606]">
-                            <thead class=" uppercase text-[#060606]">
+                        <div className="relative overflow-x-auto">
+                          <table className="w-full text-left   text-[#060606]">
+                            <thead className=" uppercase text-[#060606]">
                               <tr>
                                 {sidebarItem[open].tableData.map(
                                   (item, index) => (
-                                    <th key={index} scope="col" class="px-6 py-3">
+                                    <th key={index} scope="col" className="px-6 py-3">
                                       {item.title}
                                     </th>
                                   )
@@ -352,14 +352,14 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
                             <tbody>
                               {departments.map((item, index) => (
-                                <tr key={index} class="bg-white ">
-                                  <td class="px-6 py-4 ">
+                                <tr key={index} className="bg-white ">
+                                  <td className="px-6 py-4 ">
                                     {item?.branch?.name}
                                   </td>
-                                  <td class="px-6 py-4 ">
+                                  <td className="px-6 py-4 ">
                                     {item?.name}
                                   </td>
-                                  <td class="px-6 py-4 flex hrmActions">
+                                  <td className="px-6 py-4 flex hrmActions">
                                     <img src={edited} alt="" />
                                     <img src={deleted} alt="" />
                                   </td>
@@ -375,8 +375,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   {
                     open === 2 &&
                     <div className="hrmsystemsetup-leftmenu">
-                      <div class="hrmsystemsetup-container">
-                        <div class="hrmsystemsetup-pagination">
+                      <div className="hrmsystemsetup-container">
+                        <div className="hrmsystemsetup-pagination">
                           {/* <select id="entries">
                     <option value="10">10</option>
                     <option value="20">20</option>
@@ -384,19 +384,19 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   </select> */}
 
                           <p>Filter</p>
-                          <div class="hrmsystemsetup-search">
+                          <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
                             <input type="text" placeholder="Search..." />
                           </div>
                         </div>
 
-                        <div class="relative overflow-x-auto">
-                          <table class="w-full text-left   text-[#060606]">
-                            <thead class=" uppercase text-[#060606]">
+                        <div className="relative overflow-x-auto">
+                          <table className="w-full text-left   text-[#060606]">
+                            <thead className=" uppercase text-[#060606]">
                               <tr>
                                 {sidebarItem[open].tableData.map(
                                   (item, index) => (
-                                    <th key={index} scope="col" class="px-6 py-3">
+                                    <th key={index} scope="col" className="px-6 py-3">
                                       {item.title}
                                     </th>
                                   )
@@ -406,14 +406,14 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
                             <tbody>
                               {designations.map((item, index) => (
-                                <tr key={index} class="bg-white ">
-                                  <td class="px-6 py-4 ">
+                                <tr key={index} className="bg-white ">
+                                  <td className="px-6 py-4 ">
                                     {item?.department?.name}
                                   </td>
-                                  <td class="px-6 py-4 ">
+                                  <td className="px-6 py-4 ">
                                     {item?.name}
                                   </td>
-                                  <td class="px-6 py-4 flex hrmActions">
+                                  <td className="px-6 py-4 flex hrmActions">
                                     <img src={edited} alt="" />
                                     <img src={deleted} alt="" />
                                   </td>
@@ -428,10 +428,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
                   {/* {open === 1 && (
                     <div className="hrmsystemsetup-leftmenu">
-                      <div class="hrmsystemsetup-container">
+                      <div className="hrmsystemsetup-container">
                         <div className="hrmsystemsetup-ican">
                           <svg
-                            class="w-6 h-6 text-gray-800 dark:text-black"
+                            className="w-6 h-6 text-gray-800 dark:text-black"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -446,7 +446,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             />
                           </svg>
                         </div>
-                        <div class="hrmsystemsetup-pagination">
+                        <div className="hrmsystemsetup-pagination">
                           <label for="entries">10 entries per page</label>
                           <select id="entries">
                             <option value="10">10</option>
@@ -454,7 +454,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             <option value="50">50</option>
                           </select>
                         </div>
-                        <div class="hrmsystemsetup-search">
+                        <div className="hrmsystemsetup-search">
                           <input type="text" placeholder="Search..." />
                         </div>
                         <table>
@@ -465,10 +465,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <tr>
                             <td>Head office</td>
                             <td>
-                              <a href="#" class="action-buttons view">
+                              <a href="#" className="action-buttons view">
                                 View
                               </a>
-                              <a href="#" class="action-buttons delete">
+                              <a href="#" className="action-buttons delete">
                                 Delete
                               </a>
                             </td>
@@ -476,10 +476,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <tr>
                             <td>kushel</td>
                             <td>
-                              <a href="#" class="action-buttons view">
+                              <a href="#" className="action-buttons view">
                                 View
                               </a>
-                              <a href="#" class="action-buttons delete">
+                              <a href="#" className="action-buttons delete">
                                 Delete
                               </a>
                             </td>
@@ -487,10 +487,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <tr>
                             <td>sector63</td>
                             <td>
-                              <a href="#" class="action-buttons view">
+                              <a href="#" className="action-buttons view">
                                 View
                               </a>
-                              <a href="#" class="action-buttons delete">
+                              <a href="#" className="action-buttons delete">
                                 Delete
                               </a>
                             </td>
@@ -503,10 +503,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
                   {/* {open === 2 && (
                     <div className="hrmsystemsetup-leftmenu">
-                      <div class="hrmsystemsetup-container">
+                      <div className="hrmsystemsetup-container">
                         <div className="hrmsystemsetup-ican">
                           <svg
-                            class="w-6 h-6 text-gray-800 dark:text-black"
+                            className="w-6 h-6 text-gray-800 dark:text-black"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -521,7 +521,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             />
                           </svg>
                         </div>
-                        <div class="hrmsystemsetup-pagination">
+                        <div className="hrmsystemsetup-pagination">
                           <label for="entries">10 entries per page</label>
                           <select id="entries">
                             <option value="10">10</option>
@@ -529,7 +529,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             <option value="50">50</option>
                           </select>
                         </div>
-                        <div class="hrmsystemsetup-search">
+                        <div className="hrmsystemsetup-search">
                           <input type="text" placeholder="Search..." />
                         </div>
                         <table>
@@ -540,10 +540,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <tr>
                             <td>Admin </td>
                             <td>
-                              <a href="#" class="action-buttons view">
+                              <a href="#" className="action-buttons view">
                                 View
                               </a>
-                              <a href="#" class="action-buttons delete">
+                              <a href="#" className="action-buttons delete">
                                 Delete
                               </a>
                             </td>
@@ -551,10 +551,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <tr>
                             <td>Admin</td>
                             <td>
-                              <a href="#" class="action-buttons view">
+                              <a href="#" className="action-buttons view">
                                 View
                               </a>
-                              <a href="#" class="action-buttons delete">
+                              <a href="#" className="action-buttons delete">
                                 Delete
                               </a>
                             </td>
@@ -562,10 +562,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <tr>
                             <td>sector63</td>
                             <td>
-                              <a href="#" class="action-buttons view">
+                              <a href="#" className="action-buttons view">
                                 View
                               </a>
-                              <a href="#" class="action-buttons delete">
+                              <a href="#" className="action-buttons delete">
                                 Delete
                               </a>
                             </td>
@@ -588,7 +588,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   >
                     Toggle modal
                     <svg
-                            class="w-6 h-6 text-gray-800 dark:text-black"
+                            className="w-6 h-6 text-gray-800 dark:text-black"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -822,6 +822,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 <button className="cencel" onClick={() => setPopup3(false)}>
                   <span>Cancel</span>
                 </button>
+
                 <button className="create" onClick={handleCreateDesignation}>
                   <span>Create</span>
                 </button>

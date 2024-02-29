@@ -58,7 +58,7 @@ const EmployeeHRM = ({
   setAlert,
   isHr = false,
 }) => {
-  const { user, getUsers, getActiveUsersCount } = useMain();
+  const { user, getUsers, getActiveUsersCount, postActivity } = useMain();
 
   const [counts, setCounts] = useState({
     activeEmployees: 0,
@@ -118,11 +118,13 @@ const EmployeeHRM = ({
     }
   }, []);
 
-  const clockIn = () => {
+  const clockIn = async () => {
     let t = localStorage.getItem('clock-status');
     // console.log(t);
 
     if (!t) {
+      let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: ''});
+
       localStorage.setItem('clock-in', new Date().getTime());
       localStorage.setItem('clock-status', 'break');
       tc4 = setInterval(() => {
@@ -155,6 +157,8 @@ const EmployeeHRM = ({
         clearInterval(tc3);
       }
       else if (t === "out") {
+        let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: ''});
+
         localStorage.setItem('clock-in', new Date().getTime());
         localStorage.setItem('clock-status', 'break');
         localStorage.removeItem('clock-out-time');
@@ -172,12 +176,15 @@ const EmployeeHRM = ({
     setMount(!mount);
   };
 
-  const clockOut = () => {
+  const clockOut = async () => {
     localStorage.setItem('clock-status', 'out');
     localStorage.setItem('clock-out-time', new Date().getTime());
     clearInterval(tc3);
     clearInterval(tc4);
     setMount(!mount);
+
+    let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: localStorage.getItem('clock-out-time'), late: breakClock, date1: new Date().toLocaleDateString('en-GB'), overtime: (((clock) - (32400))>0 ? ((clock)-32400) : 0), total: clock, message: ''});
+    console.log(ans);
   };
 
   return (
@@ -274,70 +281,70 @@ const EmployeeHRM = ({
 
                     <h2>Announcement Lists</h2>
 
-                    <div class="relative overflow-x-auto">
-                      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs uppercase textALLtITL ">
+                    <div className="relative overflow-x-auto">
+                      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs uppercase textALLtITL ">
                           <tr  >
-                            <th scope="col" class="px-6 py-3 taskTitl">
+                            <th scope="col" className="px-6 py-3 taskTitl">
                               TITLE
                             </th>
-                            <th scope="col" class="px-2 py-3 taskTitl">
+                            <th scope="col" className="px-2 py-3 taskTitl">
                               START DATE
                             </th>
-                            <th scope="col" class="px-6 py-3 taskTitl">
+                            <th scope="col" className="px-6 py-3 taskTitl">
                               END DATE
                             </th>
 
-                            <th scope="col" class="px-6 py-3 taskTitl">
+                            <th scope="col" className="px-6 py-3 taskTitl">
                               DESCRIPTION
                             </th>
 
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               WORK FROM HOME
                             </th>
-                            <td class="px-2 py-4 taskAns">
+                            <td className="px-2 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               AYODHYA RAM MANDIR
                             </td>
 
                           </tr>
 
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               WORK FROM HOME
                             </th>
-                            <td class="px-2 py-4 taskAns">
+                            <td className="px-2 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               AYODHYA RAM MANDIR
                             </td>
 
                           </tr>
 
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               WORK FROM HOME
                             </th>
-                            <td class="px-2 py-4 taskAns">
+                            <td className="px-2 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               AYODHYA RAM MANDIR
                             </td>
 
@@ -423,103 +430,103 @@ const EmployeeHRM = ({
                       </div>
                     </div>
 
-                    <div class="relative overflow-x-auto">
-                      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs uppercase textALLtITL ">
+                    <div className="relative overflow-x-auto">
+                      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs uppercase textALLtITL ">
                           <tr >
-                            <th scope="col" class="px-6 py-3 taskTitl">
+                            <th scope="col" className="px-6 py-3 taskTitl">
                               NAME
                             </th>
-                            <th scope="col" class="px-6 py-3 taskTitl">
+                            <th scope="col" className="px-6 py-3 taskTitl">
                               DATE
                             </th>
-                            <th scope="col" class="px-6 py-3 taskTitl">
+                            <th scope="col" className="px-6 py-3 taskTitl">
                               TASKS
                             </th>
 
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               Surbhi Rajwanshi
                             </th>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               Skimoil, Madfish
                             </td>
 
                           </tr>
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               Surbhi Rajwanshi
                             </th>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               Skimoil, Madfish
                             </td>
 
                           </tr>
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               Surbhi Rajwanshi
                             </th>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               Skimoil, Madfish
                             </td>
 
                           </tr>
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               Surbhi Rajwanshi
                             </th>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               Skimoil, Madfish
                             </td>
 
                           </tr>
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               Surbhi Rajwanshi
                             </th>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               Skimoil, Madfish
                             </td>
 
                           </tr>
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               Surbhi Rajwanshi
                             </th>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               Skimoil, Madfish
                             </td>
 
                           </tr>
-                          <tr class="bg-white border-b  ">
-                            <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                          <tr className="bg-white border-b  ">
+                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
                               Surbhi Rajwanshi
                             </th>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               JAN 22,2024
                             </td>
-                            <td class="px-6 py-4 taskAns">
+                            <td className="px-6 py-4 taskAns">
                               Skimoil, Madfish
                             </td>
 

@@ -56,7 +56,7 @@ const ForgetPassword2 = ({ setAlert }) => {
           <div className="login-form">
             <form onSubmit={handleSubmit}>
               <div className=" flex flex-col mt-4 ">
-                {/* <label htmlFor='oldPassword' class="custom-field one">
+                {/* <label htmlFor='oldPassword' className="custom-field one">
               <input type="text"
                           name="oldPassword"
                           onChange={handleChange}
@@ -65,9 +65,9 @@ const ForgetPassword2 = ({ setAlert }) => {
                           className=" block w-full"
                           required
                           placeholder=" " />
-              <span class="placeholder">Old Password</span>
+              <span className="placeholder">Old Password</span>
             </label> */}
-                <label htmlFor='password' class="custom-field one">
+                <label htmlFor='password' className="custom-field one">
                   <input type="text"
                     name="password"
                     onChange={handleChange}
@@ -76,10 +76,10 @@ const ForgetPassword2 = ({ setAlert }) => {
                     className=" block w-full"
                     required
                     placeholder=" " />
-                  <span class="placeholder">New Password</span>
+                  <span className="placeholder">New Password</span>
                 </label>
 
-                <label htmlFor='password1' class="custom-field one">
+                <label htmlFor='password1' className="custom-field one">
                   <input type="text"
                     name="password1"
                     onChange={handleChange}
@@ -88,7 +88,7 @@ const ForgetPassword2 = ({ setAlert }) => {
                     className=" block w-full"
                     required
                     placeholder=" " />
-                  <span class="placeholder">Confirm Password</span>
+                  <span className="placeholder">Confirm Password</span>
                 </label>
 
               </div>

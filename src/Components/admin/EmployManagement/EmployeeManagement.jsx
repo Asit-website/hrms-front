@@ -185,37 +185,37 @@ const EmployeeManagement = ({
 
               {/* second */}
               <main className="creteEmpWrap">
-                <div class="relative overflow-x-auto w-full">
-                  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <div className="relative overflow-x-auto w-full">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 
-                    <thead class="text-xs uppercase textALLtITL ">
+                    <thead className="text-xs uppercase textALLtITL ">
                       <tr>
-                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        <th scope="col" className="px-6 py-3 taskTitl ">
                           EMPLOYEE ID
                         </th>
-                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        <th scope="col" className="px-6 py-3 taskTitl ">
                           NAME
                         </th>
-                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        <th scope="col" className="px-6 py-3 taskTitl ">
                           EMAIL
                         </th>
 
-                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        <th scope="col" className="px-6 py-3 taskTitl ">
                           BRANCH
                         </th>
-                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        <th scope="col" className="px-6 py-3 taskTitl ">
                           DEPARTMENT
                         </th>
-                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        <th scope="col" className="px-6 py-3 taskTitl ">
                           DESIGNATION
                         </th>
-                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        <th scope="col" className="px-6 py-3 taskTitl ">
                           date of joining
                         </th>
-                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        <th scope="col" className="px-6 py-3 taskTitl ">
                           Last login
                         </th>
-                        <th scope="col" class="px-6 py-3 taskTitl ">
+                        <th scope="col" className="px-6 py-3 taskTitl ">
                           active
                         </th>
                       </tr>
@@ -227,17 +227,17 @@ const EmployeeManagement = ({
                         data?.map((item, index) => (
                           // let slice1 = slice()
                           <tr key={index} className="bg-white border-b">
-                            <th scope="row" class="px-6 py-4  taskAns employId "><span className=" cursor-pointer">{(item._id).slice(0, 5)}</span> </th>
-                            <td class="px-6 py-4 taskAns">{item?.fullName}</td>
-                            <td class="px-6 py-4 taskAns">{item?.email}</td>
-                            <td class="px-6 py-4 taskAns">{item?.branch}</td>
-                            <td class="px-6 py-4 taskAns">{item?.department}</td>
-                            <td class="px-6 py-4 taskAns">{item?.designation}</td>
-                            <td class="px-6 py-4 taskAns">{item?.joiningDate}</td>
+                            <th scope="row" className="px-6 py-4  taskAns employId "><span className=" cursor-pointer">{(item._id).slice(0, 5)}</span> </th>
+                            <td className="px-6 py-4 taskAns">{item?.fullName}</td>
+                            <td className="px-6 py-4 taskAns">{item?.email}</td>
+                            <td className="px-6 py-4 taskAns">{item?.branch}</td>
+                            <td className="px-6 py-4 taskAns">{item?.department}</td>
+                            <td className="px-6 py-4 taskAns">{item?.designation}</td>
+                            <td className="px-6 py-4 taskAns">{item?.joiningDate}</td>
                             {
 
-                              !loadFlag ? <> <td id={item._id} class="px-6 py-4 taskAns">{mainData && Object.keys(mainData).length > 0 && mainData.activity[mainData.activity.length - 1].message !== "" ? new Date(mainData.activity[mainData.activity.length - 1].ts).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : " - : -"}</td>
-                                <td class="px-6 py-4 taskAns">{item?.active}</td></> : null
+                              !loadFlag ? <> <td id={item._id} className="px-6 py-4 taskAns">{mainData && Object.keys(mainData).length > 0 && mainData.activity[mainData.activity.length - 1].message !== "" ? new Date(mainData.activity[mainData.activity.length - 1].ts).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : " - : -"}</td>
+                                <td className="px-6 py-4 taskAns">{item?.active}</td></> : null
 
                             }
 

@@ -41,28 +41,28 @@ const ShowEmployee1 = ({ setAlert, pop1, setPop1 }) => {
               <div className="hr-bash">
 
                 <div className="relative overflow-x-auto overhidding overhidding1">
-                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="bg-[#F1F6FF] theads">
+                  <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="bg-[#F1F6FF] theads">
                       <tr>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>S.No</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Employee Name</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Designation</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Reporting manager</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Registration Date</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Employee Code</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar1">
+                        <th scope="col" className="px-6 py-3 sitar1">
                           <h4>Employee Status</h4>
                         </th>
                       </tr>
@@ -70,26 +70,26 @@ const ShowEmployee1 = ({ setAlert, pop1, setPop1 }) => {
                     <tbody>
                       {data.map((e, index) => {
                         return (
-                          <tr key={index} class="bg-[#F1F6FF] tr-head  ">
-                            <td scope="row" class="px-6 py-4">
+                          <tr key={index} className="bg-[#F1F6FF] tr-head  ">
+                            <td scope="row" className="px-6 py-4">
                               <p className="sno">{('0' + (index + 1)).slice(-2)}</p>
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               <div className=" flex items-center timer">
                                 <img width={28} height={28} src={cg} alt="cg" />
                                 <p className="ml-2">{e.fullName}</p>
                               </div>
                             </td>
-                            <td class="px-6 py-4 timer">
+                            <td className="px-6 py-4 timer">
                               <p>{e.designation}</p>
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               <div className="flex items-center timer">
                                 <img width={28} height={28} src={cg} alt="cg" />
                                 <p className="ml-2">{e.reportingManager}</p>
                               </div>
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               <div className="reg-date flex items-center">
                                 <img src={celes} alt="celes" />
                                 <div className="ml-2">
@@ -98,10 +98,10 @@ const ShowEmployee1 = ({ setAlert, pop1, setPop1 }) => {
                                 </div>
                               </div>
                             </td>
-                            <td class="px-6 py-4 timer">
+                            <td className="px-6 py-4 timer">
                               <p>KDS{e?.employeeCode}</p>
                             </td>
-                            <td class="px-6 py-4 relative cursor-pointer">
+                            <td className="px-6 py-4 relative cursor-pointer">
                               <div className="flex items-center status relative"
                                 onClick={() => toggleMenu(index)}
                               >

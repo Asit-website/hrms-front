@@ -247,7 +247,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="father"
-                    class=" block  w-full"
+                    className=" block  w-full"
                     // required
                     name="father"
                     value={value.father}
@@ -273,7 +273,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                     Current state
                   </label>
                   {/* <select
-                    class="rounded-lg  w-full"
+                    className="rounded-lg  w-full"
                     name="currentState"
                     id="currentState"
                     value={value.currentState}
@@ -343,7 +343,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="perCity"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="perCity"
                     value={value.perCity}
@@ -402,7 +402,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="Mother"
-                    class=" block w-full"
+                    className=" block w-full"
                     // required
                     name="Mother"
                     value={value.Mother}
@@ -416,7 +416,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="qualification"
-                    class=" block w-full"
+                    className=" block w-full"
                     // required
                     name="qualification"
                     value={value.qualification}
@@ -430,7 +430,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="qualification"
-                    class=" block w-full"
+                    className=" block w-full"
                     // required
                     name="specialization"
                     value={value.specialization}
@@ -498,7 +498,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="university"
-                    class=" block w-full"
+                    className=" block w-full"
                     // required
                     name="university"
                     value={value.university}
@@ -512,7 +512,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="college"
-                    class=" block w-full"
+                    className=" block w-full"
                     // required
                     name="college"
                     value={value.college}
@@ -526,7 +526,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="percentage"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="percentage"
                     value={value.percentage}
@@ -540,7 +540,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="previousCompany"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="previousCompany"
                     value={value.previousCompany}
@@ -554,7 +554,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="previousDesignation"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="previousDesignation"
                     value={value.previousDesignation}
@@ -568,7 +568,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="date"
                     id="toDate"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="toDate"
                     value={value.toDate}
@@ -582,7 +582,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="date"
                     id="fromDate"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="fromDate"
                     value={value.fromDate}
@@ -596,7 +596,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="numberOfMonth"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="numberOfMonth"
                     value={value.numberOfMonth}
@@ -610,7 +610,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="Jobdescription"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="Jobdescription"
                     value={value.Jobdescription}
@@ -624,7 +624,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="SalaryPay"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="SalaryPay"
                     value={value.SalaryPay}
@@ -638,7 +638,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="SalaryBankName"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="SalaryBankName"
                     value={value.SalaryBankName}
@@ -652,7 +652,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="BeneficiaryName"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="BeneficiaryName"
                     value={value.BeneficiaryName}
@@ -666,7 +666,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="BankIfsc"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="BankIfsc"
                     value={value.BankIfsc}
@@ -681,7 +681,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="AccountNumber"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="AccountNumber"
                     value={value.AccountNumber}
@@ -696,7 +696,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="confirmAccount"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="confirmAccount"
                     value={value.confirmAccount}
@@ -711,7 +711,7 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   <input
                     type="text"
                     id="Branch"
-                    class="block w-full"
+                    className="block w-full"
                     // required
                     name="Branch"
                     value={value.Branch}

@@ -352,38 +352,38 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                   handleSubmit(f, "submit");
                 }}
               >
-                <div class="bg-white border-none ">
-                  <div class=" p-3 pl-9  ">
+                <div className="bg-white border-none ">
+                  <div className=" p-3 pl-9  ">
                     <a href="#">
-                      <h5 class="text-xl font-bold  ">Personal Details</h5>
+                      <h5 className="text-xl font-bold  ">Personal Details</h5>
                     </a>
                   </div>
                   <hr />
-                  <div class=" p-3 pl-7 pr-7 ">
+                  <div className=" p-3 pl-7 pr-7 ">
                     <div className="flex w-full ">
                       <div className=" w-full try">
-                        <div class="pb-4 w-full try">
-                          <label for="name-input" class="block  text-lg font-bold ">Name</label>
-                          <input type="text" id="name-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="First Name" />
+                        <div className="pb-4 w-full try">
+                          <label for="name-input" className="block  text-lg font-bold ">Name</label>
+                          <input type="text" id="name-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="First Name" />
                         </div>
-                        <div class="pb-5 w-full try">
-                          <label for="email-input" class="block  text-lg font-bold ">Email Address</label>
-                          <input type="email" id="email-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Email" />
+                        <div className="pb-5 w-full try">
+                          <label for="email-input" className="block  text-lg font-bold ">Email Address</label>
+                          <input type="email" id="email-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Email" />
                         </div>
 
-                        <div class="pb-5 w-full try">
-                          <label for="comemail-input" class="block  text-lg font-bold ">Company email id</label>
-                          <input type="email" id="comemail-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Company Email" />
+                        <div className="pb-5 w-full try">
+                          <label for="comemail-input" className="block  text-lg font-bold ">Company email id</label>
+                          <input type="email" id="comemail-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Company Email" />
                         </div>
-                        <div class="pb-2 w-full try">
-                          <label for="gender-input" class="block  text-lg font-bold ">Gender</label>
-                          <div class="flex hiiihih">
-                            <div class="flex items-center hiiihih">
-                              <input id="gender-input" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                        <div className="pb-2 w-full try">
+                          <label for="gender-input" className="block  text-lg font-bold ">Gender</label>
+                          <div className="flex hiiihih">
+                            <div className="flex items-center hiiihih">
+                              <input id="gender-input" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                               male
                             </div>
-                            <div class="flex items-center hiiihih">
-                              <input id="gender-input" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-50 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <div className="flex items-center hiiihih">
+                              <input id="gender-input" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-50 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                               Female
                             </div>
 
@@ -391,25 +391,25 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                         </div>
                       </div>
                       <div className=" w-full try ">
-                        <div class="pb-4 w-full try">
-                          <label for="namelast-input" class="block  text-lg font-bold ">Last Name</label>
-                          <input type="text" id="namelast-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Last Name" />
+                        <div className="pb-4 w-full try">
+                          <label for="namelast-input" className="block  text-lg font-bold ">Last Name</label>
+                          <input type="text" id="namelast-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Last Name" />
                         </div>
-                        <div class="pb-2 w-full try">
-                          <label for="peraddress-input" class="block  text-lg font-bold ">Permanent Address</label>
-                          <input type="text" id="peraddress-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Address" />
+                        <div className="pb-2 w-full try">
+                          <label for="peraddress-input" className="block  text-lg font-bold ">Permanent Address</label>
+                          <input type="text" id="peraddress-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Address" />
                         </div>
 
 
                       </div>
                       <div className=" w-full try ">
-                        <div class="pb-4 w-full try">
-                          <label for="phone-input" class="block  text-lg font-bold ">Phone</label>
-                          <input type="number" id="phone-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Number" />
+                        <div className="pb-4 w-full try">
+                          <label for="phone-input" className="block  text-lg font-bold ">Phone</label>
+                          <input type="number" id="phone-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Number" />
                         </div>
-                        <div class="pb-2 w-full try">
-                          <label for="temaddress-input" class="block  text-lg font-bold ">Temporary Address</label>
-                          <input type="text" id="temaddress-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Address" />
+                        <div className="pb-2 w-full try">
+                          <label for="temaddress-input" className="block  text-lg font-bold ">Temporary Address</label>
+                          <input type="text" id="temaddress-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Address" />
                         </div>
 
                       </div>
@@ -419,24 +419,24 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
 
                 </div>
 
-                <div class="bg-white border-none mt-7 ">
-                  <div class=" p-3 pl-9  ">
+                <div className="bg-white border-none mt-7 ">
+                  <div className=" p-3 pl-9  ">
                     <a href="#">
-                      <h5 class="text-xl font-bold  ">Company Details</h5>
+                      <h5 className="text-xl font-bold  ">Company Details</h5>
                     </a>
                   </div>
                   <hr />
-                  <div class=" p-3 pl-7 pr-7 ">
+                  <div className=" p-3 pl-7 pr-7 ">
                     <div className="flex w-full ">
                       <div className=" w-full try">
-                        <div class="pb-4 w-full try">
-                          <label for="emailid-input" class="block  text-lg font-bold ">Email id </label>
-                          <input type="email" id="emailid-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Email id" />
+                        <div className="pb-4 w-full try">
+                          <label for="emailid-input" className="block  text-lg font-bold ">Email id </label>
+                          <input type="email" id="emailid-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Email id" />
                         </div>
-                        <div class="pb-4 w-full try">
-                        <form class="max-w-sm mx-auto">
-                          <label for="Department" class="block  text-lg font-bold ">Department</label>
-                          <select id="Department" class="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                        <div className="pb-4 w-full try">
+                        <form className="max-w-sm mx-auto">
+                          <label for="Department" className="block  text-lg font-bold ">Department</label>
+                          <select id="Department" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
                             <option selected >Select Department</option>
                             <option value="Web">Web</option>
                             <option value="UI">UI</option>
@@ -450,14 +450,14 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                        
                       </div>
                       <div className=" w-full try ">
-                        <div class="pb-4 w-full try">
-                          <label for="joiningdate-input" class="block  text-lg font-bold ">Date of Joining</label>
-                          <input type="date" id="joiningdate-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Last Name" />
+                        <div className="pb-4 w-full try">
+                          <label for="joiningdate-input" className="block  text-lg font-bold ">Date of Joining</label>
+                          <input type="date" id="joiningdate-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Last Name" />
                         </div>
-                        <div class="pb-4 w-full try">
-                        <form class="max-w-sm mx-auto">
-                          <label for="Designation" class="block  text-lg font-bold ">Designation</label>
-                          <select id="Designation" class="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                        <div className="pb-4 w-full try">
+                        <form className="max-w-sm mx-auto">
+                          <label for="Designation" className="block  text-lg font-bold ">Designation</label>
+                          <select id="Designation" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
                             <option selected >Select Designation</option>
                             <option value="Web">Web</option>
                             <option value="UI">UI</option>
@@ -471,10 +471,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
 
                       </div>
                       <div className=" w-full try ">
-                      <div class="pb-4 w-full try">
-                        <form class="max-w-sm mx-auto">
-                          <label for="Branch" class="block  text-lg font-bold ">Branch</label>
-                          <select id="Branch" class="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                      <div className="pb-4 w-full try">
+                        <form className="max-w-sm mx-auto">
+                          <label for="Branch" className="block  text-lg font-bold ">Branch</label>
+                          <select id="Branch" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
                             <option selected >Select Branch</option>
                             <option value="Web">Web</option>
                             <option value="UI">UI</option>
@@ -483,9 +483,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                           </select>
                         </form>
                         </div>
-                        <div class="pb-2 w-full try">
-                          <label for="salary-input" class="block  text-lg font-bold ">salary</label>
-                          <input type="number" id="salary-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Salary" />
+                        <div className="pb-2 w-full try">
+                          <label for="salary-input" className="block  text-lg font-bold ">salary</label>
+                          <input type="number" id="salary-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Salary" />
                         </div>
 
                       </div>
@@ -495,59 +495,59 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
 
                 </div>
 
-                <div class="bg-white border-none mt-7 ">
-                  <div class=" p-3 pl-9  ">
+                <div className="bg-white border-none mt-7 ">
+                  <div className=" p-3 pl-9  ">
                     <a href="#">
-                      <h5 class="text-xl font-bold  ">Document Details </h5>
+                      <h5 className="text-xl font-bold  ">Document Details </h5>
                     </a>
                   </div>
                   <hr />
-                  <div class=" p-3 pl-7 pr-7 ">
+                  <div className=" p-3 pl-7 pr-7 ">
                     <div className="flex w-full ">
                       <div className=" w-full try">
-                        <div class="pb-4 w-full try">
-                          <label for="PanNumber-input" class="block  text-lg font-bold ">Pan Number</label>
-                          <input type="number" id="PanNumber-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Pan Number" />
+                        <div className="pb-4 w-full try">
+                          <label for="PanNumber-input" className="block  text-lg font-bold ">Pan Number</label>
+                          <input type="number" id="PanNumber-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Pan Number" />
                         </div>
-                        <div class="pb-5 w-full try">
-                          <label for="penfile-input" class="block  text-lg font-bold "></label>
-                          <input type="file" id="penfile-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Upload Pan Card" />
+                        <div className="pb-5 w-full try">
+                          <label for="penfile-input" className="block  text-lg font-bold "></label>
+                          <input type="file" id="penfile-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Upload Pan Card" />
                         </div>
-                        <div class="pb-5 w-full try">
-                          <label for="Cancelfile-input" class="block  text-lg font-bold "></label>
-                          <input type="file" id="Cancelfile-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Cancel Check Upload" />
+                        <div className="pb-5 w-full try">
+                          <label for="Cancelfile-input" className="block  text-lg font-bold "></label>
+                          <input type="file" id="Cancelfile-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Cancel Check Upload" />
                         </div>
                        
                         
                       </div>
                       <div className=" w-full try ">
-                        <div class="pb-5 w-full try">
-                          <label for="Aadharcard-input" class="block  text-lg font-bold ">Aadhar card </label>
-                          <input type="number" id="Aadharcard-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter number" />
+                        <div className="pb-5 w-full try">
+                          <label for="Aadharcard-input" className="block  text-lg font-bold ">Aadhar card </label>
+                          <input type="number" id="Aadharcard-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter number" />
                         </div>
-                        <div class="pb-5 w-full try">
-                          <label for="Aadharfile-input" class="block  text-lg font-bold "></label>
-                          <input type="file" id="Aadharfile-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Upload Aadhar Card" />
+                        <div className="pb-5 w-full try">
+                          <label for="Aadharfile-input" className="block  text-lg font-bold "></label>
+                          <input type="file" id="Aadharfile-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Upload Aadhar Card" />
                         </div>
-                        <div class="pb-5 w-full try">
-                          <label for="12file-input" class="block  text-lg font-bold "></label>
-                          <input type="file" id="12file-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="12th  Certificate" />
+                        <div className="pb-5 w-full try">
+                          <label for="12file-input" className="block  text-lg font-bold "></label>
+                          <input type="file" id="12file-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="12th  Certificate" />
                         </div>
 
 
                       </div>
                       <div className=" w-full try ">
-                        <div class="pb-5 w-full try">
-                          <label for="Validation-input" class="block  text-lg font-bold ">Validation Of Pan Number</label>
-                          <input type="number" id="Validation-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 "  />
+                        <div className="pb-5 w-full try">
+                          <label for="Validation-input" className="block  text-lg font-bold ">Validation Of Pan Number</label>
+                          <input type="number" id="Validation-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 "  />
                         </div>
-                        <div class="pb-5 w-full try">
-                          <label for="10file-input" class="block  text-lg font-bold "></label>
-                          <input type="file" id="10file-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="10th Certificate" />
+                        <div className="pb-5 w-full try">
+                          <label for="10file-input" className="block  text-lg font-bold "></label>
+                          <input type="file" id="10file-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="10th Certificate" />
                         </div>
-                        <div class="pb-5 w-full try">
-                          <label for="Graduationfile-input" class="block  text-lg font-bold "></label>
-                          <input type="file" id="Graduationfile-input" class=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Graduation Certificate" />
+                        <div className="pb-5 w-full try">
+                          <label for="Graduationfile-input" className="block  text-lg font-bold "></label>
+                          <input type="file" id="Graduationfile-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Graduation Certificate" />
                         </div>
 
                       </div>
@@ -704,17 +704,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                         <div className="form2-class">
                           <div className=" w-full mt-2">
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="gmail"
-                                  class="block mb-0  font-medium "
+                                  className="block mb-0  font-medium "
                                 >
                                   Company Gmail
                                 </label>
                                 <input
                                   type="email"
                                   id="gmail"
-                                  class=" w-full rounded-lg"
+                                  className=" w-full rounded-lg"
                                   // required
                                   // name="email"
                                   name="gmail"
@@ -726,17 +726,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value2.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="email1"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Personal Email Address
                                 </label>
                                 <input
                                   type="email"
                                   id="email1"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="email1"
                                   value={value2?.email1}
@@ -746,17 +746,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value2.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="mobile"
-                                  class="block mb-0 font-medium"
+                                  className="block mb-0 font-medium"
                                 >
                                   Mobile Number*
                                 </label>
                                 <input
                                   type="text"
                                   id="mobile"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="mobile"
                                   value={value2?.mobile}
@@ -768,10 +768,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               </div>
                             </div>
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="gender"
-                                  class="block mb-0  font-medium "
+                                  className="block mb-0  font-medium "
                                 >
                                   Gender
                                 </label>
@@ -794,17 +794,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value2.status}
                                 </select>
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="dob"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Date of Birth
                                 </label>
                                 <input
                                   type="text"
                                   id="dob"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="dob"
                                   value={value2?.dob}
@@ -814,7 +814,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value2.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <div className="inputs-buttons w-full inputs-button1">
                                   <button
                                     onClick={() => {
@@ -849,17 +849,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                         <div className="form2-class">
                           <div className="w-full mt-2">
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="pan"
-                                  class="block mb-0  font-medium "
+                                  className="block mb-0  font-medium "
                                 >
                                   PAN No.
                                 </label>
                                 <input
                                   type="text"
                                   id="pan"
-                                  class=" w-full rounded-lg"
+                                  className=" w-full rounded-lg"
                                   // required
                                   name="pan"
                                   value={value3?.pan}
@@ -869,17 +869,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value3.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="adhar"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Aadhaar No.
                                 </label>
                                 <input
                                   type="text"
                                   id="adhar"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="adhar"
                                   value={value3?.adhar}
@@ -889,17 +889,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value3.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="father"
-                                  class="block mb-0 font-medium"
+                                  className="block mb-0 font-medium"
                                 >
                                   Father Name
                                 </label>
                                 <input
                                   type="text"
                                   id="father"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="father"
                                   value={value3?.father}
@@ -911,17 +911,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               </div>
                             </div>
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="currentAddress"
-                                  class="block mb-0  font-medium "
+                                  className="block mb-0  font-medium "
                                 >
                                   Current Residence Address
                                 </label>
                                 <input
                                   type="text"
                                   id="currentAddress"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="currentAddress"
                                   value={value3?.currentAddress}
@@ -933,15 +933,15 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               </div>
                             </div>
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="currentState"
-                                  class="block mb-0  font-medium "
+                                  className="block mb-0  font-medium "
                                 >
                                   Current state
                                 </label>
                                 {/* <select
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   name="currentState"
                                   id="currentState"
                                   value={value3?.currentState}
@@ -957,7 +957,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 <input
                                   type="text"
                                   id="currentState"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="currentState"
                                   value={value3?.currentState}
@@ -967,7 +967,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value3.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="currentCity"
                                   className="block mb-0  font-medium"
@@ -987,17 +987,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value3.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="currentPin"
-                                  class="block mb-0 font-medium"
+                                  className="block mb-0 font-medium"
                                 >
                                   Area Pincode
                                 </label>
                                 <input
                                   type="text"
                                   id="currentPin"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="currentPin"
                                   value={value3?.currentPin}
@@ -1009,29 +1009,29 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               </div>
                             </div>
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <div className="flex items-center">
                                   <label
                                     for="residence"
-                                    class="block mb-0  font-medium "
+                                    className="block mb-0  font-medium "
                                   >
                                     Permanent Residence Address{" "}
                                   </label>
-                                  <div class="flex items-center">
+                                  <div className="flex items-center">
                                     <input
                                       id="link-checkbox"
                                       type="checkbox"
                                       value=""
-                                      class="w-4 checkta  rounded mt-3 "
+                                      className="w-4 checkta  rounded mt-3 "
                                     />
                                     <label
                                       for="link-checkbox"
-                                      class="ml-2 text-sm font-medium  text-gray-900 dark:text-gray-300"
+                                      className="ml-2 text-sm font-medium  text-gray-900 dark:text-gray-300"
                                     >
                                       Set as present{" "}
                                       <a
                                         href="#"
-                                        class="text-blue-600 dark:text-blue-500 hover:underline"
+                                        className="text-blue-600 dark:text-blue-500 hover:underline"
                                       ></a>
                                       .
                                     </label>
@@ -1052,10 +1052,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                             </div>
 
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="perState"
-                                  class="block mb-0  font-medium "
+                                  className="block mb-0  font-medium "
                                 >
                                   Permanent state
                                 </label>
@@ -1073,17 +1073,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   <option>Jharkhand</option>
                                 </select>
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="perCity"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Permanent city
                                 </label>
                                 <input
                                   type="text"
                                   id="perCity"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="perCity"
                                   value={value3?.perCity}
@@ -1093,17 +1093,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value3.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="perPin"
-                                  class="block mb-0 font-medium"
+                                  className="block mb-0 font-medium"
                                 >
                                   Permanent Area Pincode
                                 </label>
                                 <input
                                   type="text"
                                   id="perPin"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="perPin"
                                   value={value3?.perPin}
@@ -1116,10 +1116,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                             </div>
 
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="Martial"
-                                  class="block mb-0  font-medium "
+                                  className="block mb-0  font-medium "
                                 >
                                   Marital status
                                 </label>
@@ -1138,10 +1138,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   <option>UnMarried</option>
                                 </select>
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="nationality"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Nationality
                                 </label>
@@ -1159,17 +1159,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   <option>india</option>
                                 </select>
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="Mother"
-                                  class="block mb-0 font-medium"
+                                  className="block mb-0 font-medium"
                                 >
                                   Mother name
                                 </label>
                                 <input
                                   type="text"
                                   id="Mother"
-                                  class="rounded-lg  w-full"
+                                  className="rounded-lg  w-full"
                                   // required
                                   name="Mother"
                                   value={value3?.Mother}
@@ -1213,10 +1213,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                         <div className="form2-class">
                           <div className="w-full mt-2">
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="qualification"
-                                  class="block mb-0  font-medium "
+                                  className="block mb-0  font-medium "
                                 >
                                   Qualification
                                 </label>
@@ -1233,10 +1233,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value4.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="specialization"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Specialization
                                 </label>
@@ -1253,10 +1253,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value4.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="qualificationType"
-                                  class="block mb-0 font-medium"
+                                  className="block mb-0 font-medium"
                                 >
                                   Qualification Type
                                 </label>
@@ -1281,10 +1281,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                             </div>
 
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="yearPass"
-                                  class="block mb-0 font-medium"
+                                  className="block mb-0 font-medium"
                                 >
                                   Year of passing •
                                 </label>
@@ -1323,10 +1323,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   <option>2021</option>
                                 </select>
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="university"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   University/Board •
                                 </label>
@@ -1343,7 +1343,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value4.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="college"
                                   className="block mb-0  font-medium"
@@ -1366,10 +1366,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                             </div>
 
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="percentage"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Grade/CCPA/Percentage
                                 </label>
@@ -1386,10 +1386,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value4.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="previousCompany"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Previous Company •
                                 </label>
@@ -1406,7 +1406,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value4.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="previousDesignation"
                                   className="block mb-0  font-medium"
@@ -1429,10 +1429,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                             </div>
 
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="toDate"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   To date •
                                 </label>
@@ -1449,10 +1449,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value4.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="fromDate"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   From date*
                                 </label>
@@ -1469,7 +1469,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value4.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="numberOfMonth"
                                   className="block mb-0  font-medium"
@@ -1492,10 +1492,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                             </div>
 
                             <div className="flex w-full">
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="Jobdescription"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Job description
                                 </label>
@@ -1548,7 +1548,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               <div className="mb-6 w-full try">
                                 <label
                                   for="SalaryPay"
-                                  class="block mb-0  font-medium "
+                                  className="block mb-0  font-medium "
                                 >
                                   Salary Pay Mode
                                 </label>
@@ -1568,7 +1568,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               <div className="mb-6 w-full try">
                                 <label
                                   for="SalaryBankName"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Salary Bank Name
                                 </label>
@@ -1588,7 +1588,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               <div className="mb-6 w-full try">
                                 <label
                                   for="BeneficiaryName"
-                                  class="block mb-0 font-medium"
+                                  className="block mb-0 font-medium"
                                 >
                                   Beneficiary Name
                                 </label>
@@ -1629,10 +1629,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value5.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="AccountNumber"
-                                  class="block mb-0  font-medium"
+                                  className="block mb-0  font-medium"
                                 >
                                   Account Number
                                 </label>
@@ -1649,7 +1649,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   disabled={value5.status}
                                 />
                               </div>
-                              <div class="mb-6 w-full try">
+                              <div className="mb-6 w-full try">
                                 <label
                                   for="confirmAccount"
                                   className="block mb-0  font-medium"
@@ -1672,7 +1672,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                             </div>
 
                             <div className="flex">
-                              <div class="mb-6 w-[30%] try">
+                              <div className="mb-6 w-[30%] try">
                                 <label
                                   for="Branch"
                                   className="block mb-0  font-medium"
@@ -1725,9 +1725,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                         <div className="form2-class">
                           <div className="w-full mt-6">
                             <div className="flex w-full">
-                              <div class="drag-area try">
-                                <div class="icon">
-                                  <i class="fas fa-cloud-upload-alt"></i>
+                              <div className="drag-area try">
+                                <div className="icon">
+                                  <i className="fas fa-cloud-upload-alt"></i>
                                 </div>
                                 <div className="flex flex-col items-center justify-center">
                                   <header>3 Month salary Slips</header>
@@ -1738,9 +1738,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   type="file"
                                 />
                               </div>
-                              <div class="drag-area try">
-                                <div class="icon">
-                                  <i class="fas fa-cloud-upload-alt"></i>
+                              <div className="drag-area try">
+                                <div className="icon">
+                                  <i className="fas fa-cloud-upload-alt"></i>
                                 </div>
                                 <div className="flex flex-col items-center justify-center">
                                   <header>Aadhar Card (Both Sides)</header>
@@ -1751,7 +1751,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   type="file"
                                 />
                               </div>
-                              <div class="drag-area try">
+                              <div className="drag-area try">
                                 <div className="icon">
                                   <i className="fas fa-cloud-upload-alt"></i>
                                 </div>
@@ -1767,9 +1767,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               </div>
                             </div>
                             <div className="flex w-full mt-6">
-                              <div class="drag-area try">
-                                <div class="icon">
-                                  <i class="fas fa-cloud-upload-alt"></i>
+                              <div className="drag-area try">
+                                <div className="icon">
+                                  <i className="fas fa-cloud-upload-alt"></i>
                                 </div>
                                 <div className="flex flex-col items-center justify-center">
                                   <header>PAN Card</header>
@@ -1781,9 +1781,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   type="file"
                                 />
                               </div>
-                              <div class="drag-area try">
-                                <div class="icon">
-                                  <i class="fas fa-cloud-upload-alt"></i>
+                              <div className="drag-area try">
+                                <div className="icon">
+                                  <i className="fas fa-cloud-upload-alt"></i>
                                 </div>
                                 <div className="flex flex-col items-center justify-center">
                                   <header>Education Certificate</header>
@@ -1795,9 +1795,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   type="file"
                                 />
                               </div>
-                              <div class="drag-area try">
-                                <div class="icon">
-                                  <i class="fas fa-cloud-upload-alt"></i>
+                              <div className="drag-area try">
+                                <div className="icon">
+                                  <i className="fas fa-cloud-upload-alt"></i>
                                 </div>
                                 <div className="flex flex-col items-center justify-center">
                                   <header>Previous organization Offer </header>
@@ -1811,9 +1811,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               </div>
                             </div>
                             <div className="flex w-full mt-6">
-                              <div class="drag-area drag-area2 try">
-                                <div class="icon">
-                                  <i class="fas fa-cloud-upload-alt"></i>
+                              <div className="drag-area drag-area2 try">
+                                <div className="icon">
+                                  <i className="fas fa-cloud-upload-alt"></i>
                                 </div>
                                 <div className="flex flex-col items-center justify-center">
                                   <header>PAN Card</header>
@@ -1855,7 +1855,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                   <div className=" flex items-center justify-center mt-5">
                     <button
                       type="submit"
-                      class="text-white outline-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  font-semibold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                      className="text-white outline-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  font-semibold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     >
                       Register
                     </button>

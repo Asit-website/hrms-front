@@ -22,41 +22,41 @@ const Payroll = ({ setAlert, pop1, setPop1 }) => {
 
                 <div className="relative overflow-x-auto overhidding overhidding1">
                   <h2>My Payroll</h2>
-                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="bg-[#ffffff] theads theads1">
+                  <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="bg-[#ffffff] theads theads1">
                       <tr>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>S.No</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Transaction address</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Date</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Amount</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Working days</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar">
+                        <th scope="col" className="px-6 py-3 sitar">
                           <h4>Status</h4>
                         </th>
-                        <th scope="col" class="px-6 py-3 sitar1">
+                        <th scope="col" className="px-6 py-3 sitar1">
                           <h4>Download Slip</h4>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="bg-[#ffffff] tr-head tr-head1  ">
-                        <td scope="row" class="px-6 py-4">
+                      <tr className="bg-[#ffffff] tr-head tr-head1  ">
+                        <td scope="row" className="px-6 py-4">
                           <p className="sno">01</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>1234-5678-9012-3456</p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <div className='flex items-center'>
                             <div>
                               <img width={15} src={orange} alt="orange" />
@@ -67,29 +67,29 @@ const Payroll = ({ setAlert, pop1, setPop1 }) => {
                             </div>
                           </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p className='inr'>+100000 INR</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>24.5  (588 Hours) </p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <p>Sucessfull</p>
                         </td>
-                        <td class="px-6 py-4 relative cursor-pointer">
+                        <td className="px-6 py-4 relative cursor-pointer">
                           <div className='santu'>
                             <img src={download} alt="download" />
                           </div>
                         </td>
                       </tr>
-                      <tr class="bg-[#ffffff] tr-head tr-head1  ">
-                        <td scope="row" class="px-6 py-4">
+                      <tr className="bg-[#ffffff] tr-head tr-head1  ">
+                        <td scope="row" className="px-6 py-4">
                           <p className="sno">01</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>1234-5678-9012-3456</p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <div className='flex items-center'>
                             <div>
                               <img width={15} src={orange} alt="orange" />
@@ -100,29 +100,29 @@ const Payroll = ({ setAlert, pop1, setPop1 }) => {
                             </div>
                           </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p className='inr'>+100000 INR</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>24.5  (588 Hours) </p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <p>Sucessfull</p>
                         </td>
-                        <td class="px-6 py-4 relative cursor-pointer">
+                        <td className="px-6 py-4 relative cursor-pointer">
                           <div className='santu'>
                             <img src={download} alt="download" />
                           </div>
                         </td>
                       </tr>
-                      <tr class="bg-[#ffffff] tr-head tr-head1  ">
-                        <td scope="row" class="px-6 py-4">
+                      <tr className="bg-[#ffffff] tr-head tr-head1  ">
+                        <td scope="row" className="px-6 py-4">
                           <p className="sno">01</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>1234-5678-9012-3456</p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <div className='flex items-center'>
                             <div>
                               <img width={15} src={orange} alt="orange" />
@@ -133,29 +133,29 @@ const Payroll = ({ setAlert, pop1, setPop1 }) => {
                             </div>
                           </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p className='inr'>+100000 INR</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>24.5  (588 Hours) </p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <p>Sucessfull</p>
                         </td>
-                        <td class="px-6 py-4 relative cursor-pointer">
+                        <td className="px-6 py-4 relative cursor-pointer">
                           <div className='santu'>
                             <img src={download} alt="download" />
                           </div>
                         </td>
                       </tr>
-                      <tr class="bg-[#ffffff] tr-head tr-head1  ">
-                        <td scope="row" class="px-6 py-4">
+                      <tr className="bg-[#ffffff] tr-head tr-head1  ">
+                        <td scope="row" className="px-6 py-4">
                           <p className="sno">01</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>1234-5678-9012-3456</p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <div className='flex items-center'>
                             <div>
                               <img width={15} src={orange} alt="orange" />
@@ -166,29 +166,29 @@ const Payroll = ({ setAlert, pop1, setPop1 }) => {
                             </div>
                           </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p className='inr'>+100000 INR</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>24.5  (588 Hours) </p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <p>Sucessfull</p>
                         </td>
-                        <td class="px-6 py-4 relative cursor-pointer">
+                        <td className="px-6 py-4 relative cursor-pointer">
                           <div className='santu'>
                             <img src={download} alt="download" />
                           </div>
                         </td>
                       </tr>
-                      <tr class="bg-[#ffffff] tr-head tr-head1  ">
-                        <td scope="row" class="px-6 py-4">
+                      <tr className="bg-[#ffffff] tr-head tr-head1  ">
+                        <td scope="row" className="px-6 py-4">
                           <p className="sno">01</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>1234-5678-9012-3456</p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <div className='flex items-center'>
                             <div>
                               <img width={15} src={orange} alt="orange" />
@@ -199,29 +199,29 @@ const Payroll = ({ setAlert, pop1, setPop1 }) => {
                             </div>
                           </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p className='inr'>+100000 INR</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>24.5  (588 Hours) </p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <p>Sucessfull</p>
                         </td>
-                        <td class="px-6 py-4 relative cursor-pointer">
+                        <td className="px-6 py-4 relative cursor-pointer">
                           <div className='santu'>
                             <img src={download} alt="download" />
                           </div>
                         </td>
                       </tr>
-                      <tr class="bg-[#ffffff] tr-head tr-head1  ">
-                        <td scope="row" class="px-6 py-4">
+                      <tr className="bg-[#ffffff] tr-head tr-head1  ">
+                        <td scope="row" className="px-6 py-4">
                           <p className="sno">01</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>1234-5678-9012-3456</p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <div className='flex items-center'>
                             <div>
                               <img width={15} src={orange} alt="orange" />
@@ -232,29 +232,29 @@ const Payroll = ({ setAlert, pop1, setPop1 }) => {
                             </div>
                           </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p className='inr'>+100000 INR</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>24.5  (588 Hours) </p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <p>Sucessfull</p>
                         </td>
-                        <td class="px-6 py-4 relative cursor-pointer">
+                        <td className="px-6 py-4 relative cursor-pointer">
                           <div className='santu'>
                             <img src={download} alt="download" />
                           </div>
                         </td>
                       </tr>
-                      <tr class="bg-[#ffffff] tr-head tr-head1  ">
-                        <td scope="row" class="px-6 py-4">
+                      <tr className="bg-[#ffffff] tr-head tr-head1  ">
+                        <td scope="row" className="px-6 py-4">
                           <p className="sno">01</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>1234-5678-9012-3456</p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <div className='flex items-center'>
                             <div>
                               <img width={15} src={orange} alt="orange" />
@@ -265,16 +265,16 @@ const Payroll = ({ setAlert, pop1, setPop1 }) => {
                             </div>
                           </div>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p className='inr'>+100000 INR</p>
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           <p>24.5  (588 Hours) </p>
                         </td>
-                        <td class="px-6 py-4 timer">
+                        <td className="px-6 py-4 timer">
                           <p>Sucessfull</p>
                         </td>
-                        <td class="px-6 py-4 relative cursor-pointer">
+                        <td className="px-6 py-4 relative cursor-pointer">
                           <div className='santu'>
                             <img src={download} alt="download" />
                           </div>
