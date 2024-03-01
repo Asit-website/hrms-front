@@ -60,6 +60,21 @@ const sidebarItem = [
     ],
 
   },
+  {
+    title: "Leave Type",
+    tableData: [
+      {
+        title: "Leave Type",
+      },
+      {
+        title: "Days/Year",
+      },
+      {
+        title: "ACTION",
+      },
+    ],
+
+  },
 ];
 
 const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
@@ -132,6 +147,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
   const [popup1, setPopup1] = useState(false);
   const [popup2, setPopup2] = useState(false);
   const [popup3, setPopup3] = useState(false);
+  const [popup4, setPopup4] = useState(false);
+
+
   const [branches, setBranches] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [designations, setDesignations] = useState([]);
@@ -243,6 +261,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                     }
                     else if (open === 2) {
                       setPopup3(true);
+                    }
+                    else if(open === 3){
+                      setPopup4(true);
                     }
 
                   }} className="plusiCON" src={plusIcon} alt="" />
@@ -382,6 +403,55 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                     <option value="20">20</option>
                     <option value="50">50</option>
                   </select> */}
+
+                          <p>Filter</p>
+                          <div className="hrmsystemsetup-search">
+                            <img src={srchIcon} alt="" />
+                            <input type="text" placeholder="Search..." />
+                          </div>
+                        </div>
+
+                        <div className="relative overflow-x-auto">
+                          <table className="w-full text-left   text-[#060606]">
+                            <thead className=" uppercase text-[#060606]">
+                              <tr>
+                                {sidebarItem[open].tableData.map(
+                                  (item, index) => (
+                                    <th key={index} scope="col" className="px-6 py-3">
+                                      {item.title}
+                                    </th>
+                                  )
+                                )}
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              {designations.map((item, index) => (
+                                <tr key={index} className="bg-white ">
+                                  <td className="px-6 py-4 ">
+                                    {item?.department?.name}
+                                  </td>
+                                  <td className="px-6 py-4 ">
+                                    {item?.name}
+                                  </td>
+                                  <td className="px-6 py-4 flex hrmActions">
+                                    <img src={edited} alt="" />
+                                    <img src={deleted} alt="" />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  {
+                    open === 3 &&
+                    <div className="hrmsystemsetup-leftmenu">
+                      <div className="hrmsystemsetup-container">
+                        <div className="hrmsystemsetup-pagination">
+               
 
                           <p>Filter</p>
                           <div className="hrmsystemsetup-search">
@@ -820,6 +890,37 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               <div className="btnWrap">
                 <button className="cencel" onClick={() => setPopup3(false)}>
+                  <span>Cancel</span>
+                </button>
+
+                <button className="create" onClick={handleCreateDesignation}>
+                  <span>Create</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+        {
+          popup4 &&
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Create New Designation</h2>
+              <hr />
+              <label htmlFor>
+                <p>Department</p>
+                <select className="selectBRANCH" name="" id="">
+                  <option value="" disabled selected>Admin</option>
+                </select>
+              </label>
+              <label htmlFor="">
+                <p>Name</p>
+                <input type="text" placeholder="Enter Designation Name" />
+              </label>
+
+              <hr />
+
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup4(false)}>
                   <span>Cancel</span>
                 </button>
 
