@@ -38,15 +38,24 @@ const MarkAttendance = ({
     }
   ];
 
-  useEffect(() => {
-    getData();
-  }, []);
+
 
   const getData = async () => {
     let ans = await getAllActivities();
     console.log(ans);
     setData(ans.data);
   };
+
+  const [selectedOption, setSelectedOption] = useState('daily');
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -86,7 +95,7 @@ const MarkAttendance = ({
                 </div>
               </div>
 
-              <div className="marSecond">
+              {/* <div className="marSecond">
                 <div className="mAdSlE">
                   <p className="tText">Type</p>
                   <label htmlFor="">
@@ -97,7 +106,32 @@ const MarkAttendance = ({
                     <input type="radio" />
                     <span>Daily</span>
                   </label>
-                </div>
+                </div> */}
+
+<div className="marSecond">
+      <div className="mAdSlE">
+        <p className="tText">Type</p>
+        <label htmlFor="monthly">
+          <input
+            type="radio"
+            id="monthly"
+            value="monthly"
+            checked={selectedOption === 'monthly'}
+            onChange={handleOptionChange}
+          />
+          <span>Monthly</span>
+        </label>
+        <label htmlFor="daily">
+          <input
+            type="radio"
+            id="daily"
+            value="daily"
+            checked={selectedOption === 'daily'}
+            onChange={handleOptionChange}
+          />
+          <span>Daily</span>
+        </label>
+      </div>
 
                 <div className="maDSrIGH">
                   <select name="" id="">
@@ -113,9 +147,13 @@ const MarkAttendance = ({
                     <img src={restart} alt="" />
                   </div>
                 </div>
+
               </div>
 
+
+
               <main className="MarkAtMain">
+
                 <div className="marknav">
                   <div className="marNavLef">
                     <select name="" id="">
@@ -130,68 +168,151 @@ const MarkAttendance = ({
                   </div>
                 </div>
 
+
+                {selectedOption === 'daily' && 
+                
                 <div className="relative overflow-x-auto">
-                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                      <tr>
-                        <th scope="col" className="px-6 py-3 currentText">
-                          Employee
-                        </th>
-                        <th scope="col" className="px-6 py-3 currentText">
-                          Date
-                        </th>
-                        <th scope="col" className="px-6 py-3 currentText">
-                          Status
-                        </th>
-                        <th scope="col" className="px-6 py-3 currentText">
-                          clock In
-                        </th>
-                        <th scope="col" className="px-6 py-3 currentText">
-                          clock out
-                        </th>
-                        <th scope="col" className="px-6 py-3 currentText">
-                          Break
-                        </th>
-                        <th scope="col" className="px-6 py-3 currentText">
-                          Overtime
-                        </th>
-                        <th scope="col" className="px-6 py-3 currentText">
-                          action
-                        </th>
+
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Employee
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Date
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Status
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        clock In
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        clock out
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Break
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Overtime
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((item, index) => (
+                      <tr key={index} className="bg-white ">
+                        <td className="px-6 py-4 itemANs">
+                          {item?.user?.fullName}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {new Date(Number(item?.date)).toLocaleDateString('en-GB')}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {'Present'}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {new Date(Number(item.clockIn)).toLocaleTimeString('en-GB')}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {Number(item.clockOut)!==0 ? new Date(Number(item.clockOut)).toLocaleTimeString('en-GB') : ' - '}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {Number(item.clockOut)!==0 ? `${(Math.floor((item.late) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((item.late) % 3600) / 60)).toString().padStart(2, '0')}:${(Math.floor(item.late%60)).toString().padStart(2, '0')}` : ' - '}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {Number(item.clockOut)!==0 ? `${(Math.floor((item.overtime) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((item.overtime) % 3600) / 60)).toString().padStart(2, '0')}:${(Math.floor(item.overtime%60)).toString().padStart(2, '0')}` : ' - '}
+                        </td>
+                        <td className="px-6 py-4 ">
+                          <img src={moreVert} alt="" />
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {data.map((item, index) => (
-                        <tr key={index} className="bg-white ">
-                          <td className="px-6 py-4 itemANs">
-                            {item?.user?.fullName}
-                          </td>
-                          <td className="px-6 py-4 itemANs">
-                            {new Date(Number(item?.date)).toLocaleDateString('en-GB')}
-                          </td>
-                          <td className="px-6 py-4 itemANs">
-                            {'Present'}
-                          </td>
-                          <td className="px-6 py-4 itemANs">
-                            {new Date(Number(item.clockIn)).toLocaleTimeString('en-GB')}
-                          </td>
-                          <td className="px-6 py-4 itemANs">
-                            {Number(item.clockOut)!==0 ? new Date(Number(item.clockOut)).toLocaleTimeString('en-GB') : ' - '}
-                          </td>
-                          <td className="px-6 py-4 itemANs">
-                            {Number(item.clockOut)!==0 ? `${(Math.floor((item.late) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((item.late) % 3600) / 60)).toString().padStart(2, '0')}:${(Math.floor(item.late%60)).toString().padStart(2, '0')}` : ' - '}
-                          </td>
-                          <td className="px-6 py-4 itemANs">
-                            {Number(item.clockOut)!==0 ? `${(Math.floor((item.overtime) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((item.overtime) % 3600) / 60)).toString().padStart(2, '0')}:${(Math.floor(item.overtime%60)).toString().padStart(2, '0')}` : ' - '}
-                          </td>
-                          <td className="px-6 py-4 ">
-                            <img src={moreVert} alt="" />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+
+                  </tbody>
+                </table>
+
+
+              </div>
+                }
+
+
+                {selectedOption === 'monthly' && 
+                
+                <div className="relative overflow-x-auto">
+
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Employee monthly
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Date
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Status
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        clock In
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        clock out
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Break
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        Overtime
+                      </th>
+                      <th scope="col" className="px-6 py-3 currentText">
+                        action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((item, index) => (
+                      <tr key={index} className="bg-white ">
+                        <td className="px-6 py-4 itemANs">
+                          {item?.user?.fullName}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {new Date(Number(item?.date)).toLocaleDateString('en-GB')}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {'Present'}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {new Date(Number(item.clockIn)).toLocaleTimeString('en-GB')}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {Number(item.clockOut)!==0 ? new Date(Number(item.clockOut)).toLocaleTimeString('en-GB') : ' - '}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {Number(item.clockOut)!==0 ? `${(Math.floor((item.late) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((item.late) % 3600) / 60)).toString().padStart(2, '0')}:${(Math.floor(item.late%60)).toString().padStart(2, '0')}` : ' - '}
+                        </td>
+                        <td className="px-6 py-4 itemANs">
+                          {Number(item.clockOut)!==0 ? `${(Math.floor((item.overtime) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((item.overtime) % 3600) / 60)).toString().padStart(2, '0')}:${(Math.floor(item.overtime%60)).toString().padStart(2, '0')}` : ' - '}
+                        </td>
+                        <td className="px-6 py-4 ">
+                          <img src={moreVert} alt="" />
+                        </td>
+                      </tr>
+                    ))}
+
+                  </tbody>
+                </table>
+
+
+              </div>
+                }
+
+               
+
+            
               </main>
             </div>
           </div>
