@@ -266,17 +266,19 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
         <div className="logo ">
           <img src={kushel1} alt="" />
         </div>
-        <NavLink to="/employeeDash"><div className="second-logo flex items-center">
+        <NavLink to="/employeeDash">
+        <div className="second-logo flex items-center">
           <img src={thir} alt="" />
           <p className="ml-2">
             Good {greet} {user?.fullName}
           </p>
-        </div></NavLink>
+        </div>
+        </NavLink>
         <div className="third-logo ">
           <input type="search" placeholder="Search" />
         </div>
 
-        <div className="fourth-logo ">
+        {/* <div className="fourth-logo ">
           {!isPunched ? (
             <button
               onClick={() => {
@@ -353,7 +355,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
 
         {/* <div style={stylePeer}>
           <CircularProgressbar

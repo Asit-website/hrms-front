@@ -11,6 +11,8 @@ const baseUrl = "http://localhost:5000";
 
 // const baseUrl = "https://hmsbackend.kusheldigi.com";
 
+// const baseUrl = "https://hrms-backend-g3wt.onrender.com";
+
 const MainState = (props) => {
    const [user, setUser] = useState({});
    const [flag, setFlag] = useState(false);
@@ -191,8 +193,8 @@ const MainState = (props) => {
       return data;
    };
 
-   const getAllActivities = async () => {
-      const data = await get(`${baseUrl}/activity/getAllActivities`, true);
+   const getAllActivities = async (type, date, userId) => {
+      const data = await get(`${baseUrl}/activity/getAllActivities?type=${type}&date=${date}&userId=${userId}`, true);
       return data;
    };
 

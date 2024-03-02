@@ -15,7 +15,7 @@ import blackRight from "../../images/blackRight.png";
 import srchIcon from "../../images/srchIcon.png";
 import deleted from "../../images/deleted.png";
 import edited from "../../images/edited.png";
-import plusIcon from "../../images/plusIcon.png"
+import plusIcon from "../../images/plusIcon.png";
 
 const sidebarItem = [
   {
@@ -28,7 +28,6 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-
   },
   {
     title: "Department",
@@ -43,7 +42,6 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-
   },
   {
     title: "Designation",
@@ -58,12 +56,39 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-
+  },
+  {
+    title: "Leave Type",
+    tableData: [
+      {
+        title: "Leave Type",
+      },
+      {
+        title: "Days/Year",
+      },
+      {
+        title: "ACTION",
+      },
+    ],
   },
 ];
 
 const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
-  const { user, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation } = useMain();
+  const {
+    user,
+    getBranchs,
+    postBranch,
+    updateBranch,
+    deleteBranch,
+    getDepartments,
+    postDepartment,
+    updateDepartment,
+    deleteDepartment,
+    getDesignations,
+    postDesignation,
+    updateDesignation,
+    deleteDesignation,
+  } = useMain();
 
   const [value, onChange] = useState(new Date());
   const [gen, setGen] = useState([]);
@@ -95,54 +120,54 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     {
       type: "Head office",
     },
-  ]
+  ];
 
   const data2 = [
     {
       branch: "Head office",
-      department: "Admin"
+      department: "Admin",
     },
     {
       branch: "Head office",
-      department: "Admin"
+      department: "Admin",
     },
     {
       branch: "Head office",
-      department: "Admin"
+      department: "Admin",
     },
-
-  ]
+  ];
 
   const data3 = [
     {
       department: "Head office",
-      designation: "Admin"
+      designation: "Admin",
     },
     {
       department: "Head office",
-      designation: "Admin"
+      designation: "Admin",
     },
     {
       department: "Head office",
-      designation: "Admin"
+      designation: "Admin",
     },
-
-  ]
+  ];
 
   const [popup1, setPopup1] = useState(false);
   const [popup2, setPopup2] = useState(false);
   const [popup3, setPopup3] = useState(false);
+  const [popup4, setPopup4] = useState(false);
+
   const [branches, setBranches] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [designations, setDesignations] = useState([]);
-  const [branch, setBranch] = useState('');
+  const [branch, setBranch] = useState("");
   const [departmentValue, setDepartmentValue] = useState({
-    branch: '',
-    name: ''
+    branch: "",
+    name: "",
   });
   const [designationValue, setDesignationValue] = useState({
-    department: '',
-    name: ''
+    department: "",
+    name: "",
   });
   const [refreshFlag, setRefreshFlag] = useState(false);
 
@@ -159,51 +184,48 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     setDesignations(ans3.data);
   };
 
-  const handleCreateBranch=async()=>{
+  const handleCreateBranch = async () => {
     console.log(branch);
-    const ans = await postBranch({name: branch});
+    const ans = await postBranch({ name: branch });
     console.log(ans);
-    if(ans.status)
-    {
+    if (ans.status) {
       alert(ans.message);
-      setBranch('');
+      setBranch("");
       setRefreshFlag(!refreshFlag);
-    }
-    else
-    {
-      alert('something went wrong');
+    } else {
+      alert("something went wrong");
     }
   };
 
-  const handleCreateDepartment=async()=>{
+  const handleCreateDepartment = async () => {
     console.log(departmentValue);
-    const ans = await postDepartment({name: departmentValue.name, branch: departmentValue.branch});
+    const ans = await postDepartment({
+      name: departmentValue.name,
+      branch: departmentValue.branch,
+    });
     console.log(ans);
-    if(ans.status)
-    {
+    if (ans.status) {
       alert(ans.message);
-      setBranch('');
+      setBranch("");
       setRefreshFlag(!refreshFlag);
-    }
-    else
-    {
-      alert('something went wrong');
+    } else {
+      alert("something went wrong");
     }
   };
 
-  const handleCreateDesignation=async()=>{
+  const handleCreateDesignation = async () => {
     console.log(designationValue);
-    const ans = await postDesignation({name: designationValue.name, designation: designationValue.department});
+    const ans = await postDesignation({
+      name: designationValue.name,
+      designation: designationValue.department,
+    });
     console.log(ans);
-    if(ans.status)
-    {
+    if (ans.status) {
       alert(ans.message);
-      setBranch('');
+      setBranch("");
       setRefreshFlag(!refreshFlag);
-    }
-    else
-    {
-      alert('something went wrong');
+    } else {
+      alert("something went wrong");
     }
   };
 
@@ -220,9 +242,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <div className="admin-main">
                 <div className="plusSection">
                   <div className="adminFirt">
-
-
-
                     <h2 className="hrmShed">HRMS</h2>
 
                     <div className="hrmDoHe">
@@ -230,40 +249,43 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                       <img src={chevron} alt="" />
                       <span>HRM System Setup</span>
                     </div>
-
                   </div>
 
-                  <img onClick={() => {
-
-                    if (open === 0) {
-                      setPopup1(true);
-                    }
-                    else if (open === 1) {
-                      setPopup2(true);
-                    }
-                    else if (open === 2) {
-                      setPopup3(true);
-                    }
-
-                  }} className="plusiCON" src={plusIcon} alt="" />
-
+                  <img
+                    onClick={() => {
+                      if (open === 0) {
+                        setPopup1(true);
+                      } else if (open === 1) {
+                        setPopup2(true);
+                      } else if (open === 2) {
+                        setPopup3(true);
+                      } else if (open === 3) {
+                        setPopup4(true);
+                      }
+                    }}
+                    className="plusiCON"
+                    src={plusIcon}
+                    alt=""
+                  />
                 </div>
 
                 <div className="hrmssystemsetup-parents">
                   <div className="hrmssystemsetup-rightmenu">
                     {sidebarItem.map((item, index) => (
-                      <div key={index}
+                      <div
+                        key={index}
                         onClick={() => setOpen(index)}
-                        className={`hrmsystemsetup-subrightmenu ${open === index && "openItem"
-                          } `}>
+                        className={`hrmsystemsetup-subrightmenu ${
+                          open === index && "openItem"
+                        } `}
+                      >
                         <span>{item.title}</span>
                         <img src={blackRight} alt="" />
                       </div>
                     ))}
                   </div>
 
-                  {
-                    open === 0 &&
+                  {open === 0 && (
                     <div className="hrmsystemsetup-leftmenu">
                       <div className="hrmsystemsetup-container">
                         <div className="hrmsystemsetup-pagination">
@@ -286,7 +308,11 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                               <tr>
                                 {sidebarItem[open].tableData.map(
                                   (item, index) => (
-                                    <th key={index} scope="col" className="px-6 py-3">
+                                    <th
+                                      key={index}
+                                      scope="col"
+                                      className="px-6 py-3"
+                                    >
                                       {item.title}
                                     </th>
                                   )
@@ -297,17 +323,21 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             <tbody>
                               {branches.map((item, index) => (
                                 <tr key={index} className="bg-white ">
-                                  <td className="px-6 py-4 ">
-                                    {item?.name}
-                                  </td>
+                                  <td className="px-6 py-4 ">{item?.name}</td>
 
                                   <td className="px-6 py-4 flex hrmActions">
-                                    <img onClick={() => {
-
-                                    }} src={edited} alt="" />
-                                    <img onClick={() => {
-                                      // handleDelete();
-                                    }} src={deleted} alt="" />
+                                    <img
+                                      onClick={() => {}}
+                                      src={edited}
+                                      alt=""
+                                    />
+                                    <img
+                                      onClick={() => {
+                                        // handleDelete();
+                                      }}
+                                      src={deleted}
+                                      alt=""
+                                    />
                                   </td>
                                 </tr>
                               ))}
@@ -316,10 +346,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                         </div>
                       </div>
                     </div>
-                  }
+                  )}
 
-                  {
-                    open === 1 &&
+                  {open === 1 && (
                     <div className="hrmsystemsetup-leftmenu">
                       <div className="hrmsystemsetup-container">
                         <div className="hrmsystemsetup-pagination">
@@ -342,7 +371,11 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                               <tr>
                                 {sidebarItem[open].tableData.map(
                                   (item, index) => (
-                                    <th key={index} scope="col" className="px-6 py-3">
+                                    <th
+                                      key={index}
+                                      scope="col"
+                                      className="px-6 py-3"
+                                    >
                                       {item.title}
                                     </th>
                                   )
@@ -356,9 +389,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                                   <td className="px-6 py-4 ">
                                     {item?.branch?.name}
                                   </td>
-                                  <td className="px-6 py-4 ">
-                                    {item?.name}
-                                  </td>
+                                  <td className="px-6 py-4 ">{item?.name}</td>
                                   <td className="px-6 py-4 flex hrmActions">
                                     <img src={edited} alt="" />
                                     <img src={deleted} alt="" />
@@ -370,10 +401,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                         </div>
                       </div>
                     </div>
-                  }
+                  )}
 
-                  {
-                    open === 2 &&
+                  {open === 2 && (
                     <div className="hrmsystemsetup-leftmenu">
                       <div className="hrmsystemsetup-container">
                         <div className="hrmsystemsetup-pagination">
@@ -396,7 +426,11 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                               <tr>
                                 {sidebarItem[open].tableData.map(
                                   (item, index) => (
-                                    <th key={index} scope="col" className="px-6 py-3">
+                                    <th
+                                      key={index}
+                                      scope="col"
+                                      className="px-6 py-3"
+                                    >
                                       {item.title}
                                     </th>
                                   )
@@ -410,9 +444,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                                   <td className="px-6 py-4 ">
                                     {item?.department?.name}
                                   </td>
-                                  <td className="px-6 py-4 ">
-                                    {item?.name}
-                                  </td>
+                                  <td className="px-6 py-4 ">{item?.name}</td>
                                   <td className="px-6 py-4 flex hrmActions">
                                     <img src={edited} alt="" />
                                     <img src={deleted} alt="" />
@@ -424,7 +456,55 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                         </div>
                       </div>
                     </div>
-                  }
+                  )}
+                  {open === 3 && (
+                    <div className="hrmsystemsetup-leftmenu">
+                      <div className="hrmsystemsetup-container">
+                        <div className="hrmsystemsetup-pagination">
+                          <p>Filter</p>
+                          <div className="hrmsystemsetup-search">
+                            <img src={srchIcon} alt="" />
+                            <input type="text" placeholder="Search..." />
+                          </div>
+                        </div>
+
+                        <div className="relative overflow-x-auto">
+                          <table className="w-full text-left   text-[#060606]">
+                            <thead className=" uppercase text-[#060606]">
+                              <tr>
+                                {sidebarItem[open].tableData.map(
+                                  (item, index) => (
+                                    <th
+                                      key={index}
+                                      scope="col"
+                                      className="px-6 py-3"
+                                    >
+                                      {item.title}
+                                    </th>
+                                  )
+                                )}
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              {designations.map((item, index) => (
+                                <tr key={index} className="bg-white ">
+                                  <td className="px-6 py-4 ">
+                                    {item?.department?.name}
+                                  </td>
+                                  <td className="px-6 py-4 ">{item?.name}</td>
+                                  <td className="px-6 py-4 flex hrmActions">
+                                    <img src={edited} alt="" />
+                                    <img src={deleted} alt="" />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   {/* {open === 1 && (
                     <div className="hrmsystemsetup-leftmenu">
@@ -737,8 +817,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
           </div>
         </div>
 
-        {
-          popup1 &&
+        {popup1 && (
           <div className="allPopupWrap">
             <div className="popup1">
               <h2>Create New Branch</h2>
@@ -747,9 +826,15 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               <label htmlFor="">
                 <p>Name</p>
-                <input type="text" name="branch" onChange={(e)=>{
-                  setBranch(e.target.value);
-                }} value={branch} placeholder="Enter Branch Name"  />
+                <input
+                  type="text"
+                  name="branch"
+                  onChange={(e) => {
+                    setBranch(e.target.value);
+                  }}
+                  value={branch}
+                  placeholder="Enter Branch Name"
+                />
               </label>
 
               <hr />
@@ -764,19 +849,22 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </div>
             </div>
           </div>
-        }
+        )}
 
-        {
-          popup2 &&
+        {popup2 && (
           <div className="allPopupWrap">
             <div className="popup1">
               <h2>Create New Department</h2>
               <hr />
               <select className="selectBRANCH" name="" id="">
-                <option value="" selected>select Branch</option>
-                {branches.map((e,index)=>{
+                <option value="" selected>
+                  select Branch
+                </option>
+                {branches.map((e, index) => {
                   return (
-                    <option key={index} value={e._id}>{e.name}</option>
+                    <option key={index} value={e._id}>
+                      {e.name}
+                    </option>
                   );
                 })}
               </select>
@@ -797,10 +885,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </div>
             </div>
           </div>
-        }
+        )}
 
-        {
-          popup3 &&
+        {popup3 && (
           <div className="allPopupWrap">
             <div className="popup1">
               <h2>Create New Designation</h2>
@@ -808,7 +895,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <label htmlFor>
                 <p>Department</p>
                 <select className="selectBRANCH" name="" id="">
-                  <option value="" disabled selected>Admin</option>
+                  <option value="" disabled selected>
+                    Admin
+                  </option>
                 </select>
               </label>
               <label htmlFor="">
@@ -829,7 +918,38 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </div>
             </div>
           </div>
-        }
+        )}
+        {popup4 && (
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Create New Leave Type </h2>
+              <hr />
+              <label htmlFor>
+                <p>Leave Type</p>
+                <input type="text" placeholder="Enter Leave Type Name" />
+                {/* <select className="selectBRANCH" name="" id="">
+                  <option value="" disabled selected></option>
+                </select> */}
+              </label>
+              <label htmlFor="">
+                <p>Days Per Year</p>
+                <input type="text" placeholder="Enter Days / Year" />
+              </label>
+
+              <hr />
+
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup4(false)}>
+                  <span>Cancel</span>
+                </button>
+
+                <button className="create" onClick={handleCreateDesignation}>
+                  <span>Create</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
