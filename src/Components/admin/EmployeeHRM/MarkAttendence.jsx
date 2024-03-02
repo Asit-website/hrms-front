@@ -220,7 +220,7 @@ const MarkAttendance = ({
                       {/* <h2>Monthly</h2> */}
                       <div name="" id="">
                         <input
-                          type="date"
+                          type="month"
                           name=""
                           id=""
                           className="daate_mate_btn"

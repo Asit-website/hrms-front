@@ -11,7 +11,7 @@ import { useMain } from "../../../hooks/useMain";
 import goals from "../../images/goals.png";
 import arrow from "../../images/arrow.png";
 import { NavLink } from "react-router-dom";
-import akash from '../../images/akash.png';
+import akash from "../../images/akash.png";
 import timer1 from "../../images/timer.png";
 
 var tc;
@@ -37,6 +37,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   const [punchLog, setPunchLog] = useState({});
   const [punchFlag, setPunchFlag] = useState(false);
   const [statistics, setStatistics] = useState([]);
+
+  // =================Popup==============
+  const [open, setOpen] = useState(0);
+  const [popup1, setPopup1] = useState(false);
 
   // ==============other===========================
   const [value, onChange] = useState(new Date());
@@ -74,8 +78,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
       // }, 5 * 1000);
 
       let status = "ONLINE";
-      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
-        }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`;
       // console.log(date);
       let activity = {
         type: "PUNCH_IN",
@@ -117,8 +122,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
       }, 60 * 1000);
 
       let status = "OFFLINE";
-      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
-        }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`;
       let activity = {
         type: "PUNCH_OUT",
         ts: new Date().getTime(),
@@ -158,9 +164,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   const [mount, setMount] = useState(false);
 
   useEffect(() => {
-    let t = localStorage.getItem('clock-in');
-    let t1 = localStorage.getItem('clock-status');
-    let t2 = localStorage.getItem('break-seconds');
+    let t = localStorage.getItem("clock-in");
+    let t1 = localStorage.getItem("clock-status");
+    let t2 = localStorage.getItem("break-seconds");
 
     if (t1) {
       if (t2) {
@@ -175,68 +181,85 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
           setClock(++t5);
         }, 1000);
 
-        if (t1 === 'resume') {
+        if (t1 === "resume") {
           tc3 = setInterval(() => {
             setBreakClock(++t2);
           }, 1000);
         }
-      }
-      else {
-        let t7 = localStorage.getItem('clock-out-time');
+      } else {
+        let t7 = localStorage.getItem("clock-out-time");
         let t5 = Math.floor((t7 - t) / 1000);
         setClock(t5);
       }
     }
   }, []);
 
-  const clockIn = async() => {
-    let t = localStorage.getItem('clock-status');
+  const clockIn = async () => {
+    let t = localStorage.getItem("clock-status");
     // console.log(t);
 
     if (!t) {
-      let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: ''});
+      let ans = await postActivity({
+        clockIn: localStorage.getItem("clock-in"),
+        clockOut: 0,
+        late: 0,
+        date1: new Date().toLocaleDateString("en-GB"),
+        overtime: 0,
+        total: 0,
+        message: "",
+      });
 
-      localStorage.setItem('clock-in', new Date().getTime());
-      localStorage.setItem('clock-status', 'break');
+      localStorage.setItem("clock-in", new Date().getTime());
+      localStorage.setItem("clock-status", "break");
       tc4 = setInterval(() => {
         setClock(++clock);
       }, 1000);
-    }
-    else {
-      if (t === 'break') {
-        localStorage.setItem('break-time', new Date().getTime());
-        localStorage.setItem('clock-status', 'resume');
+    } else {
+      if (t === "break") {
+        localStorage.setItem("break-time", new Date().getTime());
+        localStorage.setItem("clock-status", "resume");
         clearInterval(tc3);
-        let t3 = localStorage.getItem('break-seconds');
+        let t3 = localStorage.getItem("break-seconds");
 
         tc3 = setInterval(() => {
           setBreakClock(++t3);
         }, 1000);
-      }
-      else if (t === 'resume') {
-        let t1 = localStorage.getItem('break-time');
+      } else if (t === "resume") {
+        let t1 = localStorage.getItem("break-time");
         if (t1) {
-          let t2 = localStorage.getItem('break-seconds');
+          let t2 = localStorage.getItem("break-seconds");
           if (t2) {
-            localStorage.setItem('break-seconds', Math.floor((new Date() - t1) / 1000) + Number(t2));
-          }
-          else {
-            localStorage.setItem('break-seconds', Math.floor((new Date() - t1) / 1000));
+            localStorage.setItem(
+              "break-seconds",
+              Math.floor((new Date() - t1) / 1000) + Number(t2)
+            );
+          } else {
+            localStorage.setItem(
+              "break-seconds",
+              Math.floor((new Date() - t1) / 1000)
+            );
           }
         }
-        localStorage.setItem('clock-status', 'break');
+        localStorage.setItem("clock-status", "break");
         clearInterval(tc3);
-      }
-      else if (t === "out") {
-        let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: ''});
+      } else if (t === "out") {
+        let ans = await postActivity({
+          clockIn: localStorage.getItem("clock-in"),
+          clockOut: 0,
+          late: 0,
+          date1: new Date().toLocaleDateString("en-GB"),
+          overtime: 0,
+          total: 0,
+          message: "",
+        });
 
-        localStorage.setItem('clock-in', new Date().getTime());
-        localStorage.setItem('clock-status', 'break');
-        localStorage.removeItem('clock-out-time');
-        localStorage.removeItem('break-seconds');
-        localStorage.removeItem('break-time');
+        localStorage.setItem("clock-in", new Date().getTime());
+        localStorage.setItem("clock-status", "break");
+        localStorage.removeItem("clock-out-time");
+        localStorage.removeItem("break-seconds");
+        localStorage.removeItem("break-time");
 
-        let t8=0;
+        let t8 = 0;
         tc4 = setInterval(() => {
           setClock(++t8);
         }, 1000);
@@ -247,15 +270,29 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
     setMount(!mount);
   };
 
-  const clockOut = async() => {
-    localStorage.setItem('clock-status', 'out');
-    localStorage.setItem('clock-out-time', new Date().getTime());
+  const clockOut = async () => {
+    localStorage.setItem("clock-status", "out");
+    localStorage.setItem("clock-out-time", new Date().getTime());
     clearInterval(tc3);
     clearInterval(tc4);
     setMount(!mount);
-    
-    let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: localStorage.getItem('clock-out-time'), late: breakClock, date1: new Date().toLocaleDateString('en-GB'), overtime: (((clock) - (32400))>0 ? ((clock)-32400) : 0), total: clock, message: ''});
+
+    let ans = await postActivity({
+      clockIn: localStorage.getItem("clock-in"),
+      clockOut: localStorage.getItem("clock-out-time"),
+      late: breakClock,
+      date1: new Date().toLocaleDateString("en-GB"),
+      overtime: clock - 32400 > 0 ? clock - 32400 : 0,
+      total: clock,
+      message: "",
+    });
     console.log(ans);
+  };
+
+  const [star1, setStar1] = useState(false);
+
+  const styleThing = {
+    display: star1 ? "block" : "none",
   };
 
   return (
@@ -341,7 +378,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         <hr />
 
                         <div className="myOficeWrap55">
-                          <p className="myOfText55">My Office Time: 10:00 to 19:00</p>
+                          <p className="myOfText55">
+                            My Office Time: 10:00 to 19:00
+                          </p>
 
                           <div className="oficTime55">
                             <div className="ofSin55">
@@ -368,13 +407,37 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                           </div>
 
                           <div className="clockINOUTBtn55">
-                            {(mount || !mount) && <button className="clockIN55" onClick={clockIn}>
-                              <span>{!localStorage.getItem('clock-status') ? 'Clock In' : localStorage.getItem('clock-status') === 'break' ? 'Break' : localStorage.getItem('clock-status') === 'resume' ? 'Resume' : localStorage.getItem('clock-status') === 'out' ? 'Clock In' : null}</span>
-                            </button>}
+                            {(mount || !mount) && (
+                              <button className="clockIN55" onClick={clockIn}>
+                                <span>
+                                  {!localStorage.getItem("clock-status")
+                                    ? "Clock In"
+                                    : localStorage.getItem("clock-status") ===
+                                      "break"
+                                    ? "Break"
+                                    : localStorage.getItem("clock-status") ===
+                                      "resume"
+                                    ? "Resume"
+                                    : localStorage.getItem("clock-status") ===
+                                      "out"
+                                    ? "Clock In"
+                                    : null}
+                                </span>
+                              </button>
+                            )}
 
-                            {(mount || !mount) && <button className="clockOUT55" disabled={!localStorage.getItem('clock-status') || localStorage.getItem('clock-status') === 'out'} onClick={clockOut}>
-                              <span>Clock Out</span>
-                            </button>}
+                            {(mount || !mount) && (
+                              <button
+                                className="clockOUT55"
+                                disabled={
+                                  !localStorage.getItem("clock-status") ||
+                                  localStorage.getItem("clock-status") === "out"
+                                }
+                                onClick={clockOut}
+                              >
+                                <span>Clock Out</span>
+                              </button>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -461,50 +524,100 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                     </div>
 
                     <div>
-                      <a href="#" className="block max-w-2xl p-5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-                        <h5 className="mb-3 text-xl  tracking-tight text-gray-900 dark:text-white">Time Log</h5>
+                      <a
+                        href="#"
+                        className="block max-w-2xl p-5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                      >
+                        <h5 className="mb-3 text-xl  tracking-tight text-gray-900 dark:text-white">
+                          Time Log
+                        </h5>
                         <hr />
-                        <h5 className="mb-3 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">Today</h5>
+                        <h5 className="mb-3 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">
+                          Today
+                        </h5>
                         <hr />
                         <div className="time_emp_desh_flex">
                           <div className="time_emp_desh">
-                            <h5 className="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${(Math.floor((clock) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((clock) % 3600) / 60)).toString().padStart(2, '0')}`}</h5>
+                            <h5 className="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${Math.floor(
+                              clock / 3600
+                            )
+                              .toString()
+                              .padStart(2, "0")}:${Math.floor(
+                              (clock % 3600) / 60
+                            )
+                              .toString()
+                              .padStart(2, "0")}`}</h5>
                             <p>Scheduled</p>
                           </div>
 
                           <div className="time_emp_desh">
-                            <h5 className="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${(Math.floor((clock - breakClock) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((clock - breakClock) % 3600) / 60)).toString().padStart(2, '0')}`}</h5>
+                            <h5 className="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${Math.floor(
+                              (clock - breakClock) / 3600
+                            )
+                              .toString()
+                              .padStart(2, "0")}:${Math.floor(
+                              ((clock - breakClock) % 3600) / 60
+                            )
+                              .toString()
+                              .padStart(2, "0")}`}</h5>
                             <p>Worked</p>
                           </div>
 
                           <div className="time_emp_desh">
-                            <h5 className="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${(Math.floor((breakClock) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((breakClock) % 3600) / 60)).toString().padStart(2, '0')}`}</h5>
+                            <h5 className="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${Math.floor(
+                              breakClock / 3600
+                            )
+                              .toString()
+                              .padStart(2, "0")}:${Math.floor(
+                              (breakClock % 3600) / 60
+                            )
+                              .toString()
+                              .padStart(2, "0")}`}</h5>
                             <p>Break</p>
                           </div>
 
                           <div className="time_emp_desh">
-                            <h5 className="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${(Math.floor((32400 - clock) / 3600)).toString().padStart(2, '0')}:${(Math.floor(((32400 - clock) % 3600) / 60)).toString().padStart(2, '0')}`}</h5>
+                            <h5 className="mb-1 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">{`${Math.floor(
+                              (32400 - clock) / 3600
+                            )
+                              .toString()
+                              .padStart(2, "0")}:${Math.floor(
+                              ((32400 - clock) % 3600) / 60
+                            )
+                              .toString()
+                              .padStart(2, "0")}`}</h5>
                             <p>balance</p>
                           </div>
                         </div>
-                        <h5 className="mb-3 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">This month</h5>
+                        <h5 className="mb-3 mt-3 text-xl  tracking-tight text-gray-900 dark:text-white">
+                          This month
+                        </h5>
                         <hr />
                         <div className="time_emp_desh_flex2">
                           <div className="time_emp_desh">
                             <div className="mt-5">
-                              <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="50" height="50" rx="4" fill="#0B60FF" />
+                              <svg
+                                width="50"
+                                height="50"
+                                viewBox="0 0 50 50"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <rect
+                                  width="50"
+                                  height="50"
+                                  rx="4"
+                                  fill="#0B60FF"
+                                />
                               </svg>
-
                             </div>
-
                           </div>
                           <div className="time_emp_desh">
-                            <h5 className=" mt-5 text-xl font-bold  tracking-tight text-gray-900 dark:text-white">168 h</h5>
+                            <h5 className=" mt-5 text-xl font-bold  tracking-tight text-gray-900 dark:text-white">
+                              168 h
+                            </h5>
                             <p>Total schedule time</p>
                           </div>
-
                         </div>
                         {/* <div className="mb-1 text-lg font-medium dark:text-white">Worked time - 116 h</div>
                         <div className="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-700">
@@ -521,7 +634,15 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                   <div className="hrLefThi22">
                     <div className="leaves_request_emp">
                       <h2>Leaves</h2>
-                      <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4  mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">create leave</button>
+                      <button
+                        type="button"
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4  mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        onClick={() => {
+                          setStar1(!star1);
+                        }}
+                      >
+                        create leave
+                      </button>
                     </div>
 
                     <hr />
@@ -529,32 +650,92 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                     <div className="leave_setion_emp">
                       <div className="totel_leave_allowance1">
                         <div>
-                          <h5 className="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
+                          <h5 className="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">
+                            15
+                          </h5>
                           <p>Total leave allowance</p>
                         </div>
                         <div>
-                          <p> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="18" height="18" rx="2" fill="#019AFF" />
-                          </svg><span> casual - 07</span></p>
-                          <p><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="18" height="18" rx="2" fill="#46C35F" />
-                          </svg>
-                            <span>Sick - 08</span> </p>
+                          <p>
+                            {" "}
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 18 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                width="18"
+                                height="18"
+                                rx="2"
+                                fill="#019AFF"
+                              />
+                            </svg>
+                            <span> casual - 07</span>
+                          </p>
+                          <p>
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 18 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                width="18"
+                                height="18"
+                                rx="2"
+                                fill="#46C35F"
+                              />
+                            </svg>
+                            <span>Sick - 08</span>{" "}
+                          </p>
                         </div>
                       </div>
                       <div className="totel_leave_allowance1">
                         <div>
-                          <h5 className="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
+                          <h5 className="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">
+                            15
+                          </h5>
                           <p>Total leave taken</p>
                         </div>
                         <div>
-                          <p> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="18" height="18" rx="2" fill="#019AFF" />
-                          </svg><span> casual - 07</span></p>
-                          <p><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="18" height="18" rx="2" fill="#46C35F" />
-                          </svg>
-                            <span>Sick - 08</span> </p>
+                          <p>
+                            {" "}
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 18 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                width="18"
+                                height="18"
+                                rx="2"
+                                fill="#019AFF"
+                              />
+                            </svg>
+                            <span> casual - 07</span>
+                          </p>
+                          <p>
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 18 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                width="18"
+                                height="18"
+                                rx="2"
+                                fill="#46C35F"
+                              />
+                            </svg>
+                            <span>Sick - 08</span>{" "}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -562,32 +743,92 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                     <div className="leave_setion_emp">
                       <div className="totel_leave_allowance1">
                         <div>
-                          <h5 className="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
+                          <h5 className="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">
+                            15
+                          </h5>
                           <p>Total leave available</p>
                         </div>
                         <div>
-                          <p> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="18" height="18" rx="2" fill="#019AFF" />
-                          </svg><span> casual - 07</span></p>
-                          <p><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="18" height="18" rx="2" fill="#46C35F" />
-                          </svg>
-                            <span>Sick - 08</span> </p>
+                          <p>
+                            {" "}
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 18 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                width="18"
+                                height="18"
+                                rx="2"
+                                fill="#019AFF"
+                              />
+                            </svg>
+                            <span> casual - 07</span>
+                          </p>
+                          <p>
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 18 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                width="18"
+                                height="18"
+                                rx="2"
+                                fill="#46C35F"
+                              />
+                            </svg>
+                            <span>Sick - 08</span>{" "}
+                          </p>
                         </div>
                       </div>
                       <div className="totel_leave_allowance1">
                         <div>
-                          <h5 className="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">15</h5>
+                          <h5 className="mb-1 text-xl  tracking-tight text-gray-900 dark:text-white">
+                            15
+                          </h5>
                           <p>Total request pending</p>
                         </div>
                         <div>
-                          <p> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="18" height="18" rx="2" fill="#019AFF" />
-                          </svg><span> casual - 07</span></p>
-                          <p><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="18" height="18" rx="2" fill="#46C35F" />
-                          </svg>
-                            <span>Sick - 08</span> </p>
+                          <p>
+                            {" "}
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 18 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                width="18"
+                                height="18"
+                                rx="2"
+                                fill="#019AFF"
+                              />
+                            </svg>
+                            <span> casual - 07</span>
+                          </p>
+                          <p>
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 18 18"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                width="18"
+                                height="18"
+                                rx="2"
+                                fill="#46C35F"
+                              />
+                            </svg>
+                            <span>Sick - 08</span>{" "}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -599,7 +840,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                     <div className="relative overflow-x-auto">
                       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-xs uppercase textALLtITL ">
-                          <tr  >
+                          <tr>
                             <th scope="col" className="px-6 py-3 taskTitl">
                               TITLE
                             </th>
@@ -613,64 +854,142 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             <th scope="col" className="px-6 py-3 taskTitl">
                               DESCRIPTION
                             </th>
-
                           </tr>
                         </thead>
                         <tbody>
                           <tr className="bg-white border-b  ">
-                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                            <th
+                              scope="row"
+                              className="px-6 py-4 font-medium  whitespace-nowrap taskAns "
+                            >
                               WORK FROM HOME
                             </th>
-                            <td className="px-2 py-4 taskAns">
-                              JAN 22,2024
-                            </td>
-                            <td className="px-6 py-4 taskAns">
-                              JAN 22,2024
-                            </td>
+                            <td className="px-2 py-4 taskAns">JAN 22,2024</td>
+                            <td className="px-6 py-4 taskAns">JAN 22,2024</td>
                             <td className="px-6 py-4 taskAns">
                               AYODHYA RAM MANDIR
                             </td>
-
                           </tr>
 
                           <tr className="bg-white border-b  ">
-                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                            <th
+                              scope="row"
+                              className="px-6 py-4 font-medium  whitespace-nowrap taskAns "
+                            >
                               WORK FROM HOME
                             </th>
-                            <td className="px-2 py-4 taskAns">
-                              JAN 22,2024
-                            </td>
-                            <td className="px-6 py-4 taskAns">
-                              JAN 22,2024
-                            </td>
+                            <td className="px-2 py-4 taskAns">JAN 22,2024</td>
+                            <td className="px-6 py-4 taskAns">JAN 22,2024</td>
                             <td className="px-6 py-4 taskAns">
                               AYODHYA RAM MANDIR
                             </td>
-
                           </tr>
 
                           <tr className="bg-white border-b  ">
-                            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap taskAns ">
+                            <th
+                              scope="row"
+                              className="px-6 py-4 font-medium  whitespace-nowrap taskAns "
+                            >
                               WORK FROM HOME
                             </th>
-                            <td className="px-2 py-4 taskAns">
-                              JAN 22,2024
-                            </td>
-                            <td className="px-6 py-4 taskAns">
-                              JAN 22,2024
-                            </td>
+                            <td className="px-2 py-4 taskAns">JAN 22,2024</td>
+                            <td className="px-6 py-4 taskAns">JAN 22,2024</td>
                             <td className="px-6 py-4 taskAns">
                               AYODHYA RAM MANDIR
                             </td>
-
                           </tr>
-
-
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
+
+                {/* =============================== */}
+                <>
+                  {/* Modal toggle */}
+                  {/* <button
+    data-modal-target="default-modal"
+    data-modal-toggle="default-modal"
+    className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    type="button"
+  >
+    Toggle modal
+  </button> */}
+                  {/* Main modal */}
+                  <div
+                    style={styleThing}
+                    className=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+                  >
+                    <div className="relative p-4 w-full max-w-2xl max-h-full">
+                      {/* Modal content */}
+                      <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        {/* Modal header */}
+                        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                            Terms of Service
+                          </h3>
+                          <button
+                            type="button"
+                            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-hide="default-modal"
+                          >
+                            <svg
+                              className="w-3 h-3"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 14 14"
+                            >
+                              <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                              />
+                            </svg>
+                            <span className="sr-only">Close modal</span>
+                          </button>
+                        </div>
+                        {/* Modal body */}
+                        <div className="p-4 md:p-5 space-y-4">
+                          <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                            With less than a month to go before the European
+                            Union enacts new consumer privacy laws for its
+                            citizens, companies around the world are updating
+                            their terms of service agreements to comply.
+                          </p>
+                          <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                            The European Union’s General Data Protection
+                            Regulation (G.D.P.R.) goes into effect on May 25 and
+                            is meant to ensure a common set of data rights in
+                            the European Union. It requires organizations to
+                            notify users as soon as possible of high-risk data
+                            breaches that could personally affect them.
+                          </p>
+                        </div>
+                        {/* Modal footer */}
+                        <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                          <button
+                            data-modal-hide="default-modal"
+                            type="button"
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                          >
+                            I accept
+                          </button>
+                          <button
+                            onClick={() => setStar1(false)}
+                            data-modal-hide="default-modal"
+                            type="button"
+                            className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                          >
+                            Decline
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
 
                 {/* <div className="second-bedge w-full ">
                   <div className="calend falend">
@@ -713,10 +1032,13 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
               </div>
             </div>
           </div>
-
-
-
-
+          {popup1 && (
+            <div className="hrmsystemsetup-leftmenu">
+              <div className="hrmsystemsetup-container">
+                <h1> Hlo Dinesh </h1>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
