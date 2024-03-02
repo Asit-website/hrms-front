@@ -904,17 +904,18 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
           popup4 &&
           <div className="allPopupWrap">
             <div className="popup1">
-              <h2>Create New Designation</h2>
+              <h2>Create New Leave Type </h2>
               <hr />
               <label htmlFor>
-                <p>Department</p>
-                <select className="selectBRANCH" name="" id="">
-                  <option value="" disabled selected>Admin</option>
-                </select>
+                <p>Leave Type</p>
+                <input type="text" placeholder="Enter Leave Type Name" />
+                {/* <select className="selectBRANCH" name="" id="">
+                  <option value="" disabled selected></option>
+                </select> */}
               </label>
               <label htmlFor="">
-                <p>Name</p>
-                <input type="text" placeholder="Enter Designation Name" />
+                <p>Days Per Year</p>
+                <input type="text" placeholder="Enter Days / Year" />
               </label>
 
               <hr />
