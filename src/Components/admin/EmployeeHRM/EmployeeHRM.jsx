@@ -87,9 +87,29 @@ const EmployeeHRM = ({
   const [mount, setMount] = useState(false);
 
   useEffect(() => {
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  const handleVisibilityChange = () => {
+    if (!document.hidden) {
+      initializeTimer();
+    }
+  };
+
+  useEffect(() => {
+    initializeTimer();
+  }, []);
+
+  const initializeTimer=()=>{
     let t = localStorage.getItem('clock-in');
     let t1 = localStorage.getItem('clock-status');
     let t2 = localStorage.getItem('break-seconds');
+    clearInterval(tc3);
+    clearInterval(tc4);
 
     if (t1) {
       if (t2) {
@@ -116,7 +136,7 @@ const EmployeeHRM = ({
         setClock(t5);
       }
     }
-  }, []);
+  };
 
   const clockIn = async () => {
     let t = localStorage.getItem('clock-status');
@@ -407,11 +427,11 @@ const EmployeeHRM = ({
                       </div>
 
                       <div className="clockINOUTBtn">
-                        {(mount || !mount) && <button className="clockIN" onClick={clockIn}>
+                        {(mount || !mount) && <button className="clockIN cursor-pointer" onClick={clockIn}>
                           <span>{!localStorage.getItem('clock-status') ? 'Clock In' : localStorage.getItem('clock-status') === 'break' ? 'Break' : localStorage.getItem('clock-status') === 'resume' ? 'Resume' : localStorage.getItem('clock-status') === 'out' ? 'Clock In' : null}</span>
                         </button>}
 
-                        {(mount || !mount) && <button className="clockOUT" disabled={!localStorage.getItem('clock-status') || localStorage.getItem('clock-status') === 'out'} onClick={clockOut}>
+                        {(mount || !mount) && <button className="clockOUT cursor-pointer" disabled={!localStorage.getItem('clock-status') || localStorage.getItem('clock-status') === 'out'} onClick={clockOut}>
                           <span>Clock Out</span>
                         </button>}
                       </div>

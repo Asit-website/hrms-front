@@ -23,16 +23,26 @@ const MarkAttendance = ({
   setAlert,
   isHr = false,
 }) => {
-  const { user, getAllActivities } = useMain();
+  const { user, getAllActivities, getUsers, getDepartments } = useMain();
   const [data, setData] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [departments, setDepartments] = useState([]);
 
   const getData = async () => {
     let ans = await getAllActivities();
-    console.log(ans);
+    const ans1 = await getUsers();
+    const ans2 = await getDepartments();
+    console.log(ans2);
     setData(ans.data);
+    setUsers(ans1.data);
+    setDepartments(ans2.data);
   };
 
   const [selectedOption, setSelectedOption] = useState("daily");
+  const [date, setDate] = useState('');
+  const [month, setMonth] = useState('');
+  const [userId, setuserId] = useState('');
+  const [department, setDepartment] = useState('');
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -42,15 +52,20 @@ const MarkAttendance = ({
     getData();
   }, []);
 
-  const handleSubmit=async()=>{
+  const handleSubmit = async () => {
     console.log(selectedOption);
+    console.log(date);
+    console.log(month);
+    console.log(userId);
+    let ans = await getAllActivities(selectedOption, date, userId);
+    setData(ans.data);
   };
 
-  const handleDownload=async()=>{
+  const handleDownload = async () => {
 
   };
 
-  const handleShare=async()=>{
+  const handleShare = async () => {
 
   };
 
@@ -135,8 +150,10 @@ const MarkAttendance = ({
                       <div name="" id="">
                         <input
                           type="date"
-                          name=""
-                          id=""
+                          name="date"
+                          id="date"
+                          value={date}
+                          onChange={(e) => { setDate(e.target.value) }}
                           className="daate_mate_btn"
                         />
                       </div>
@@ -145,11 +162,14 @@ const MarkAttendance = ({
                         <option value="Select Branch">Select Branch</option>
                       </select> */}
 
-                      <select name="" id="">
-                        <option value="Select Branch">
-                          Select Department{" "}
-                        </option>
+                      <select onChange={(e) => { setDepartment(e.target.value); }}>
+                        <option value="">Select Department</option>
                         <option value="">All</option>
+                        {departments?.map((e, index) => {
+                          return (
+                            <option value={e?._id} key={index}>{e?.name}</option>
+                          );
+                        })}
                       </select>
 
                       <div className="resSeBtn">
@@ -163,8 +183,8 @@ const MarkAttendance = ({
                           onClick={handleSubmit}
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                           />
                         </svg>
@@ -221,11 +241,13 @@ const MarkAttendance = ({
                   {selectedOption === "monthly" && (
                     <>
                       {/* <h2>Monthly</h2> */}
-                      <div name="" id="">
+                      <div>
                         <input
                           type="month"
-                          name=""
-                          id=""
+                          name="month"
+                          id="month"
+                          value={month}
+                          onChange={(e) => setMonth(e.target.value)}
                           className="daate_mate_btn"
                         />
                       </div>
@@ -234,8 +256,13 @@ const MarkAttendance = ({
                         <option value="Select Branch">Select Branch</option>
                       </select> */}
 
-                      <select name="" id="">
-                        <option value="Select Branch"> Name </option>
+                      <select onChange={(e) => { setuserId(e.target.value); }}>
+                        <option value=""> Select Employee </option>
+                        {users?.map((e, index) => {
+                          return (
+                            <option key={index} value={e._id}> {e?.fullName} </option>
+                          );
+                        })}
                       </select>
 
                       <div>
@@ -246,7 +273,7 @@ const MarkAttendance = ({
                           value="all"
                           checked={selectedOption === "all"}
                           onChange={handleOptionChange}
-                        />{" "}
+                        />
                         All
                       </div>
 
@@ -262,6 +289,7 @@ const MarkAttendance = ({
                           stroke-width="1.5"
                           stroke="currentColor"
                           className="w-6 h-6"
+                          onClick={handleSubmit}
                         >
                           <path
                             stroke-linecap="round"
@@ -277,6 +305,7 @@ const MarkAttendance = ({
                           stroke-width="1.5"
                           stroke="currentColor"
                           className="w-6 h-6"
+                          onClick={handleDownload}
                         >
                           <path
                             stroke-linecap="round"
@@ -292,6 +321,7 @@ const MarkAttendance = ({
                           stroke-width="1.5"
                           stroke="currentColor"
                           className="w-6 h-6"
+                          onClick={handleShare}
                         >
                           <path
                             stroke-linecap="round"
@@ -318,25 +348,15 @@ const MarkAttendance = ({
                     </>
                   )}
 
-                  {
-                    selectedOption === "all" && (
-                      <>
-                      {/* <h2>Monthly</h2> */}
-                      <div name="" id="">
-                        <input
-                          type="date"
-                          name=""
-                          id=""
-                          className="daate_mate_btn"
-                        />
-                      </div>
-
-                      {/* <select name="" id="">
-                        <option value="Select Branch">Select Branch</option>
-                      </select> */}
-
-                      <select name="" id="">
-                        <option value="Select Branch"> Name </option>
+                  {selectedOption === "all" && (
+                    <>
+                      <select onChange={(e) => { setuserId(e.target.value); }}>
+                        <option value=""> Select Employee </option>
+                        {users?.map((e, index) => {
+                          return (
+                            <option key={index} value={e._id}> {e?.fullName} </option>
+                          );
+                        })}
                       </select>
 
                       <div>
@@ -351,10 +371,6 @@ const MarkAttendance = ({
                         All
                       </div>
 
-                      {/* <select name="" id="">
-                        <option value="Select Branch"> All </option>
-                      </select> */}
-
                       <div className="resSeBtn">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -363,6 +379,7 @@ const MarkAttendance = ({
                           stroke-width="1.5"
                           stroke="currentColor"
                           className="w-6 h-6"
+                          onClick={handleSubmit}
                         >
                           <path
                             stroke-linecap="round"
@@ -378,6 +395,7 @@ const MarkAttendance = ({
                           stroke-width="1.5"
                           stroke="currentColor"
                           className="w-6 h-6"
+                          onClick={handleDownload}
                         >
                           <path
                             stroke-linecap="round"
@@ -393,6 +411,7 @@ const MarkAttendance = ({
                           stroke-width="1.5"
                           stroke="currentColor"
                           className="w-6 h-6"
+                          onClick={handleShare}
                         >
                           <path
                             stroke-linecap="round"
@@ -417,22 +436,7 @@ const MarkAttendance = ({
                         </svg>
                       </div>
                     </>
-                    )
-                  }
-
-                  {/* <select name="" id="">
-                    <option value="Select Branch">Select Branch</option>
-                  </select>
-
-                  <select name="" id="">
-                    <option value="Select Branch">Select Name</option>
-                  </select>
-
-                  <div className="resSeBtn">
-                    <img src={search22} alt="" />
-                    <img src={restart} alt="" />
-                  </div> 
-                  */}
+                  )}
                 </div>
               </div>
 
@@ -494,47 +498,47 @@ const MarkAttendance = ({
                                 "en-GB"
                               )}
                             </td>
-                            <td className="px-6 py-4 itemANs">{Number(item.total)===0 ? "Absent" : Number(item.total)>21600 ? 'Present' : 'Half Day'}</td>
+                            <td className="px-6 py-4 itemANs">{Number(item.total) === 0 ? "Absent" : Number(item.total) > 21600 ? 'Present' : 'Half Day'}</td>
                             <td className="px-6 py-4 itemANs">
-                              { Number(item.clockIn) ===0 ? ' - ' : new Date(
+                              {Number(item.clockIn) === 0 ? ' - ' : new Date(
                                 Number(item.clockIn)
                               ).toLocaleTimeString("en-GB")}
                             </td>
                             <td className="px-6 py-4 itemANs">
                               {Number(item.clockOut) !== 0
                                 ? new Date(
-                                    Number(item.clockOut)
-                                  ).toLocaleTimeString("en-GB")
+                                  Number(item.clockOut)
+                                ).toLocaleTimeString("en-GB")
                                 : " - "}
                             </td>
                             <td className="px-6 py-4 itemANs">
                               {Number(item.clockOut) !== 0
                                 ? `${Math.floor(item.late / 3600)
-                                    .toString()
-                                    .padStart(2, "0")}:${Math.floor(
+                                  .toString()
+                                  .padStart(2, "0")}:${Math.floor(
                                     (item.late % 3600) / 60
                                   )
                                     .toString()
                                     .padStart(2, "0")}:${Math.floor(
-                                    item.late % 60
-                                  )
-                                    .toString()
-                                    .padStart(2, "0")}`
+                                      item.late % 60
+                                    )
+                                      .toString()
+                                      .padStart(2, "0")}`
                                 : " - "}
                             </td>
                             <td className="px-6 py-4 itemANs">
                               {Number(item.clockOut) !== 0
                                 ? `${Math.floor(item.overtime / 3600)
-                                    .toString()
-                                    .padStart(2, "0")}:${Math.floor(
+                                  .toString()
+                                  .padStart(2, "0")}:${Math.floor(
                                     (item.overtime % 3600) / 60
                                   )
                                     .toString()
                                     .padStart(2, "0")}:${Math.floor(
-                                    item.overtime % 60
-                                  )
-                                    .toString()
-                                    .padStart(2, "0")}`
+                                      item.overtime % 60
+                                    )
+                                      .toString()
+                                      .padStart(2, "0")}`
                                 : " - "}
                             </td>
                             <td className="px-6 py-4 ">
@@ -599,7 +603,7 @@ const MarkAttendance = ({
                             <td className="px-6 py-4 itemANs">
                               {item?.user?.department}
                             </td>
-                            
+
                             <td className="px-6 py-4 itemANs">
                               {new Date(Number(item?.date)).toLocaleDateString(
                                 "en-GB"
@@ -615,53 +619,53 @@ const MarkAttendance = ({
                             <td className="px-6 py-4 itemANs">
                               {Number(item.clockOut) !== 0
                                 ? new Date(
-                                    Number(item.clockOut)
-                                  ).toLocaleTimeString("en-GB")
+                                  Number(item.clockOut)
+                                ).toLocaleTimeString("en-GB")
                                 : " - "}
                             </td>
                             <td className="px-6 py-4 itemANs">
                               {Number(item.clockOut) !== 0
                                 ? `${Math.floor(item.late / 3600)
-                                    .toString()
-                                    .padStart(2, "0")}:${Math.floor(
+                                  .toString()
+                                  .padStart(2, "0")}:${Math.floor(
                                     (item.late % 3600) / 60
                                   )
                                     .toString()
                                     .padStart(2, "0")}:${Math.floor(
-                                    item.late % 60
-                                  )
-                                    .toString()
-                                    .padStart(2, "0")}`
+                                      item.late % 60
+                                    )
+                                      .toString()
+                                      .padStart(2, "0")}`
                                 : " - "}
                             </td>
                             <td className="px-6 py-4 itemANs">
                               {Number(item.total) !== 0
                                 ? `${Math.floor(item.total / 3600)
-                                    .toString()
-                                    .padStart(2, "0")}:${Math.floor(
+                                  .toString()
+                                  .padStart(2, "0")}:${Math.floor(
                                     (item.total % 3600) / 60
                                   )
                                     .toString()
                                     .padStart(2, "0")}:${Math.floor(
-                                    item.total % 60
-                                  )
-                                    .toString()
-                                    .padStart(2, "0")}`
+                                      item.total % 60
+                                    )
+                                      .toString()
+                                      .padStart(2, "0")}`
                                 : " - "}
                             </td>
                             <td className="px-6 py-4 itemANs">
                               {Number(item.clockOut) !== 0
                                 ? `${Math.floor(item.overtime / 3600)
-                                    .toString()
-                                    .padStart(2, "0")}:${Math.floor(
+                                  .toString()
+                                  .padStart(2, "0")}:${Math.floor(
                                     (item.overtime % 3600) / 60
                                   )
                                     .toString()
                                     .padStart(2, "0")}:${Math.floor(
-                                    item.overtime % 60
-                                  )
-                                    .toString()
-                                    .padStart(2, "0")}`
+                                      item.overtime % 60
+                                    )
+                                      .toString()
+                                      .padStart(2, "0")}`
                                 : " - "}
                             </td>
                             <td className="px-6 py-4 ">
@@ -683,7 +687,7 @@ const MarkAttendance = ({
                             Employee
                           </th>
                           <th scope="col" className="px-6 py-3 currentText">
-                           Branch
+                            Branch
                           </th>
                           <th scope="col" className="px-6 py-3 currentText">
                             Department
@@ -699,7 +703,7 @@ const MarkAttendance = ({
                             Present
                           </th>
                           <th scope="col" className="px-6 py-3 currentText">
-                            Absent 
+                            Absent
                           </th>
                           <th scope="col" className="px-6 py-3 currentText">
                             action
