@@ -616,6 +616,12 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               <option value={`Manager`}>
                                 Manager/Project manager
                               </option>
+                              <option value={`Digital Marketing`}>
+                                Digital Marketing
+                              </option>
+                              <option value={`Business development`}>
+                              Business development
+                              </option>
                               {
                                 user.role === "ADMIN" && <option value={`Hr`}>Hr</option>
                               }
@@ -654,9 +660,13 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               disabled={value1.status}
                             >
                               <option>Designation</option>
+                              <option value="Senior Developer">Senior Developer</option>
                               <option value="Developer">Developer</option>
-                              <option value="Designer">Designer</option>
+                              <option value="UI/UX Designer">UI/UX Designer</option>
+                              <option value="Graphic Designer">Graphic Designer</option>
+                              <option value="E-Mail Marketer">E-Mail Marketer</option>
                               <option value="Hr">Hr</option>
+                              <option value="Team Leader">Team Leader</option>
                               <option value="Manager">Manager/Project manager</option>
                             </select>
                             <input
