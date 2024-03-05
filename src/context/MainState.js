@@ -193,8 +193,8 @@ const MainState = (props) => {
       return data;
    };
 
-   const getAllActivities = async (type, date, userId) => {
-      const data = await get(`${baseUrl}/activity/getAllActivities?type=${type}&date=${date}&userId=${userId}`, true);
+   const getAllActivities = async (type, date, userId, month) => {
+      const data = await get(`${baseUrl}/activity/getAllActivities?type=${type}&date=${date}&userId=${userId}&month=${month}`, true);
       return data;
    };
 

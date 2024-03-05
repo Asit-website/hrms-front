@@ -104,7 +104,7 @@ const EmployeeHRM = ({
     initializeTimer();
   }, []);
 
-  const initializeTimer=()=>{
+  const initializeTimer = () => {
     let t = localStorage.getItem('clock-in');
     let t1 = localStorage.getItem('clock-status');
     let t2 = localStorage.getItem('break-seconds');
@@ -143,7 +143,7 @@ const EmployeeHRM = ({
     // console.log(t);
 
     if (!t) {
-      let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: ''});
+      let ans = await postActivity({ clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: '' });
 
       localStorage.setItem('clock-in', new Date().getTime());
       localStorage.setItem('clock-status', 'break');
@@ -177,7 +177,7 @@ const EmployeeHRM = ({
         clearInterval(tc3);
       }
       else if (t === "out") {
-        let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: ''});
+        let ans = await postActivity({ clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: '' });
 
         localStorage.setItem('clock-in', new Date().getTime());
         localStorage.setItem('clock-status', 'break');
@@ -203,7 +203,7 @@ const EmployeeHRM = ({
     clearInterval(tc4);
     setMount(!mount);
 
-    let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: localStorage.getItem('clock-out-time'), late: breakClock, date1: new Date().toLocaleDateString('en-GB'), overtime: (((clock) - (32400))>0 ? ((clock)-32400) : 0), total: clock, message: ''});
+    let ans = await postActivity({ clockIn: localStorage.getItem('clock-in'), clockOut: localStorage.getItem('clock-out-time'), late: breakClock, date1: new Date().toLocaleDateString('en-GB'), overtime: (((clock) - (32400)) > 0 ? ((clock) - 32400) : 0), total: clock, message: '' });
     console.log(ans);
   };
 

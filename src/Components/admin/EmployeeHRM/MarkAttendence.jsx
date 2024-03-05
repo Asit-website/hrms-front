@@ -25,6 +25,7 @@ const MarkAttendance = ({
 }) => {
   const { user, getAllActivities, getUsers, getDepartments } = useMain();
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState({});
   const [users, setUsers] = useState([]);
   const [departments, setDepartments] = useState([]);
 
@@ -38,7 +39,7 @@ const MarkAttendance = ({
     setDepartments(ans2.data);
   };
 
-  const [selectedOption, setSelectedOption] = useState("daily");
+  var [selectedOption, setSelectedOption] = useState("daily");
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
   const [userId, setuserId] = useState('');
@@ -46,6 +47,8 @@ const MarkAttendance = ({
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
+    selectedOption=event.target.value;
+    handleSubmit();
   };
 
   useEffect(() => {
@@ -57,8 +60,15 @@ const MarkAttendance = ({
     console.log(date);
     console.log(month);
     console.log(userId);
-    let ans = await getAllActivities(selectedOption, date, userId);
-    setData(ans.data);
+    let ans = await getAllActivities(selectedOption, date, userId, month);
+    if(selectedOption==='all')
+    {
+      setData1(ans.data);
+    }
+    else
+    {
+      setData(ans.data);
+    }
   };
 
   const handleDownload = async () => {
@@ -132,6 +142,7 @@ const MarkAttendance = ({
                     />
                     <span>Monthly</span>
                   </label>
+
                   <label htmlFor="daily">
                     <input
                       type="radio"
@@ -256,7 +267,7 @@ const MarkAttendance = ({
                         <option value="Select Branch">Select Branch</option>
                       </select> */}
 
-                      <select onChange={(e) => { setuserId(e.target.value); }}>
+                      <select value={userId} onChange={(e) => { setuserId(e.target.value); }}>
                         <option value=""> Select Employee </option>
                         {users?.map((e, index) => {
                           return (
@@ -350,7 +361,7 @@ const MarkAttendance = ({
 
                   {selectedOption === "all" && (
                     <>
-                      <select onChange={(e) => { setuserId(e.target.value); }}>
+                      <select value={userId} onChange={(e) => { setuserId(e.target.value); }}>
                         <option value=""> Select Employee </option>
                         {users?.map((e, index) => {
                           return (
@@ -594,7 +605,7 @@ const MarkAttendance = ({
                       </thead>
 
                       <tbody>
-                        {data.map((item, index) => (
+                        {data?.map((item, index) => (
                           <tr key={index} className="bg-white ">
                             <td className="px-6 py-4 itemANs">
                               {item?.user?.fullName}
@@ -610,9 +621,9 @@ const MarkAttendance = ({
                               )}
                             </td>
 
-                            <td className="px-6 py-4 itemANs">{"Present"}</td>
+                            <td className="px-6 py-4 itemANs">{Number(item.total) === 0 ? "Absent" : Number(item.total) > 21600 ? 'Present' : 'Half Day'}</td>
                             <td className="px-6 py-4 itemANs">
-                              {new Date(
+                            {Number(item.clockIn) === 0 ? ' - ' : new Date(
                                 Number(item.clockIn)
                               ).toLocaleTimeString("en-GB")}
                             </td>
@@ -712,28 +723,28 @@ const MarkAttendance = ({
                       </thead>
 
                       <tbody>
-                        {data.map((item, index) => (
+                        {data1 && Object.keys(data1).length>0 && Object.keys(data1).map((item, index) => (
                           <tr key={index} className="bg-white ">
                             <td className="px-6 py-4 itemANs">
-                              {item?.user?.fullName}
+                              {data1[item]?.user?.fullName}
                             </td>
                             <td className="px-6 py-4 itemANs">
                               {''}
                             </td>
                             <td className="px-6 py-4 itemANs">
-                              {item?.user?.department}
+                              {data1[item]?.user?.department}
                             </td>
                             <td className="px-6 py-4 itemANs">
-                              {item?.user?.designation}
+                              {data1[item]?.user?.designation}
                             </td>
                             <td className="px-6 py-4 itemANs">
-                              {''}
+                              {data1[item]?.workingDays}
                             </td>
                             <td className="px-6 py-4 itemANs">
-                              {''}
+                              {data1[item]?.presentCount}
                             </td>
                             <td className="px-6 py-4 itemANs">
-                              {''}
+                              {data1[item]?.absentCount}
                             </td>
 
                             <td className="px-6 py-4 ">

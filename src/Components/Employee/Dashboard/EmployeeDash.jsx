@@ -78,9 +78,8 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
       // }, 5 * 1000);
 
       let status = "ONLINE";
-      let date = `${new Date().getDate()}/${
-        new Date().getMonth() + 1
-      }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
+        }/${new Date().getFullYear()}`;
       // console.log(date);
       let activity = {
         type: "PUNCH_IN",
@@ -122,9 +121,8 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
       }, 60 * 1000);
 
       let status = "OFFLINE";
-      let date = `${new Date().getDate()}/${
-        new Date().getMonth() + 1
-      }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
+        }/${new Date().getFullYear()}`;
       let activity = {
         type: "PUNCH_OUT",
         ts: new Date().getTime(),
@@ -164,9 +162,29 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   const [mount, setMount] = useState(false);
 
   useEffect(() => {
-    let t = localStorage.getItem("clock-in");
-    let t1 = localStorage.getItem("clock-status");
-    let t2 = localStorage.getItem("break-seconds");
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  const handleVisibilityChange = () => {
+    if (!document.hidden) {
+      initializeTimer();
+    }
+  };
+
+  useEffect(() => {
+    initializeTimer();
+  }, []);
+
+  const initializeTimer = () => {
+    let t = localStorage.getItem('clock-in');
+    let t1 = localStorage.getItem('clock-status');
+    let t2 = localStorage.getItem('break-seconds');
+    clearInterval(tc3);
+    clearInterval(tc4);
 
     if (t1) {
       if (t2) {
@@ -181,18 +199,19 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
           setClock(++t5);
         }, 1000);
 
-        if (t1 === "resume") {
+        if (t1 === 'resume') {
           tc3 = setInterval(() => {
             setBreakClock(++t2);
           }, 1000);
         }
-      } else {
-        let t7 = localStorage.getItem("clock-out-time");
+      }
+      else {
+        let t7 = localStorage.getItem('clock-out-time');
         let t5 = Math.floor((t7 - t) / 1000);
         setClock(t5);
       }
     }
-  }, []);
+  };
 
   const clockIn = async () => {
     let t = localStorage.getItem("clock-status");
@@ -414,14 +433,14 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                                     ? "Clock In"
                                     : localStorage.getItem("clock-status") ===
                                       "break"
-                                    ? "Break"
-                                    : localStorage.getItem("clock-status") ===
-                                      "resume"
-                                    ? "Resume"
-                                    : localStorage.getItem("clock-status") ===
-                                      "out"
-                                    ? "Clock In"
-                                    : null}
+                                      ? "Break"
+                                      : localStorage.getItem("clock-status") ===
+                                        "resume"
+                                        ? "Resume"
+                                        : localStorage.getItem("clock-status") ===
+                                          "out"
+                                          ? "Clock In"
+                                          : null}
                                 </span>
                               </button>
                             )}
@@ -543,10 +562,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             )
                               .toString()
                               .padStart(2, "0")}:${Math.floor(
-                              (clock % 3600) / 60
-                            )
-                              .toString()
-                              .padStart(2, "0")}`}</h5>
+                                (clock % 3600) / 60
+                              )
+                                .toString()
+                                .padStart(2, "0")}`}</h5>
                             <p>Scheduled</p>
                           </div>
 
@@ -556,10 +575,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             )
                               .toString()
                               .padStart(2, "0")}:${Math.floor(
-                              ((clock - breakClock) % 3600) / 60
-                            )
-                              .toString()
-                              .padStart(2, "0")}`}</h5>
+                                ((clock - breakClock) % 3600) / 60
+                              )
+                                .toString()
+                                .padStart(2, "0")}`}</h5>
                             <p>Worked</p>
                           </div>
 
@@ -569,10 +588,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             )
                               .toString()
                               .padStart(2, "0")}:${Math.floor(
-                              (breakClock % 3600) / 60
-                            )
-                              .toString()
-                              .padStart(2, "0")}`}</h5>
+                                (breakClock % 3600) / 60
+                              )
+                                .toString()
+                                .padStart(2, "0")}`}</h5>
                             <p>Break</p>
                           </div>
 
@@ -582,10 +601,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             )
                               .toString()
                               .padStart(2, "0")}:${Math.floor(
-                              ((32400 - clock) % 3600) / 60
-                            )
-                              .toString()
-                              .padStart(2, "0")}`}</h5>
+                                ((32400 - clock) % 3600) / 60
+                              )
+                                .toString()
+                                .padStart(2, "0")}`}</h5>
                             <p>balance</p>
                           </div>
                         </div>
