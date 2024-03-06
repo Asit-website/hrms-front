@@ -74,21 +74,7 @@ const sidebarItem = [
 ];
 
 const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
-  const {
-    user,
-    getBranchs,
-    postBranch,
-    updateBranch,
-    deleteBranch,
-    getDepartments,
-    postDepartment,
-    updateDepartment,
-    deleteDepartment,
-    getDesignations,
-    postDesignation,
-    updateDesignation,
-    deleteDesignation,
-  } = useMain();
+  const { user, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation } = useMain();
 
   const [value, onChange] = useState(new Date());
   const [gen, setGen] = useState([]);
@@ -158,9 +144,13 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
   const [popup4, setPopup4] = useState(false);
 
   const [branches, setBranches] = useState([]);
+  const [branches1, setBranches1] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const [departments1, setDepartments1] = useState([]);
   const [designations, setDesignations] = useState([]);
+  const [designations1, setDesignations1] = useState([]);
   const [branch, setBranch] = useState("");
+  const [branch1, setBranch1] = useState("");
   const [departmentValue, setDepartmentValue] = useState({
     branch: "",
     name: "",
@@ -180,50 +170,62 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     const ans2 = await getDepartments();
     const ans3 = await getDesignations();
     setBranches(ans1.data);
+    setBranches1(ans1.data);
     setDepartments(ans2.data);
+    setDepartments1(ans2.data);
     setDesignations(ans3.data);
+    setDesignations1(ans3.data);
   };
 
   const handleCreateBranch = async () => {
     console.log(branch);
     const ans = await postBranch({ name: branch });
     console.log(ans);
-    if (ans.status) {
+    if (ans.success) {
       alert(ans.message);
       setBranch("");
       setRefreshFlag(!refreshFlag);
+      setPopup1(false);
     } else {
       alert("something went wrong");
     }
   };
 
   const handleCreateDepartment = async () => {
-    console.log(departmentValue);
+    // console.log(departmentValue);
     const ans = await postDepartment({
       name: departmentValue.name,
-      branch: departmentValue.branch,
+      branch: branches.find(x=>x._id===departmentValue.branch),
     });
     console.log(ans);
-    if (ans.status) {
+    if (ans.success) {
+      setDepartmentValue({
+        name: '',
+        branch: ''
+      });
       alert(ans.message);
-      setBranch("");
       setRefreshFlag(!refreshFlag);
+      setPopup2(false);
     } else {
       alert("something went wrong");
     }
   };
 
   const handleCreateDesignation = async () => {
-    console.log(designationValue);
+    // console.log(designationValue);
     const ans = await postDesignation({
       name: designationValue.name,
-      designation: designationValue.department,
+      department: departments.find(x=>x._id===designationValue.department),
     });
     console.log(ans);
-    if (ans.status) {
+    if (ans.success) {
       alert(ans.message);
-      setBranch("");
+      setDesignationValue({
+        name: '',
+        department: ''
+      });
       setRefreshFlag(!refreshFlag);
+      setPopup3(false);
     } else {
       alert("something went wrong");
     }
@@ -298,7 +300,11 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <p>Filter</p>
                           <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." />
+                            <input type="text" placeholder="Search..." onChange={(e)=>{
+                              setBranches(()=>{
+                                return branches1.filter(x=>x.name.toLowerCase().includes(e.target.value.toLowerCase()));
+                              });
+                            }} />
                           </div>
                         </div>
 
@@ -321,7 +327,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             </thead>
 
                             <tbody>
-                              {branches.map((item, index) => (
+                              {branches.length===0 ? 'No Branches Added' : branches.map((item, index) => (
                                 <tr key={index} className="bg-white ">
                                   <td className="px-6 py-4 ">{item?.name}</td>
 
@@ -361,7 +367,12 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <p>Filter</p>
                           <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." />
+                            <input type="text" placeholder="Search..." onChange={(e)=>{
+                              let txt=e.target.value.toLowerCase();
+                              setDepartments(()=>{
+                                return departments1.filter(x=>x.name.toLowerCase().includes(txt));
+                              });
+                            }} />
                           </div>
                         </div>
 
@@ -384,7 +395,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             </thead>
 
                             <tbody>
-                              {departments.map((item, index) => (
+                              {departments.length===0 ? 'No Departments Added' : departments.map((item, index) => (
                                 <tr key={index} className="bg-white ">
                                   <td className="px-6 py-4 ">
                                     {item?.branch?.name}
@@ -416,7 +427,12 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <p>Filter</p>
                           <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." />
+                            <input type="text" placeholder="Search..." onChange={(e)=>{
+                              let txt=e.target.value.toLowerCase();
+                              setDesignations(()=>{
+                                return designations1.filter(x=>x.name.toLowerCase().includes(txt));
+                              });
+                            }}  />
                           </div>
                         </div>
 
@@ -439,7 +455,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             </thead>
 
                             <tbody>
-                              {designations.map((item, index) => (
+                              {designations.length===0 ? 'No Designations Added' : designations.map((item, index) => (
                                 <tr key={index} className="bg-white ">
                                   <td className="px-6 py-4 ">
                                     {item?.department?.name}
@@ -457,6 +473,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                       </div>
                     </div>
                   )}
+                  
                   {open === 3 && (
                     <div className="hrmsystemsetup-leftmenu">
                       <div className="hrmsystemsetup-container">
@@ -843,6 +860,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 <button className="cencel" onClick={() => setPopup1(false)}>
                   <span>Cancel</span>
                 </button>
+
                 <button className="create" onClick={handleCreateBranch}>
                   <span>Create</span>
                 </button>
@@ -856,10 +874,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
             <div className="popup1">
               <h2>Create New Department</h2>
               <hr />
-              <select className="selectBRANCH" name="" id="">
-                <option value="" selected>
-                  select Branch
-                </option>
+              <select className="selectBRANCH" value={departmentValue.branch} onChange={(e)=>{setDepartmentValue({...departmentValue, branch: e.target.value});}} name="branch1" id="branch1">
+                <option value="">select Branch</option>
+
                 {branches.map((e, index) => {
                   return (
                     <option key={index} value={e._id}>
@@ -868,9 +885,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   );
                 })}
               </select>
+
               <label>
                 <p>Name</p>
-                <input type="text" placeholder="Enter Department Name" />
+                <input type="text" name="department1" value={departmentValue.name} onChange={(e)=>{setDepartmentValue({...departmentValue, name: e.target.value});}} placeholder="Enter Department Name" />
               </label>
 
               <hr />
@@ -879,6 +897,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 <button className="cencel" onClick={() => setPopup2(false)}>
                   <span>Cancel</span>
                 </button>
+
                 <button className="create" onClick={handleCreateDepartment}>
                   <span>Create</span>
                 </button>
@@ -894,15 +913,22 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <hr />
               <label htmlFor>
                 <p>Department</p>
-                <select className="selectBRANCH" name="" id="">
-                  <option value="" disabled selected>
-                    Admin
-                  </option>
+                <select className="selectBRANCH" value={designationValue?.department} onChange={(e)=>{
+                  setDesignationValue({...designationValue, department: e.target.value});
+                }}>
+                  <option value="" disabled>Choose Department</option>
+                  {departments?.map((e,index)=>{
+                    return (
+                      <option key={index} value={e?._id}>{e?.name}</option>
+                    );
+                  })}
                 </select>
               </label>
               <label htmlFor="">
                 <p>Name</p>
-                <input type="text" placeholder="Enter Designation Name" />
+                <input type="text" placeholder="Enter Designation Name" value={designationValue?.name} onChange={(e)=>{
+                  setDesignationValue({...designationValue, name: e.target.value});
+                }} />
               </label>
 
               <hr />
@@ -919,6 +945,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
             </div>
           </div>
         )}
+
         {popup4 && (
           <div className="allPopupWrap">
             <div className="popup1">

@@ -505,6 +505,7 @@ const MainState = (props) => {
    };
 
    const postDesignation = async ({ name, department }) => {
+      console.log(department);
       const data = await post(`${baseUrl}/system/postDesignation`, { name, department }, true);
       return data;
    };
