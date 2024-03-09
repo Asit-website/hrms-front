@@ -38,10 +38,6 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   const [punchFlag, setPunchFlag] = useState(false);
   const [statistics, setStatistics] = useState([]);
 
-  // =================Popup==============
-  const [open, setOpen] = useState(0);
-  const [popup1, setPopup1] = useState(false);
-
   // ==============other===========================
   const [value, onChange] = useState(new Date());
   const [gen, setGen] = useState([]);
@@ -635,13 +631,15 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                     <div className="leaves_request_emp">
                       <h2>Leaves</h2>
                       <button
+                        data-modal-target="authentication-modal"
+                        data-modal-toggle="authentication-modal"
+                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         type="button"
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4  mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         onClick={() => {
                           setStar1(!star1);
                         }}
                       >
-                        create leave
+                        Create leave
                       </button>
                     </div>
 
@@ -906,35 +904,35 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
 
                 {/* =============================== */}
                 <>
-                  {/* Modal toggle */}
-                  {/* <button
-    data-modal-target="default-modal"
-    data-modal-toggle="default-modal"
-    className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    type="button"
-  >
-    Toggle modal
-  </button> */}
-                  {/* Main modal */}
+                  {/* <!-- Modal toggle --> */}
+                   {/* <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                      Toggle modal
+                       </button> */}
+
+                  {/* <!-- Main modal --> */}
                   <div
                     style={styleThing}
-                    className=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
-                  >
-                    <div className="relative p-4 w-full max-w-2xl max-h-full">
-                      {/* Modal content */}
-                      <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        {/* Modal header */}
-                        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                            Terms of Service
+                    id="authentication-modal"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    class=" hidden overflow-y-auto overflow-x-hidden absolute center top-3 right-0 left-0 z-50 items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full "
+                    // style=" */display: flex;justify-content: center;"
+                    >
+                    <div class="relative mt-5 pt-5 p-4 w-full max-w-md max-h-full top-5 left-[35rem]">
+                      {/* <!-- Modal content --> */}
+                      <div class="relative bg-white pt-0 rounded-lg shadow dark:bg-gray-700">
+                        {/* <!-- Modal header --> */}
+                        <div class="flex items-center justify-between mt-5 p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                            Create Leave Request
                           </h3>
                           <button
                             type="button"
-                            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-hide="default-modal"
+                            class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-hide="authentication-modal"
                           >
-                            <svg
-                              className="w-3 h-3"
+                            {/* <svg
+                              class="w-3 h-3"
                               aria-hidden="true"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -942,53 +940,107 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             >
                               <path
                                 stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
                                 d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                               />
-                            </svg>
-                            <span className="sr-only">Close modal</span>
+                            </svg> */}
+                            <span class="sr-only">Close modal</span>
                           </button>
                         </div>
-                        {/* Modal body */}
-                        <div className="p-4 md:p-5 space-y-4">
-                          <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                            With less than a month to go before the European
-                            Union enacts new consumer privacy laws for its
-                            citizens, companies around the world are updating
-                            their terms of service agreements to comply.
-                          </p>
-                          <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                            The European Union’s General Data Protection
-                            Regulation (G.D.P.R.) goes into effect on May 25 and
-                            is meant to ensure a common set of data rights in
-                            the European Union. It requires organizations to
-                            notify users as soon as possible of high-risk data
-                            breaches that could personally affect them.
-                          </p>
-                        </div>
-                        {/* Modal footer */}
-                        <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                          <button
-                            data-modal-hide="default-modal"
-                            type="button"
-                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                          >
-                            I accept
-                          </button>
-                          <button
-                            onClick={() => setStar1(false)}
-                            data-modal-hide="default-modal"
-                            type="button"
-                            className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                          >
-                            Decline
-                          </button>
+                        {/* <!-- Modal body --> */}
+                        <div class=" mt-5 p-4 md:p-5">
+                          <form class="space-y-4" action="#">
+                            <div>
+                              <label
+                                for="name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Employee Name
+                              </label>
+                              <input
+                                type="text"
+                                name="text"
+                                id="text"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="Employee name"
+                                required
+                              />
+                            </div>
+                            <div>
+                              <label
+                                for="Leave Type"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Leave Type
+                              </label>
+                              <input
+                                type="text"
+                                name="text"
+                                id="text"
+                                placeholder="Leave type"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required
+                              />
+                            </div>
+                            <div class="flex justify-center">
+                              <label
+                                for="Leave Type"
+                                class="block m-2 p-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                start
+                              </label>
+                              <input
+                                type="Date"
+                                name="date"
+                                id="date"
+                                // placeholder="Leave type"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required
+                              />
+                              <label
+                                for="Leave Type"
+                                class="block m-2 p-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                End
+                              </label>
+                              <input
+                                type="Date"
+                                name="date"
+                                id="date"
+                                // placeholder="Leave type"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required
+                              />
+                            </div>
+                            <div>
+                              <label
+                                for="Leave Type"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Reason
+                              </label>
+                              <textarea id="comment" rows="4" class="w-full p-3 left-3 px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write your reason..." required />
+                            </div>
+
+                            
+                            <button
+                              onClick={() => setStar1(false)}
+                              type="submit"
+                              class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                              {" "}
+                              Send
+                            </button>
+                            
+                          </form>
                         </div>
                       </div>
                     </div>
                   </div>
+
+                  
                 </>
 
                 {/* <div className="second-bedge w-full ">
@@ -1032,13 +1084,6 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
               </div>
             </div>
           </div>
-          {popup1 && (
-            <div className="hrmsystemsetup-leftmenu">
-              <div className="hrmsystemsetup-container">
-                <h1> Hlo Dinesh </h1>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </>

@@ -1,0 +1,116 @@
+.class_popup1{
+        background-color: white;
+        max-width: 500px;
+        width: 100%;
+         min-height: 277px;
+        max-height: 615px; 
+        height: 100%;
+        display: flex;
+        z-index: 400;
+        padding: 20px;
+        flex-direction: column;
+        gap: 25px;
+
+}
+
+
+
+.announcement_subform {
+    display: flex;
+    /* padding: 10px; */
+    justify-content: center;
+    width: 450px;
+  }
+  
+  .announcement_childform {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 5px;
+    width: 100%;
+  }
+  
+  .announcement_childform input#title {
+    border: 1px solid;
+    padding: 7px;
+    /* width: 197%; */
+  }
+  
+  .announcement_childform select  {
+    border: 1px solid;
+    padding: 10px;
+  }
+  
+  .announcement_childform label {
+    padding: 5px 0px;
+  }
+
+  .announcement_childform input#start-date {
+    border: 1px solid;
+    padding: 10px;
+}
+
+
+.announcement_childform input#end-date {
+    border: 1px solid;
+    padding: 10px;
+}
+
+.announcement_textarea {
+    padding: 0px 10px;
+    width: 450px;
+    height: 150px;
+}
+
+.textarea_field textarea{
+    border: 1px solid;
+    margin: 10px 0px;
+    padding: 10px;
+    width: 100%;
+    height: 150px;
+}
+.dinesh_main{
+    margin: 10px;
+    /* border-radius: 14px; */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: transparent;
+    /* background-color: #FFFF; */
+}
+.main_1{
+    background-color: #FFFF;
+}
+
+#hrmpath_title{
+    padding: 3px 0px;
+    font-size: 15px;
+}
+
+#hrmpath_img{
+    padding: 10px;
+}
+
+.hrmpath{
+    display: flex;
+   /* gap: 10px; */
+   align-items: center;
+}
+
+.plusSection_1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.marknav_dinesh {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+
+.dinesh_right{
+    border: 1px solid;
+    padding: 5px;
+}

@@ -315,8 +315,7 @@ const MarkAttendance = ({
                     </>
                   )}
 
-                  {
-                    selectedOption === "all" && (
+                  {selectedOption === "all" && (
                       <>
                       {/* <h2>Monthly</h2> */}
                       <div name="" id="">
@@ -414,8 +413,7 @@ const MarkAttendance = ({
                         </svg>
                       </div>
                     </>
-                    )
-                  }
+                    )}
 
                   {/* <select name="" id="">
                     <option value="Select Branch">Select Branch</option>

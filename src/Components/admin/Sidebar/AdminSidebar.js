@@ -43,6 +43,10 @@ const HRMSItem = [
     title: "HRM System Setup",
     link: "/adminDash/HRM/HRMsystemSetup"
   },
+  {
+    title: "HRM Announcement",
+    link: "/adminDash/HRM/HRMannouncement"
+  },
 ]
 
 const AdminSidebar = ({ pop, setPop }) => {

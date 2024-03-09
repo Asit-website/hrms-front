@@ -35,6 +35,7 @@ import EmployeeManagement from "./Components/admin/EmployManagement/EmployeeMana
 import EmployeeManagementID from "./Components/admin/EmployManagement/EmployeeManagementID";
 import HRMsystemSetup from "./Components/admin/EmployManagement/HRMsystemSetup";
 import MarkAttendance from "./Components/admin/EmployeeHRM/MarkAttendence";
+import Announcement from "./Components/admin/EmployeeHRM/Announcement";
 
 var tc;
 
@@ -173,6 +174,7 @@ function App() {
             <Route path="/adminDash/HRM/EmployeeManagement/:id" element={<EmployeeManagementID pop={pop} setPop={setPop} setAlert={setAlert} />} />
             {/* dinesh  */}
             <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup  />} />  
+            <Route path="/adminDash/HRM/HRMannouncement"  element={<Announcement />}/>
            
            <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
