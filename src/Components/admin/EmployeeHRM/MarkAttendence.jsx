@@ -81,6 +81,7 @@ const MarkAttendance = ({
 
   return (
     <>
+    <h1>Hello Dinesh</h1>
       <div className="employee-dash h-full">
         {isHr ? <HrSidebar /> : <AdminSidebar pop={pop} setPop={setPop} />}
         <div className="tm">
