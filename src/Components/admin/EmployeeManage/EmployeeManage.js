@@ -13,13 +13,18 @@ import HrSidebar from "../../Hr/Sidebar/HrSidebar";
 import HrNavbar from "../../Hr/Navbar/HrNavbar";
 
 const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) => {
-  const date = new Date();
-  const d = date.getFullYear() - 40;
-  console.log(d);
-
   const { id } = useParams();
+
   const navigate = useNavigate();
-  const { user, createEmployee1, getUsers, updateUser } = useMain();
+
+  const { user, createEmployee1, getUsers, updateUser, getBranchs, getDepartments, getDesignations } = useMain();
+
+  const [value, setValue] = useState({
+    branch: '',
+    department: '',
+    designation: ''
+  });
+
   const [value1, setValue1] = useState({
     status: false,
     fullName: "",
@@ -86,6 +91,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
     Branch: "",
   });
 
+  const [branches, setBranches] = useState([]);
+  const [departments, setDepartments] = useState([]);
+  const [designations, setDesignations] = useState([]);
+
   useEffect(() => {
     let form1 = localStorage.getItem("form1");
     if (form1) {
@@ -119,6 +128,19 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
       getUser();
     }
   }, [id]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    let ans = await getBranchs();
+    let ans1 = await getDepartments();
+    let ans2 = await getDesignations();
+    setBranches(ans.data);
+    setDepartments(ans1.data);
+    setDesignations(ans2.data);
+  };
 
   const getUser = async () => {
     const ans = await getUsers(id);
@@ -338,13 +360,14 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
 
   };
 
-
   return (
     <>
       <div className="employee-dash h-full">
         {isHr ? <HrSidebar /> : <AdminSidebar pop={pop} setPop={setPop} />}
+
         <div className="tm">
           {isHr ? <HrNavbar user={user} setAlert={setAlert} pop1={pop1} setPop1={setPop1} /> : <AdminNavbar user={user} setAlert={setAlert} />}
+
           <div className="em">
             <div className="flex-col">
               <form
@@ -358,7 +381,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                       <h5 className="text-xl font-bold  ">Personal Details</h5>
                     </a>
                   </div>
+
                   <hr />
+
                   <div className=" p-3 pl-7 pr-7 ">
                     <div className="flex w-full ">
                       <div className=" w-full try">
@@ -416,7 +441,6 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                     </div>
 
                   </div>
-
                 </div>
 
                 <div className="bg-white border-none mt-7 ">
@@ -425,7 +449,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                       <h5 className="text-xl font-bold  ">Company Details</h5>
                     </a>
                   </div>
+
                   <hr />
+
                   <div className=" p-3 pl-7 pr-7 ">
                     <div className="flex w-full ">
                       <div className=" w-full try">
@@ -434,20 +460,20 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                           <input type="email" id="emailid-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Email id" />
                         </div>
                         <div className="pb-4 w-full try">
-                        <form className="max-w-sm mx-auto">
-                          <label for="Department" className="block  text-lg font-bold ">Department</label>
-                          <select id="Department" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
-                            <option selected >Select Department</option>
-                            <option value="Web">Web</option>
-                            <option value="UI">UI</option>
-                            <option value="SEO">SEO</option>
-                            <option value="Degital">Degital</option>
-                          </select>
-                        </form>
+                          <form className="max-w-sm mx-auto">
+                            <label for="Department" className="block  text-lg font-bold ">Department</label>
+                            <select id="Department" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                              <option selected >Select Department</option>
+                              <option value="Web">Web</option>
+                              <option value="UI">UI</option>
+                              <option value="SEO">SEO</option>
+                              <option value="Degital">Degital</option>
+                            </select>
+                          </form>
                         </div>
 
 
-                       
+
                       </div>
                       <div className=" w-full try ">
                         <div className="pb-4 w-full try">
@@ -455,42 +481,43 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                           <input type="date" id="joiningdate-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Last Name" />
                         </div>
                         <div className="pb-4 w-full try">
-                        <form className="max-w-sm mx-auto">
-                          <label for="Designation" className="block  text-lg font-bold ">Designation</label>
-                          <select id="Designation" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
-                            <option selected >Select Designation</option>
-                            <option value="Web">Web</option>
-                            <option value="UI">UI</option>
-                            <option value="SEO">SEO</option>
-                            <option value="Degital">Degital</option>
-                          </select>
-                        </form>
+                          <form className="max-w-sm mx-auto">
+                            <label for="Designation" className="block  text-lg font-bold ">Designation</label>
+                            <select id="Designation" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                              <option selected >Select Designation</option>
+                              <option value="Web">Web</option>
+                              <option value="UI">UI</option>
+                              <option value="SEO">SEO</option>
+                              <option value="Degital">Degital</option>
+                            </select>
+                          </form>
                         </div>
 
 
 
                       </div>
                       <div className=" w-full try ">
-                      <div className="pb-4 w-full try">
-                        <form className="max-w-sm mx-auto">
-                          <label for="Branch" className="block  text-lg font-bold ">Branch</label>
-                          <select id="Branch" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
-                            <option selected >Select Branch</option>
-                            <option value="Web">Web</option>
+                        <div className="pb-4 w-full try">
+                          <form className="max-w-sm mx-auto">
+                            <label for="Branch" className="block  text-lg font-bold ">Branch</label>
+                            <select id="Branch" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                              <option value=''>Select Branch</option>
+                              {branches?.map((e, index) => {
+                                <option key={index} value={e._id}>{e?.name}</option>
+                              })}
+                              {/* <option value="Web">Web</option>
                             <option value="UI">UI</option>
                             <option value="SEO">SEO</option>
-                            <option value="Degital">Degital</option>
-                          </select>
-                        </form>
+                            <option value="Degital">Degital</option> */}
+                            </select>
+                          </form>
                         </div>
                         <div className="pb-2 w-full try">
                           <label for="salary-input" className="block  text-lg font-bold ">salary</label>
                           <input type="number" id="salary-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Enter Salary" />
                         </div>
-
                       </div>
                     </div>
-
                   </div>
 
                 </div>
@@ -517,8 +544,8 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                           <label for="Cancelfile-input" className="block  text-lg font-bold "></label>
                           <input type="file" id="Cancelfile-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " placeholder="Cancel Check Upload" />
                         </div>
-                       
-                        
+
+
                       </div>
                       <div className=" w-full try ">
                         <div className="pb-5 w-full try">
@@ -539,7 +566,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                       <div className=" w-full try ">
                         <div className="pb-5 w-full try">
                           <label for="Validation-input" className="block  text-lg font-bold ">Validation Of Pan Number</label>
-                          <input type="number" id="Validation-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 "  />
+                          <input type="number" id="Validation-input" className=" border border-gray-300 text-gray-900 text-sm rounded-m  block w-full p-2.5 dark:placeholder-gray-900 " />
                         </div>
                         <div className="pb-5 w-full try">
                           <label for="10file-input" className="block  text-lg font-bold "></label>
@@ -556,14 +583,6 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                   </div>
 
                 </div>
-
-
-
-
-
-
-
-
 
                 <div className="admin-main admin-main1">
                   <div className="admin-form">
@@ -601,10 +620,11 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               value={value1?.department}
                               disabled={value1.status}
                             >
-                              <option>
-                                Department
-                              </option>
-                              <option value={`Intern`}>
+                              <option value={''}>Select Department</option>
+                              {departments?.filter(x=>x?.branch?._id===value?.branch)?.map((e,index)=>{
+                                <option key={index} value={e?._id}>{e?.name}</option>
+                              })}
+                              {/* <option value={`Intern`}>
                                 Intern
                               </option>
                               <option value={`UI/UX Designer`}>
@@ -624,8 +644,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               </option>
                               {
                                 user.role === "ADMIN" && <option value={`Hr`}>Hr</option>
-                              }
-
+                              } */}
                             </select>
                             <input
                               onChange={(e) => {
@@ -660,17 +679,21 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               disabled={value1.status}
                             >
                               <option>Designation</option>
-                              <option value="Senior Developer">Senior Developer</option>
+                              {designations?.filter(x=>x?.department?._id===value?.department)?.map((e,index)=>{
+                                <option key={index} value={e?._id}>{e?.name}</option>
+                              })}
+
+                            {/*<option value="Senior Developer">Senior Developer</option>
                               <option value="Developer">Developer</option>
                               <option value="UI/UX Designer">UI/UX Designer</option>
                               <option value="Graphic Designer">Graphic Designer</option>
-                       
+
                               <option value="E-Mail Marketer">E-Mail Marketer</option>
                               <option value="Digital Marketing">Digital Marketing</option>
                               <option value="Hr">Hr</option>
                               <option value="Team Leader">Team Leader</option>
                               <option value="  Business development">  Business development</option>
-                              <option value="Manager">Manager/Project manager</option>
+                              <option value="Manager">Manager/Project manager</option> */}
                             </select>
                             <input
                               onChange={(e) => {
@@ -1865,6 +1888,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                       </div>
                     </div>
                   </div>
+
                   <div className=" flex items-center justify-center mt-5">
                     <button
                       type="submit"

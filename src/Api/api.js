@@ -62,9 +62,9 @@ export const put = async (url, body, authFlag) => {
         return data;
     } catch (error) {
         console.log(error);
-        localStorage.removeItem('hrms_token');
-        localStorage.removeItem('hrms_user');
-        window.location.href = "/login";
+        // localStorage.removeItem('hrms_token');
+        // localStorage.removeItem('hrms_user');
+        // window.location.href = "/login";
     }
 };
 

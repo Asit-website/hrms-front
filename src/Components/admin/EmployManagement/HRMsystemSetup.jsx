@@ -139,10 +139,14 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
   ];
 
   const [popup1, setPopup1] = useState(false);
+  const [popup11, setPopup11] = useState(false);
   const [popup2, setPopup2] = useState(false);
+  const [popup21, setPopup21] = useState(false);
   const [popup3, setPopup3] = useState(false);
+  const [popup31, setPopup31] = useState(false);
   const [popup4, setPopup4] = useState(false);
 
+  const [id, setId] = useState('');
   const [branches, setBranches] = useState([]);
   const [branches1, setBranches1] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -156,6 +160,14 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     name: "",
   });
   const [designationValue, setDesignationValue] = useState({
+    department: "",
+    name: "",
+  });
+  const [departmentValue1, setDepartmentValue1] = useState({
+    branch: "",
+    name: "",
+  });
+  const [designationValue1, setDesignationValue1] = useState({
     department: "",
     name: "",
   });
@@ -178,7 +190,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
   };
 
   const handleCreateBranch = async () => {
-    console.log(branch);
     const ans = await postBranch({ name: branch });
     console.log(ans);
     if (ans.success) {
@@ -191,11 +202,24 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     }
   };
 
+  const handleUpdateBranch = async () => {
+    const ans = await updateBranch({ name: branch1, id });
+    console.log(ans);
+    if (ans.success) {
+      alert(ans.message);
+      setBranch1("");
+      setRefreshFlag(!refreshFlag);
+      setPopup11(false);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
   const handleCreateDepartment = async () => {
     // console.log(departmentValue);
     const ans = await postDepartment({
       name: departmentValue.name,
-      branch: branches.find(x=>x._id===departmentValue.branch),
+      branch: branches.find(x => x._id === departmentValue.branch),
     });
     console.log(ans);
     if (ans.success) {
@@ -215,7 +239,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     // console.log(designationValue);
     const ans = await postDesignation({
       name: designationValue.name,
-      department: departments.find(x=>x._id===designationValue.department),
+      department: departments.find(x => x._id === designationValue.department)
     });
     console.log(ans);
     if (ans.success) {
@@ -226,6 +250,70 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       });
       setRefreshFlag(!refreshFlag);
       setPopup3(false);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  const handleUpdateDepartment = async () => {
+    // console.log(departmentValue);
+    const ans = await updateDepartment({
+      id,
+      name: departmentValue1?.name,
+      branch: branches?.find(x => x?._id === departmentValue1?.branch),
+    });
+    console.log(ans);
+    if (ans.success) {
+      setDepartmentValue1({
+        name: '',
+        branch: ''
+      });
+      alert(ans.message);
+      setRefreshFlag(!refreshFlag);
+      setPopup21(false);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  const handleUpdateDesignation = async () => {
+    // console.log(designationValue);
+    const ans = await updateDesignation({
+      id,
+      name: designationValue1?.name,
+      department: departments?.find(x => x?._id === designationValue1?.department)
+    });
+    console.log(ans);
+    if (ans.success) {
+      alert(ans.message);
+      setDesignationValue1({
+        name: '',
+        department: ''
+      });
+      setRefreshFlag(!refreshFlag);
+      setPopup31(false);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  const handleDelete = async (id, type) => {
+    let ans;
+    console.log(id, type);
+    if (type === 'branch') {
+      ans = await deleteBranch(id);
+    }
+    else if (type === 'department') {
+      ans = await deleteDepartment(id);
+    }
+    else if (type === 'designation') {
+      ans = await deleteDesignation(id);
+    }
+    console.log(ans);
+
+    if (ans.success) {
+      alert(ans.message);
+      setRefreshFlag(!refreshFlag);
     } else {
       alert("something went wrong");
     }
@@ -277,9 +365,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                       <div
                         key={index}
                         onClick={() => setOpen(index)}
-                        className={`hrmsystemsetup-subrightmenu ${
-                          open === index && "openItem"
-                        } `}
+                        className={`hrmsystemsetup-subrightmenu ${open === index && "openItem"
+                          } `}
                       >
                         <span>{item.title}</span>
                         <img src={blackRight} alt="" />
@@ -300,9 +387,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <p>Filter</p>
                           <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." onChange={(e)=>{
-                              setBranches(()=>{
-                                return branches1.filter(x=>x.name.toLowerCase().includes(e.target.value.toLowerCase()));
+                            <input type="text" placeholder="Search..." onChange={(e) => {
+                              setBranches(() => {
+                                return branches1.filter(x => x.name.toLowerCase().includes(e.target.value.toLowerCase()));
                               });
                             }} />
                           </div>
@@ -327,19 +414,25 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             </thead>
 
                             <tbody>
-                              {branches.length===0 ? 'No Branches Added' : branches.map((item, index) => (
+                              {branches.length === 0 ? 'No Branches Added' : branches.map((item, index) => (
                                 <tr key={index} className="bg-white ">
                                   <td className="px-6 py-4 ">{item?.name}</td>
 
                                   <td className="px-6 py-4 flex hrmActions">
                                     <img
-                                      onClick={() => {}}
+                                      className={'cursor-pointer'}
+                                      onClick={() => {
+                                        setId(item?._id);
+                                        setBranch1(item?.name);
+                                        setPopup11(true);
+                                      }}
                                       src={edited}
                                       alt=""
                                     />
                                     <img
+                                      className="cursor-pointer"
                                       onClick={() => {
-                                        // handleDelete();
+                                        handleDelete(item._id, 'branch');
                                       }}
                                       src={deleted}
                                       alt=""
@@ -367,10 +460,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <p>Filter</p>
                           <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." onChange={(e)=>{
-                              let txt=e.target.value.toLowerCase();
-                              setDepartments(()=>{
-                                return departments1.filter(x=>x.name.toLowerCase().includes(txt));
+                            <input type="text" placeholder="Search..." onChange={(e) => {
+                              let txt = e.target.value.toLowerCase();
+                              setDepartments(() => {
+                                return departments1.filter(x => x.name.toLowerCase().includes(txt));
                               });
                             }} />
                           </div>
@@ -395,15 +488,22 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             </thead>
 
                             <tbody>
-                              {departments.length===0 ? 'No Departments Added' : departments.map((item, index) => (
+                              {departments.length === 0 ? 'No Departments Added' : departments.map((item, index) => (
                                 <tr key={index} className="bg-white ">
                                   <td className="px-6 py-4 ">
                                     {item?.branch?.name}
                                   </td>
                                   <td className="px-6 py-4 ">{item?.name}</td>
                                   <td className="px-6 py-4 flex hrmActions">
-                                    <img src={edited} alt="" />
-                                    <img src={deleted} alt="" />
+                                    <img src={edited} className="cursor-pointer" onClick={() => {
+                                      setDepartmentValue1({
+                                        branch: item?.branch?._id,
+                                        name: item?.name
+                                      });
+                                      setId(item?._id);
+                                      setPopup21(true);
+                                    }} alt="" />
+                                    <img src={deleted} className="cursor-pointer" onClick={() => { handleDelete(item._id, 'department') }} alt="" />
                                   </td>
                                 </tr>
                               ))}
@@ -427,12 +527,12 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <p>Filter</p>
                           <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." onChange={(e)=>{
-                              let txt=e.target.value.toLowerCase();
-                              setDesignations(()=>{
-                                return designations1.filter(x=>x.name.toLowerCase().includes(txt));
+                            <input type="text" placeholder="Search..." onChange={(e) => {
+                              let txt = e.target.value.toLowerCase();
+                              setDesignations(() => {
+                                return designations1.filter(x => x.name.toLowerCase().includes(txt));
                               });
-                            }}  />
+                            }} />
                           </div>
                         </div>
 
@@ -455,15 +555,26 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             </thead>
 
                             <tbody>
-                              {designations.length===0 ? 'No Designations Added' : designations.map((item, index) => (
+                              {designations.length === 0 ? 'No Designations Added' : designations.map((item, index) => (
                                 <tr key={index} className="bg-white ">
                                   <td className="px-6 py-4 ">
                                     {item?.department?.name}
                                   </td>
+
                                   <td className="px-6 py-4 ">{item?.name}</td>
+
                                   <td className="px-6 py-4 flex hrmActions">
-                                    <img src={edited} alt="" />
-                                    <img src={deleted} alt="" />
+                                    <img src={edited} className="cursor-pointer" onClick={() => {
+                                      setDesignationValue1({
+                                        department: item?.department?._id,
+                                        name: item?.name
+                                      });
+                                      setId(item?._id);
+                                      setPopup31(true);
+                                    }} alt="" />
+                                    <img src={deleted} className="cursor-pointer" onClick={() => {
+                                      handleDelete(item._id, 'designation');
+                                    }} alt="" />
                                   </td>
                                 </tr>
                               ))}
@@ -473,7 +584,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                       </div>
                     </div>
                   )}
-                  
+
                   {open === 3 && (
                     <div className="hrmsystemsetup-leftmenu">
                       <div className="hrmsystemsetup-container">
@@ -869,12 +980,47 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
           </div>
         )}
 
+        {popup11 && (
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Edit Branch</h2>
+
+              <hr />
+
+              <label htmlFor="">
+                <p>Name</p>
+                <input
+                  type="text"
+                  name="branch1"
+                  onChange={(e) => {
+                    setBranch1(e.target.value);
+                  }}
+                  value={branch1}
+                  placeholder="Enter Branch Name"
+                />
+              </label>
+
+              <hr />
+
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup11(false)}>
+                  <span>Cancel</span>
+                </button>
+
+                <button className="create" onClick={handleUpdateBranch}>
+                  <span>Update</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {popup2 && (
           <div className="allPopupWrap">
             <div className="popup1">
               <h2>Create New Department</h2>
               <hr />
-              <select className="selectBRANCH" value={departmentValue.branch} onChange={(e)=>{setDepartmentValue({...departmentValue, branch: e.target.value});}} name="branch1" id="branch1">
+              <select className="selectBRANCH" value={departmentValue.branch} onChange={(e) => { setDepartmentValue({ ...departmentValue, branch: e.target.value }); }} name="branch1" id="branch1">
                 <option value="">select Branch</option>
 
                 {branches.map((e, index) => {
@@ -888,7 +1034,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               <label>
                 <p>Name</p>
-                <input type="text" name="department1" value={departmentValue.name} onChange={(e)=>{setDepartmentValue({...departmentValue, name: e.target.value});}} placeholder="Enter Department Name" />
+                <input type="text" name="department1" value={departmentValue.name} onChange={(e) => { setDepartmentValue({ ...departmentValue, name: e.target.value }); }} placeholder="Enter Department Name" />
               </label>
 
               <hr />
@@ -906,6 +1052,43 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
           </div>
         )}
 
+        {popup21 && (
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Edit Department</h2>
+              <hr />
+              <select className="selectBRANCH" value={departmentValue1.branch} onChange={(e) => { setDepartmentValue1({ ...departmentValue1, branch: e.target.value }); }} name="branch1" id="branch1">
+                <option value="">select Branch</option>
+
+                {branches.map((e, index) => {
+                  return (
+                    <option key={index} value={e._id}>
+                      {e.name}
+                    </option>
+                  );
+                })}
+              </select>
+
+              <label>
+                <p>Name</p>
+                <input type="text" name="department1" value={departmentValue1.name} onChange={(e) => { setDepartmentValue1({ ...departmentValue1, name: e.target.value }); }} placeholder="Enter Department Name" />
+              </label>
+
+              <hr />
+
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup21(false)}>
+                  <span>Cancel</span>
+                </button>
+
+                <button className="create" onClick={handleUpdateDepartment}>
+                  <span>Update</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {popup3 && (
           <div className="allPopupWrap">
             <div className="popup1">
@@ -913,11 +1096,11 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <hr />
               <label htmlFor>
                 <p>Department</p>
-                <select className="selectBRANCH" value={designationValue?.department} onChange={(e)=>{
-                  setDesignationValue({...designationValue, department: e.target.value});
+                <select className="selectBRANCH" value={designationValue?.department} onChange={(e) => {
+                  setDesignationValue({ ...designationValue, department: e.target.value });
                 }}>
                   <option value="" disabled>Choose Department</option>
-                  {departments?.map((e,index)=>{
+                  {departments?.map((e, index) => {
                     return (
                       <option key={index} value={e?._id}>{e?.name}</option>
                     );
@@ -926,8 +1109,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </label>
               <label htmlFor="">
                 <p>Name</p>
-                <input type="text" placeholder="Enter Designation Name" value={designationValue?.name} onChange={(e)=>{
-                  setDesignationValue({...designationValue, name: e.target.value});
+                <input type="text" placeholder="Enter Designation Name" value={designationValue?.name} onChange={(e) => {
+                  setDesignationValue({ ...designationValue, name: e.target.value });
                 }} />
               </label>
 
@@ -940,6 +1123,46 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
                 <button className="create" onClick={handleCreateDesignation}>
                   <span>Create</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {popup31 && (
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Edit Designation</h2>
+              <hr />
+              <label htmlFor>
+                <p>Department</p>
+                <select className="selectBRANCH" value={designationValue1?.department} onChange={(e) => {
+                  setDesignationValue1({ ...designationValue1, department: e.target.value });
+                }}>
+                  <option value="" disabled>Choose Department</option>
+                  {departments?.map((e, index) => {
+                    return (
+                      <option key={index} value={e?._id}>{e?.name}</option>
+                    );
+                  })}
+                </select>
+              </label>
+              <label htmlFor="">
+                <p>Name</p>
+                <input type="text" placeholder="Enter Designation Name" value={designationValue1?.name} onChange={(e) => {
+                  setDesignationValue1({ ...designationValue1, name: e.target.value });
+                }} />
+              </label>
+
+              <hr />
+
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup31(false)}>
+                  <span>Cancel</span>
+                </button>
+
+                <button className="create" onClick={handleUpdateDesignation}>
+                  <span>Update</span>
                 </button>
               </div>
             </div>

@@ -474,7 +474,7 @@ const MainState = (props) => {
       return data;
    };
 
-   const deleteBranch = async ({ id }) => {
+   const deleteBranch = async (id) => {
       const data = await deleteReq(`${baseUrl}/system/deleteBranch/${id}`, true);
       return data;
    };
@@ -494,7 +494,7 @@ const MainState = (props) => {
       return data;
    };
 
-   const deleteDepartment = async ({ id }) => {
+   const deleteDepartment = async (id) => {
       const data = await deleteReq(`${baseUrl}/system/deleteDepartment/${id}`, true);
       return data;
    };
@@ -515,7 +515,7 @@ const MainState = (props) => {
       return data;
    };
 
-   const deleteDesignation = async ({ id }) => {
+   const deleteDesignation = async (id) => {
       const data = await deleteReq(`${baseUrl}/system/deleteDesignation/${id}`, true);
       return data;
    };
