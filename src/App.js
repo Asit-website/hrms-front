@@ -35,6 +35,7 @@ import EmployeeManagement from "./Components/admin/EmployManagement/EmployeeMana
 import EmployeeManagementID from "./Components/admin/EmployManagement/EmployeeManagementID";
 import HRMsystemSetup from "./Components/admin/EmployManagement/HRMsystemSetup";
 import MarkAttendance from "./Components/admin/EmployeeHRM/MarkAttendence";
+import AdminAnnoncement from "./Components/admin/Announcement/AdminAnnoncement"
 
 var tc;
 
@@ -184,6 +185,7 @@ function App() {
             <Route path="/adminDash/profile-management" element={<ProfileManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HrManage" element={<HrManage pop={pop} setAlert={setAlert} setPop={setPop} />} />
             <Route path="/adminDash/profile" element={<AdminProfile pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/adminDash/announcement" element={<AdminAnnoncement pop={pop} setPop={setPop} setAlert={setAlert} />} />
             {/* </Route> */}
           </Routes>
         </BrowserRouter>

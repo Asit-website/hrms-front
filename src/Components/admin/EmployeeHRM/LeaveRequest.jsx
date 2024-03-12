@@ -9,8 +9,8 @@ import "./hrm.css";
 import "./leaveReq.css";
 import { NavLink } from "react-router-dom";
 import write from "../../images/write.png";
-import write2 from "../../images/write2.png";
 import del from "../../images/del.png";
+import write2 from "../../images/write2.png";
 
 const LeaveRequest = ({
   pop1,
