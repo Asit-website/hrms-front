@@ -78,8 +78,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
       // }, 5 * 1000);
 
       let status = "ONLINE";
-      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
-        }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`;
       // console.log(date);
       let activity = {
         type: "PUNCH_IN",
@@ -121,8 +122,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
       }, 60 * 1000);
 
       let status = "OFFLINE";
-      let date = `${new Date().getDate()}/${new Date().getMonth() + 1
-        }/${new Date().getFullYear()}`;
+      let date = `${new Date().getDate()}/${
+        new Date().getMonth() + 1
+      }/${new Date().getFullYear()}`;
       let activity = {
         type: "PUNCH_OUT",
         ts: new Date().getTime(),
@@ -162,10 +164,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   const [mount, setMount] = useState(false);
 
   useEffect(() => {
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
 
@@ -180,9 +182,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   }, []);
 
   const initializeTimer = () => {
-    let t = localStorage.getItem('clock-in');
-    let t1 = localStorage.getItem('clock-status');
-    let t2 = localStorage.getItem('break-seconds');
+    let t = localStorage.getItem("clock-in");
+    let t1 = localStorage.getItem("clock-status");
+    let t2 = localStorage.getItem("break-seconds");
     clearInterval(tc3);
     clearInterval(tc4);
 
@@ -199,14 +201,13 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
           setClock(++t5);
         }, 1000);
 
-        if (t1 === 'resume') {
+        if (t1 === "resume") {
           tc3 = setInterval(() => {
             setBreakClock(++t2);
           }, 1000);
         }
-      }
-      else {
-        let t7 = localStorage.getItem('clock-out-time');
+      } else {
+        let t7 = localStorage.getItem("clock-out-time");
         let t5 = Math.floor((t7 - t) / 1000);
         setClock(t5);
       }
@@ -433,14 +434,14 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                                     ? "Clock In"
                                     : localStorage.getItem("clock-status") ===
                                       "break"
-                                      ? "Break"
-                                      : localStorage.getItem("clock-status") ===
-                                        "resume"
-                                        ? "Resume"
-                                        : localStorage.getItem("clock-status") ===
-                                          "out"
-                                          ? "Clock In"
-                                          : null}
+                                    ? "Break"
+                                    : localStorage.getItem("clock-status") ===
+                                      "resume"
+                                    ? "Resume"
+                                    : localStorage.getItem("clock-status") ===
+                                      "out"
+                                    ? "Clock In"
+                                    : null}
                                 </span>
                               </button>
                             )}
@@ -562,10 +563,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             )
                               .toString()
                               .padStart(2, "0")}:${Math.floor(
-                                (clock % 3600) / 60
-                              )
-                                .toString()
-                                .padStart(2, "0")}`}</h5>
+                              (clock % 3600) / 60
+                            )
+                              .toString()
+                              .padStart(2, "0")}`}</h5>
                             <p>Scheduled</p>
                           </div>
 
@@ -575,10 +576,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             )
                               .toString()
                               .padStart(2, "0")}:${Math.floor(
-                                ((clock - breakClock) % 3600) / 60
-                              )
-                                .toString()
-                                .padStart(2, "0")}`}</h5>
+                              ((clock - breakClock) % 3600) / 60
+                            )
+                              .toString()
+                              .padStart(2, "0")}`}</h5>
                             <p>Worked</p>
                           </div>
 
@@ -588,10 +589,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             )
                               .toString()
                               .padStart(2, "0")}:${Math.floor(
-                                (breakClock % 3600) / 60
-                              )
-                                .toString()
-                                .padStart(2, "0")}`}</h5>
+                              (breakClock % 3600) / 60
+                            )
+                              .toString()
+                              .padStart(2, "0")}`}</h5>
                             <p>Break</p>
                           </div>
 
@@ -601,10 +602,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             )
                               .toString()
                               .padStart(2, "0")}:${Math.floor(
-                                ((32400 - clock) % 3600) / 60
-                              )
-                                .toString()
-                                .padStart(2, "0")}`}</h5>
+                              ((32400 - clock) % 3600) / 60
+                            )
+                              .toString()
+                              .padStart(2, "0")}`}</h5>
                             <p>balance</p>
                           </div>
                         </div>
@@ -654,6 +655,17 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                     <div className="leaves_request_emp">
                       <h2>Leaves</h2>
                       <button
+                        data-modal-target="authentication-modal"
+                        data-modal-toggle="authentication-modal"
+                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        type="button"
+                        onClick={() => {
+                          setStar1(!star1);
+                        }}
+                      >
+                        create leave
+                      </button>
+                      {/* <button
                         type="button"
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-4  mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         onClick={() => {
@@ -661,7 +673,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         }}
                       >
                         create leave
-                      </button>
+                      </button> */}
                     </div>
 
                     <hr />
@@ -927,22 +939,22 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                 <>
                   {/* Modal toggle */}
                   {/* <button
-    data-modal-target="default-modal"
-    data-modal-toggle="default-modal"
-    className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    type="button"
-  >
-    Toggle modal
-  </button> */}
+                   data-modal-target="default-modal"
+                   data-modal-toggle="default-modal"
+                    className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                   type="button"
+                    >
+                    Toggle modal
+                     </button> */}
                   {/* Main modal */}
-                  <div
+                  {/* <div
                     style={styleThing}
                     className=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
                   >
                     <div className="relative p-4 w-full max-w-2xl max-h-full">
-                      {/* Modal content */}
+                        // Modal content 
                       <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        {/* Modal header */}
+                      // Modal header 
                         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                           <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                             Terms of Service
@@ -970,7 +982,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             <span className="sr-only">Close modal</span>
                           </button>
                         </div>
-                        {/* Modal body */}
+                        // Modal body 
                         <div className="p-4 md:p-5 space-y-4">
                           <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                             With less than a month to go before the European
@@ -987,7 +999,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                             breaches that could personally affect them.
                           </p>
                         </div>
-                        {/* Modal footer */}
+                        // Modal footer 
                         <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                           <button
                             data-modal-hide="default-modal"
@@ -1004,6 +1016,129 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                           >
                             Decline
                           </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div> */}
+                  {/*----------  */}
+                  {/* <!-- Modal toggle --> */}
+                  {/* <button
+                    data-modal-target="authentication-modal"
+                    data-modal-toggle="authentication-modal"
+                    class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="button"
+                  >
+                    Toggle modal
+                  </button> */}
+
+                  {/* <!-- Main modal --> */}
+                  <div
+                    style={styleThing}
+                    id="authentication-modal"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    class="user_class hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center mt-10 md:inset-0 h-[calc(100%-1rem)] max-h-full"
+                  >
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                      {/* <!-- Modal content --> */}
+                      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        {/* <!-- Modal header --> */}
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                            Create Leave Request
+                          </h3>
+                        </div>
+                        {/* <!-- Modal body --> */}
+                        <div class="p-4 md:p-5">
+                          <form class="space-y-4" action="#">
+                            <div class="mt-2 user_class_input">
+                              <label
+                                for="name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Employee Name
+                              </label>
+                              <input
+                                type="text"
+                                name="name"
+                                id="text"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="Enter the name"
+                                required
+                              />
+                            </div>
+                            <div class="mt-2 user_class_input">
+                              <label
+                                for="text"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Leave type
+                              </label>
+                              <input
+                                type="text"
+                                name="text"
+                                id="text"
+                                placeholder="Enter your leave type"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required
+                              />
+                            </div>
+                            <div className="flex justify-between w-full">
+                              <div class="user_class_input w-full mt-2 ">
+                                <label
+                                  for="text"
+                                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Start
+                                </label>
+                                <input
+                                  type="date"
+                                  name="text"
+                                  id="text"
+                                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                  required
+                                />
+                              </div>
+                              <div class="user_class_input w-full ml-2  mt-2">
+                                <label
+                                  for="text"
+                                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  End
+                                </label>
+                                <input
+                                  type="date"
+                                  name="text"
+                                  id="text"
+                                  class="black bg-indigo-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                  required
+                                />
+                              </div>
+                              
+                            </div>
+                            <div class="user_class_input">
+                                <label
+                                  for="message"
+                                  class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                  Reason
+                                </label>
+                                <textarea
+                                  id="message"
+                                  rows="4"
+                                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                  placeholder="Enter your reason..."
+                                ></textarea>
+                              </div>
+
+                            <button
+                              onClick={() => setStar1(false)}
+                              type="submit"
+                              class="w-full mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                              send
+                            </button>
+                          </form>
                         </div>
                       </div>
                     </div>
