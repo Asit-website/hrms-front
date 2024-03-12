@@ -11,6 +11,7 @@ import { NavLink } from "react-router-dom";
 import write from "../../images/write.png";
 import del from "../../images/del.png";
 import write2 from "../../images/write2.png";
+import { useEffect, useState } from "react";
 
 const LeaveRequest = ({
   pop1,
@@ -20,7 +21,19 @@ const LeaveRequest = ({
   setAlert,
   isHr = false,
 }) => {
-  const { user } = useMain();
+  const { user, getUserLeaves } = useMain();
+
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    // getData();
+  },[]);
+
+  const getData=async()=>{
+    let ans = await getUserLeaves();
+    console.log(ans);
+    setData(ans.data);
+  };
 
   return (
     <>
@@ -109,7 +122,12 @@ const LeaveRequest = ({
                     </thead>
 
                     <tbody>
-                      <tr className="bg-white border-b  ">
+                      {data?.map((e,index)=>{
+                        return (
+                          <></>
+                        )
+                      })}
+                      <tr className="bg-white border-b">
                         <th
                           scope="row"
                           className="px-3 py-4 font-medium  whitespace-nowrap taskAns "

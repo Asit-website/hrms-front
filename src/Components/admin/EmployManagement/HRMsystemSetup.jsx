@@ -362,6 +362,9 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     else if (type === 'designation') {
       ans = await deleteDesignation(id);
     }
+    else if (type === 'leaveType') {
+      ans = await deleteLeaveType(id);
+    }
     console.log(ans);
 
     if (ans.success) {
@@ -642,10 +645,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                     <div className="hrmsystemsetup-leftmenu">
                       <div className="hrmsystemsetup-container">
                         <div className="hrmsystemsetup-pagination">
-                          <p>Filter 1</p>
+                          <p>Filter</p>
                           <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." onChange={(e)=>{
+                            <input type="text" placeholder="Search..." onChange={(e) => {
                               let txt = e.target.value.toLowerCase();
                               setLeaveTypes(() => {
                                 return leaveTypes1.filter(x => x.name.toLowerCase().includes(txt));
@@ -678,8 +681,17 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                                   <td className="px-6 py-4 ">{item?.name}</td>
                                   <td className="px-6 py-4 ">{item?.days}</td>
                                   <td className="px-6 py-4 flex hrmActions">
-                                    <img src={edited} alt="" />
-                                    <img src={deleted} alt="" />
+                                    <img className="cursor-pointer" onClick={() => {
+                                      setLeaveTypeValue1({
+                                        days: item?.days,
+                                        name: item?.name
+                                      });
+                                      setId(item?._id);
+                                      setPopup41(true);
+                                    }} src={edited} alt="" />
+                                    <img className="cursor-pointer" onClick={() => {
+                                      handleDelete(item._id, 'leaveType');
+                                    }} src={deleted} alt="" />
                                   </td>
                                 </tr>
                               ))}
@@ -1232,8 +1244,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <hr />
               <label htmlFor>
                 <p>Leave Type</p>
-                <input type="text" placeholder="Enter Leave Type Name" name="name" value={leaveTypeValue?.name} onChange={(e)=>{
-                  setLeaveTypeValue({...leaveTypeValue, [e.target.name]: e.target.value});
+                <input type="text" placeholder="Enter Leave Type Name" name="name" value={leaveTypeValue?.name} onChange={(e) => {
+                  setLeaveTypeValue({ ...leaveTypeValue, [e.target.name]: e.target.value });
                 }} />
                 {/* <select className="selectBRANCH" name="" id="">
                   <option value="" disabled selected></option>
@@ -1242,8 +1254,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               <label htmlFor="">
                 <p>Days Per Year</p>
-                <input type="text" placeholder="Enter Days / Year" name="days" value={leaveTypeValue?.days} onChange={(e)=>{
-                  setLeaveTypeValue({...leaveTypeValue, [e.target.name]: e.target.value});
+                <input type="text" placeholder="Enter Days / Year" name="days" value={leaveTypeValue?.days} onChange={(e) => {
+                  setLeaveTypeValue({ ...leaveTypeValue, [e.target.name]: e.target.value });
                 }} />
               </label>
 
@@ -1269,8 +1281,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <hr />
               <label htmlFor>
                 <p>Leave Type</p>
-                <input type="text" placeholder="Enter Leave Type Name" name="name" value={leaveTypeValue1?.name} onChange={(e)=>{
-                  setLeaveTypeValue1({...leaveTypeValue1, [e.target.name]: e.target.value});
+                <input type="text" placeholder="Enter Leave Type Name" name="name" value={leaveTypeValue1?.name} onChange={(e) => {
+                  setLeaveTypeValue1({ ...leaveTypeValue1, [e.target.name]: e.target.value });
                 }} />
                 {/* <select className="selectBRANCH" name="" id="">
                   <option value="" disabled selected></option>
@@ -1279,8 +1291,8 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               <label htmlFor="">
                 <p>Days Per Year</p>
-                <input type="text" placeholder="Enter Days / Year" name="days" value={leaveTypeValue1?.days} onChange={(e)=>{
-                  setLeaveTypeValue1({...leaveTypeValue1, [e.target.name]: e.target.value});
+                <input type="text" placeholder="Enter Days / Year" name="days" value={leaveTypeValue1?.days} onChange={(e) => {
+                  setLeaveTypeValue1({ ...leaveTypeValue1, [e.target.name]: e.target.value });
                 }} />
               </label>
 
@@ -1292,7 +1304,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 </button>
 
                 <button className="create" onClick={handleUpdateLeaveType}>
-                  <span>Create</span>
+                  <span>Update</span>
                 </button>
               </div>
             </div>
