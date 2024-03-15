@@ -11,7 +11,7 @@ import outbox from "../../images/outbox.png"
 import personAdd from "../../images/person_add.png"
 import Calendar from "react-calendar";
 import "./employeManage.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 // const emplyData = [
@@ -175,7 +175,7 @@ const EmployeeManagement = ({
                   <div className="inObPerAd">
                     <img src={inbox} alt="" />
                     <img src={outbox} alt="" />
-                    <img src={personAdd} alt="" />
+                   <NavLink to="/adminDash/EmployeeMan"><img src={personAdd} alt="" /></NavLink>
                   </div>
 
                 </div>

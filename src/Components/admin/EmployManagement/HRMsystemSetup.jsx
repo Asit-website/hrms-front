@@ -236,6 +236,14 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       branch: branches.find(x => x._id === departmentValue.branch),
     });
     console.log(ans);
+
+    if(ans.status)
+    {
+      alert("success");
+      setBranch('');
+      setRefreshFlag(!refreshFlag);
+      setPopup1(false);
+
     if (ans.success) {
       setDepartmentValue({
         name: '',
@@ -246,6 +254,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       setPopup2(false);
     } else {
       alert("something went wrong");
+
     }
   };
 
