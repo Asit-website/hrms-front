@@ -215,9 +215,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     console.log(ans);
     if(ans.status)
     {
-      alert(ans.message);
+      alert("success");
       setBranch('');
       setRefreshFlag(!refreshFlag);
+      setPopup1(false);
     }
     else
     {
