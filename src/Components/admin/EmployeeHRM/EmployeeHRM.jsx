@@ -87,9 +87,29 @@ const EmployeeHRM = ({
   const [mount, setMount] = useState(false);
 
   useEffect(() => {
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  const handleVisibilityChange = () => {
+    if (!document.hidden) {
+      initializeTimer();
+    }
+  };
+
+  useEffect(() => {
+    initializeTimer();
+  }, []);
+
+  const initializeTimer = () => {
     let t = localStorage.getItem('clock-in');
     let t1 = localStorage.getItem('clock-status');
     let t2 = localStorage.getItem('break-seconds');
+    clearInterval(tc3);
+    clearInterval(tc4);
 
     if (t1) {
       if (t2) {
@@ -116,14 +136,14 @@ const EmployeeHRM = ({
         setClock(t5);
       }
     }
-  }, []);
+  };
 
   const clockIn = async () => {
     let t = localStorage.getItem('clock-status');
     // console.log(t);
 
     if (!t) {
-      let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: ''});
+      let ans = await postActivity({ clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: '' });
 
       localStorage.setItem('clock-in', new Date().getTime());
       localStorage.setItem('clock-status', 'break');
@@ -157,7 +177,7 @@ const EmployeeHRM = ({
         clearInterval(tc3);
       }
       else if (t === "out") {
-        let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: ''});
+        let ans = await postActivity({ clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: '' });
 
         localStorage.setItem('clock-in', new Date().getTime());
         localStorage.setItem('clock-status', 'break');
@@ -183,7 +203,7 @@ const EmployeeHRM = ({
     clearInterval(tc4);
     setMount(!mount);
 
-    let ans = await postActivity({clockIn: localStorage.getItem('clock-in'), clockOut: localStorage.getItem('clock-out-time'), late: breakClock, date1: new Date().toLocaleDateString('en-GB'), overtime: (((clock) - (32400))>0 ? ((clock)-32400) : 0), total: clock, message: ''});
+    let ans = await postActivity({ clockIn: localStorage.getItem('clock-in'), clockOut: localStorage.getItem('clock-out-time'), late: breakClock, date1: new Date().toLocaleDateString('en-GB'), overtime: (((clock) - (32400)) > 0 ? ((clock) - 32400) : 0), total: clock, message: '' });
     console.log(ans);
   };
 
@@ -407,11 +427,11 @@ const EmployeeHRM = ({
                       </div>
 
                       <div className="clockINOUTBtn">
-                        {(mount || !mount) && <button className="clockIN" onClick={clockIn}>
+                        {(mount || !mount) && <button className="clockIN cursor-pointer" onClick={clockIn}>
                           <span>{!localStorage.getItem('clock-status') ? 'Clock In' : localStorage.getItem('clock-status') === 'break' ? 'Break' : localStorage.getItem('clock-status') === 'resume' ? 'Resume' : localStorage.getItem('clock-status') === 'out' ? 'Clock In' : null}</span>
                         </button>}
 
-                        {(mount || !mount) && <button className="clockOUT" disabled={!localStorage.getItem('clock-status') || localStorage.getItem('clock-status') === 'out'} onClick={clockOut}>
+                        {(mount || !mount) && <button className="clockOUT cursor-pointer" disabled={!localStorage.getItem('clock-status') || localStorage.getItem('clock-status') === 'out'} onClick={clockOut}>
                           <span>Clock Out</span>
                         </button>}
                       </div>

@@ -2947,3 +2947,15 @@ abbr:where([title]) {
   display: flex;
   gap: 42px;
 }
+
+
+.user_class{
+  width: 40%;
+  position: fixed;
+  left: 30%;
+  top: 9%;
+}
+
+.user_class_input input#text, textarea {
+  background: transparent;
+}

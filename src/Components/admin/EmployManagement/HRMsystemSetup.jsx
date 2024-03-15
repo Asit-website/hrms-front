@@ -15,7 +15,7 @@ import blackRight from "../../images/blackRight.png";
 import srchIcon from "../../images/srchIcon.png";
 import deleted from "../../images/deleted.png";
 import edited from "../../images/edited.png";
-import plusIcon from "../../images/plusIcon.png"
+import plusIcon from "../../images/plusIcon.png";
 
 const sidebarItem = [
   {
@@ -28,7 +28,6 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-
   },
   {
     title: "Department",
@@ -43,7 +42,6 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-
   },
   {
     title: "Designation",
@@ -58,7 +56,6 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-
   },
   {
     title: "Leave Type",
@@ -73,12 +70,11 @@ const sidebarItem = [
         title: "ACTION",
       },
     ],
-
   },
 ];
 
 const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
-  const { user, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation } = useMain();
+  const { user, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType } = useMain();
 
   const [value, onChange] = useState(new Date());
   const [gen, setGen] = useState([]);
@@ -110,57 +106,81 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     {
       type: "Head office",
     },
-  ]
+  ];
 
   const data2 = [
     {
       branch: "Head office",
-      department: "Admin"
+      department: "Admin",
     },
     {
       branch: "Head office",
-      department: "Admin"
+      department: "Admin",
     },
     {
       branch: "Head office",
-      department: "Admin"
+      department: "Admin",
     },
-
-  ]
+  ];
 
   const data3 = [
     {
       department: "Head office",
-      designation: "Admin"
+      designation: "Admin",
     },
     {
       department: "Head office",
-      designation: "Admin"
+      designation: "Admin",
     },
     {
       department: "Head office",
-      designation: "Admin"
+      designation: "Admin",
     },
-
-  ]
+  ];
 
   const [popup1, setPopup1] = useState(false);
+  const [popup11, setPopup11] = useState(false);
   const [popup2, setPopup2] = useState(false);
+  const [popup21, setPopup21] = useState(false);
   const [popup3, setPopup3] = useState(false);
+  const [popup31, setPopup31] = useState(false);
   const [popup4, setPopup4] = useState(false);
+  const [popup41, setPopup41] = useState(false);
 
-
+  const [id, setId] = useState('');
   const [branches, setBranches] = useState([]);
+  const [branches1, setBranches1] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const [departments1, setDepartments1] = useState([]);
   const [designations, setDesignations] = useState([]);
-  const [branch, setBranch] = useState('');
+  const [designations1, setDesignations1] = useState([]);
+  const [leaveTypes, setLeaveTypes] = useState([]);
+  const [leaveTypes1, setLeaveTypes1] = useState([]);
+  const [branch, setBranch] = useState("");
+  const [branch1, setBranch1] = useState("");
   const [departmentValue, setDepartmentValue] = useState({
-    branch: '',
-    name: ''
+    branch: "",
+    name: "",
+  });
+  const [leaveTypeValue, setLeaveTypeValue] = useState({
+    name: "",
+    days: ""
   });
   const [designationValue, setDesignationValue] = useState({
-    department: '',
-    name: ''
+    department: "",
+    name: "",
+  });
+  const [departmentValue1, setDepartmentValue1] = useState({
+    branch: "",
+    name: "",
+  });
+  const [designationValue1, setDesignationValue1] = useState({
+    department: "",
+    name: "",
+  });
+  const [leaveTypeValue1, setLeaveTypeValue1] = useState({
+    name: "",
+    days: ""
   });
   const [refreshFlag, setRefreshFlag] = useState(false);
 
@@ -172,46 +192,49 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     const ans1 = await getBranchs();
     const ans2 = await getDepartments();
     const ans3 = await getDesignations();
+    const ans4 = await getLeaveTypes();
     setBranches(ans1.data);
+    setBranches1(ans1.data);
     setDepartments(ans2.data);
+    setDepartments1(ans2.data);
     setDesignations(ans3.data);
+    setDesignations1(ans3.data);
+    setLeaveTypes(ans4.data);
+    setLeaveTypes1(ans4.data);
   };
 
-  const handleCreateBranch=async()=>{
-    console.log(branch);
-    const ans = await postBranch({name: branch});
+  const handleCreateBranch = async () => {
+    const ans = await postBranch({ name: branch });
     console.log(ans);
-    if(ans.status)
-    {
+    if (ans.success) {
       alert(ans.message);
-      setBranch('');
+      setBranch("");
       setRefreshFlag(!refreshFlag);
-    }
-    else
-    {
-      alert('something went wrong');
+      setPopup1(false);
+    } else {
+      alert("something went wrong");
     }
   };
 
-  const handleCreateDepartment=async()=>{
-    console.log(departmentValue);
-    const ans = await postDepartment({name: departmentValue.name, branch: departmentValue.branch});
+  const handleUpdateBranch = async () => {
+    const ans = await updateBranch({ name: branch1, id });
     console.log(ans);
-    if(ans.status)
-    {
+    if (ans.success) {
       alert(ans.message);
-      setBranch('');
+      setBranch1("");
       setRefreshFlag(!refreshFlag);
-    }
-    else
-    {
-      alert('something went wrong');
+      setPopup11(false);
+    } else {
+      alert("something went wrong");
     }
   };
 
-  const handleCreateDesignation=async()=>{
-    console.log(designationValue);
-    const ans = await postDesignation({name: designationValue.name, designation: designationValue.department});
+  const handleCreateDepartment = async () => {
+    // console.log(departmentValue);
+    const ans = await postDepartment({
+      name: departmentValue.name,
+      branch: branches.find(x => x._id === departmentValue.branch),
+    });
     console.log(ans);
     if(ans.status)
     {
@@ -220,9 +243,131 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       setRefreshFlag(!refreshFlag);
       setPopup1(false);
     }
-    else
-    {
-      alert('something went wrong');
+  };
+
+  const handleCreateDesignation = async () => {
+    // console.log(designationValue);
+    const ans = await postDesignation({
+      name: designationValue.name,
+      department: departments.find(x => x._id === designationValue.department)
+    });
+    console.log(ans);
+    if (ans.success) {
+      alert(ans.message);
+      setDesignationValue({
+        name: '',
+        department: ''
+      });
+      setRefreshFlag(!refreshFlag);
+      setPopup3(false);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  const handleCreateLeaveType = async () => {
+    const ans = await postLeaveType({
+      days: leaveTypeValue?.days,
+      name: leaveTypeValue?.name
+    });
+    console.log(ans);
+    if (ans.success) {
+      alert(ans.message);
+      setLeaveTypeValue({
+        name: '',
+        days: ''
+      });
+      setRefreshFlag(!refreshFlag);
+      setPopup4(false);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  const handleUpdateDepartment = async () => {
+    // console.log(departmentValue);
+    const ans = await updateDepartment({
+      id,
+      name: departmentValue1?.name,
+      branch: branches?.find(x => x?._id === departmentValue1?.branch),
+    });
+    console.log(ans);
+    if (ans.success) {
+      setDepartmentValue1({
+        name: '',
+        branch: ''
+      });
+      alert(ans.message);
+      setRefreshFlag(!refreshFlag);
+      setPopup21(false);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  const handleUpdateDesignation = async () => {
+    // console.log(designationValue);
+    const ans = await updateDesignation({
+      id,
+      name: designationValue1?.name,
+      department: departments?.find(x => x?._id === designationValue1?.department)
+    });
+    console.log(ans);
+    if (ans.success) {
+      alert(ans.message);
+      setDesignationValue1({
+        name: '',
+        department: ''
+      });
+      setRefreshFlag(!refreshFlag);
+      setPopup31(false);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  const handleUpdateLeaveType = async () => {
+    const ans = await updateLeaveType({
+      id,
+      days: leaveTypeValue1?.days,
+      name: leaveTypeValue1?.name
+    });
+    console.log(ans);
+    if (ans.success) {
+      alert(ans.message);
+      setLeaveTypeValue1({
+        name: '',
+        days: ''
+      });
+      setRefreshFlag(!refreshFlag);
+      setPopup41(false);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  const handleDelete = async (id, type) => {
+    let ans;
+    console.log(id, type);
+    if (type === 'branch') {
+      ans = await deleteBranch(id);
+    }
+    else if (type === 'department') {
+      ans = await deleteDepartment(id);
+    }
+    else if (type === 'designation') {
+      ans = await deleteDesignation(id);
+    }
+    else if (type === 'leaveType') {
+      ans = await deleteLeaveType(id);
+    }
+    console.log(ans);
+
+    if (ans.success) {
+      alert(ans.message);
+      setRefreshFlag(!refreshFlag);
+    } else {
+      alert("something went wrong");
     }
   };
 
@@ -239,9 +384,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               <div className="admin-main">
                 <div className="plusSection">
                   <div className="adminFirt">
-
-
-
                     <h2 className="hrmShed">HRMS</h2>
 
                     <div className="hrmDoHe">
@@ -249,43 +391,42 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                       <img src={chevron} alt="" />
                       <span>HRM System Setup</span>
                     </div>
-
                   </div>
 
-                  <img onClick={() => {
-
-                    if (open === 0) {
-                      setPopup1(true);
-                    }
-                    else if (open === 1) {
-                      setPopup2(true);
-                    }
-                    else if (open === 2) {
-                      setPopup3(true);
-                    }
-                    else if(open === 3){
-                      setPopup4(true);
-                    }
-
-                  }} className="plusiCON" src={plusIcon} alt="" />
-
+                  <img
+                    onClick={() => {
+                      if (open === 0) {
+                        setPopup1(true);
+                      } else if (open === 1) {
+                        setPopup2(true);
+                      } else if (open === 2) {
+                        setPopup3(true);
+                      } else if (open === 3) {
+                        setPopup4(true);
+                      }
+                    }}
+                    className="plusiCON"
+                    src={plusIcon}
+                    alt=""
+                  />
                 </div>
 
                 <div className="hrmssystemsetup-parents">
                   <div className="hrmssystemsetup-rightmenu">
                     {sidebarItem.map((item, index) => (
-                      <div key={index}
+                      <div
+                        key={index}
                         onClick={() => setOpen(index)}
                         className={`hrmsystemsetup-subrightmenu ${open === index && "openItem"
-                          } `}>
+                          } `}
+                      >
                         <span>{item.title}</span>
                         <img src={blackRight} alt="" />
                       </div>
                     ))}
                   </div>
 
-                  {
-                    open === 0 &&
+                  {open === 0 && (
                     <div className="hrmsystemsetup-leftmenu">
                       <div className="hrmsystemsetup-container">
                         <div className="hrmsystemsetup-pagination">
@@ -298,7 +439,11 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                           <p>Filter</p>
                           <div className="hrmsystemsetup-search">
                             <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." />
+                            <input type="text" placeholder="Search..." onChange={(e) => {
+                              setBranches(() => {
+                                return branches1.filter(x => x.name.toLowerCase().includes(e.target.value.toLowerCase()));
+                              });
+                            }} />
                           </div>
                         </div>
 
@@ -308,7 +453,11 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                               <tr>
                                 {sidebarItem[open].tableData.map(
                                   (item, index) => (
-                                    <th key={index} scope="col" className="px-6 py-3">
+                                    <th
+                                      key={index}
+                                      scope="col"
+                                      className="px-6 py-3"
+                                    >
                                       {item.title}
                                     </th>
                                   )
@@ -317,18 +466,227 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             </thead>
 
                             <tbody>
-                              {branches.map((item, index) => (
+                              {branches.length === 0 ? 'No Branches Added' : branches.map((item, index) => (
                                 <tr key={index} className="bg-white ">
-                                  <td className="px-6 py-4 ">
-                                    {item?.name}
-                                  </td>
+                                  <td className="px-6 py-4 ">{item?.name}</td>
 
                                   <td className="px-6 py-4 flex hrmActions">
-                                    <img onClick={() => {
+                                    <img
+                                      className={'cursor-pointer'}
+                                      onClick={() => {
+                                        setId(item?._id);
+                                        setBranch1(item?.name);
+                                        setPopup11(true);
+                                      }}
+                                      src={edited}
+                                      alt=""
+                                    />
+                                    <img
+                                      className="cursor-pointer"
+                                      onClick={() => {
+                                        handleDelete(item._id, 'branch');
+                                      }}
+                                      src={deleted}
+                                      alt=""
+                                    />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
+                  {open === 1 && (
+                    <div className="hrmsystemsetup-leftmenu">
+                      <div className="hrmsystemsetup-container">
+                        <div className="hrmsystemsetup-pagination">
+                          {/* <select id="entries">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                  </select> */}
+
+                          <p>Filter</p>
+                          <div className="hrmsystemsetup-search">
+                            <img src={srchIcon} alt="" />
+                            <input type="text" placeholder="Search..." onChange={(e) => {
+                              let txt = e.target.value.toLowerCase();
+                              setDepartments(() => {
+                                return departments1.filter(x => x.name.toLowerCase().includes(txt));
+                              });
+                            }} />
+                          </div>
+                        </div>
+
+                        <div className="relative overflow-x-auto">
+                          <table className="w-full text-left   text-[#060606]">
+                            <thead className=" uppercase text-[#060606]">
+                              <tr>
+                                {sidebarItem[open].tableData.map(
+                                  (item, index) => (
+                                    <th
+                                      key={index}
+                                      scope="col"
+                                      className="px-6 py-3"
+                                    >
+                                      {item.title}
+                                    </th>
+                                  )
+                                )}
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              {departments.length === 0 ? 'No Departments Added' : departments.map((item, index) => (
+                                <tr key={index} className="bg-white ">
+                                  <td className="px-6 py-4 ">
+                                    {item?.branch?.name}
+                                  </td>
+                                  <td className="px-6 py-4 ">{item?.name}</td>
+                                  <td className="px-6 py-4 flex hrmActions">
+                                    <img src={edited} className="cursor-pointer" onClick={() => {
+                                      setDepartmentValue1({
+                                        branch: item?.branch?._id,
+                                        name: item?.name
+                                      });
+                                      setId(item?._id);
+                                      setPopup21(true);
+                                    }} alt="" />
+                                    <img src={deleted} className="cursor-pointer" onClick={() => { handleDelete(item._id, 'department') }} alt="" />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {open === 2 && (
+                    <div className="hrmsystemsetup-leftmenu">
+                      <div className="hrmsystemsetup-container">
+                        <div className="hrmsystemsetup-pagination">
+                          {/* <select id="entries">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                  </select> */}
+
+                          <p>Filter</p>
+                          <div className="hrmsystemsetup-search">
+                            <img src={srchIcon} alt="" />
+                            <input type="text" placeholder="Search..." onChange={(e) => {
+                              let txt = e.target.value.toLowerCase();
+                              setDesignations(() => {
+                                return designations1.filter(x => x.name.toLowerCase().includes(txt));
+                              });
+                            }} />
+                          </div>
+                        </div>
+
+                        <div className="relative overflow-x-auto">
+                          <table className="w-full text-left   text-[#060606]">
+                            <thead className=" uppercase text-[#060606]">
+                              <tr>
+                                {sidebarItem[open].tableData.map(
+                                  (item, index) => (
+                                    <th
+                                      key={index}
+                                      scope="col"
+                                      className="px-6 py-3"
+                                    >
+                                      {item.title}
+                                    </th>
+                                  )
+                                )}
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              {designations.length === 0 ? 'No Designations Added' : designations.map((item, index) => (
+                                <tr key={index} className="bg-white ">
+                                  <td className="px-6 py-4 ">
+                                    {item?.department?.name}
+                                  </td>
+
+                                  <td className="px-6 py-4 ">{item?.name}</td>
+
+                                  <td className="px-6 py-4 flex hrmActions">
+                                    <img src={edited} className="cursor-pointer" onClick={() => {
+                                      setDesignationValue1({
+                                        department: item?.department?._id,
+                                        name: item?.name
+                                      });
+                                      setId(item?._id);
+                                      setPopup31(true);
+                                    }} alt="" />
+                                    <img src={deleted} className="cursor-pointer" onClick={() => {
+                                      handleDelete(item._id, 'designation');
+                                    }} alt="" />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {open === 3 && (
+                    <div className="hrmsystemsetup-leftmenu">
+                      <div className="hrmsystemsetup-container">
+                        <div className="hrmsystemsetup-pagination">
+                          <p>Filter</p>
+                          <div className="hrmsystemsetup-search">
+                            <img src={srchIcon} alt="" />
+                            <input type="text" placeholder="Search..." onChange={(e) => {
+                              let txt = e.target.value.toLowerCase();
+                              setLeaveTypes(() => {
+                                return leaveTypes1.filter(x => x.name.toLowerCase().includes(txt));
+                              });
+                            }} />
+                          </div>
+                        </div>
+
+                        <div className="relative overflow-x-auto">
+                          <table className="w-full text-left   text-[#060606]">
+                            <thead className=" uppercase text-[#060606]">
+                              <tr>
+                                {sidebarItem[open].tableData.map(
+                                  (item, index) => (
+                                    <th
+                                      key={index}
+                                      scope="col"
+                                      className="px-6 py-3"
+                                    >
+                                      {item.title}
+                                    </th>
+                                  )
+                                )}
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              {leaveTypes.length === 0 ? 'No data found' : leaveTypes.map((item, index) => (
+                                <tr key={index} className="bg-white ">
+                                  <td className="px-6 py-4 ">{item?.name}</td>
+                                  <td className="px-6 py-4 ">{item?.days}</td>
+                                  <td className="px-6 py-4 flex hrmActions">
+                                    <img className="cursor-pointer" onClick={() => {
+                                      setLeaveTypeValue1({
+                                        days: item?.days,
+                                        name: item?.name
+                                      });
+                                      setId(item?._id);
+                                      setPopup41(true);
                                     }} src={edited} alt="" />
-                                    <img onClick={() => {
-                                      // handleDelete();
+                                    <img className="cursor-pointer" onClick={() => {
+                                      handleDelete(item._id, 'leaveType');
                                     }} src={deleted} alt="" />
                                   </td>
                                 </tr>
@@ -338,164 +696,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                         </div>
                       </div>
                     </div>
-                  }
-
-                  {
-                    open === 1 &&
-                    <div className="hrmsystemsetup-leftmenu">
-                      <div className="hrmsystemsetup-container">
-                        <div className="hrmsystemsetup-pagination">
-                          {/* <select id="entries">
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                  </select> */}
-
-                          <p>Filter</p>
-                          <div className="hrmsystemsetup-search">
-                            <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." />
-                          </div>
-                        </div>
-
-                        <div className="relative overflow-x-auto">
-                          <table className="w-full text-left   text-[#060606]">
-                            <thead className=" uppercase text-[#060606]">
-                              <tr>
-                                {sidebarItem[open].tableData.map(
-                                  (item, index) => (
-                                    <th key={index} scope="col" className="px-6 py-3">
-                                      {item.title}
-                                    </th>
-                                  )
-                                )}
-                              </tr>
-                            </thead>
-
-                            <tbody>
-                              {departments.map((item, index) => (
-                                <tr key={index} className="bg-white ">
-                                  <td className="px-6 py-4 ">
-                                    {item?.branch?.name}
-                                  </td>
-                                  <td className="px-6 py-4 ">
-                                    {item?.name}
-                                  </td>
-                                  <td className="px-6 py-4 flex hrmActions">
-                                    <img src={edited} alt="" />
-                                    <img src={deleted} alt="" />
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  }
-
-                  {
-                    open === 2 &&
-                    <div className="hrmsystemsetup-leftmenu">
-                      <div className="hrmsystemsetup-container">
-                        <div className="hrmsystemsetup-pagination">
-                          {/* <select id="entries">
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                  </select> */}
-
-                          <p>Filter</p>
-                          <div className="hrmsystemsetup-search">
-                            <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." />
-                          </div>
-                        </div>
-
-                        <div className="relative overflow-x-auto">
-                          <table className="w-full text-left   text-[#060606]">
-                            <thead className=" uppercase text-[#060606]">
-                              <tr>
-                                {sidebarItem[open].tableData.map(
-                                  (item, index) => (
-                                    <th key={index} scope="col" className="px-6 py-3">
-                                      {item.title}
-                                    </th>
-                                  )
-                                )}
-                              </tr>
-                            </thead>
-
-                            <tbody>
-                              {designations.map((item, index) => (
-                                <tr key={index} className="bg-white ">
-                                  <td className="px-6 py-4 ">
-                                    {item?.department?.name}
-                                  </td>
-                                  <td className="px-6 py-4 ">
-                                    {item?.name}
-                                  </td>
-                                  <td className="px-6 py-4 flex hrmActions">
-                                    <img src={edited} alt="" />
-                                    <img src={deleted} alt="" />
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  }
-                  {
-                    open === 3 &&
-                    <div className="hrmsystemsetup-leftmenu">
-                      <div className="hrmsystemsetup-container">
-                        <div className="hrmsystemsetup-pagination">
-               
-
-                          <p>Filter</p>
-                          <div className="hrmsystemsetup-search">
-                            <img src={srchIcon} alt="" />
-                            <input type="text" placeholder="Search..." />
-                          </div>
-                        </div>
-
-                        <div className="relative overflow-x-auto">
-                          <table className="w-full text-left   text-[#060606]">
-                            <thead className=" uppercase text-[#060606]">
-                              <tr>
-                                {sidebarItem[open].tableData.map(
-                                  (item, index) => (
-                                    <th key={index} scope="col" className="px-6 py-3">
-                                      {item.title}
-                                    </th>
-                                  )
-                                )}
-                              </tr>
-                            </thead>
-
-                            <tbody>
-                              {designations.map((item, index) => (
-                                <tr key={index} className="bg-white ">
-                                  <td className="px-6 py-4 ">
-                                    {item?.department?.name}
-                                  </td>
-                                  <td className="px-6 py-4 ">
-                                    {item?.name}
-                                  </td>
-                                  <td className="px-6 py-4 flex hrmActions">
-                                    <img src={edited} alt="" />
-                                    <img src={deleted} alt="" />
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  }
+                  )}
 
                   {/* {open === 1 && (
                     <div className="hrmsystemsetup-leftmenu">
@@ -808,8 +1009,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
           </div>
         </div>
 
-        {
-          popup1 &&
+        {popup1 && (
           <div className="allPopupWrap">
             <div className="popup1">
               <h2>Create New Branch</h2>
@@ -818,9 +1018,15 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               <label htmlFor="">
                 <p>Name</p>
-                <input type="text" name="branch" onChange={(e)=>{
-                  setBranch(e.target.value);
-                }} value={branch} placeholder="Enter Branch Name"  />
+                <input
+                  type="text"
+                  name="branch"
+                  onChange={(e) => {
+                    setBranch(e.target.value);
+                  }}
+                  value={branch}
+                  placeholder="Enter Branch Name"
+                />
               </label>
 
               <hr />
@@ -829,31 +1035,70 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 <button className="cencel" onClick={() => setPopup1(false)}>
                   <span>Cancel</span>
                 </button>
+
                 <button className="create" onClick={handleCreateBranch}>
                   <span>Create</span>
                 </button>
               </div>
             </div>
           </div>
-        }
+        )}
 
-        {
-          popup2 &&
+        {popup11 && (
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Edit Branch</h2>
+
+              <hr />
+
+              <label htmlFor="">
+                <p>Name</p>
+                <input
+                  type="text"
+                  name="branch1"
+                  onChange={(e) => {
+                    setBranch1(e.target.value);
+                  }}
+                  value={branch1}
+                  placeholder="Enter Branch Name"
+                />
+              </label>
+
+              <hr />
+
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup11(false)}>
+                  <span>Cancel</span>
+                </button>
+
+                <button className="create" onClick={handleUpdateBranch}>
+                  <span>Update</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {popup2 && (
           <div className="allPopupWrap">
             <div className="popup1">
               <h2>Create New Department</h2>
               <hr />
-              <select className="selectBRANCH" name="" id="">
-                <option value="" selected>select Branch</option>
-                {branches.map((e,index)=>{
+              <select className="selectBRANCH" value={departmentValue.branch} onChange={(e) => { setDepartmentValue({ ...departmentValue, branch: e.target.value }); }} name="branch1" id="branch1">
+                <option value="">select Branch</option>
+
+                {branches.map((e, index) => {
                   return (
-                    <option key={index} value={e._id}>{e.name}</option>
+                    <option key={index} value={e._id}>
+                      {e.name}
+                    </option>
                   );
                 })}
               </select>
+
               <label>
                 <p>Name</p>
-                <input type="text" placeholder="Enter Department Name" />
+                <input type="text" name="department1" value={departmentValue.name} onChange={(e) => { setDepartmentValue({ ...departmentValue, name: e.target.value }); }} placeholder="Enter Department Name" />
               </label>
 
               <hr />
@@ -862,29 +1107,75 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                 <button className="cencel" onClick={() => setPopup2(false)}>
                   <span>Cancel</span>
                 </button>
+
                 <button className="create" onClick={handleCreateDepartment}>
                   <span>Create</span>
                 </button>
               </div>
             </div>
           </div>
-        }
+        )}
 
-        {
-          popup3 &&
+        {popup21 && (
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Edit Department</h2>
+              <hr />
+              <select className="selectBRANCH" value={departmentValue1.branch} onChange={(e) => { setDepartmentValue1({ ...departmentValue1, branch: e.target.value }); }} name="branch1" id="branch1">
+                <option value="">select Branch</option>
+
+                {branches.map((e, index) => {
+                  return (
+                    <option key={index} value={e._id}>
+                      {e.name}
+                    </option>
+                  );
+                })}
+              </select>
+
+              <label>
+                <p>Name</p>
+                <input type="text" name="department1" value={departmentValue1.name} onChange={(e) => { setDepartmentValue1({ ...departmentValue1, name: e.target.value }); }} placeholder="Enter Department Name" />
+              </label>
+
+              <hr />
+
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup21(false)}>
+                  <span>Cancel</span>
+                </button>
+
+                <button className="create" onClick={handleUpdateDepartment}>
+                  <span>Update</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {popup3 && (
           <div className="allPopupWrap">
             <div className="popup1">
               <h2>Create New Designation</h2>
               <hr />
               <label htmlFor>
                 <p>Department</p>
-                <select className="selectBRANCH" name="" id="">
-                  <option value="" disabled selected>Admin</option>
+                <select className="selectBRANCH" value={designationValue?.department} onChange={(e) => {
+                  setDesignationValue({ ...designationValue, department: e.target.value });
+                }}>
+                  <option value="" disabled>Choose Department</option>
+                  {departments?.map((e, index) => {
+                    return (
+                      <option key={index} value={e?._id}>{e?.name}</option>
+                    );
+                  })}
                 </select>
               </label>
               <label htmlFor="">
                 <p>Name</p>
-                <input type="text" placeholder="Enter Designation Name" />
+                <input type="text" placeholder="Enter Designation Name" value={designationValue?.name} onChange={(e) => {
+                  setDesignationValue({ ...designationValue, name: e.target.value });
+                }} />
               </label>
 
               <hr />
@@ -900,22 +1191,68 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
               </div>
             </div>
           </div>
-        }
-        {
-          popup4 &&
+        )}
+
+        {popup31 && (
           <div className="allPopupWrap">
             <div className="popup1">
-              <h2>Create New Designation</h2>
+              <h2>Edit Designation</h2>
               <hr />
               <label htmlFor>
                 <p>Department</p>
-                <select className="selectBRANCH" name="" id="">
-                  <option value="" disabled selected>Admin</option>
+                <select className="selectBRANCH" value={designationValue1?.department} onChange={(e) => {
+                  setDesignationValue1({ ...designationValue1, department: e.target.value });
+                }}>
+                  <option value="" disabled>Choose Department</option>
+                  {departments?.map((e, index) => {
+                    return (
+                      <option key={index} value={e?._id}>{e?.name}</option>
+                    );
+                  })}
                 </select>
               </label>
               <label htmlFor="">
                 <p>Name</p>
-                <input type="text" placeholder="Enter Designation Name" />
+                <input type="text" placeholder="Enter Designation Name" value={designationValue1?.name} onChange={(e) => {
+                  setDesignationValue1({ ...designationValue1, name: e.target.value });
+                }} />
+              </label>
+
+              <hr />
+
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup31(false)}>
+                  <span>Cancel</span>
+                </button>
+
+                <button className="create" onClick={handleUpdateDesignation}>
+                  <span>Update</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {popup4 && (
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Create New Leave Type </h2>
+              <hr />
+              <label htmlFor>
+                <p>Leave Type</p>
+                <input type="text" placeholder="Enter Leave Type Name" name="name" value={leaveTypeValue?.name} onChange={(e) => {
+                  setLeaveTypeValue({ ...leaveTypeValue, [e.target.name]: e.target.value });
+                }} />
+                {/* <select className="selectBRANCH" name="" id="">
+                  <option value="" disabled selected></option>
+                </select> */}
+              </label>
+
+              <label htmlFor="">
+                <p>Days Per Year</p>
+                <input type="text" placeholder="Enter Days / Year" name="days" value={leaveTypeValue?.days} onChange={(e) => {
+                  setLeaveTypeValue({ ...leaveTypeValue, [e.target.name]: e.target.value });
+                }} />
               </label>
 
               <hr />
@@ -925,13 +1262,50 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   <span>Cancel</span>
                 </button>
 
-                <button className="create" onClick={handleCreateDesignation}>
+                <button className="create" onClick={handleCreateLeaveType}>
                   <span>Create</span>
                 </button>
               </div>
             </div>
           </div>
-        }
+        )}
+
+        {popup41 && (
+          <div className="allPopupWrap">
+            <div className="popup1">
+              <h2>Edit Leave Type </h2>
+              <hr />
+              <label htmlFor>
+                <p>Leave Type</p>
+                <input type="text" placeholder="Enter Leave Type Name" name="name" value={leaveTypeValue1?.name} onChange={(e) => {
+                  setLeaveTypeValue1({ ...leaveTypeValue1, [e.target.name]: e.target.value });
+                }} />
+                {/* <select className="selectBRANCH" name="" id="">
+                  <option value="" disabled selected></option>
+                </select> */}
+              </label>
+
+              <label htmlFor="">
+                <p>Days Per Year</p>
+                <input type="text" placeholder="Enter Days / Year" name="days" value={leaveTypeValue1?.days} onChange={(e) => {
+                  setLeaveTypeValue1({ ...leaveTypeValue1, [e.target.name]: e.target.value });
+                }} />
+              </label>
+
+              <hr />
+
+              <div className="btnWrap">
+                <button className="cencel" onClick={() => setPopup41(false)}>
+                  <span>Cancel</span>
+                </button>
+
+                <button className="create" onClick={handleUpdateLeaveType}>
+                  <span>Update</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

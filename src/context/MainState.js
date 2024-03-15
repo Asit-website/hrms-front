@@ -3,13 +3,15 @@ import MainContext from './MainContext';
 import { deleteReq, get, post, put } from '../Api/api'
 import { useState } from 'react';
 
-const baseUrl = "http://localhost:5000";
+// const baseUrl = "http://localhost:5000";
 
 // const baseUrl = "https://172.105.48.246:5000";
 
 // const baseUrl = "https://hrms-backend-q2ta.onrender.com";
 
 // const baseUrl = "https://hmsbackend.kusheldigi.com";
+
+const baseUrl = "https://hrms-backend-g3wt.onrender.com";
 
 const MainState = (props) => {
    const [user, setUser] = useState({});
@@ -191,8 +193,8 @@ const MainState = (props) => {
       return data;
    };
 
-   const getAllActivities = async () => {
-      const data = await get(`${baseUrl}/activity/getAllActivities`, true);
+   const getAllActivities = async (type, date, userId, month) => {
+      const data = await get(`${baseUrl}/activity/getAllActivities?type=${type}&date=${date}&userId=${userId}&month=${month}`, true);
       return data;
    };
 
@@ -457,6 +459,26 @@ const MainState = (props) => {
       return data;
    };
 
+   const getLeaveTypes = async () => {
+      const data = await get(`${baseUrl}/system/getLeaveTypes`, true);
+      return data;
+   };
+
+   const postLeaveType = async ({ name, days }) => {
+      const data = await post(`${baseUrl}/system/postLeaveType`, { name, days }, true);
+      return data;
+   };
+
+   const updateLeaveType = async ({ id, status, days, name }) => {
+      const data = await put(`${baseUrl}/system/updateLeaveType/${id}`, { name, days, status }, true);
+      return data;
+   };
+
+   const deleteLeaveType = async (id) => {
+      const data = await deleteReq(`${baseUrl}/system/deleteLeaveType/${id}`, true);
+      return data;
+   };
+
    const getBranchs = async () => {
       const data = await get(`${baseUrl}/system/getBranchs`, true);
       return data;
@@ -472,7 +494,7 @@ const MainState = (props) => {
       return data;
    };
 
-   const deleteBranch = async ({ id }) => {
+   const deleteBranch = async (id) => {
       const data = await deleteReq(`${baseUrl}/system/deleteBranch/${id}`, true);
       return data;
    };
@@ -492,7 +514,7 @@ const MainState = (props) => {
       return data;
    };
 
-   const deleteDepartment = async ({ id }) => {
+   const deleteDepartment = async (id) => {
       const data = await deleteReq(`${baseUrl}/system/deleteDepartment/${id}`, true);
       return data;
    };
@@ -503,6 +525,7 @@ const MainState = (props) => {
    };
 
    const postDesignation = async ({ name, department }) => {
+      console.log(department);
       const data = await post(`${baseUrl}/system/postDesignation`, { name, department }, true);
       return data;
    };
@@ -512,13 +535,13 @@ const MainState = (props) => {
       return data;
    };
 
-   const deleteDesignation = async ({ id }) => {
+   const deleteDesignation = async (id) => {
       const data = await deleteReq(`${baseUrl}/system/deleteDesignation/${id}`, true);
       return data;
    };
 
    return (
-      <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation, getAllActivities }}>
+      <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType }}>
          {props.children}
       </MainContext.Provider>
    );

@@ -200,9 +200,9 @@ const EmployeeManagement = ({
                           EMAIL
                         </th>
 
-                        <th scope="col" className="px-6 py-3 taskTitl ">
+                        {/* <th scope="col" className="px-6 py-3 taskTitl ">
                           BRANCH
-                        </th>
+                        </th> */}
                         <th scope="col" className="px-6 py-3 taskTitl ">
                           DEPARTMENT
                         </th>
@@ -230,7 +230,7 @@ const EmployeeManagement = ({
                             <th scope="row" className="px-6 py-4  taskAns employId "><span className=" cursor-pointer">{(item._id).slice(0, 5)}</span> </th>
                             <td className="px-6 py-4 taskAns">{item?.fullName}</td>
                             <td className="px-6 py-4 taskAns">{item?.email}</td>
-                            <td className="px-6 py-4 taskAns">{item?.branch}</td>
+                            {/* <td className="px-6 py-4 taskAns">{item?.branch}</td> */}
                             <td className="px-6 py-4 taskAns">{item?.department}</td>
                             <td className="px-6 py-4 taskAns">{item?.designation}</td>
                             <td className="px-6 py-4 taskAns">{item?.joiningDate}</td>
