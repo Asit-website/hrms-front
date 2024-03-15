@@ -34,6 +34,13 @@ import CreateEmployee from "./Components/admin/EmployManagement/CreateEmploy";
 import EmployeeManagement from "./Components/admin/EmployManagement/EmployeeManagement";
 import EmployeeManagementID from "./Components/admin/EmployManagement/EmployeeManagementID";
 import HRMsystemSetup from "./Components/admin/EmployManagement/HRMsystemSetup";
+import AwardHRM from "./Components/admin/EmployeeHRM/AwardHRM";
+import TransferHRM from "./Components/admin/EmployeeHRM/TransferHRM";
+import ResignationHRM from "./Components/admin/EmployeeHRM/ResignationHRM";
+import PromotionHRM from "./Components/admin/EmployeeHRM/PromotionHRM";
+import ComplaintsHRM from "./Components/admin/EmployeeHRM/ComplaintsHRM";
+import WarningHRM from "./Components/admin/EmployeeHRM/WarningHRM";
+import TerminationHRM from "./Components/admin/EmployeeHRM/TerminationHRM";
 import MarkAttendance from "./Components/admin/EmployeeHRM/MarkAttendence";
 import AdminAnnoncement from "./Components/admin/Announcement/AdminAnnoncement"
 
@@ -173,7 +180,14 @@ function App() {
             <Route path="/adminDash/HRM/EmployeeManagement" element={<EmployeeManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/EmployeeManagement/:id" element={<EmployeeManagementID pop={pop} setPop={setPop} setAlert={setAlert} />} />
             {/* dinesh  */}
-            <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup  />} />  
+            <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup  />} />
+            <Route path="/adminDash/HRM/AwardHRM" element={<AwardHRM/>}/>
+            <Route path="/adminDash/HRM/TransferHRM" element={<TransferHRM/>}/>  
+            <Route path="/adminDash/HRM/ResignationHRM" element={<ResignationHRM/>}/>
+            <Route path="/adminDash/HRM/PromotionHRM" element={<PromotionHRM/>}/>  
+            <Route path="/adminDash/HRM/ComplaintsHRM" element={<ComplaintsHRM/>}/>
+            <Route path="/adminDash/HRM/WarningHRM" element={<WarningHRM/>}/> 
+            <Route path="/adminDash/HRM/TerminationHRM" element={<TerminationHRM/>}/> 
            
            <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
