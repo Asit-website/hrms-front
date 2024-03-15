@@ -15,8 +15,11 @@ import chooseDash from "../../images/choosedash.png";
 import unchosedash from "../../images/unchosedash.png";
 
 import adminSetting from "../../images/adminSetting.png"
+import { IoIosArrowDown } from "react-icons/io";
+
 
 // import {user} from '../../../hooks/useMain'
+import "./sidebar.css"
 
 const dashboardItem = [
   {
@@ -43,6 +46,30 @@ const HRMSItem = [
     title: "HRM System Setup",
     link: "/adminDash/HRM/HRMsystemSetup"
   },
+  {
+    title: "Performance Setup",
+   
+  },
+  {
+    title: "Employees Asset Setup",
+    link: "/performance/Assets"
+  },
+  
+]
+
+const performanceItem = [
+  {
+    title: "Indicator",
+    link: "/performance/indicator"
+  },
+  {
+    title: "Appraisal",
+    link: "/performance/appraisal"
+  },
+  {
+    title: "Goal Tracking",
+    link: "/performance/goalTracking"
+  },
 ]
 
 const AdminSidebar = ({ pop, setPop }) => {
@@ -55,6 +82,7 @@ const AdminSidebar = ({ pop, setPop }) => {
   const [openDashItem, setOpenDashItem] = useState(false);
   const [openHRMSItem, setOpenHRMSItem] = useState(false);
 
+  const [openPerfor , setOpenPer] = useState(false);
 
   return (
     <>
@@ -156,9 +184,70 @@ const AdminSidebar = ({ pop, setPop }) => {
             {openHRMSItem && (
               <div className="alladminDash-item">
                 {HRMSItem?.map((item, index) => (
+                   item.title === "Performance Setup"?
+
+                    <div className="performaceSetup ">
+    
+                   <div key={index} onClick={()=>setOpenPer((prev)=>!prev)}  className="sinADDasItem relative">
+
+           {dashItem == index ? (
+                      <img src={chooseDash} alt="" />
+                    ) : (
+                      <img src={unchosedash} alt="" />
+                    )}
+                    <p
+                      className={` ${
+                        HRMS === index ? "dashItemp" : "dITitl"
+                      }`}
+                    >
+                      {item?.title}
+                    </p>
+
+                   
+                         <p><IoIosArrowDown className="text-white absolute right-6 top-[30%] " /></p>
+       
+                   </div>
+
+                   {
+                    openPerfor && 
+                    <div>
+
+{
+  performanceItem?.map((item ,index)=>(
+    <div
+                  
+    onClick={()=>{
+      setHRMS(index)
+      navigate(item?.link)
+    }}
+    className="sinADDasItem"
+    key={index}
+  >
+    {dashItem == index ? (
+      <img src={chooseDash} alt="" />
+    ) : (
+      <img src={unchosedash} alt="" />
+    )}
+    <p
+      className={` ${
+        HRMS === index ? "dashItemp" : "dITitl"
+      }`}
+    >
+      {item?.title}
+    </p>
+  </div>
+  ))
+}
+                 
+                    </div>
+                   }
+
+                   </div>
+
+                   :
+
                   <div
-                    // onClick={()=>navigate("/adminDash/HRM/EmployeeManagement")}
-                    // onClick={()=>navigate("")}
+                  
                     onClick={()=>{
                       setHRMS(index)
                       navigate(item?.link)
@@ -182,6 +271,7 @@ const AdminSidebar = ({ pop, setPop }) => {
                 ))}
               </div>
             )}
+
 
 
 
