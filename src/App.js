@@ -43,6 +43,10 @@ import WarningHRM from "./Components/admin/EmployeeHRM/WarningHRM";
 import TerminationHRM from "./Components/admin/EmployeeHRM/TerminationHRM";
 import MarkAttendance from "./Components/admin/EmployeeHRM/MarkAttendence";
 import AdminAnnoncement from "./Components/admin/Announcement/AdminAnnoncement"
+import Indicator from "./Components/admin/Performance/Indicator";
+import Appraisal from "./Components/admin/Performance/Appraisal";
+import GoalTracking from "./Components/admin/Performance/GoalTracking";
+import Assets from "./Components/admin/Performance/Assets";
 
 var tc;
 
@@ -200,6 +204,10 @@ function App() {
             <Route path="/adminDash/HrManage" element={<HrManage pop={pop} setAlert={setAlert} setPop={setPop} />} />
             <Route path="/adminDash/profile" element={<AdminProfile pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/announcement" element={<AdminAnnoncement pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/performance/indicator" element={<Indicator pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/performance/appraisal" element={<Appraisal pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/performance/goalTracking" element={<GoalTracking pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/performance/Assets" element={<Assets pop={pop} setPop={setPop} setAlert={setAlert} />} />
             {/* </Route> */}
           </Routes>
         </BrowserRouter>
