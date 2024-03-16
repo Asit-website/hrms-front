@@ -4,12 +4,6 @@ import AdminSidebar from "../../admin/Sidebar/AdminSidebar";
 import "react-calendar/dist/Calendar.css";
 import chevron from "../../images/chevron_right.png";
 import { useMain } from "../../../hooks/useMain";
-import plus1 from "../../images/plus1.png";
-import loj from "../../images/loj.png";
-import person from "../../images/person.png";
-import person1 from "../../images/person1.png";
-import person2 from "../../images/person2.png";
-import { NavLink } from "react-router-dom";
 import "./HRMsystem.css";
 import blackRight from "../../images/blackRight.png";
 import srchIcon from "../../images/srchIcon.png";
@@ -212,7 +206,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       setRefreshFlag(!refreshFlag);
       setPopup1(false);
     } else {
-      alert("something went wrong");
+      alert("Branch name is alreday exist");
     }
   };
 
@@ -237,13 +231,12 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     });
     console.log(ans);
 
-    if(ans.status)
-    {
+    if (ans.status) {
       alert("success");
       setBranch('');
       setRefreshFlag(!refreshFlag);
       setPopup1(false);
-
+    }
     if (ans.success) {
       setDepartmentValue({
         name: '',
@@ -252,11 +245,13 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       alert(ans.message);
       setRefreshFlag(!refreshFlag);
       setPopup2(false);
-    } else {
-      alert("something went wrong");
+    }
+     else {
+      alert("Department name alreday exist");
 
     }
-  };
+  }
+
 
   const handleCreateDesignation = async () => {
     // console.log(designationValue);
@@ -293,7 +288,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       setRefreshFlag(!refreshFlag);
       setPopup4(false);
     } else {
-      alert("something went wrong");
+      alert("Leave Name already exist");
     }
   };
 
@@ -1322,6 +1317,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       </div>
     </>
   );
-};
 
+}
 export default HRMsystemSetup;

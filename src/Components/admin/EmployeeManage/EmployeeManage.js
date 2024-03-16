@@ -137,9 +137,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
     let ans = await getBranchs();
     let ans1 = await getDepartments();
     let ans2 = await getDesignations();
-    setBranches(ans.data);
-    setDepartments(ans1.data);
-    setDesignations(ans2.data);
+    console.log(ans?.data);
+    setBranches(ans?.data);
+    setDepartments(ans1?.data);
+    setDesignations(ans2?.data);
   };
 
   const getUser = async () => {
@@ -461,13 +462,18 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                         </div>
                         <div className="pb-4 w-full try">
                           <form className="max-w-sm mx-auto">
-                            <label for="Department" className="block  text-lg font-bold ">Department</label>
+                            <label for="Department" className="block text-lg font-bold ">Department</label>
                             <select id="Department" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
                               <option selected >Select Department</option>
                               <option value="Web">Web</option>
-                              <option value="UI">UI</option>
+                              {
+                                departments?.map((e,index)=>{
+                                  return <option key={index} value={e?.name}>{e?.name}</option>
+                                })
+                              }
+                              {/* <option value="UI">UI</option>
                               <option value="SEO">SEO</option>
-                              <option value="Degital">Degital</option>
+                              <option value="Degital">Degital</option> */}
                             </select>
                           </form>
                         </div>
@@ -485,10 +491,15 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                             <label for="Designation" className="block  text-lg font-bold ">Designation</label>
                             <select id="Designation" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
                               <option selected >Select Designation</option>
-                              <option value="Web">Web</option>
+                              {
+                                designations?.map((e,index)=>{
+                                  return <option key={index} value={e?.name}>{e?.name}</option>
+                                })
+                              }
+                              {/* <option value="Web">Web</option>
                               <option value="UI">UI</option>
                               <option value="SEO">SEO</option>
-                              <option value="Degital">Degital</option>
+                              <option value="Degital">Degital</option> */}
                             </select>
                           </form>
                         </div>
@@ -500,15 +511,11 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                         <div className="pb-4 w-full try">
                           <form className="max-w-sm mx-auto">
                             <label for="Branch" className="block  text-lg font-bold ">Branch</label>
-                            <select id="Branch" className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
-                              <option value=''>Select Branch</option>
+                            <select className="border border-gray-300 text-gray-900 text-sm rounded  block w-full p-2.5 dark:placeholder-gray-900">
+                              <option >Select Branch</option>
                               {branches?.map((e, index) => {
-                                <option key={index} value={e._id}>{e?.name}</option>
+                                return <option key={index} value={e?.name}>{e?.name}</option>
                               })}
-                              {/* <option value="Web">Web</option>
-                            <option value="UI">UI</option>
-                            <option value="SEO">SEO</option>
-                            <option value="Degital">Degital</option> */}
                             </select>
                           </form>
                         </div>
@@ -621,8 +628,8 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               disabled={value1.status}
                             >
                               <option value={''}>Select Department</option>
-                              {departments?.filter(x=>x?.branch?._id===value?.branch)?.map((e,index)=>{
-                                <option key={index} value={e?._id}>{e?.name}</option>
+                              {departments?.map((e, index) => {
+                                return <option key={index} value={e?.name}>{e?.name}</option>
                               })}
                               {/* <option value={`Intern`}>
                                 Intern
@@ -678,12 +685,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                               value={value1?.designation}
                               disabled={value1.status}
                             >
-                              <option>Designation</option>
+                              {/* <option>Designation</option>
                               {designations?.filter(x=>x?.department?._id===value?.department)?.map((e,index)=>{
-                                <option key={index} value={e?._id}>{e?.name}</option>
+                                <option key={index} value={e?._name}>{e?.name}</option>
+                              })} */}
+
+                              <option>Designation</option>
+                              {designations?.map((e, index) => {
+                               return <option key={index} value={e?._name}>{e?.name}</option>
                               })}
 
-                            {/*<option value="Senior Developer">Senior Developer</option>
+                              {/*<option value="Senior Developer">Senior Developer</option>
                               <option value="Developer">Developer</option>
                               <option value="UI/UX Designer">UI/UX Designer</option>
                               <option value="Graphic Designer">Graphic Designer</option>

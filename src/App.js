@@ -184,7 +184,7 @@ function App() {
             <Route path="/adminDash/HRM/EmployeeManagement" element={<EmployeeManagement pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/EmployeeManagement/:id" element={<EmployeeManagementID pop={pop} setPop={setPop} setAlert={setAlert} />} />
             {/* dinesh  */}
-            <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup  />} />
+            <Route path="/adminDash/HRM/HRMsystemSetup" element={<HRMsystemSetup   />} />
             <Route path="/adminDash/HRM/AwardHRM" element={<AwardHRM/>}/>
             <Route path="/adminDash/HRM/TransferHRM" element={<TransferHRM/>}/>  
             <Route path="/adminDash/HRM/ResignationHRM" element={<ResignationHRM/>}/>
