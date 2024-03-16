@@ -41,6 +41,9 @@ import PromotionHRM from "./Components/admin/EmployeeHRM/PromotionHRM";
 import ComplaintsHRM from "./Components/admin/EmployeeHRM/ComplaintsHRM";
 import WarningHRM from "./Components/admin/EmployeeHRM/WarningHRM";
 import TerminationHRM from "./Components/admin/EmployeeHRM/TerminationHRM";
+import TrainingList from "./Components/admin/EmployeeHRM/TrainingList";
+import TrainerHRM from "./Components/admin/EmployeeHRM/TrainerHRM";
+import DocumentSetup from "./Components/admin/EmployeeHRM/DocumentSetup";
 import MarkAttendance from "./Components/admin/EmployeeHRM/MarkAttendence";
 import AdminAnnoncement from "./Components/admin/Announcement/AdminAnnoncement"
 import Indicator from "./Components/admin/Performance/Indicator";
@@ -193,6 +196,7 @@ function App() {
             <Route path="/adminDash/HRM/WarningHRM" element={<WarningHRM/>}/> 
             <Route path="/adminDash/HRM/TerminationHRM" element={<TerminationHRM/>}/> 
            
+           
            <Route path="/adminDash/HRM/totalEmployee" element={<TotalEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/LeaveEmployee" element={<LeaveEmployee pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/adminDash/HRM/activeEmployee" element={<ActiveEmplyee pop={pop} setPop={setPop} setAlert={setAlert} />} />
@@ -208,6 +212,9 @@ function App() {
             <Route path="/performance/appraisal" element={<Appraisal pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/performance/goalTracking" element={<GoalTracking pop={pop} setPop={setPop} setAlert={setAlert} />} />
             <Route path="/performance/Assets" element={<Assets pop={pop} setPop={setPop} setAlert={setAlert} />} />
+            <Route path="/training/TrainingList" element={<TrainingList/>}/> 
+            <Route path="/training/TrainerHRM" element={<TrainerHRM/>}/>
+            <Route path="/training/DocumentSetup" element={<DocumentSetup/>}/>
             {/* </Route> */}
           </Routes>
         </BrowserRouter>
