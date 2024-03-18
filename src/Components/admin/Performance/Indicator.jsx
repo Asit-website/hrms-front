@@ -9,9 +9,18 @@ import { FaRegStar } from "react-icons/fa";
 
 
 const Indicator = ({ pop, setPop, setAlert }) => {
-  const { user } = useMain();
+
+  const { user  , createIndicator} = useMain();
 
   const [openForm , setOpenForm] = useState(false);
+
+  const [formdata , setFormdata] = useState({
+    Branch:"",
+    Department:"",
+    Designation:"",
+    businessProcessRating:"",
+    projectManagemntRating:""
+  });
 
 const data = [
     {
@@ -26,6 +35,40 @@ const data = [
 
 ]
 
+const changeHandler = (e)=>{
+  const {name , value} = e.target;
+
+   setFormdata((prev)=>({
+    ...prev ,
+    [name]:value 
+   }))
+}
+
+const submitHandler = async(e)=>{
+  e.preventDefault();
+  try{
+
+    const ans = await createIndicator({Branch:formdata.Branch , Department : formdata.Department  , Designation : formdata.Designation , businessProcessRating: formdata.businessProcessRating , projectManagemntRating: formdata.projectManagemntRating});
+
+    console.log("rep ans ",ans);
+     if(ans.success){
+       
+       alert("Successfuly Created");
+     }
+     else {
+        if(ans?.message){
+
+          alert(ans?.message);
+        }
+        else {
+          alert("Something went wrong ,Please try again");
+        }
+     }
+
+  } catch(error){
+    console.log(error);
+  }
+}
 
   return (
     <>
@@ -43,7 +86,7 @@ const data = [
                 <div className='anNavLeft'>
 
                     <h2>Manage Indicator</h2>
-                     <p>Dashboard <span>> Indicator</span> </p>
+                     <p>Dashboard <span> > Indicator</span> </p>
 
                 </div>
 
@@ -165,7 +208,7 @@ const data = [
             openForm && 
                 <div className='annFormwrap'>
 
-            <form className='openform' >
+            <form onSubmit={submitHandler} className='openform' >
 
           <nav>
             {/* left  */}
@@ -179,21 +222,36 @@ const data = [
 
                <label htmlFor="" className='fullLabel' >
                 <p>Branch</p>
-                <select name="" id=""> 
-                <option value="">Head Office</option>
+                <select name="Branch" value={formdata.Branch} onChange={changeHandler} id=""> 
+                <option value="Select Branch" disabled selected>Select Branch</option>
+                <option value="Head Office">Head Office</option>
+                <option value="kushel">kushel</option>
                 </select>
                </label>
 
                <label  className='halfLabel' >
                 <p>Department</p>
-                <select name="" id=""> 
-                <option value="">Select Department</option></select>
+                <select  name="Department" value={formdata.Department} onChange={changeHandler} id=""> 
+
+                <option value="Select Department" disabled selected>Select Department</option>
+                <option value="Developer">Developer</option>
+                <option value="Hr">Hr</option>
+                <option value="UI/UX Designer">UI/UX Designer</option>
+                <option value="Manager">Manager</option>
+                
+                </select>
                </label>
 
                <label className='halfLabel' >
                 <p>Designation</p>
-                <select name="" id=""> 
-                <option value="">Select Designation</option></select>
+                <select name="Designation" value={formdata.Designation} onChange={changeHandler} id=""> 
+                <option value="Select Designation" disabled selected>Select Designation</option>
+                <option value="Developer">Developer</option>
+                <option value="Hr">Hr</option>
+                <option value="Manager">Manager</option>
+                <option value="Designer">Designer</option>
+                <option value="Graphic Designer">Graphic Designer</option>
+                </select>
                </label>
 
            <label className='anotheLabel' >
