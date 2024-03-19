@@ -14,9 +14,10 @@ const Indicator = ({ pop, setPop, setAlert }) => {
 
   const user1 = JSON.parse(localStorage.getItem("hrms_user"));
   // console.log(user1);
-  const { user, createIndicator, getIndicator, deleteIndicator, updateIndicator,getBranchs, getDepartments, getDesignations } = useMain();
+  const { user, createIndicator, getIndicator, deleteIndicator, updateIndicator,getBranchs, getDepartments, getDesingation } = useMain();
 
   const [openForm, setOpenForm] = useState(false);
+
 
   const [onEdit, setOnEdit] = useState(false);
   const [editData, setEditData] = useState({});
@@ -57,11 +58,8 @@ const Indicator = ({ pop, setPop, setAlert }) => {
   const getData1 = async () =>{
     const ans = await getBranchs();
     const ans1 = await getDepartments();
-    const ans2 = await getDepartments();
-
     setBranch(ans?.data);
     setDepartment(ans1?.data);
-    setDesignation(ans2?.data);
   }
   // const data = [
   //   {
@@ -110,7 +108,6 @@ const Indicator = ({ pop, setPop, setAlert }) => {
 
   };
 
-
   const changeHandler = (e) => {
     const { name, value } = e.target;
 
@@ -153,6 +150,28 @@ const Indicator = ({ pop, setPop, setAlert }) => {
       console.log(error);
     }
   }
+
+  const getDepartmentId = (name) => {
+    const depart = department.find(dep => dep.name === name);
+    return depart ? depart._id : null; // Return department ID if found, otherwise null
+  };
+  
+
+   const designationFetch = async()=>{
+
+    const departmentId = getDepartmentId(formdata.Department);
+
+       const ans2 = await getDesingation({id:departmentId });
+       
+       setDesignation(ans2?.data);
+
+   }
+
+   useEffect(()=>{
+
+     if(formdata.Department !== "" && formdata.Department !== "Select Department" )
+    designationFetch();
+   },[formdata.Department])
 
   return (
     <>
@@ -343,7 +362,10 @@ const Indicator = ({ pop, setPop, setAlert }) => {
 
                 <label className='halfLabel' >
                   <p>Department</p>
-                  <select name="Department" value={formdata.Department} onChange={changeHandler} id="">
+                  <select name="Department" value={formdata.Department} onChange={(e)=>{
+                    changeHandler(e);
+                      
+                  }} >
 
                     <option value="Select Department" >Select Department</option>
                     {/* <option value="Developer">Developer</option>
