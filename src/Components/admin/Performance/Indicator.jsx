@@ -37,16 +37,18 @@ const Indicator = ({ pop, setPop, setAlert }) => {
     projectManagemntRating: ""
   });
 
-  useEffect(() => {
-    getData();
-  }, [refreshFlag])
 
   const getData = async () => {
+    console.log("caa");
     const ans = await getIndicator();
-    // console.log(ans?.data);
+    console.log(ans?.data);
     setData(ans?.data);
     setRefreshFlag(!refreshFlag);
   }
+
+  useEffect(() => {
+    getData();
+  }, [])
 
   useEffect(()=>{
      getData1();
@@ -81,6 +83,7 @@ const Indicator = ({ pop, setPop, setAlert }) => {
   // }
 
   const deleteProject = async (id) => {
+
     confirmAlert({
       title: 'Are you sure to delete this data?',
       message: 'All related data to this will be deleted',
@@ -94,6 +97,7 @@ const Indicator = ({ pop, setPop, setAlert }) => {
             await deleteIndicator(id);
             alert("delete Successfully");
             setRefreshFlag(!refreshFlag);
+            getData(); 
           }
         },
         {
@@ -103,6 +107,7 @@ const Indicator = ({ pop, setPop, setAlert }) => {
         }
       ]
     });
+
   };
 
 
@@ -169,7 +174,7 @@ const Indicator = ({ pop, setPop, setAlert }) => {
 
               </div>
 
-              {/* rogth side  */}
+              {/* right side  */}
               <div onClick={() => setOpenForm(true)} className='plusImg'>
                 <img src={annPlus} alt="" />
 
@@ -325,7 +330,7 @@ const Indicator = ({ pop, setPop, setAlert }) => {
                 <label htmlFor="" className='fullLabel' >
                   <p>Branch</p>
                   <select name="Branch" value={formdata.Branch} onChange={changeHandler} id="">
-                    <option value="Select Branch" disabled selected>Select Branch</option>
+                    <option value="Select Branch" >Select Branch</option>
                     {
                       branch?.map((val,index)=>{
                         return <option key={index} value={val?.name}>{val?.name}</option>
@@ -340,7 +345,7 @@ const Indicator = ({ pop, setPop, setAlert }) => {
                   <p>Department</p>
                   <select name="Department" value={formdata.Department} onChange={changeHandler} id="">
 
-                    <option value="Select Department" disabled selected>Select Department</option>
+                    <option value="Select Department" >Select Department</option>
                     {/* <option value="Developer">Developer</option>
                     <option value="Hr">Hr</option>
                     <option value="UI/UX Designer">UI/UX Designer</option>
@@ -357,7 +362,7 @@ const Indicator = ({ pop, setPop, setAlert }) => {
                 <label className='halfLabel' >
                   <p>Designation</p>
                   <select name="Designation" value={formdata.Designation} onChange={changeHandler} id="">
-                    <option value="Select Designation" disabled selected>Select Designation</option>
+                    <option value="Select Designation" >Select Designation</option>
                     {/* <option value="Developer">Developer</option>
                     <option value="Hr">Hr</option>
                     <option value="Manager">Manager</option>

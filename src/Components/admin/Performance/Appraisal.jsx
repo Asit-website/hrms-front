@@ -1,31 +1,65 @@
+import { useEffect, useState } from 'react';
 import AdminSidebar from '../Sidebar/AdminSidebar';
 import AdminNavbar from '../Navbar/AdminNavbar';
 import { useMain } from '../../../hooks/useMain'
 import annPlus from "../../images/annPlus.png"
 import "./indicator.css"
-import { useState } from 'react';
 import cross from "../../images/crossAn.png"
 import { FaRegStar } from "react-icons/fa";
 
 
 const Appraisal = ({ pop, setPop, setAlert }) => {
-  const { user } = useMain();
+  const { user,getAppraisal  ,createAppraisal , allEmployee} = useMain();
 
   const [openForm , setOpenForm] = useState(false);
 
-const data = [
-    {
-        branch:"Head office",
-        department:"xyz",
-        designation:"xyz",
-        employee:"xyz",
-        targetRating :"5",  
-    overallRating:"5",
-    appraisalDate:"	Jan 4, 2024",
+   const [data , setData] = useState([]);
 
-    },
+   const [employee , setEmployee] = useState([]);
 
-]
+ const [formdata  , setFormdata] = useState({
+  Branch:"",
+  Employee:"",
+  SelectMonth:"",
+  Remarks:""
+ })
+
+const getData = async () => {
+  const ans = await getAppraisal();
+  console.log(ans?.data);
+  setData(ans?.data);
+}
+
+const fetchEmployee = async()=>{
+   const ans = await allEmployee();
+   setEmployee(ans?.data);
+    
+}
+
+useEffect(()=>{
+ getData();
+ fetchEmployee();
+},[])
+
+
+const changeHandler = (e)=>{
+  e.preventDefault();
+  const {name , value} = e.target;
+
+   setFormdata((prev)=>({
+    ...prev ,
+    [name]:value
+   }))
+  
+}
+
+const submitHandler = async(e)=>{
+  e.preventDefault();
+  const ans = await createAppraisal({ ...formdata });
+   getData();
+  alert("Successfuly Created");
+setOpenForm(false);
+}
 
 
   return (
@@ -120,7 +154,7 @@ const data = [
                     <tr key={index} class="bg-white">
          
                     <td class="px-6 py-4">
-                        {item.branch}
+                        {item.Branch}
                     </td>
                     <td class="px-6 py-4">
                         {item.department}
@@ -129,7 +163,7 @@ const data = [
                     {item.designation}
                     </td>
                     <td class="px-6 py-4">
-                    {item.employee}
+                    {item.Employee}
                     </td>
                     
                     <td class="px-6 py-4">
@@ -139,7 +173,7 @@ const data = [
                     {item.overallRating}
                     </td>
                     <td class="px-6 py-4">
-                    {item.appraisalDate}
+                    {item.SelectMonth}
                     </td>
 
                     <td class="px-6 py-4">
@@ -172,7 +206,7 @@ const data = [
             openForm && 
                 <div className='annFormwrap'>
 
-            <form className='openform' >
+            <form onSubmit={submitHandler} className='openform' >
 
           <nav>
             {/* left  */}
@@ -186,25 +220,35 @@ const data = [
 
                <label htmlFor="" className='fullLabel' >
                 <p>Branch*</p>
-                <select name="" id=""> 
-                <option value="">Select Branch</option>
+                <select onChange={changeHandler} value={formdata.Branch} name="Branch"> 
+                <option value="Select Branch">Select Branch</option>
+                <option value="BRANCH1">BRANCH1</option>
+                <option value="BRANCH2">BRANCH2</option>
                 </select>
                </label>
 
                <label  className='halfLabel' >
                 <p>Employee*</p>
-                <select name="" id=""> 
-                <option value=""></option></select>
+                <select onChange={changeHandler} value={formdata.Employee} name="Employee" > 
+                <option value="Select Employee">Select Employee</option>
+             {
+               employee.map((item ,index)=>(
+                <option value={item.fullName} key={index}>{item.fullName}</option>
+
+              ))
+             }
+                </select>
                </label>
 
                <label className='halfLabel' >
                 <p>Select Month*</p>
-              <input type="date" />
+              <input  name="SelectMonth"
+          value={formdata.SelectMonth} onChange={changeHandler} type="date" />
                </label>
 
                <label htmlFor="" className='fullLabel' >
                 <p>Remarks</p>
-               <textarea name="" placeholder='Enter remark' id="" cols="20" rows="3"></textarea>
+               <textarea onChange={changeHandler} value={formdata.Remarks} name="Remarks" placeholder='Enter remark' id="" cols="20" rows="3"></textarea>
                </label>
 
     

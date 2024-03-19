@@ -549,8 +549,26 @@ const MainState = (props) => {
       return data;
    } 
 
+   const createAppraisal = async({Branch,
+      SelectMonth,
+      Employee,
+      remarks})=>{
+      const data = await post(`${baseUrl}/admin/postapp`, {Branch,
+         SelectMonth,
+         Employee,
+         remarks}, true);
+
+       console.log("resp ",data);
+      return data;
+   } 
+
    const getIndicator = async () => {
       const data = await get(`${baseUrl}/admin/getIndicator`, true);
+      return data;
+   };
+
+   const getAppraisal = async () => {
+      const data = await get(`${baseUrl}/admin/getApp`, true);
       return data;
    };
 
@@ -564,9 +582,16 @@ const MainState = (props) => {
       return data;
    };
 
+   const allEmployee = async()=>{
+      const data = await get(`${baseUrl}/admin/fetchEmployee` , true );
+       console.log("d",data);
+         return data;
+       
+   }
+
    return (
       <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType  , 
-         createIndicator, getIndicator,deleteIndicator, updateIndicator
+         createIndicator, getIndicator,deleteIndicator, updateIndicator,getAppraisal , createAppraisal , allEmployee
       }}>
          {props.children}
       </MainContext.Provider>
