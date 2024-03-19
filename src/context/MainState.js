@@ -526,7 +526,7 @@ const MainState = (props) => {
 
 
     const getDesignations = async()=>{
-      const data = await get(`${baseUrl}/system/getDesignations`, true);
+      const data = await get(`${baseUrl}/system/getDesignation`, true);
       return data;
     }
 

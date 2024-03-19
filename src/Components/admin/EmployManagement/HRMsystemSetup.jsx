@@ -183,6 +183,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     const ans1 = await getBranchs();
     const ans2 = await getDepartments();
     const ans3 = await getDesignations();
+     console.log("ans3",ans3);
     const ans4 = await getLeaveTypes();
     setBranches(ans1?.data);
     setBranches1(ans1?.data);
