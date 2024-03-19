@@ -178,24 +178,25 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
   });
   const [refreshFlag, setRefreshFlag] = useState(false);
 
-  useEffect(() => {
-    getData();
-  }, [refreshFlag]);
 
   const getData = async () => {
     const ans1 = await getBranchs();
     const ans2 = await getDepartments();
     const ans3 = await getDesignations();
     const ans4 = await getLeaveTypes();
-    setBranches(ans1.data);
-    setBranches1(ans1.data);
-    setDepartments(ans2.data);
-    setDepartments1(ans2.data);
-    setDesignations(ans3.data);
-    setDesignations1(ans3.data);
-    setLeaveTypes(ans4.data);
-    setLeaveTypes1(ans4.data);
+    setBranches(ans1?.data);
+    setBranches1(ans1?.data);
+    setDepartments(ans2?.data);
+    setDepartments1(ans2?.data);
+    setDesignations(ans3?.data);
+    setDesignations1(ans3?.data);
+    setLeaveTypes(ans4?.data);
+    setLeaveTypes1(ans4?.data);
   };
+
+  useEffect(() => {
+    getData();
+  }, [refreshFlag]);
 
   const handleCreateBranch = async () => {
     const ans = await postBranch({ name: branch });
@@ -474,7 +475,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                             </thead>
 
                             <tbody>
-                              {branches.length === 0 ? 'No Branches Added' : branches.map((item, index) => (
+                              {branches?.length === 0 ? 'No Branches Added' : branches.map((item, index) => (
                                 <tr key={index} className="bg-white ">
                                   <td className="px-6 py-4 ">{item?.name}</td>
 
