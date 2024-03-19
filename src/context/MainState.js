@@ -549,9 +549,24 @@ const MainState = (props) => {
       return data;
    } 
 
+   const getIndicator = async () => {
+      const data = await get(`${baseUrl}/admin/getIndicator`, true);
+      return data;
+   };
+
+   const deleteIndicator = async (id) => {
+      const data = await deleteReq(`${baseUrl}/admin/deleteIndicator/${id}`, true);
+      return data;
+   };
+
+   const updateIndicator = async ({ id, Branch, Department,Designation,businessProcessRating,projectManagemntRating }) => {
+      const data = await put(`${baseUrl}/admin/updateIndicator/${id}`, {Branch, Department,Designation,businessProcessRating,projectManagemntRating}, true);
+      return data;
+   };
+
    return (
       <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesignations, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType  , 
-         createIndicator
+         createIndicator, getIndicator,deleteIndicator, updateIndicator
       }}>
          {props.children}
       </MainContext.Provider>
