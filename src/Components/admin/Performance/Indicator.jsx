@@ -40,16 +40,16 @@ const Indicator = ({ pop, setPop, setAlert }) => {
 
 
   const getData = async () => {
-    console.log("caa");
+    // console.log("caa");
     const ans = await getIndicator();
-    console.log(ans?.data);
+    // console.log(ans?.data);
     setData(ans?.data);
     setRefreshFlag(!refreshFlag);
   }
 
   useEffect(() => {
     getData();
-  }, [])
+  }, [refreshFlag])
 
   useEffect(()=>{
      getData1();

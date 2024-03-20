@@ -81,6 +81,8 @@ const EmployeeHRM = ({
       ...counts, totalEmployees: ans.data.length, activeEmployees: ans1.data
     });
     setLoadFlag(false);
+    console.log(counts);
+    console.log(ans1);
   };
   var [clock, setClock] = useState(0);
   var [breakClock, setBreakClock] = useState(0);

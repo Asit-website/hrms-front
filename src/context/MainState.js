@@ -19,9 +19,9 @@ const MainState = (props) => {
    const [chatUser, setChatUser] = useState({});
 
    const login = async ({ email, employeeCode, password }) => {
-      const data = await post(`${baseUrl}/auth/login`, { email, employeeCode, password , role:"Admin" }, false);
+      const data = await post(`${baseUrl}/auth/login`, { email, employeeCode, password, role: "Admin" }, false);
 
-      console.log("data",data);
+      console.log("data", data);
       return data;
    };
 
@@ -175,6 +175,7 @@ const MainState = (props) => {
 
    const getActiveUsersCount = async (userId) => {
       const data = await get(`${baseUrl}/user/getActiveUsersCount?userId=${userId}`, true);
+      console.log(data);
       return data;
    };
 
@@ -198,7 +199,7 @@ const MainState = (props) => {
       return data;
    };
 
-   const postActivity = async ({ clockIn, clockOut, late, overtime, total, message='', date1 }) => {
+   const postActivity = async ({ clockIn, clockOut, late, overtime, total, message = '', date1 }) => {
       const data = await post(`${baseUrl}/activity/postActivity`, { clockIn, clockOut, date1, late, overtime, total, message }, true);
       return data;
    };
@@ -498,7 +499,7 @@ const MainState = (props) => {
       const data = await deleteReq(`${baseUrl}/system/deleteBranch/${id}`, true);
       return data;
    };
-   
+
    const getDepartments = async () => {
       const data = await get(`${baseUrl}/system/getDepartments`, true);
       return data;
@@ -518,17 +519,17 @@ const MainState = (props) => {
       const data = await deleteReq(`${baseUrl}/system/deleteDepartment/${id}`, true);
       return data;
    };
-   
-   const getDesingation = async ({id}) => {
+
+   const getDesingation = async ({ id }) => {
       const data = await get(`${baseUrl}/system/getDesignations/${id}`, true);
       return data;
    };
 
 
-    const getDesignations = async()=>{
+   const getDesignations = async () => {
       const data = await get(`${baseUrl}/system/getDesignation`, true);
       return data;
-    }
+   }
 
    const postDesignation = async ({ name, department }) => {
       console.log(department);
@@ -548,25 +549,27 @@ const MainState = (props) => {
 
 
    //  MANISH BACKEND 
-   const createIndicator = async({Branch, Department,Designation,businessProcessRating,projectManagemntRating})=>{
-      const data = await post(`${baseUrl}/admin/postIndi`, {Branch, Department,Designation,businessProcessRating,projectManagemntRating }, true);
+   const createIndicator = async ({ Branch, Department, Designation, businessProcessRating, projectManagemntRating }) => {
+      const data = await post(`${baseUrl}/admin/postIndi`, { Branch, Department, Designation, businessProcessRating, projectManagemntRating }, true);
 
-       console.log("resp ",data);
+      console.log("resp ", data);
       return data;
-   } 
+   }
 
-   const createAppraisal = async({Branch,
+   const createAppraisal = async ({ Branch,
       SelectMonth,
       Employee,
-      remarks})=>{
-      const data = await post(`${baseUrl}/admin/postapp`, {Branch,
+      remarks }) => {
+      const data = await post(`${baseUrl}/admin/postapp`, {
+         Branch,
          SelectMonth,
          Employee,
-         remarks}, true);
+         remarks
+      }, true);
 
-       console.log("resp ",data);
+      console.log("resp ", data);
       return data;
-   } 
+   }
 
    const getIndicator = async () => {
       const data = await get(`${baseUrl}/admin/getIndicator`, true);
@@ -583,21 +586,79 @@ const MainState = (props) => {
       return data;
    };
 
-   const updateIndicator = async ({ id, Branch, Department,Designation,businessProcessRating,projectManagemntRating }) => {
-      const data = await put(`${baseUrl}/admin/updateIndicator/${id}`, {Branch, Department,Designation,businessProcessRating,projectManagemntRating}, true);
+   const updateIndicator = async ({ id, Branch, Department, Designation, businessProcessRating, projectManagemntRating }) => {
+      const data = await put(`${baseUrl}/admin/updateIndicator/${id}`, { Branch, Department, Designation, businessProcessRating, projectManagemntRating }, true);
       return data;
    };
 
-   const allEmployee = async()=>{
-      const data = await get(`${baseUrl}/admin/fetchEmployee` , true );
-       console.log("d",data);
-         return data;
-       
+   const allEmployee = async () => {
+      const data = await get(`${baseUrl}/admin/fetchEmployee`, true);
+      // console.log("d", data);
+      return data;
+
    }
 
+   const deleteApprisal = async (id) => {
+      const data = await deleteReq(`${baseUrl}/admin/deleteApp/${id}`, true);
+      return data;
+   };
+
+   const updateApprisal = async ({ id, Branch, SelectMonth, Employee, remarks }) => {
+      const data = await put(`${baseUrl}/admin/updateApp/${id}`, { Branch, SelectMonth, Employee, remarks }, true);
+      return data;
+   };
+
+   const createAssets = async ({ Employee,
+      Name,
+      amount,
+      purchaseDate,
+      supportedDate,
+      description }) => {
+      const data = await post(`${baseUrl}/admin/postAsset`, {
+         Employee,
+         Name,
+         amount,
+         purchaseDate,
+         supportedDate,
+         description
+      }, true);
+
+      console.log("resp ", data);
+      return data;
+   }
+
+   const getAssets = async () => {
+      const data = await get(`${baseUrl}/admin/getAsset`, true);
+      return data;
+   };
+
+   const deleteAssets = async (id) => {
+      const data = await deleteReq(`${baseUrl}/admin/deleteAsset/${id}`, true);
+      return data;
+   };
+
+   const updateAssets = async ({ id, Employee,
+      Name,
+      amount,
+      purchaseDate,
+      supportedDate,
+      description }) => {
+      const data = await put(`${baseUrl}/admin/updateAsset/${id}`, {
+         Employee,
+         Name,
+         amount,
+         purchaseDate,
+         supportedDate,
+         description
+      }, true);
+      return data;
+   };
+
+
    return (
-      <MainContext.Provider value={{ login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesingation, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType  , 
-         createIndicator, getIndicator,deleteIndicator,getDesignations, updateIndicator,getAppraisal , createAppraisal , allEmployee
+      <MainContext.Provider value={{
+         login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesingation, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType,
+         createIndicator, getIndicator, deleteIndicator, getDesignations, updateIndicator, getAppraisal, createAppraisal, allEmployee, deleteApprisal, updateApprisal, createAssets, getAssets, deleteAssets,updateAssets
       }}>
          {props.children}
       </MainContext.Provider>
