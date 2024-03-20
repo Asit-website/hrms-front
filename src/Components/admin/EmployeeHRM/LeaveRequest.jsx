@@ -31,7 +31,7 @@ const LeaveRequest = ({
 
   const getData=async()=>{
     let ans = await getUserLeaves();
-    console.log(ans);
+    // console.log(ans);
     setData(ans.data);
   };
 

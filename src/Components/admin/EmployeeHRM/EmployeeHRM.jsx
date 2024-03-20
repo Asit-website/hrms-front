@@ -16,37 +16,6 @@ import "./hrm.css";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const activeData = [
-  {
-    img: ac1,
-    title1: "Active",
-    title2: "Employees",
-    num: "18",
-    link: "/adminDash/HRM/activeEmployee"
-  },
-  {
-    img: ac2,
-    title1: "Leave",
-    title2: "Requests",
-    num: "02",
-    link: "/adminDash/HRM/leaveRequest"
-  },
-  {
-    img: ac3,
-    title1: "Employees on",
-    title2: "Leave",
-    num: "02",
-    link: "/adminDash/HRM/LeaveEmployee"
-  },
-  {
-    img: ac4,
-    title1: "Total",
-    title2: "Employees",
-    num: "20",
-    link: "/adminDash/HRM/totalEmployee"
-  },
-];
-
 var tc3;
 var tc4;
 
@@ -76,14 +45,15 @@ const EmployeeHRM = ({
     setLoadFlag(true);
     const ans = await getUsers();
     const ans1 = await getActiveUsersCount();
-    console.log(ans1);
+    // console.log(ans1);
     setCounts({
       ...counts, totalEmployees: ans.data.length, activeEmployees: ans1.data
     });
     setLoadFlag(false);
-    console.log(counts);
-    console.log(ans1);
+    // console.log(counts);
+    // console.log(ans1);
   };
+
   var [clock, setClock] = useState(0);
   var [breakClock, setBreakClock] = useState(0);
   const [mount, setMount] = useState(false);
@@ -144,8 +114,10 @@ const EmployeeHRM = ({
     let t = localStorage.getItem('clock-status');
     // console.log(t);
 
+    
+
     if (!t) {
-      let ans = await postActivity({ clockIn: localStorage.getItem('clock-in'), clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: '' });
+      let ans = await postActivity({ clockIn: localStorage.getItem('clock-in')?localStorage.getItem("clock-in"):new Date().getTime() , clockOut: 0, late: 0, date1: new Date().toLocaleDateString('en-GB'), overtime: 0, total: 0, message: '' });
 
       localStorage.setItem('clock-in', new Date().getTime());
       localStorage.setItem('clock-status', 'break');
@@ -196,6 +168,8 @@ const EmployeeHRM = ({
       }
     }
     setMount(!mount);
+    // getData();
+
   };
 
   const clockOut = async () => {
@@ -206,7 +180,13 @@ const EmployeeHRM = ({
     setMount(!mount);
 
     let ans = await postActivity({ clockIn: localStorage.getItem('clock-in'), clockOut: localStorage.getItem('clock-out-time'), late: breakClock, date1: new Date().toLocaleDateString('en-GB'), overtime: (((clock) - (32400)) > 0 ? ((clock) - 32400) : 0), total: clock, message: '' });
-    console.log(ans);
+
+    localStorage.removeItem("clock-in");
+    localStorage.removeItem("clock-status");
+    localStorage.removeItem("clock-out-time");
+    setClock(0);
+
+    // getData();
   };
 
   return (

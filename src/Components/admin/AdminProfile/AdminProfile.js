@@ -27,9 +27,7 @@ const AdminProfile = ({ pop, setPop, setAlert }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(value);
     const ans = await updateProfile(value);
-    console.log(ans);
     if (ans.success) {
       setAlert("success", ans.message);
       setValue(ans.data);

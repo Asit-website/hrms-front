@@ -169,7 +169,8 @@ const MainState = (props) => {
    };
 
    const getActiveUsers = async (userId) => {
-      const data = await get(`${baseUrl}/user/getActiveUsers?userId=${userId}`, true);
+      const data = await get(`${baseUrl}/user/getActiveUsers`, true);
+      console.log("daa ",data);
       return data;
    };
 
@@ -200,6 +201,7 @@ const MainState = (props) => {
    };
 
    const postActivity = async ({ clockIn, clockOut, late, overtime, total, message = '', date1 }) => {
+       console.log("a ",clockIn , clockOut , date1 , late , overtime , total  );
       const data = await post(`${baseUrl}/activity/postActivity`, { clockIn, clockOut, date1, late, overtime, total, message }, true);
       return data;
    };
@@ -613,7 +615,8 @@ const MainState = (props) => {
       amount,
       purchaseDate,
       supportedDate,
-      description }) => {
+      description
+    }) => {
       const data = await post(`${baseUrl}/admin/postAsset`, {
          Employee,
          Name,

@@ -34,7 +34,6 @@ const Appraisal = ({ pop, setPop, setAlert }) => {
 
   const getData = async () => {
     const ans = await getAppraisal();
-    console.log(ans?.data);
     setData(ans?.data);
   }
 

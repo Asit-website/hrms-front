@@ -220,7 +220,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
 
     if (!t) {
       let ans = await postActivity({
-        clockIn: localStorage.getItem("clock-in"),
+        clockIn: localStorage.getItem("clock-in") ? localStorage.getItem("clock-in"): new Date().getTime() ,
         clockOut: 0,
         late: 0,
         date1: new Date().toLocaleDateString("en-GB"),
@@ -296,6 +296,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
     clearInterval(tc3);
     clearInterval(tc4);
     setMount(!mount);
+  setClock(0);
 
     let ans = await postActivity({
       clockIn: localStorage.getItem("clock-in"),
@@ -306,7 +307,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
       total: clock,
       message: "",
     });
-    console.log(ans);
+     localStorage.removeItem("clock-in");
+     localStorage.removeItem("clock-status");
+     localStorage.removeItem("clock-out-time");
   };
 
   const [star1, setStar1] = useState(false);

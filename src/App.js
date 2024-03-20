@@ -70,7 +70,6 @@ function App() {
   const [pop1, setPop1] = useState(false);
 
   const setAlert = (color, message) => {
-    // console.log(color, message);
     setAlertValue({
       color,
       message,

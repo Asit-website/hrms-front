@@ -33,7 +33,7 @@ const MarkAttendance = ({
     let ans = await getAllActivities();
     const ans1 = await getUsers();
     const ans2 = await getDepartments();
-    console.log(ans2);
+    // console.log(ans2);
     setData(ans.data);
     setUsers(ans1.data);
     setDepartments(ans2.data);
@@ -56,10 +56,10 @@ const MarkAttendance = ({
   }, []);
 
   const handleSubmit = async () => {
-    console.log(selectedOption);
-    console.log(date);
-    console.log(month);
-    console.log(userId);
+    // console.log(selectedOption);
+    // console.log(date);
+    // console.log(month);
+    // console.log(userId);
     let ans = await getAllActivities(selectedOption, date, userId, month);
     if(selectedOption==='all')
     {

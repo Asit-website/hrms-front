@@ -138,18 +138,20 @@ const AdminEmplyee = ({
   setAlert,
   isHr = false,
 }) => {
+
   const { user, getActiveUsers } = useMain();
   const [data1, setData1] = useState([]);
+
+
+  const getData = async () => {
+    const ans = await getActiveUsers();
+    setData1(ans.data);
+  };
 
   useEffect(() => {
     getData();
   }, []);
 
-  const getData = async () => {
-    const ans = await getActiveUsers();
-    console.log(ans?.data);
-    setData1(ans.data);
-  };
 
   return (
     <>

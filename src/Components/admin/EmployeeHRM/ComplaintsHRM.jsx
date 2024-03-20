@@ -197,7 +197,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
   const handleCreateBranch = async () => {
     const ans = await postBranch({ name: branch });
-    console.log(ans);
     if (ans.success) {
       alert(ans.message);
       setBranch("");
@@ -210,7 +209,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
   const handleUpdateBranch = async () => {
     const ans = await updateBranch({ name: branch1, id });
-    console.log(ans);
     if (ans.success) {
       alert(ans.message);
       setBranch1("");
@@ -227,7 +225,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       name: departmentValue.name,
       branch: branches.find(x => x._id === departmentValue.branch),
     });
-    console.log(ans);
     if (ans.success) {
       setDepartmentValue({
         name: '',
@@ -247,7 +244,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       name: designationValue.name,
       department: departments.find(x => x._id === designationValue.department)
     });
-    console.log(ans);
     if (ans.success) {
       alert(ans.message);
       setDesignationValue({
@@ -266,7 +262,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       days: leaveTypeValue?.days,
       name: leaveTypeValue?.name
     });
-    console.log(ans);
     if (ans.success) {
       alert(ans.message);
       setLeaveTypeValue({
@@ -308,7 +303,6 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
       name: designationValue1?.name,
       department: departments?.find(x => x?._id === designationValue1?.department)
     });
-    console.log(ans);
     if (ans.success) {
       alert(ans.message);
       setDesignationValue1({
@@ -357,7 +351,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     else if (type === 'leaveType') {
       ans = await deleteLeaveType(id);
     }
-    console.log(ans);
+    // console.log(ans);
 
     if (ans.success) {
       alert(ans.message);
