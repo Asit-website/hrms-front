@@ -97,28 +97,27 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
   const [designations, setDesignations] = useState([]);
 
 
-   const [documents , setDocuments] = useState({
-    monthSalary:"",
-    adharCard:"",
-    cancelCheque:"",
-    pancard:"",
-    educationCert:"",
-    prevOrgOffer:"",
+  //  const [documents , setDocuments] = useState({
+  //   monthSalary:"",
+  //   adharCard:"",
+  //   cancelCheque:"",
+  //   pancard:"",
+  //   educationCert:"",
+  //   prevOrgOffer:"",
 
-   })
+  //  })
 
 
-   const handleFileChange = (event) => {
-    const file = event.target.files[0]; 
- const {name} = event.target;
-    if (file) {
-      // You may want to perform additional validation here
-      setDocuments((prevDocuments) => ({
-        ...prevDocuments,
-        [name]: file, // Update the monthSalary with the selected file
-      }));
-    }
-  };
+//    const handleFileChange = (event) => {
+//     const file = event.target.files[0]; 
+//  const {name} = event.target;
+//     if (file) {
+//       setDocuments((prevDocuments) => ({
+//         ...prevDocuments,
+//         [name]: file, 
+//       }));
+//     }
+//   };
 
   useEffect(() => {
     let form1 = localStorage.getItem("form1");
@@ -387,14 +386,14 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
   };
 
 
-  const documentSumit = async()=>{
+  // const documentSumit = async()=>{
     
-    const ans = await uploadDocuments({monthSalary: documents.monthSalary , adharCard: documents.adharCard ,   cancelCheque: documents.cancelCheque,
-    pancard: documents.pancard,
-    educationCert: documents.educationCert,
-    prevOrgOffer: documents.prevOrgOffer});
+  //   const ans = await uploadDocuments({monthSalary: documents.monthSalary , adharCard: documents.adharCard ,   cancelCheque: documents.cancelCheque,
+  //   pancard: documents.pancard,
+  //   educationCert: documents.educationCert,
+  //   prevOrgOffer: documents.prevOrgOffer});
 
-  }
+  // }
 
   return (
     <>
@@ -1827,7 +1826,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 <input
                                  
                                  name="monthSalary"
-                                  onChange={handleFileChange}
+                                  // onChange={handleFileChange}
                                   className="filesjila w-full"
                                   type="file"
                                 />
@@ -1846,7 +1845,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                className="filesjila w-full"
                                name = "adharCard"
                                   type="file"
-                                  onChange={handleFileChange}
+                                  // onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1864,7 +1863,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   type="file"
                             
                                   name="cancelCheque"
-                                  onChange={handleFileChange}
+                                  // onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1886,7 +1885,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   type="file"
                                 
                                   name="pancard"
-                                  onChange={handleFileChange}
+                                  // onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1905,7 +1904,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                  
                           
                                   name="educationCert"
-                                  onChange={handleFileChange}
+                                  // onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1922,7 +1921,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 name="prevOrgOffer"
                                   className="filesjila w-full"
                                   type="file"
-                                  onChange={handleFileChange}
+                                  // onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1942,7 +1941,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 <input
                                   className="filesjila w-full"
                                   type="file"
-                                  onChange={handleFileChange}
+                                  // onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1957,10 +1956,10 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   <img src={del} alt="del" /> <span>Clear</span>{" "}
                                 </button>
                                 <button
-                                  onClick={() => {
-                                    documentSumit();
-                                    // handleSave("form5");
-                                  }}
+                                  // onClick={() => {
+                                  //   documentSumit();
+                                    
+                                  // }}
                                   type="button"
                                   className="save"
                                 >

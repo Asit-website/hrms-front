@@ -2966,3 +2966,8 @@ abbr:where([title]) {
 .overall{
   width: 100% !important;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
