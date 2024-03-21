@@ -13,11 +13,12 @@ import HrSidebar from "../../Hr/Sidebar/HrSidebar";
 import HrNavbar from "../../Hr/Navbar/HrNavbar";
 
 const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) => {
+  
   const { id } = useParams();
 
   const navigate = useNavigate();
 
-  const { user, createEmployee1, getUsers, updateUser, getBranchs, getDepartments, getDesignations } = useMain();
+  const { user, createEmployee1, getUsers, updateUser, getBranchs, getDepartments, getDesignations , uploadDocuments } = useMain();
 
   const [value, setValue] = useState({
     branch: '',
@@ -94,6 +95,30 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
   const [branches, setBranches] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [designations, setDesignations] = useState([]);
+
+
+   const [documents , setDocuments] = useState({
+    monthSalary:"",
+    adharCard:"",
+    cancelCheque:"",
+    pancard:"",
+    educationCert:"",
+    prevOrgOffer:"",
+
+   })
+
+
+   const handleFileChange = (event) => {
+    const file = event.target.files[0]; 
+ const {name} = event.target;
+    if (file) {
+      // You may want to perform additional validation here
+      setDocuments((prevDocuments) => ({
+        ...prevDocuments,
+        [name]: file, // Update the monthSalary with the selected file
+      }));
+    }
+  };
 
   useEffect(() => {
     let form1 = localStorage.getItem("form1");
@@ -360,6 +385,16 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
     }
 
   };
+
+
+  const documentSumit = async()=>{
+    
+    const ans = await uploadDocuments({monthSalary: documents.monthSalary , adharCard: documents.adharCard ,   cancelCheque: documents.cancelCheque,
+    pancard: documents.pancard,
+    educationCert: documents.educationCert,
+    prevOrgOffer: documents.prevOrgOffer});
+
+  }
 
   return (
     <>
@@ -743,6 +778,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                       </div>
                     </div>
                     <div className="admin-form2">
+
                       <div className="basic-information">
                         <div className="basics">
                           <h3>Basic Information</h3>
@@ -888,6 +924,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                           </div>
                         </div>
                       </div>
+
                       <div className="basic-information mt-7">
                         <div className="basics">
                           <h3>Personal Information</h3>
@@ -1252,6 +1289,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                           </div>
                         </div>
                       </div>
+
                       <div className="basic-information mt-7">
                         <div className="basics">
                           <h3>Professional Information</h3>
@@ -1584,6 +1622,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                           </div>
                         </div>
                       </div>
+
                       <div className="basic-information mt-7">
                         <div className="basics">
                           <h3>Bank Account Information</h3>
@@ -1764,6 +1803,8 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                           </div>
                         </div>
                       </div>
+
+                      {/* this is documents */}
                       <div className="basic-information mt-7">
                         <div className="basics">
                           <h3>Documents</h3>
@@ -1772,7 +1813,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                         <hr className="upper" />
                         <div className="form2-class">
                           <div className="w-full mt-6">
+
                             <div className="flex w-full">
+
                               <div className="drag-area try">
                                 <div className="icon">
                                   <i className="fas fa-cloud-upload-alt"></i>
@@ -1782,10 +1825,14 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   <span>Select or drop Your Files Here</span>
                                 </div>
                                 <input
+                                 
+                                 name="monthSalary"
+                                  onChange={handleFileChange}
                                   className="filesjila w-full"
                                   type="file"
                                 />
                               </div>
+
                               <div className="drag-area try">
                                 <div className="icon">
                                   <i className="fas fa-cloud-upload-alt"></i>
@@ -1795,10 +1842,14 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   <span>Select or drop Your Files Here</span>
                                 </div>
                                 <input
-                                  className="filesjila w-full"
+                               
+                               className="filesjila w-full"
+                               name = "adharCard"
                                   type="file"
+                                  onChange={handleFileChange}
                                 />
                               </div>
+
                               <div className="drag-area try">
                                 <div className="icon">
                                   <i className="fas fa-cloud-upload-alt"></i>
@@ -1811,10 +1862,16 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 <input
                                   className="filesjila w-full"
                                   type="file"
+                            
+                                  name="cancelCheque"
+                                  onChange={handleFileChange}
                                 />
                               </div>
+
                             </div>
+
                             <div className="flex w-full mt-6">
+                              
                               <div className="drag-area try">
                                 <div className="icon">
                                   <i className="fas fa-cloud-upload-alt"></i>
@@ -1827,8 +1884,12 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 <input
                                   className="filesjila w-full"
                                   type="file"
+                                
+                                  name="pancard"
+                                  onChange={handleFileChange}
                                 />
                               </div>
+
                               <div className="drag-area try">
                                 <div className="icon">
                                   <i className="fas fa-cloud-upload-alt"></i>
@@ -1841,8 +1902,13 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 <input
                                   className="filesjila w-full"
                                   type="file"
+                                 
+                          
+                                  name="educationCert"
+                                  onChange={handleFileChange}
                                 />
                               </div>
+
                               <div className="drag-area try">
                                 <div className="icon">
                                   <i className="fas fa-cloud-upload-alt"></i>
@@ -1853,12 +1919,17 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 </div>
 
                                 <input
+                                name="prevOrgOffer"
                                   className="filesjila w-full"
                                   type="file"
+                                  onChange={handleFileChange}
                                 />
                               </div>
+
                             </div>
+
                             <div className="flex w-full mt-6">
+
                               <div className="drag-area drag-area2 try">
                                 <div className="icon">
                                   <i className="fas fa-cloud-upload-alt"></i>
@@ -1871,6 +1942,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 <input
                                   className="filesjila w-full"
                                   type="file"
+                                  onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1886,7 +1958,8 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 </button>
                                 <button
                                   onClick={() => {
-                                    handleSave("form5");
+                                    documentSumit();
+                                    // handleSave("form5");
                                   }}
                                   type="button"
                                   className="save"
@@ -1894,7 +1967,9 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   Save
                                 </button>
                               </div>
+
                             </div>
+
                           </div>
                         </div>
                       </div>

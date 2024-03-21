@@ -475,6 +475,13 @@ const MainState = (props) => {
       return data;
    };
 
+   const uploadDocuments = async({monthSalary , adharCard ,   cancelCheque, pancard,educationCert, prevOrgOffer})=>{
+
+      // const data = await postForm(`${baseUrl}/user/uploadDocument` , {monthSalary , adharCard, cancelCheque ,pancard , educationCert , prevOrgOffer}, true);
+
+      // return data;
+   }
+
    const getLeaveTypes = async () => {
       const data = await get(`${baseUrl}/system/getLeaveTypes`, true);
       return data;
@@ -705,7 +712,7 @@ const MainState = (props) => {
       <MainContext.Provider value={{
          login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesingation, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType,
          createIndicator, getIndicator, deleteIndicator, getDesignations, updateIndicator, getAppraisal, createAppraisal, allEmployee, deleteApprisal, updateApprisal, createAssets, getAssets, deleteAssets,updateAssets,deleteUser,createTracks,getTracks,deleteTracks,updateTracks , 
-         getTotalLeavesCount
+         getTotalLeavesCount  , uploadDocuments
       }}>
          {props.children}
       </MainContext.Provider>
