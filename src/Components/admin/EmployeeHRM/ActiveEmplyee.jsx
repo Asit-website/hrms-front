@@ -203,7 +203,7 @@ const AdminEmplyee = ({
                       <img src={data[0].profile} alt="" />
                       <h2>{employ?.user?.fullName}</h2>
                       <p>{employ?.user?.designation}</p>
-                      <button className="inactBtn"><span>{employ?.user?.status}</span></button>
+                      <button className="inactBtn"><span>Online</span></button>
                     </div>
 
                     <div className="empEmail_phnL">

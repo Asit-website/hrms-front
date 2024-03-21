@@ -352,7 +352,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
       // alert('Updated');
       setAlert("success", "Profile updated Successfully");
       if (!isHr) {
-        navigate("/adminDash/profile-management");
+        navigate("/adminDash/HRM/EmployeeManagement");
       }
       else {
         navigate("/hrDash/EmployeeMan");

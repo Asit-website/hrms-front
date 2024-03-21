@@ -12,6 +12,8 @@ import personAdd from "../../images/person_add.png"
 import Calendar from "react-calendar";
 import "./employeManage.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 
 // const emplyData = [
@@ -100,7 +102,7 @@ const EmployeeManagement = ({
 
   let todayDate = new Date().toLocaleDateString('en-GB');
 
-  const { user, getUsers, getActivitiesByUser } = useMain();
+  const { user, getUsers, getActivitiesByUser,deleteUser } = useMain();
 
   const [data, setData] = useState([])
 
@@ -108,9 +110,11 @@ const EmployeeManagement = ({
   const [loadFlag, setLoadFlag] = useState(false);
   const [mainData, setMainData] = useState({});
 
+  const [refreshFlag,setRefreshFlag] = useState(false);
+
   useEffect(() => {
     getData();
-  }, []);
+  }, [refreshFlag]);
 
   const getData = async () => {
     const ans = await getUsers();
@@ -136,6 +140,36 @@ const EmployeeManagement = ({
     // console.log(date);
     getData(date);
   };
+
+  const deleteUser1 = async (id) => {
+
+    confirmAlert({
+      title: 'Are you sure to delete this data?',
+      message: 'All related data to this will be deleted',
+      buttons: [
+        {
+          label: 'Yes, Go Ahead!',
+          style: {
+            background: "#FF5449"
+          },
+          onClick: async () => {
+            await deleteUser(id);
+            alert("delete Successfully");
+            setRefreshFlag(!refreshFlag);
+            getData(); 
+          }
+        },
+        {
+          label: 'Cancel',
+
+          onClick: () => null
+        }
+      ]
+    });
+
+  };
+
+  
 
   return (
     <>
@@ -237,9 +271,20 @@ const EmployeeManagement = ({
                             {
 
                               !loadFlag ? <> <td id={item._id} className="px-6 py-4 taskAns">{mainData && Object.keys(mainData).length > 0 && mainData.activity[mainData.activity.length - 1].message !== "" ? new Date(mainData.activity[mainData.activity.length - 1].ts).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) : " - : -"}</td>
-                                <td className="px-6 py-4 taskAns">{item?.active}</td></> : null
+                                </> : null
 
                             }
+                             
+                             <td className="px-6 py-4 taskAns">
+                             <div className='flex items-center sk'>
+                              <i onClick={()=>{
+                                  navigate(`/adminDash/EmployeeMan/${item._id}`);
+                              }} className="fa-solid fa-pen-to-square"></i>
+                              <i onClick={()=>{
+                                deleteUser1(item?._id);
+                              }} className="fa-solid fa-trash"></i>
+                            </div>
+                             </td>
 
                           </tr>
                         ))
