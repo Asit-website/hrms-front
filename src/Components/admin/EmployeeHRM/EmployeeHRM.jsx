@@ -27,7 +27,7 @@ const EmployeeHRM = ({
   setAlert,
   isHr = false,
 }) => {
-  const { user, getUsers, getActiveUsersCount, postActivity } = useMain();
+  const { user, getUsers, getActiveUsersCount, postActivity , getTotalLeavesCount } = useMain();
 
   const [counts, setCounts] = useState({
     activeEmployees: 0,
@@ -37,14 +37,17 @@ const EmployeeHRM = ({
   });
   const [loadFlag, setLoadFlag] = useState(true);
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const [totalLeave , setTotalLeave] = useState(0);
+
 
   const getData = async () => {
     setLoadFlag(true);
     const ans = await getUsers();
     const ans1 = await getActiveUsersCount();
+
+     const ans2 = await getTotalLeavesCount();
+     setTotalLeave(ans2.totalLeave);
+
     // console.log(ans1);
     setCounts({
       ...counts, totalEmployees: ans.data.length, activeEmployees: ans1.data
@@ -168,7 +171,7 @@ const EmployeeHRM = ({
       }
     }
     setMount(!mount);
-    // getData();
+    getData();
 
   };
 
@@ -186,8 +189,13 @@ const EmployeeHRM = ({
     localStorage.removeItem("clock-out-time");
     setClock(0);
 
-    // getData();
+    getData();
   };
+
+  useEffect(() => {
+    getData();
+  
+  }, []);
 
   return (
     <>
@@ -247,7 +255,7 @@ const EmployeeHRM = ({
                           <p className="t2">{'Requests'}</p>
                         </div>
 
-                        <p className="hrmlRNu">{counts?.leaveRequest}</p>
+                        <p className="hrmlRNu">{totalLeave}</p>
                       </div>
                     </NavLink>
 

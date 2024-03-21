@@ -21,19 +21,75 @@ const LeaveRequest = ({
   setAlert,
   isHr = false,
 }) => {
-  const { user, getUserLeaves } = useMain();
+
+  const [star1, setStar1] = useState(false);
+
+
+  const styleThing = {
+    display: star1 ? "block" : "none",
+  };
+
+  const { user, getUserLeaves , deleteLeave , updateLeave } = useMain();
+
+  // const [openForm , setOpenForm] = useState(false);
 
   const [data, setData] = useState([]);
 
-  useEffect(()=>{
-    // getData();
-  },[]);
 
   const getData=async()=>{
     let ans = await getUserLeaves();
-    // console.log(ans);
     setData(ans.data);
   };
+
+  useEffect(()=>{
+    getData();
+  },[]);
+
+  const formatDate = (dateString) => {
+    const dateObject = new Date(dateString);
+    const formattedDate = dateObject.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
+    return formattedDate;
+  };
+
+
+  const [formdata , setFormdata] = useState({
+    employeeName:"" , leaveType:"" , start:"" , end:"" , reason:"" , id:""
+  })
+
+  const changeHandler = (e)=>{
+    const {name ,value} = e.target;
+
+    setFormdata((prev)=>({
+      ...prev ,
+      [name]:value
+    }))
+  }
+
+   const deleteLeaveRequest = async(leaveId)=>{
+    let ans = await deleteLeave(leaveId);
+       getData();
+   }
+
+
+   const submitHandler = async()=>{
+    const startDate = new Date(formdata.start);
+    const endDate = new Date(formdata.end);
+    const timeDifference = Math.abs(endDate - startDate);
+    const daysGap = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+  const ans = await updateLeave({ employeeName: formdata.employeeName ,  id:formdata.id ,  type: formdata.leaveType, from: formdata.start, to: formdata.end, days: daysGap, reason: formdata.reason});
+
+   if(ans.success){
+    alert("Successfuly updated");
+    setStar1(false);
+   }
+
+   }
+
 
   return (
     <>
@@ -124,149 +180,160 @@ const LeaveRequest = ({
                     <tbody>
                       {data?.map((e,index)=>{
                         return (
-                          <></>
+                          <tr key={index} className="bg-white border-b">
+                          <th
+                            scope="row"
+                            className="px-3 py-4 font-medium  whitespace-nowrap taskAns "
+                          >
+                            <div className="flex items-center checkbox_ss ">
+                             
+                              <label htmlFor="disabled-checkbox">
+                                {e?.user?.fullName}
+                              </label>
+                            </div>
+                          </th>
+                          <td className="px-3 py-4 taskAns">{e?.leaveType}</td>
+                          <td className="px-3 py-4 taskAns">{formatDate(e?.appliedOn)}</td>
+                          <td className="px-3 py-4 taskAns">  {e?.from}</td>
+                          <td className="px-3 py-4 taskAns"> {e?.to} </td>
+                          <td className="px-3 py-4 taskAns"> {e?.days} </td>
+                          
+                          <td className="px-3 py-4 taskAns">{e?.reason}</td>
+  
+                          <td className="px-3 py-4 taskAns">
+                            <div className="ACTIVITYsss">{e?.status}</div>
+                          </td>
+
+                          <td className="px-6 py-4  flex items-center hiii_gap">
+                            
+                              <button
+                                id="dropdownMenuIconButton2222"
+                                data-dropdown-toggle="dropdownDots2222"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                type="button"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke-width="1.5"
+                                  stroke="currentColor"
+                                  className="w-6 h-6"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
+                                  />
+                                </svg>
+                              </button>
+                              <button
+                                onClick={()=>{
+                                  setFormdata((prev)=>({
+                                    ...prev ,
+                                    
+                                      reason: e.reason , 
+                                      leaveType: e.leaveType ,
+                                      employeeName: e?.user?.fullName , 
+                                      start: e.from , 
+                                      end: e.to , 
+                                      id: e._id
+                                    
+                                  }))
+                                  setStar1((prev)=>!prev);
+                                }}
+                                id="dropdownMenuIconButton2222"
+                                data-dropdown-toggle="dropdownDots2222"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                type="button"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke-width="1.5"
+                                  stroke="currentColor"
+                                  className="w-6 h-6"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                                  />
+                                </svg>
+                              </button>
+                              <button
+                               onClick={()=>deleteLeaveRequest(e?._id)}
+                                id="dropdownMenuIconButton2222"
+                                data-dropdown-toggle="dropdownDots2222"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                type="button"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke-width="1.5"
+                                  stroke="currentColor"
+                                  className="w-6 h-6"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                                  />
+                                </svg>
+                              </button>
+  
+                              <div
+                                id="dropdownDots2222"
+                                className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                              >
+                                <ul
+                                  className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                  aria-labelledby="dropdownMenuIconButton2222"
+                                >
+                                  <li>
+                                    <a
+                                      href="#"
+                                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    >
+                                      Dashboard
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a
+                                      href="#"
+                                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    >
+                                      Settings
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a
+                                      href="#"
+                                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    >
+                                      Earnings
+                                    </a>
+                                  </li>
+                                </ul>
+                                <div className="py-2">
+                                  <a
+                                    href="#"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                  >
+                                    Separated link
+                                  </a>
+                                </div>
+                              </div>
+                            
+                          </td>
+
+                        </tr>
                         )
                       })}
-                      <tr className="bg-white border-b">
-                        <th
-                          scope="row"
-                          className="px-3 py-4 font-medium  whitespace-nowrap taskAns "
-                        >
-                          <div className="flex items-center checkbox_ss ">
-                            {/* <input
-                              disabled=""
-                              id="disabled-checkbox"
-                              type="checkbox"
-                              defaultValue=""
-                              className=" text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            /> */}
-                            <label htmlFor="disabled-checkbox">
-                              Surbhi Rajwanshi
-                            </label>
-                          </div>
-                        </th>
-                        <td className="px-3 py-4 taskAns">Medical Leave</td>
-                        <td className="px-3 py-4 taskAns">Jan 17 2024 </td>
-                        <td className="px-3 py-4 taskAns"> 3 Jan 2024</td>
-                        <td className="px-3 py-4 taskAns"> 3 Jan 2032 </td>
-                        <td className="px-3 py-4 taskAns"> 1 </td>
-                        
-                        <td className="px-3 py-4 taskAns">Sick Leave</td>
-
-                        <td className="px-3 py-4 taskAns">
-                          <div className="ACTIVITYsss">.....</div>
-                        </td>
-                        <td className="px-6 py-4  flex items-center hiii_gap">
-                          <>
-                            <button
-                              id="dropdownMenuIconButton2222"
-                              data-dropdown-toggle="dropdownDots2222"
-                              className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                              type="button"
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
-                                />
-                              </svg>
-                            </button>
-                            <button
-                              id="dropdownMenuIconButton2222"
-                              data-dropdown-toggle="dropdownDots2222"
-                              className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                              type="button"
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-                                />
-                              </svg>
-                            </button>
-                            <button
-                              id="dropdownMenuIconButton2222"
-                              data-dropdown-toggle="dropdownDots2222"
-                              className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                              type="button"
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-                                />
-                              </svg>
-                            </button>
-
-                            <div
-                              id="dropdownDots2222"
-                              className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-                            >
-                              <ul
-                                className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                aria-labelledby="dropdownMenuIconButton2222"
-                              >
-                                <li>
-                                  <a
-                                    href="#"
-                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                  >
-                                    Dashboard
-                                  </a>
-                                </li>
-                                <li>
-                                  <a
-                                    href="#"
-                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                  >
-                                    Settings
-                                  </a>
-                                </li>
-                                <li>
-                                  <a
-                                    href="#"
-                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                  >
-                                    Earnings
-                                  </a>
-                                </li>
-                              </ul>
-                              <div className="py-2">
-                                <a
-                                  href="#"
-                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                >
-                                  Separated link
-                                </a>
-                              </div>
-                            </div>
-                          </>
-                        </td>
-                      </tr>
+               
 
                       {/* <tr className="bg-white border-b  ">
                         <th scope="row" className="px-3 py-4 font-medium  whitespace-nowrap taskAns ">
@@ -744,6 +811,163 @@ const LeaveRequest = ({
               </main>
             </div>
           </div>
+
+     
+     {/* this is edit form of leave rqeuest  */}
+            <div
+            style={styleThing}
+            id="authentication-modal"
+            tabindex="-1"
+            aria-hidden="true"
+            class="user_class hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center mt-10 md:inset-0 h-[calc(100%-1rem)] max-h-full"
+          >
+            <div class="relative p-4 w-full max-w-md max-h-full">
+              {/* <!-- Modal content --> */}
+              <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                {/* <!-- Modal header --> */}
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Create Leave Request
+                  </h3>
+                </div>
+                {/* <!-- Modal body --> */}
+                <div class="p-4 md:p-5">
+
+                  <form  className="space-y-4" action="#">
+
+                    <div class="mt-2 user_class_input">
+                      <label
+                        for="name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Employee Name
+                      </label>
+
+                      <input
+           value={formdata.employeeName}
+           onChange={changeHandler}
+             disabled
+                        type="text"
+                        name="employeeName"
+                        id="text"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        placeholder="Enter the name"
+                        required
+                      />
+                    </div>
+
+                    <div class="mt-2 user_class_input">
+                      <label
+                        for="text"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Leave type
+                      </label>
+                      <input
+                      value={formdata.leaveType}
+                      disabled
+                      onChange={changeHandler}
+                        type="text"
+                        name="leaveType"
+                        id="text"
+                        placeholder="Enter your leave type"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        required
+                      />
+                    </div>
+
+                    <div className="flex justify-between w-full">
+                      <div class="user_class_input w-full mt-2 ">
+                        <label
+                          for="text"
+                          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Start
+                        </label>
+                        <input
+                         value={formdata.start}
+                         onChange={changeHandler}
+                          type="date"
+                          name="start"
+                          id="text"
+                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                          required
+                        />
+                      </div>
+                      <div class="user_class_input w-full ml-2  mt-2">
+                        <label
+                          for="text"
+                          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          End
+                        </label>
+                        <input
+                         value={formdata.end}
+                          onChange={changeHandler}
+                          type="date"
+                          name="end"
+                          id="text"
+                          class="black bg-indigo-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                          required
+                        />
+                      </div>
+                      
+                    </div>
+
+                    <div class="user_class_input">
+                        <label
+                          for="message"
+                          class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Reason
+                        </label>
+                        <textarea
+                        required
+                        name="reason"
+                        onChange={changeHandler}
+                        value={formdata.reason}
+                          id="message"
+                          rows="4"
+                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          placeholder="Enter your reason..."
+                        ></textarea>
+                      </div>
+
+                    <button
+                      onClick={(e) =>{
+                        
+                        e.preventDefault();
+                       
+                       submitHandler(e);
+                      }}
+                      type="button" 
+                      class="w-full mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      send
+                    </button>
+
+                    <button
+                      onClick={(e) =>{
+                        
+                      setStar1(false);
+                      }}
+                      type="button" 
+                      class="w-full mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      Cancel
+                    </button>
+
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+           
+           
+           {/* } */}
+
+
         </div>
       </div>
     </>

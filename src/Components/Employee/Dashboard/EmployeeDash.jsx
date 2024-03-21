@@ -21,7 +21,7 @@ var tc4;
 
 const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   // =================punch in punch out concept==========
-  const { user, postActivity, getStatisticsByUser } = useMain();
+  const { user, postActivity, getStatisticsByUser , postLeave } = useMain();
 
   const [startTs, setStartTs] = useState("");
   var [percentageDone, setPercentageDone] = useState(0);
@@ -317,6 +317,44 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   const styleThing = {
     display: star1 ? "block" : "none",
   };
+
+  const [formdata , setFormdata] = useState({
+    employeeName:"" , leaveType:"" , start:"" , end:"" , reason:""
+  })
+
+  const changeHandler = (e)=>{
+    const {name ,value} = e.target;
+
+    setFormdata((prev)=>({
+      ...prev ,
+      [name]:value
+    }))
+  }
+
+  const submitHandler = async(e)=>{
+    e.preventDefault();
+
+    const startDate = new Date(formdata.start);
+    const endDate = new Date(formdata.end);
+    const timeDifference = Math.abs(endDate - startDate);
+    const daysGap = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+     const ans = await postLeave({ type: formdata.leaveType, from: formdata.start, to: formdata.end, days: daysGap, reason: formdata.reason});
+
+      if(ans.success){
+        alert("Successfuly applied");
+        setStar1(false);
+      }
+     setFormdata({
+      employeeName:"" ,
+       leaveType:"" ,
+        start:"" ,
+         end:"" ,
+          reason:""
+    })
+  }
+
+//  console.log("f",formdata);
 
   return (
     <>
@@ -1053,7 +1091,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                         </div>
                         {/* <!-- Modal body --> */}
                         <div class="p-4 md:p-5">
-                          <form class="space-y-4" action="#">
+
+                          <form  className="space-y-4" action="#">
+
                             <div class="mt-2 user_class_input">
                               <label
                                 for="name"
@@ -1061,15 +1101,20 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                               >
                                 Employee Name
                               </label>
+
                               <input
+                   value={formdata.employeeName}
+                   onChange={changeHandler}
+
                                 type="text"
-                                name="name"
+                                name="employeeName"
                                 id="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Enter the name"
                                 required
                               />
                             </div>
+
                             <div class="mt-2 user_class_input">
                               <label
                                 for="text"
@@ -1078,14 +1123,17 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                                 Leave type
                               </label>
                               <input
+                              value={formdata.leaveType}
+                              onChange={changeHandler}
                                 type="text"
-                                name="text"
+                                name="leaveType"
                                 id="text"
                                 placeholder="Enter your leave type"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 required
                               />
                             </div>
+
                             <div className="flex justify-between w-full">
                               <div class="user_class_input w-full mt-2 ">
                                 <label
@@ -1095,8 +1143,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                                   Start
                                 </label>
                                 <input
+                                 value={formdata.start}
+                                 onChange={changeHandler}
                                   type="date"
-                                  name="text"
+                                  name="start"
                                   id="text"
                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                   required
@@ -1110,8 +1160,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                                   End
                                 </label>
                                 <input
+                                 value={formdata.end}
+                                  onChange={changeHandler}
                                   type="date"
-                                  name="text"
+                                  name="end"
                                   id="text"
                                   class="black bg-indigo-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                   required
@@ -1119,6 +1171,7 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                               </div>
                               
                             </div>
+
                             <div class="user_class_input">
                                 <label
                                   for="message"
@@ -1127,6 +1180,10 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                                   Reason
                                 </label>
                                 <textarea
+                                required
+                                name="reason"
+                                onChange={changeHandler}
+                                value={formdata.reason}
                                   id="message"
                                   rows="4"
                                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -1135,13 +1192,20 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                               </div>
 
                             <button
-                              onClick={() => setStar1(false)}
-                              type="submit"
+                              onClick={(e) =>{
+                                
+                                e.preventDefault();
+                               
+                               submitHandler(e);
+                              }}
+                              type="button" 
                               class="w-full mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >
                               send
                             </button>
+
                           </form>
+
                         </div>
                       </div>
                     </div>

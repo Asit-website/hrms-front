@@ -225,13 +225,20 @@ const MainState = (props) => {
       return data;
    };
 
+   // this is  for leave post
+
    const postLeave = async ({ type, from, to, days, reason }) => {
+      
       const data = await post(`${baseUrl}/leave/postLeave`, { type, from, to, days, reason }, true);
       return data;
    };
 
-   const updateLeave = async ({ id, status }) => {
-      const data = await put(`${baseUrl}/leave/updateLeave/${id}`, { status }, true);
+
+   // end 
+
+   const updateLeave = async ({ id ,type, from, to, days, reason ,employeeName  }) => {
+      
+      const data = await put(`${baseUrl}/leave/updateLeave/${id}`, { type , from  , to , days , reason  , employeeName}, true);
       return data;
    };
 
@@ -246,7 +253,8 @@ const MainState = (props) => {
    };
 
    const deleteLeave = async (id) => {
-      const data = await get(`${baseUrl}/leave/deleteLeave/${id}`, true);
+
+      const data = await deleteReq(`${baseUrl}/leave/deleteLeave/${id}`, true);
       return data;
    };
 
@@ -254,6 +262,11 @@ const MainState = (props) => {
       const data = await get(`${baseUrl}/totalLeave/getTotalLeaves`, true);
       return data;
    };
+ 
+   const getTotalLeavesCount = async()=>{
+      const data = await get(`${baseUrl}/leave/getToalLeaveCount` , true);
+      return data;
+   }
 
    const postTotalLeaves = async ({ totalLeaves }) => {
       const data = await post(`${baseUrl}/totalLeave/postTotalLeaves`, { totalLeaves }, true);
@@ -686,10 +699,13 @@ const MainState = (props) => {
    };
 
 
+   
+
    return (
       <MainContext.Provider value={{
          login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesingation, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType,
-         createIndicator, getIndicator, deleteIndicator, getDesignations, updateIndicator, getAppraisal, createAppraisal, allEmployee, deleteApprisal, updateApprisal, createAssets, getAssets, deleteAssets,updateAssets,deleteUser,createTracks,getTracks,deleteTracks,updateTracks
+         createIndicator, getIndicator, deleteIndicator, getDesignations, updateIndicator, getAppraisal, createAppraisal, allEmployee, deleteApprisal, updateApprisal, createAssets, getAssets, deleteAssets,updateAssets,deleteUser,createTracks,getTracks,deleteTracks,updateTracks , 
+         getTotalLeavesCount
       }}>
          {props.children}
       </MainContext.Provider>
