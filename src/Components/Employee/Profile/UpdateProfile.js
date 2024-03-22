@@ -8,7 +8,6 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
   const { user, updateProfile, postActivity, getStatisticsByUser } = useMain();
   const [value, setValue] = useState(user);
 
-   console.log("value ",value);
 
   const navigate = useNavigate();
 

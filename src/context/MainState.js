@@ -394,8 +394,18 @@ const MainState = (props) => {
       return data;
    };
 
-   const updateProfile = async ({ fullName, mobile, email, image, email1, password, gmail, department, designation, pan, adhar, father, currentAddress, currentState, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, }) => {
-      const data = await put(`${baseUrl}/user/updateProfile`, { fullName, mobile, email, image, email1, password, gmail, department, designation, pan, adhar, father, currentAddress, currentState, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother }, true);
+   const updateProfile = async ({ fullName, mobile, email, image, email1, password, gmail, department, designation, pan, adhar, father, currentAddress, currentState, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother ,_id}) => {
+     
+      const data = await put(`${baseUrl}/user/updateProfile`, { fullName, mobile, email, email1, password, gmail, department, designation, pan, adhar, father, currentAddress, currentState, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother }, true);
+
+       if(image){
+         const formdata = new FormData();
+          formdata.append("image" , image);
+         
+
+            const resp = await postDocuments(`${baseUrl}/user/updateProfile/${_id}` ,formdata);
+         
+      }
       return data;
    };
 

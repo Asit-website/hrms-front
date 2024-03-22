@@ -65,7 +65,11 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
   const [statistics, setStatistics] = useState([]);
   const [message, setMessage] = useState("");
 
-  const { postActivity, getStatisticsByUser, getActivitiesByUser } = useMain();
+  const { postActivity, getStatisticsByUser, getActivitiesByUser  } = useMain();
+
+  // const [value, setValue] = useState(user);
+
+  console.log("userss ",user);
 
   useEffect(() => {
     getData();
@@ -391,7 +395,7 @@ const EmployeeNavbar = ({ user, setAlert, pop1, setPop1 }) => {
           <div className="relative cursor-pointer" onClick={updateUser}>
 
             <div className="sixth-logo flex items-center relative ">
-              <img className="john" src={lok} alt="lok" />
+              <img className="john" src={user?.profileImage ? user?.profileImage : lok} alt="lok" />
               <p className="ml-2.5">{user?.fullName}</p>
               <img className="ml-2.5 bottom" src={bottom} alt="bottom" />
             </div>
