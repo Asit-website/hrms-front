@@ -289,17 +289,11 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
   const handleSubmit = async (e, type) => {
     e.preventDefault();
 
-    
-    
-
     if (!id) {
 
       const {adharCard , cancelCheque , educationCert , monthSalary , prevOrgOffer} = documents;
 
-      if(adharCard === "" && cancelCheque === "" && educationCert ==="" && monthSalary === "" && prevOrgOffer === ""){
-        return alert("Please upload atleast one document of user");
-      }
-
+    
     const formData = new FormData();
      if(documents.adharCard){
        formData.append('adharCard', adharCard);
@@ -405,6 +399,43 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
       alert("created");
     }
     else {
+
+
+ const {adharCard , cancelCheque , educationCert , monthSalary , prevOrgOffer} = documents;
+
+ const formData = new FormData();
+ if(documents.adharCard){
+   formData.append('adharCard', adharCard);
+
+ }
+ if(documents.cancelCheque){
+   formData.append('cancelCheque', cancelCheque);
+
+ }
+ if(documents.educationCert){
+   formData.append('educationCert', educationCert);
+
+ }
+ if(documents.monthSalary){
+   formData.append('monthSalary', monthSalary);
+
+ }
+ if(documents.prevOrgOffer){
+   formData.append('prevOrgOffer', prevOrgOffer);
+
+ }
+
+ if(adharCard !== "" || cancelCheque !== "" || educationCert !=="" || monthSalary !== "" || prevOrgOffer !== ""){
+  // formData
+  const ans = await uploadDocuments(id , formData);
+  if(ans.success){
+     alert("Successfuly updated the documents");
+  }
+}
+
+  
+
+
       const ans = await updateUser(id, value1, value2, value3, value4, value5);
       console.log(ans.data);
       // alert('Updated');
