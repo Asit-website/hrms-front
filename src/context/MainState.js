@@ -1,6 +1,6 @@
 import React from 'react'
 import MainContext from './MainContext';
-import { deleteReq, get, post, put } from '../Api/api'
+import { deleteReq, get, post, put ,postDocuments } from '../Api/api'
 import { useState } from 'react';
 
 const baseUrl = "http://localhost:5000";
@@ -158,9 +158,18 @@ const MainState = (props) => {
       return data;
    };
 
-   const createEmployee1 = async ({ fullName, password, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch }) => {
-      const data = await post(`${baseUrl}/admin/createUser1`, { fullName, password, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch }, true);
+   const createEmployee1 = async ({ fullName, password, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch , adharCard , formData }) => {
+
+
+      const data = await post(`${baseUrl}/admin/createUser1`, { fullName, password, department, employeeId, gmail, reportingManager, designation, joiningDate, email, email1, mobile, gender, dob, pan, adhar, father, currentAddress, currentState, currentCity, currentPin, residence, perState, perCity, perPin, Martial, nationality, Mother, employeeCode, qualification, specialization, qualificationType, yearPass, university, college, percentage, previousCompany, previousDesignation, toDate, fromDate, numberOfMonth, Jobdescription, SalaryPay, SalaryBankName, BeneficiaryName, BankIfsc, AccountNumber, confirmAccount, Branch  , adharCard }, true);
+
+      const {_id} = data?.data?.adminUser;
+
+      const resp = await postDocuments(`${baseUrl}/user/uploadDocument/${_id}` , formData);
+
+
       return data;
+
    };
 
    const getUsers = async (userId) => {
@@ -321,6 +330,7 @@ const MainState = (props) => {
 
    const verify = async (role) => {
       const data = await post(`${baseUrl}/verify`, { role }, true);
+       console.log("data ",data);
       return data;
    };
 
@@ -475,12 +485,13 @@ const MainState = (props) => {
       return data;
    };
 
-   const uploadDocuments = async({monthSalary , adharCard ,   cancelCheque, pancard,educationCert, prevOrgOffer})=>{
+   // , adharCard ,   cancelCheque, pancard,educationCert, prevOrgOffer
 
-      // const data = await postForm(`${baseUrl}/user/uploadDocument` , {monthSalary , adharCard, cancelCheque ,pancard , educationCert , prevOrgOffer}, true);
+   // const uploadDocuments = async(formData)=>{
 
-      // return data;
-   }
+   
+
+   // }
 
    const getLeaveTypes = async () => {
       const data = await get(`${baseUrl}/system/getLeaveTypes`, true);
@@ -712,7 +723,7 @@ const MainState = (props) => {
       <MainContext.Provider value={{
          login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesingation, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType,
          createIndicator, getIndicator, deleteIndicator, getDesignations, updateIndicator, getAppraisal, createAppraisal, allEmployee, deleteApprisal, updateApprisal, createAssets, getAssets, deleteAssets,updateAssets,deleteUser,createTracks,getTracks,deleteTracks,updateTracks , 
-         getTotalLeavesCount  , uploadDocuments
+         getTotalLeavesCount  
       }}>
          {props.children}
       </MainContext.Provider>

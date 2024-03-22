@@ -97,28 +97,6 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
   const [designations, setDesignations] = useState([]);
 
 
-  //  const [documents , setDocuments] = useState({
-  //   monthSalary:"",
-  //   adharCard:"",
-  //   cancelCheque:"",
-  //   pancard:"",
-  //   educationCert:"",
-  //   prevOrgOffer:"",
-
-  //  })
-
-
-//    const handleFileChange = (event) => {
-//     const file = event.target.files[0]; 
-//  const {name} = event.target;
-//     if (file) {
-//       setDocuments((prevDocuments) => ({
-//         ...prevDocuments,
-//         [name]: file, 
-//       }));
-//     }
-//   };
-
   useEffect(() => {
     let form1 = localStorage.getItem("form1");
     if (form1) {
@@ -285,20 +263,76 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
     }
   };
 
+  
+  const [documents , setDocuments] = useState({
+    monthSalary:"",
+    adharCard:"",
+    cancelCheque:"",
+    pancard:"",
+    educationCert:"",
+    prevOrgOffer:"",
+
+   })
+
+   const handleFileChange = (event) => {
+    const file = event.target.files[0]; 
+ const {name} = event.target;
+    if (file) {
+      setDocuments((prevDocuments) => ({
+        ...prevDocuments,
+        [name]: file, 
+      }));
+    }
+  };
+ 
+
   const handleSubmit = async (e, type) => {
     e.preventDefault();
 
+    
+    
+
     if (!id) {
+
+      const {adharCard , cancelCheque , educationCert , monthSalary , prevOrgOffer} = documents;
+
+      if(adharCard === "" && cancelCheque === "" && educationCert ==="" && monthSalary === "" && prevOrgOffer === ""){
+        return alert("Please upload atleast one document of user");
+      }
+
+    const formData = new FormData();
+     if(documents.adharCard){
+       formData.append('adharCard', adharCard);
+
+     }
+     if(documents.cancelCheque){
+       formData.append('cancelCheque', cancelCheque);
+
+     }
+     if(documents.educationCert){
+       formData.append('educationCert', educationCert);
+
+     }
+     if(documents.monthSalary){
+       formData.append('monthSalary', monthSalary);
+
+     }
+     if(documents.prevOrgOffer){
+       formData.append('prevOrgOffer', prevOrgOffer);
+
+     }
+    
+
       const ans = await createEmployee1({
         ...value1,
         ...value2,
         ...value3,
         ...value4,
         ...value5,
+        formData
       });
-      console.log(ans.data);
-      // console.log({ ...value1, ...value2, ...value3, ...value4, ...value5 });
-      // localStorage.removeItem({ ...value1, status: false });
+      console.log("res" , ans.data);
+      
 
       localStorage.removeItem('form1');
       localStorage.removeItem('form2');
@@ -387,11 +421,28 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
 
 
   // const documentSumit = async()=>{
+
+
+
+  //      const data = await postDocuments(`${baseUrl}/user/uploadDocument` , formData);
+
+  //     return data;
+  
+  //   const ans = await uploadDocuments(formData);
+  //   console.log("ans",ans);
+  //   if(ans.success){
+  //     alert("Successful uploaded the documents");
+  //     setDocuments({
+  //       monthSalary:"",
+  //       adharCard:"",
+  //       cancelCheque:"",
+  //       pancard:"",
+  //       educationCert:"",
+  //       prevOrgOffer:"",
     
-  //   const ans = await uploadDocuments({monthSalary: documents.monthSalary , adharCard: documents.adharCard ,   cancelCheque: documents.cancelCheque,
-  //   pancard: documents.pancard,
-  //   educationCert: documents.educationCert,
-  //   prevOrgOffer: documents.prevOrgOffer});
+  //     })
+  //   }
+
 
   // }
 
@@ -1826,7 +1877,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 <input
                                  
                                  name="monthSalary"
-                                  // onChange={handleFileChange}
+                                  onChange={handleFileChange}
                                   className="filesjila w-full"
                                   type="file"
                                 />
@@ -1845,7 +1896,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                className="filesjila w-full"
                                name = "adharCard"
                                   type="file"
-                                  // onChange={handleFileChange}
+                                  onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1863,7 +1914,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   type="file"
                             
                                   name="cancelCheque"
-                                  // onChange={handleFileChange}
+                                  onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1885,7 +1936,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   type="file"
                                 
                                   name="pancard"
-                                  // onChange={handleFileChange}
+                                  onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1904,7 +1955,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                  
                           
                                   name="educationCert"
-                                  // onChange={handleFileChange}
+                                  onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1921,7 +1972,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 name="prevOrgOffer"
                                   className="filesjila w-full"
                                   type="file"
-                                  // onChange={handleFileChange}
+                                  onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1941,7 +1992,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                 <input
                                   className="filesjila w-full"
                                   type="file"
-                                  // onChange={handleFileChange}
+                                  onChange={handleFileChange}
                                 />
                               </div>
 
@@ -1956,10 +2007,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
                                   <img src={del} alt="del" /> <span>Clear</span>{" "}
                                 </button>
                                 <button
-                                  // onClick={() => {
-                                  //   documentSumit();
-                                    
-                                  // }}
+                                 
                                   type="button"
                                   className="save"
                                 >

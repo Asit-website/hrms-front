@@ -8,6 +8,8 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
   const { user, updateProfile, postActivity, getStatisticsByUser } = useMain();
   const [value, setValue] = useState(user);
 
+   console.log("value ",value);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -719,12 +721,31 @@ const UpdateProfile = ({ setAlert, pop1, setPop1 }) => {
                   />
                 </div>
 
+                <div className="mb-6">
+                  <label htmlFor="Branch" className="block mb-1">
+                    Documents
+                  </label>
+                  <div style={{display:"flex" , gap:"10px",flexWrap:"wrap"}}>
+                    {
+                      value?.document?.map((item ,index)=>(
+                        <div key={index} style={{display:"flex",flexDirection:"column",gap:"5px" , alignItems:"center" , maxWidth:"200px"}}>
+                          <img src={item.url} alt="" />
+                          <p style={{margin:"4px auto" , fontWeight:"600"}}>{item.name}</p>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+
+
+
                 <button
                   type="submit"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Submit
                 </button>
+
               </form>
             </div>
           </div>
