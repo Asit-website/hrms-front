@@ -433,13 +433,11 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
   }
 }
 
-  
-
-
       const ans = await updateUser(id, value1, value2, value3, value4, value5);
       console.log(ans.data);
-      // alert('Updated');
+
       setAlert("success", "Profile updated Successfully");
+      
       if (!isHr) {
         navigate("/adminDash/HRM/EmployeeManagement");
       }
