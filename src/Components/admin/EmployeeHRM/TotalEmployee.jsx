@@ -40,118 +40,7 @@ const TotalEmployee = ({
     setData(ans.data);
   };
 
-
-  // const data = [
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  //   {
-  //       profile: emplyee,
-  //       name:"Surbhi Rajwanshi",
-  //       title:"Project Manager",
-  //       email:"Surbhi@kusheldigi.com",
-  //       phoneNumber:"9873******",
-  //       department:"Developer",
-  //       dateOfJoin:"02 March,2022"
-  //   },
-  // ]
-
+   console.log("data ",data);
 
 
   return (
@@ -208,7 +97,7 @@ const TotalEmployee = ({
 
                       <div className="singEmp_profile">
 
-                        <img src={employ?.profile} alt="" />
+                        <img src={employ?.profileImage ? employ?.profileImage : emplyee} alt="" />
                         <h2>{employ?.name}</h2>
                         <p>{employ?.title}</p>
                       </div>
@@ -225,7 +114,10 @@ const TotalEmployee = ({
                         </p>
                         <p>
                           <span>Date of Joining</span>
-                          <span className="sns">{employ?.joiningDate}</span>
+                          <span className="sns">
+  {employ?.joiningDate ? new Date(employ.joiningDate).toISOString().split('T')[0] : ''}
+</span>
+
                         </p>
                       </div>
 

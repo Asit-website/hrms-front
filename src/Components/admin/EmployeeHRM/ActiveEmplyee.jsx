@@ -152,6 +152,8 @@ const AdminEmplyee = ({
     getData();
   }, []);
 
+   console.log("dat ",data1);
+
 
   return (
     <>
@@ -200,7 +202,7 @@ const AdminEmplyee = ({
                 {data1?.map((employ, index) => (
                   <div key={index} className="singl_EmplyL">
                     <div className="singEmp_profileL">
-                      <img src={data[0].profile} alt="" />
+                      <img src={employ?.user?.profileImage ? employ?.user?.profileImage : data[0].profile} alt="" />
                       <h2>{employ?.user?.fullName}</h2>
                       <p>{employ?.user?.designation}</p>
                       <button className="inactBtn"><span>Online</span></button>
