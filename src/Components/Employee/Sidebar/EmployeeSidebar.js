@@ -7,6 +7,7 @@ import pdf from "../../images/pdf.png";
 import chakka from "../../images/chakka.png";
 import kushel1 from '../../images/kushel1.png';
 import { NavLink } from "react-router-dom";
+
 const EmployeeSidebar = () => {
   return (
     <>
@@ -44,6 +45,7 @@ const EmployeeSidebar = () => {
         <div className="h-full px-3 py-4 overflow-y-auto  sidebars sidebars1">
 
           <ul className="space-y-2 font-medium sight">
+
             <NavLink to="/employeeDash"><li className="most">
               <a
                 href="#"
@@ -53,6 +55,7 @@ const EmployeeSidebar = () => {
                 <span className="ml-3">Dashboard</span>
               </a>
             </li></NavLink>
+
            <li className="most">
               <button
                 type="button"
@@ -174,6 +177,7 @@ const EmployeeSidebar = () => {
               </div>
             </div>
           </ul>
+
         </div>
       </aside>
 

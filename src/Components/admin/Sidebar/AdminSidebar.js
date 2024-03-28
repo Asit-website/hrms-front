@@ -51,6 +51,10 @@ const HRMSItem = [
    
   },
   {
+    title: "Training Setup",
+   
+  },
+  {
     title: "Employees Asset Setup",
     link: "/performance/Assets"
   },
@@ -71,6 +75,17 @@ const performanceItem = [
     link: "/performance/goalTracking"
   },
 ]
+const trainingItem = [
+  {
+    title: "Training list",
+    link: "/training/TrainingList"
+  },
+  {
+    title: "Trainer",
+    link: "/training/TrainerHRM"
+  },
+ 
+]
 
 const AdminSidebar = ({ pop, setPop }) => {
   const [dashItem, setDashItem] = useState(0);
@@ -83,6 +98,41 @@ const AdminSidebar = ({ pop, setPop }) => {
   const [openHRMSItem, setOpenHRMSItem] = useState(false);
 
   const [openPerfor , setOpenPer] = useState(false);
+  const [openTrain , setOpenTrain] = useState(false);
+
+//   {
+//     openTrain && 
+//     <div>
+
+// {
+// trainingItem?.map((item ,index)=>(
+// <div
+  
+// onClick={()=>{
+// setHRMS(index)
+// navigate(item?.link)
+// }}
+// className="sinADDasItem"
+// key={index}
+// >
+// {dashItem == index ? (
+// <img src={chooseDash} alt="" />
+// ) : (
+// <img src={unchosedash} alt="" />
+// )}
+// <p
+// className={` ${
+// HRMS === index ? "dashItemp" : "dITitl"
+// }`}
+// >
+// {item?.title}
+// </p>
+// </div>
+// ))
+// }
+ 
+//     </div>
+//    }
 
   return (
     <>
@@ -184,7 +234,7 @@ const AdminSidebar = ({ pop, setPop }) => {
             {openHRMSItem && (
               <div className="alladminDash-item">
                 {HRMSItem?.map((item, index) => (
-                   item.title === "Performance Setup"?
+                  item.title === "Performance Setup"?
 
                     <div className="performaceSetup ">
     
@@ -241,10 +291,74 @@ const AdminSidebar = ({ pop, setPop }) => {
                  
                     </div>
                    }
+                  
 
                    </div>
 
                    :
+
+                   item.title === "Training Setup" ? 
+                   (
+
+                    <div className="performaceSetup ">
+    
+                    <div key={index} onClick={()=>setOpenTrain((prev)=>!prev)}  className="sinADDasItem relative">
+ 
+            {dashItem == index ? (
+                       <img src={chooseDash} alt="" />
+                     ) : (
+                       <img src={unchosedash} alt="" />
+                     )}
+                     <p
+                       className={` ${
+                         HRMS === index ? "dashItemp" : "dITitl"
+                       }`}
+                     >
+                       {item?.title}
+                     </p>
+ 
+                    
+                          <p><IoIosArrowDown className="text-white absolute right-6 top-[30%] " /></p>
+        
+                    </div>
+ 
+                    {
+                     openTrain && 
+                     <div>
+ 
+ {
+   trainingItem?.map((item ,index)=>(
+     <div
+                   
+     onClick={()=>{
+       setHRMS(index)
+       navigate(item?.link)
+     }}
+     className="sinADDasItem"
+     key={index}
+   >
+     {dashItem == index ? (
+       <img src={chooseDash} alt="" />
+     ) : (
+       <img src={unchosedash} alt="" />
+     )}
+     <p
+       className={` ${
+         HRMS === index ? "dashItemp" : "dITitl"
+       }`}
+     >
+       {item?.title}
+     </p>
+   </div>
+   ))
+ }
+                  
+                     </div>
+                    }
+                   
+ 
+                    </div>
+                   ):
 
                   <div
                   
