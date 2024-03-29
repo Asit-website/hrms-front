@@ -216,6 +216,7 @@ function App() {
             <Route path="/training/TrainingList" element={<TrainingList/>}/> 
             <Route path="/training/TrainerHRM" element={<TrainerHRM/>}/>
             <Route path="/training/DocumentSetup" element={<DocumentSetup/>}/>
+            
             {/* </Route> */}
           </Routes>
         </BrowserRouter>
