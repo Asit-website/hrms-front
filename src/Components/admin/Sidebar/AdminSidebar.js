@@ -55,6 +55,14 @@ const HRMSItem = [
    
   },
   {
+    title: "Leave Management Setup",
+   
+  },
+  {
+    title: "HR Admin Setup",
+   
+  },
+  {
     title: "Employees Asset Setup",
     link: "/performance/Assets"
   },
@@ -87,6 +95,49 @@ const trainingItem = [
  
 ]
 
+const LeaveManItem = [
+  {
+    title: "Manage Leave",
+    link: "/adminDash/HRM/LeaveEmployee"
+  },
+  {
+    title: "Mark Attendence",
+    link: "/adminDash/HRM/markAttendance"
+  },
+ 
+]
+
+const hrAdminItem = [
+  {
+    title: "Award",
+    link: "/adminDash/HRM/AwardHRM"
+  },
+  {
+    title: "Transfer",
+    link: "/adminDash/HRM/TransferHRM"
+  },
+  {
+    title: "Regisnation",
+    link: "/adminDash/HRM/ResignationHRM"
+  },
+  {
+    title: "Promotion",
+    link: "/adminDash/HRM/PromotionHRM"
+  },
+  {
+    title: "Complaints",
+    link: "/adminDash/HRM/ComplaintsHRM"
+  },
+  {
+    title: "Warning",
+    link: "/adminDash/HRM/WarningHRM"
+  },
+  {
+    title: "Termination",
+    link: "/adminDash/HRM/TerminationHRM"
+  },
+]
+
 const AdminSidebar = ({ pop, setPop }) => {
   const [dashItem, setDashItem] = useState(0);
 
@@ -99,6 +150,8 @@ const AdminSidebar = ({ pop, setPop }) => {
 
   const [openPerfor , setOpenPer] = useState(false);
   const [openTrain , setOpenTrain] = useState(false);
+  const [openLeaveMan, setOpenLeaveMan] = useState(false);
+  const [openHrAdmin, setOpenHrAdmin] = useState(false);
 
 //   {
 //     openTrain && 
@@ -297,6 +350,72 @@ const AdminSidebar = ({ pop, setPop }) => {
 
                    :
 
+                    item.title === "Leave Management Setup" ?
+
+                    <div className="performaceSetup ">
+    
+                    <div key={index} onClick={()=>setOpenLeaveMan((prev)=>!prev)}  className="sinADDasItem relative">
+ 
+            {dashItem == index ? (
+                       <img src={chooseDash} alt="" />
+                     ) : (
+                       <img src={unchosedash} alt="" />
+                     )}
+                     <p
+                       className={` ${
+                         HRMS === index ? "dashItemp" : "dITitl"
+                       }`}
+                     >
+                       {item?.title}
+                     </p>
+ 
+                    
+                          <p><IoIosArrowDown className="text-white absolute right-6 top-[30%] " /></p>
+        
+                    </div>
+ 
+                    {
+                     openLeaveMan && 
+                     <div>
+ 
+ {
+   LeaveManItem?.map((item ,index)=>(
+     <div
+                   
+     onClick={()=>{
+       setHRMS(index)
+       navigate(item?.link)
+     }}
+     className="sinADDasItem"
+     key={index}
+   >
+     {dashItem == index ? (
+       <img src={chooseDash} alt="" />
+     ) : (
+       <img src={unchosedash} alt="" />
+     )}
+     <p
+       className={` ${
+         HRMS === index ? "dashItemp" : "dITitl"
+       }`}
+     >
+       {item?.title}
+     </p>
+   </div>
+   ))
+ }
+                  
+                     </div>
+                    }
+                   
+ 
+                    </div>
+
+
+                    :
+                    
+
+
                    item.title === "Training Setup" ? 
                    (
 
@@ -358,7 +477,72 @@ const AdminSidebar = ({ pop, setPop }) => {
                    
  
                     </div>
-                   ):
+                   )
+                   :
+
+                   item.title === "HR Admin Setup"?
+                   (
+
+                    <div className="performaceSetup ">
+    
+                    <div key={index} onClick={()=>setOpenHrAdmin((prev)=>!prev)}  className="sinADDasItem relative">
+ 
+            {dashItem == index ? (
+                       <img src={chooseDash} alt="" />
+                     ) : (
+                       <img src={unchosedash} alt="" />
+                     )}
+                     <p
+                       className={` ${
+                         HRMS === index ? "dashItemp" : "dITitl"
+                       }`}
+                     >
+                       {item?.title}
+                     </p>
+ 
+                    
+                          <p><IoIosArrowDown className="text-white absolute right-6 top-[30%] " /></p>
+        
+                    </div>
+ 
+                    {
+                     openHrAdmin && 
+                     <div>
+ 
+ {
+   hrAdminItem?.map((item ,index)=>(
+     <div
+                   
+     onClick={()=>{
+       setHRMS(index)
+       navigate(item?.link)
+     }}
+     className="sinADDasItem"
+     key={index}
+   >
+     {dashItem == index ? (
+       <img src={chooseDash} alt="" />
+     ) : (
+       <img src={unchosedash} alt="" />
+     )}
+     <p
+       className={` ${
+         HRMS === index ? "dashItemp" : "dITitl"
+       }`}
+     >
+       {item?.title}
+     </p>
+   </div>
+   ))
+ }
+                  
+                     </div>
+                    }
+                   
+ 
+                    </div>
+                   )
+                    :
 
                   <div
                   
@@ -385,10 +569,6 @@ const AdminSidebar = ({ pop, setPop }) => {
                 ))}
               </div>
             )}
-
-
-
-
 
             {/* <---------------System setting------------------> */}
             <div className="setWrap">

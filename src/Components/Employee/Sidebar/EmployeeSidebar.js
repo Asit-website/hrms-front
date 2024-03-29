@@ -85,6 +85,7 @@ const EmployeeSidebar = () => {
                 </svg>
               </button>
               <ul id="dropdown-example" className="hidden py-2 space-y-2">
+              
                 <li>
                   <a
                     href="#"
@@ -93,6 +94,7 @@ const EmployeeSidebar = () => {
                     Products
                   </a>
                 </li>
+
                 <li>
                   <a
                     href="#"
@@ -101,6 +103,7 @@ const EmployeeSidebar = () => {
                     Billing
                   </a>
                 </li>
+
                 <li>
                   <a
                     href="#"
@@ -109,8 +112,11 @@ const EmployeeSidebar = () => {
                     Invoice
                   </a>
                 </li>
+                
               </ul>
+
             </li>
+
             <li className="most">
               <button
                 type="button"
@@ -166,6 +172,7 @@ const EmployeeSidebar = () => {
                 </li>
               </ul>
             </li>
+
             <div className="red-box">
               <div className="white-box">
                 <img src={chakka} alt="chakka" />
