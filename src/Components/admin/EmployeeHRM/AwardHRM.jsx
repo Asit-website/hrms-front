@@ -6,6 +6,8 @@ import chevron from "../../images/chevron_right.png";
 import { useMain } from "../../../hooks/useMain";
 
 import "./award.css";
+import ReactStars from "react-rating-stars-component";
+
 
 import plusIcon from "../../images/plusIcon.png";
 
@@ -357,6 +359,11 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
     }
   };
 
+  const ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
+   
+
   return (
     <>
       <div className="employee-dash h-full">
@@ -514,6 +521,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
 
               {/* <div className="award-popup-label"> */}
               <div className="award-popup-label">
+
               <label htmlFor="">
                 <p>Employee</p>
                 <input
@@ -526,6 +534,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   placeholder="Enter Employee Name"
                 />
               </label>
+
               <label htmlFor="">
                 <p>Award Type</p>
                 <input
@@ -538,8 +547,10 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   placeholder="Certificate"
                 />
               </label>
+
               </div>
               <div className="award-popup-label">
+
               <label htmlFor="">
                 <p>Date</p>
                 <input
@@ -552,6 +563,7 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   placeholder="dd-mm-yyyy"
                 />
               </label>
+
               <label htmlFor="">
                 <p>Gift</p>
                 <input
@@ -564,12 +576,32 @@ const HRMsystemSetup = ({ setAlert, pop, setPop }) => {
                   placeholder="Enter Gift"
                 />
               </label>
+
               </div>
+
+        
+
               <div className="award-popup-label award-popup-textarea">
+
               <label htmlFor="">
                 <p>Description</p>
                 <textarea id="w3review" name="w3review" rows="8" cols="50" placeholder="Enter Description"></textarea>
               </label>
+
+              </div>
+
+              <div className="award-popup-label award-popup-textarea">
+
+              <label htmlFor="">
+                <p>Rating</p>
+                <ReactStars
+    count={5}
+    onChange={ratingChanged}
+    size={24}
+    activeColor="#ffd700"
+  />,
+              </label>
+
               </div>
               {/* <div/> */}
 

@@ -120,6 +120,7 @@ color: white;
     min-height: 277px;
     max-height: 340px;
     height: 100%;
+    overflow: scroll;
     display: flex;
     z-index: 400;
     padding: 20px;

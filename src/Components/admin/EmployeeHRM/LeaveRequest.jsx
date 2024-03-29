@@ -29,9 +29,7 @@ const LeaveRequest = ({
     display: star1 ? "block" : "none",
   };
 
-  const { user, getUserLeaves , deleteLeave , updateLeave } = useMain();
-
-  // const [openForm , setOpenForm] = useState(false);
+  const { user, getUserLeaves , deleteLeave , updateLeave , acceptLeave , rejectLeave } = useMain();
 
   const [data, setData] = useState([]);
 
@@ -43,6 +41,7 @@ const LeaveRequest = ({
 
   useEffect(()=>{
     getData();
+
   },[]);
 
   const formatDate = (dateString) => {
@@ -74,6 +73,7 @@ const LeaveRequest = ({
        getData();
    }
 
+   const [showPlay , setShowPlay] = useState(-1);
 
    const submitHandler = async()=>{
     const startDate = new Date(formdata.start);
@@ -86,9 +86,28 @@ const LeaveRequest = ({
    if(ans.success){
     alert("Successfuly updated");
     setStar1(false);
+    getUserLeaves();
    }
 
    }
+
+   const rejectHandler = async(form)=>{
+  
+   const ans = await rejectLeave(form);
+    if(ans?.status){
+      alert("Successfuly reject the leave");
+    }
+  }
+  
+  const acceptHandler = async(form)=>{    
+    
+    const ans = await acceptLeave(form);
+    if(ans?.status){
+
+      alert("Successfuly Accepted the leave");
+    }
+   }
+
 
 
   return (
@@ -206,7 +225,19 @@ const LeaveRequest = ({
 
                           <td className="px-6 py-4  flex items-center hiii_gap">
                             
+                             <div className="relative">
+
+                           
                               <button
+                               onClick={()=>{
+                                 if(showPlay === index){
+                                  setShowPlay(-1);
+                                 }
+                                 else {
+                                setShowPlay(index);
+                                 }
+                               }}
+
                                 id="dropdownMenuIconButton2222"
                                 data-dropdown-toggle="dropdownDots2222"
                                 className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -227,6 +258,22 @@ const LeaveRequest = ({
                                   />
                                 </svg>
                               </button>
+
+                               <div style={{ gap:"5px" }} className={`fixed ${showPlay === index ? "showPlay":"hidenPlay"}`}>
+
+                                  <p onClick={
+                                    ()=>{
+                                      acceptHandler(e);
+                                    }
+                                  } style={{backgroundColor:"green" , color:"white", padding:"4px" , cursor:"pointer"  }} >Accept </p>
+                                  <p onClick={()=>{
+                                    rejectHandler(e);
+                                  }} style={{backgroundColor:"red" , color:"white", padding:"4px"  , cursor:"pointer" }} >Reject</p>
+
+                               </div>
+
+                              </div>
+
                               <button
                                 onClick={()=>{
                                   setFormdata((prev)=>({
@@ -262,6 +309,7 @@ const LeaveRequest = ({
                                   />
                                 </svg>
                               </button>
+
                               <button
                                onClick={()=>deleteLeaveRequest(e?._id)}
                                 id="dropdownMenuIconButton2222"

@@ -153,39 +153,7 @@ const AdminSidebar = ({ pop, setPop }) => {
   const [openLeaveMan, setOpenLeaveMan] = useState(false);
   const [openHrAdmin, setOpenHrAdmin] = useState(false);
 
-//   {
-//     openTrain && 
-//     <div>
 
-// {
-// trainingItem?.map((item ,index)=>(
-// <div
-  
-// onClick={()=>{
-// setHRMS(index)
-// navigate(item?.link)
-// }}
-// className="sinADDasItem"
-// key={index}
-// >
-// {dashItem == index ? (
-// <img src={chooseDash} alt="" />
-// ) : (
-// <img src={unchosedash} alt="" />
-// )}
-// <p
-// className={` ${
-// HRMS === index ? "dashItemp" : "dITitl"
-// }`}
-// >
-// {item?.title}
-// </p>
-// </div>
-// ))
-// }
- 
-//     </div>
-//    }
 
   return (
     <>

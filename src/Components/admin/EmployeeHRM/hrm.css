@@ -6,6 +6,17 @@
     width: 100%;
     margin: 0 auto;
 }
+
+/* for play of leave request hrms admin  */
+.showPlay{
+    display: flex;
+    
+}
+.hidenPlay{
+    display: none;
+
+}
+
 .hrmDasTxtFir .hrmHed{
     font-family: Gilroy-Medium;
     font-size: 20px;

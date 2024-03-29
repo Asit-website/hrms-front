@@ -427,6 +427,7 @@ const EmployeeManage = ({ pop1, setPop1, pop, setPop, setAlert, isHr = false }) 
 
  if(adharCard !== "" || cancelCheque !== "" || educationCert !=="" || monthSalary !== "" || prevOrgOffer !== ""){
   // formData
+   console.log("adhar ",adharCard , cancelCheque , educationCert ,"also run");
   const ans = await uploadDocuments(id , formData);
   if(ans.success){
      alert("Successfuly updated the documents");

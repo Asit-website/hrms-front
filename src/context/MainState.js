@@ -239,6 +239,7 @@ const MainState = (props) => {
    const postLeave = async ({ type, from, to, days, reason }) => {
       
       const data = await post(`${baseUrl}/leave/postLeave`, { type, from, to, days, reason }, true);
+
       return data;
    };
 
@@ -728,13 +729,31 @@ const MainState = (props) => {
    };
 
 
+    const acceptLeave = async(formdata)=>{
+      
+       const {user , days} = formdata;
+
+       let fullName = user.fullName;
+
+      const data = await post(`${baseUrl}/leave/acceptLeave`,{fullName , days}, true);
+      return data;
+    }
+     const rejectLeave = async(formdata)=>{
+      const {user } = formdata;
+      let fullName = user.fullName;
+
+      const data = await post(`${baseUrl}/leave/rejectLeave`, {fullName}, true);
+
+      return data;
+     }
    
 
    return (
       <MainContext.Provider value={{
          login, employeeLogin, employeeResetPassword, hrLogin, createHr, getHrs, deleteHr, createEmployee, getEmployees, getUsers, getActiveUsers, getActiveUsersCount, getAdminEmployees, postActivity, postActivityHr, getActivitiesByUser, getStatisticsByUser, postLeave, updateLeave, getUserLeaves, getUserLeaveById, deleteLeave, getTotalLeaves, postTotalLeaves, verifyEmployee, verifyHr, verifyAdmin, setUser, user, getProjects, postProject, getHolidays, postHoliday, updateProject, getProjectsByEmployee, getTasks, postTask, updateTask, deleteTask, setFlag, flag, changePassword, updateProfile, deleteHoliday, updateHoliday, deleteProject, getChats, createNewChat, postMessage, deleteChat, adminLogin, getChat, getChatByUser, setChatUser, chatUser, getEmployeesByEmployee, topDash, postAnnouncement, updateAnnouncement, getAnnouncements, getAnnouncementDates, deleteAnnouncement, getAttendance, getAttendanceByUser, createEmployee1, updateAdminProfile, changePassword1, verify, updateUser, forgetPassword, forgetPassword1, forgetPassword2, getBranchs, postBranch, updateBranch, deleteBranch, getDepartments, postDepartment, updateDepartment, deleteDepartment, getDesingation, postDesignation, updateDesignation, deleteDesignation, getAllActivities, postLeaveType, updateLeaveType, getLeaveTypes, deleteLeaveType,
          createIndicator, getIndicator, deleteIndicator, getDesignations, updateIndicator, getAppraisal, createAppraisal, allEmployee, deleteApprisal, updateApprisal, createAssets, getAssets, deleteAssets,updateAssets,deleteUser,createTracks,getTracks,deleteTracks,updateTracks , 
-         getTotalLeavesCount  ,uploadDocuments 
+         getTotalLeavesCount  ,uploadDocuments  , 
+         acceptLeave , rejectLeave
       }}>
          {props.children}
       </MainContext.Provider>

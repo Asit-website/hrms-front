@@ -21,7 +21,7 @@ var tc4;
 
 const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
   // =================punch in punch out concept==========
-  const { user, postActivity, getStatisticsByUser , postLeave } = useMain();
+  const { user, postActivity, getStatisticsByUser , postLeave , getLeaveTypes } = useMain();
 
   const [startTs, setStartTs] = useState("");
   var [percentageDone, setPercentageDone] = useState(0);
@@ -354,7 +354,18 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
     })
   }
 
-//  console.log("f",formdata);
+  const [leaveType , setLeaveType] = useState([]);
+
+   const fetchLeaveType = async()=>{
+      const resp = await getLeaveTypes();
+      if(resp.success){
+        setLeaveType(resp?.data);
+      }
+   }
+
+    useEffect(()=>{
+      fetchLeaveType();
+    },[])
 
   return (
     <>
@@ -1099,7 +1110,9 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                                 for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                               >
+                                
                                 Employee Name
+
                               </label>
 
                               <input
@@ -1122,16 +1135,15 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                               >
                                 Leave type
                               </label>
-                              <input
-                              value={formdata.leaveType}
-                              onChange={changeHandler}
-                                type="text"
-                                name="leaveType"
-                                id="text"
-                                placeholder="Enter your leave type"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                required
-                              />
+                            
+
+                              <select name="leaveType" onChange={changeHandler} value={formdata.leaveType} required>
+                                {
+                                  leaveType.map((item ,index)=>(
+                                    <option value={item?.name} key={index}>{item?.name}</option>
+                                  ))
+                                }
+                              </select>
                             </div>
 
                             <div className="flex justify-between w-full">
@@ -1202,6 +1214,14 @@ const EmployeeDash = ({ setAlert, pop1, setPop1 }) => {
                               class="w-full mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >
                               send
+                            </button>
+
+                            <button
+                              onClick={()=>setStar1(false)}
+                              type="button" 
+                              class="w-full mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                              Cancel
                             </button>
 
                           </form>

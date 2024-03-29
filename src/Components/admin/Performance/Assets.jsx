@@ -11,7 +11,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 
 const Assets = ({ pop, setPop, setAlert }) => {
-  const { user, createAssets, allEmployee, getAssets,deleteAssets,updateAssets } = useMain();
+  const { user, createAssets, allEmployee, getAssets,deleteAssets,updateAssets  , getDepartments , getDesignations } = useMain();
 
   const [openForm, setOpenForm] = useState(false);
 
@@ -25,10 +25,11 @@ const Assets = ({ pop, setPop, setAlert }) => {
 
   const [formdata, setFormdata] = useState({
     Employee: "",
-    Name: "",
-    amount: "",
-    purchaseDate: "",
-    supportedDate: "",
+    designation: "",
+    department: "",
+    additionProduct: "",
+    toDate: "",
+    product: "",
     description: ""
   })
 
@@ -122,7 +123,26 @@ const Assets = ({ pop, setPop, setAlert }) => {
 
   }
 
+  const [department , setDepartment] = useState([]);
+  const [designation , setDesignation] = useState([]);
 
+  const departmentCollect = async()=>{
+    const ans2 = await  getDepartments();
+    console.log(' ans2 ' , ans2);
+    setDepartment(ans2?.data);
+    
+  }
+  const designationCollect = async()=>{
+    const ans3 = await getDesignations();
+    console.log(' ans3 ' , ans3);
+    setDesignation(ans3?.data);
+
+  }
+
+  useEffect(()=>{
+    departmentCollect();
+    designationCollect();
+  },[])
 
   return (
     <>
@@ -322,29 +342,48 @@ const Assets = ({ pop, setPop, setAlert }) => {
                 </label>
 
                 <label htmlFor="Name" className='halfLabel' >
-                  <p>Name</p>
-                  <input name='Name' id='Name' value={formdata?.Name} onChange={changeHandler} type="text" />
+                  <p>Designation</p>
+                  <select name="designation" value={formdata.designation} onChange={changeHandler}>
+                    <option>Select</option>
+                    {
+                      designation?.map((val, index) => {
+                        return <option key={index} value={val?.name}>{val?.name}</option>
+                      })
+                    }
+                  </select>
                 </label>
 
                 <label className='halfLabel' >
-                  <p>Amount</p>
-                  <input name='amount' value={formdata?.amount} onChange={changeHandler} type="text" />
+                  <p>Department</p>
+                  <select name="department" value={formdata.department} onChange={changeHandler}>
+                    <option>Select</option>
+                    {
+                      department?.map((val, index) => {
+                        return <option key={index} value={val?.name}>{val?.name}</option>
+                      })
+                    }
+                  </select>
                 </label>
 
                 <label className='halfLabel' >
-                  <p>Purchase Date</p>
-                  <input value={formdata?.purchaseDate} name='purchaseDate' onChange={changeHandler} type="date" />
+                  <p>Product</p>
+                  <input value={formdata?.product} name='product' onChange={changeHandler} type="text" />
                 </label>
+
                 <label className='halfLabel' >
-                  <p>Supported Date</p>
-                  <input name='supportedDate' value={formdata?.supportedDate} onChange={changeHandler} type="date" />
+                  <p>To Date</p>
+                  <input name='supportedDate' value={formdata?.toDate} onChange={changeHandler} type="date" />
+                </label>
+
+                <label className='fullLabel' >
+                  <p>Additional Product</p>
+                  <input name="additionProduct" id="description" onChange={changeHandler} cols="20" rows="3" value={formdata?.additionProduct} />
                 </label>
 
                 <label className='fullLabel' >
                   <p>Description</p>
                   <textarea name="description" id="description" onChange={changeHandler} cols="20" rows="3" value={formdata?.description}></textarea>
                 </label>
-
 
               </div>
 
